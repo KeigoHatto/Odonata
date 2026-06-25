@@ -7,7 +7,7 @@
 <meta name="description" content="Odonata コンディショニングツールの詳しい使い方ガイド。選手向け・コーチ向けの全機能と、ネットワーク分析の読み方を解説します。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#E0F5FD; --card:#FFFFFF; --text:#15233B; --sub:#5A7A8A;
@@ -19,7 +19,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:'Inter','Noto Sans JP',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased}
+  body{font-family:'Manrope','Zen Kaku Gothic New',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
   .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
@@ -152,12 +152,6 @@
   .ucedge.pos .ar{color:#16774a}
   @media(max-width:560px){.uc-fig{justify-content:flex-start}}
 
-  /* screenshot placeholder */
-  .shot{margin:16px 0 6px;border-radius:var(--radius-sm);border:2px dashed var(--border);background:repeating-linear-gradient(45deg,#fff,#fff 14px,#f4fbfe 14px,#f4fbfe 28px);min-height:170px;display:grid;place-items:center;text-align:center;color:var(--sub)}
-  .shot .ph{font-size:13.5px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px}
-  .shot .ph svg.ic{font-size:30px;color:#bcd7e5}
-  .shot small{color:#9bb6c4;font-weight:500}
-
   /* back to top / footer */
   footer{background:var(--navy-deep);color:#9fb8d6;padding:46px 0 38px;text-align:center;font-size:13px}
   footer img{height:26px;margin:0 auto 14px;filter:brightness(0) invert(1);opacity:.9}
@@ -212,6 +206,7 @@
       <a href="#player">選手向け</a>
       <a href="#coach">コーチ向け</a>
       <a href="#network" class="active">ネットワーク分析</a>
+      <a href="philosophy.html">Philosophy</a>
       <a class="nav-cta" href="index.html">トップへ <svg class="ic"><use href="#i-arrow"/></svg></a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
@@ -283,7 +278,6 @@
 
       <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
         <div><b>まずやること：</b> 選手は毎日「コンディション入力」を済ませましょう。これがすべての分析の土台になります。</div></div>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> ログイン／サイドバーのスクリーンショット<small>assets/ に画像を置いて差し替え</small></div></div>
     </section>
 
     <!-- ══════════ 選手向け ══════════ -->
@@ -336,7 +330,6 @@
         <div><b>痛みの入力：</b> 気になる痛みがあるときは「痛み」スイッチを ON にして、強さ（0〜10）と部位（頭・肩・腰・ハム・膝・足首…）を選びましょう。スタッフが早めに気づけます。</div></div>
       <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
         <div><b>カスタム項目／個人項目：</b> チームが追加した独自の質問が表示されることがあります。「個人」タグの付いた項目は、<b>あなただけが見られる</b>非公開のメモです。</div></div>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> コンディション入力画面のスクリーンショット</div></div>
     </section>
 
     <!-- ホーム -->
@@ -352,7 +345,6 @@
         <li><b>自分の負荷推移</b>：直近14日のGPS負荷（走行距離・スプリント・ACWR 等）。</li>
         <li><b>直近の戦績</b>：チームの最近の試合結果。</li>
       </ul>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 選手ホームのスクリーンショット</div></div>
     </section>
 
     <!-- スケジュール・トレーニング -->
@@ -366,7 +358,6 @@
       </ul>
       <h3><svg class="ic"><use href="#i-dumbbell"/></svg> トレーニング</h3>
       <p>その日のトレーニングメニューをカレンダー形式で確認。コーチが「メニュービルダー」で作ったメニューや配布資料（PDF）を見られます。</p>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> スケジュール／トレーニングのスクリーンショット</div></div>
     </section>
 
     <!-- 試合履歴 -->
@@ -380,7 +371,6 @@
         <li><b>コーチ講評</b>：コーチからのコメント</li>
         <li><b>自己評価の記録</b>：自己評価（1〜10）と振り返りコメントを入力して「保存」</li>
       </ul>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 試合履歴のスクリーンショット</div></div>
     </section>
 
     <!-- ケガ履歴 -->
@@ -392,7 +382,6 @@
         <li><b>一部参加の状況</b>：例「アップとパス練習のみ可、対人・スプリント不可」のように、できる範囲を伝えられます。</li>
         <li>過去のケガ履歴が一覧で確認できます。</li>
       </ul>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> ケガ履歴のスクリーンショット</div></div>
     </section>
 
     <!-- IDP -->
@@ -405,7 +394,6 @@
         <li><b>修了ログ</b>：達成・完了した目標の記録。</li>
         <li><b>面談記録</b>：コーチとの面談メモ。</li>
       </ul>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> IDP のスクリーンショット</div></div>
     </section>
 
     <!-- 個別分析 -->
@@ -419,7 +407,6 @@
       </ol>
       <div class="note tip"><svg class="ic"><use href="#i-network"/></svg>
         <div>ネットワーク図の読み方は最重要ポイントです。 <a class="inl" href="#network">→ ネットワーク分析の読み方へ</a></div></div>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 選手の個別分析のスクリーンショット</div></div>
     </section>
 
     <!-- プロフィール -->
@@ -431,7 +418,6 @@
         <li><b>項目設定</b>：自分用のカスタム入力項目（個人項目）を設定。</li>
         <li><b>アカウント設定</b>：パスワード変更、パスキー（生体認証）などのセキュリティ。</li>
       </ul>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> プロフィールのスクリーンショット</div></div>
     </section>
 
     <!-- ══════════ コーチ向け ══════════ -->
@@ -467,7 +453,6 @@
         <li><b>代行入力</b>：選手が入力できないとき、選手・日付を選んでコーチが代わりに入力（練習前／後タブ、選手と同じフォーム）。</li>
         <li><b>項目別 現在値</b>：期間（直近7〜90日／期間指定）と、チーム平均／個別選手、参加区分で絞り込んで確認。</li>
       </ul>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> ダッシュボード／コンディション概観のスクリーンショット</div></div>
     </section>
 
     <!-- 試合・練習・運営 -->
@@ -490,7 +475,6 @@
         <li><b>メディカル</b>：受傷日・部位・診断・復帰予定・一部参加の状況を記録・追跡。</li>
         <li><b>IDP 概観</b>：全選手の目標・評価・面談を俯瞰。</li>
       </ul>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 試合詳細のスクリーンショット</div></div>
     </section>
 
     <!-- メニュービルダー -->
@@ -596,7 +580,6 @@
 
       <h3><svg class="ic"><use href="#i-ball"/></svg> 選手側の見え方</h3>
       <p>配布されたメニューは、選手の<b>トレーニング</b>画面のその日付に表示され、ドリル内容・フィールド図・自分がどのグループかを確認できます。</p>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> メニュービルダー（編集画面・フィールド図・PDF）のスクリーンショット</div></div>
     </section>
 
     <!-- 傷害リスク予測 -->
@@ -639,7 +622,6 @@
 
       <h3><svg class="ic"><use href="#i-sliders"/></svg> 練習負荷設計</h3>
       <p>選手をクリックすると <b>練習負荷設計モーダル</b> が開きます。強度プリセット（低／中／高）やGPS負荷を自由に設計し、リスクへの影響を見ながら練習計画を立てられます。</p>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> リスク予測／負荷設計モーダルのスクリーンショット</div></div>
     </section>
 
     <!-- 個別分析（コーチ・3タブ） -->
@@ -678,7 +660,6 @@
 
       <div class="note tip"><svg class="ic"><use href="#i-network"/></svg>
         <div>図の読み方は次の章で徹底解説します。 <a class="inl" href="#network">→ ネットワーク分析の読み方へ</a></div></div>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 個別分析 3タブのスクリーンショット</div></div>
     </section>
 
     <!-- 運営・管理 -->
@@ -695,7 +676,6 @@
         <tr><td><b>GPSデータ</b> <span class="pill gps">GPS連携チーム</span></td><td>走行距離・スプリント・加減速・衝撃・ACWR 等を確認</td></tr>
         <tr><td><b>ユーザー管理</b> <span class="pill" style="background:#EAF7FF;color:#0073a8">管理者</span></td><td>アカウント・役割・スタッフの機能権限を管理</td></tr>
       </table>
-      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 運営メニューのスクリーンショット</div></div>
     </section>
 
     <!-- ══════════ ネットワーク分析の読み方 ══════════ -->
@@ -765,12 +745,12 @@
         </div>
 
         <h3 style="margin-top:26px"><svg class="ic"><use href="#i-info"/></svg> どう活用する？</h3>
-        <table class="tbl" style="background:#fff">
+        <table class="tbl" style="background:#fff;color:var(--text)">
           <tr><th>知りたいこと</th><th>見るタブ</th></tr>
-          <tr><td>翌日に響く要因を見つけたい</td><td><b>時系列関係</b></td></tr>
-          <tr><td>同じ日に連動する指標を知りたい</td><td><b>同時相関</b></td></tr>
-          <tr><td>期間で関係が変わったか見たい</td><td><b>2期間の比較</b></td></tr>
-          <tr><td>チーム全体の傾向を方針に活かしたい</td><td><b>チーム傾向</b></td></tr>
+          <tr><td>前日のトレーニングが当日のコンディショニングにどう影響しているか</td><td><b>時系列関係</b></td></tr>
+          <tr><td>その選手はどういった状態になりやすいか</td><td><b>同時相関</b></td></tr>
+          <tr><td>イベント前後（例えば怪我前後や目標設定前後）でどう違うか</td><td><b>2期間の比較</b></td></tr>
+          <tr><td>そのチーム全体は平均してどんな傾向があるか</td><td><b>チーム傾向</b></td></tr>
         </table>
 
         <h3 style="margin-top:28px"><svg class="ic"><use href="#i-spark"/></svg> ユースケース：図から対策へ</h3>
@@ -833,6 +813,7 @@
         <tr><td>「データが不十分」と出る</td><td>期間を長くする（最低10日、目安100日以上）</td></tr>
         <tr><td>GPS指標が選べない</td><td>そのチームはGPS非計測です（コンディション変数で分析を）</td></tr>
         <tr><td><b>結果が安定しない／毎回変わる</b></td><td><b>変数を3〜5個に絞る。</b>データが少ないのに項目を多く選びすぎると不安定になります。まず重要な変数だけで分析し、あわせて<b>分析期間を広げる</b>とより安定します</td></tr>
+        <tr><td><b>解釈が難しい結果が頻繁に出る／より専門的なアドバイスを求めたい</b></td><td>ご希望に応じて、<b>弊社のスタッフが分析結果を吟味し、解釈をさせていただきます。</b>詳しくはお問い合わせください。</td></tr>
       </table>
       <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
         <div><b>変数は「少なく始める」のがコツ：</b> データ日数に対して変数が多いほど推定は不安定になります。最初は<b>3〜5個</b>の知りたい変数に絞り、安定して読めることを確認してから少しずつ増やしましょう。</div></div>

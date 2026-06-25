@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 230" fill="none" role="img" aria-label="Odonata network dragonfly">
+  <defs>
+    <linearGradient id="df-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5fd6f7"/>
+      <stop offset=".45" stop-color="#00A0E9"/>
+      <stop offset="1" stop-color="#0B2A5B"/>
+    </linearGradient>
+    <radialGradient id="df-eye" cx=".38" cy=".32" r=".85">
+      <stop offset="0" stop-color="#dff5ff"/>
+      <stop offset=".45" stop-color="#3FC8F0"/>
+      <stop offset="1" stop-color="#0a78c4"/>
+    </radialGradient>
+    <radialGradient id="df-node" cx=".35" cy=".3" r=".9">
+      <stop offset="0" stop-color="#cfeeff"/>
+      <stop offset="1" stop-color="#1f8fd4"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ===== RIGHT-SIDE WINGS (network mesh) ; mirrored for the left ===== -->
+  <g id="df-wingR">
+    <!-- edges -->
+    <g stroke="#3FC8F0" stroke-width="1" stroke-opacity=".55" fill="none" stroke-linecap="round">
+      <!-- upper wing: radiating veins from base + cross links -->
+      <line x1="168" y1="54" x2="196" y2="44"/><line x1="196" y1="44" x2="222" y2="36"/>
+      <line x1="222" y1="36" x2="248" y2="34"/><line x1="248" y1="34" x2="268" y2="42"/>
+      <line x1="268" y1="42" x2="256" y2="54"/><line x1="256" y1="54" x2="232" y2="52"/>
+      <line x1="232" y1="52" x2="206" y2="56"/><line x1="206" y1="56" x2="180" y2="58"/>
+      <line x1="180" y1="58" x2="168" y2="54"/>
+      <line x1="168" y1="54" x2="222" y2="36"/><line x1="168" y1="54" x2="248" y2="34"/>
+      <line x1="168" y1="54" x2="232" y2="52"/>
+      <line x1="196" y1="44" x2="206" y2="56"/><line x1="222" y1="36" x2="232" y2="52"/>
+      <line x1="248" y1="34" x2="256" y2="54"/>
+      <!-- lower wing -->
+      <line x1="162" y1="74" x2="188" y2="82"/><line x1="188" y1="82" x2="214" y2="90"/>
+      <line x1="214" y1="90" x2="236" y2="98"/><line x1="236" y1="98" x2="226" y2="106"/>
+      <line x1="226" y1="106" x2="202" y2="102"/><line x1="202" y1="102" x2="178" y2="92"/>
+      <line x1="178" y1="92" x2="162" y2="74"/>
+      <line x1="162" y1="74" x2="214" y2="90"/><line x1="162" y1="74" x2="236" y2="98"/>
+      <line x1="188" y1="82" x2="202" y2="102"/><line x1="214" y1="90" x2="202" y2="102"/>
+    </g>
+    <!-- nodes -->
+    <g fill="url(#df-node)">
+      <circle cx="196" cy="44" r="3.1"/><circle cx="222" cy="36" r="3.4"/>
+      <circle cx="248" cy="34" r="3.4"/><circle cx="268" cy="42" r="3.6"/>
+      <circle cx="256" cy="54" r="3"/><circle cx="232" cy="52" r="3"/>
+      <circle cx="206" cy="56" r="2.8"/><circle cx="180" cy="58" r="2.6"/>
+      <circle cx="188" cy="82" r="3"/><circle cx="214" cy="90" r="3.2"/>
+      <circle cx="236" cy="98" r="3.2"/><circle cx="226" cy="106" r="2.8"/>
+      <circle cx="202" cy="102" r="2.8"/><circle cx="178" cy="92" r="2.6"/>
+    </g>
+  </g>
+  <use href="#df-wingR" transform="translate(300,0) scale(-1,1)"/>
+
+  <!-- ===== BODY ===== -->
+  <!-- abdomen (tapering, segmented) -->
+  <path d="M143 68 L157 68 L153.5 210 L150 218 L146.5 210 Z" fill="url(#df-body)"/>
+  <g stroke="#071A3A" stroke-opacity=".35" stroke-width="1.4">
+    <line x1="146.5" y1="92" x2="153.5" y2="92"/>
+    <line x1="147" y1="116" x2="153" y2="116"/>
+    <line x1="147.4" y1="140" x2="152.6" y2="140"/>
+    <line x1="147.8" y1="164" x2="152.2" y2="164"/>
+    <line x1="148.2" y1="188" x2="151.8" y2="188"/>
+  </g>
+  <!-- thorax -->
+  <ellipse cx="150" cy="62" rx="11" ry="13" fill="url(#df-body)"/>
+  <!-- head -->
+  <ellipse cx="150" cy="45" rx="15" ry="10" fill="url(#df-body)"/>
+  <!-- compound eyes (made to stand out) -->
+  <circle cx="138" cy="41" r="9.5" fill="url(#df-eye)" stroke="#0a5a96" stroke-width="1"/>
+  <circle cx="162" cy="41" r="9.5" fill="url(#df-eye)" stroke="#0a5a96" stroke-width="1"/>
+  <circle cx="135" cy="38" r="3" fill="#ffffff" fill-opacity=".75"/>
+  <circle cx="159" cy="38" r="3" fill="#ffffff" fill-opacity=".75"/>
+</svg>

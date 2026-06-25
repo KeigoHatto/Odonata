@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philosophy — Odonata</title>
+<meta name="description" content="Odonata の思想。複雑な世界を、複眼で読む。サッカーを取り巻く要素は相互に影響し合う複雑系。その関係性のネットワークを多角的に読み解き、現場の意思決定とチームの成長を支えます。サービス名「Odonata」に込めた想いも紹介します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#071A3A; --bg2:#0B2A5B; --card:rgba(255,255,255,.04); --text:#EAF4FB; --sub:#9DB6CC;
+    --border:rgba(120,190,240,.22); --blue:#00A0E9; --navy:#0B2A5B;
+    --cyan:#3FC8F0; --ice:#9fe2ff; --radius:18px; --radius-sm:12px;
+    --shadow:0 18px 50px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Manrope','Zen Kaku Gothic New',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+  svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.14em}
+
+  /* persistent network backdrop */
+  #bgNet{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.5;pointer-events:none}
+  .veil{position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(1200px 700px at 70% -5%,rgba(0,160,233,.22),transparent 60%),
+               radial-gradient(900px 600px at 10% 110%,rgba(63,200,240,.14),transparent 55%),
+               linear-gradient(180deg,rgba(7,26,58,.2),rgba(7,26,58,.78))}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(7,26,58,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .nav-logo img{height:28px;filter:brightness(0) invert(1)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-size:14px;font-weight:600;color:#cfe2f2;opacity:.82;transition:.2s}
+  .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--cyan)}
+  .nav-cta{background:var(--blue);color:#fff!important;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:700;opacity:1!important;display:inline-flex;align-items:center;gap:7px}
+  .nav-cta:hover{background:var(--cyan)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;font-size:24px;color:#cfe2f2}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}
+    .nav-links.open{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--bg2);padding:18px 24px;gap:16px;box-shadow:var(--shadow);border-bottom:1px solid var(--border)}}
+
+  /* hero */
+  .phero{padding:96px 0 100px;text-align:center;position:relative}
+  .crumb{font-size:13px;color:var(--ice);font-weight:600;margin-bottom:30px;display:flex;align-items:center;justify-content:center;gap:8px;opacity:.85}
+  .phero .df{width:128px;margin:0 auto 26px;filter:drop-shadow(0 10px 34px rgba(63,200,240,.5));animation:hover 6s ease-in-out infinite}
+  @keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .phero h1{font-size:clamp(30px,5.4vw,54px);font-weight:800;letter-spacing:.02em;line-height:1.35;margin-bottom:18px}
+  .phero h1 .grad{background:linear-gradient(100deg,var(--cyan),var(--ice));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .phero .en{font-size:clamp(15px,2.6vw,23px);font-weight:700;color:var(--ice);letter-spacing:.06em;font-family:'Manrope',sans-serif}
+  .scrollcue{margin-top:48px;font-size:11px;letter-spacing:.3em;color:var(--sub);text-transform:uppercase}
+  .scrollcue span{display:block;width:1px;height:42px;margin:14px auto 0;background:linear-gradient(var(--cyan),transparent);animation:drop 1.8s ease-in-out infinite}
+  @keyframes drop{0%{opacity:0;transform:scaleY(.3)}50%{opacity:1}100%{opacity:0;transform:translateY(20px) scaleY(.3)}}
+
+  /* ===== scroll-zoom hero (dragonfly eyes → Odonata logo) ===== */
+  .zoomstage{position:relative;height:380vh}
+  .zoomsticky{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
+  .zlayer{position:absolute;inset:0;display:grid;place-items:center;will-change:transform,opacity}
+  .zlayer.df img{width:min(440px,72vw);filter:drop-shadow(0 18px 50px rgba(63,200,240,.4));transform-origin:48% 29%;will-change:transform}
+  /* soft light behind emblem so dark-navy parts stay legible on dark bg */
+  .zlayer.emblem::after{content:"";position:absolute;width:min(540px,82vw);aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle,rgba(140,200,255,.34),rgba(140,200,255,.10) 48%,transparent 70%);filter:blur(8px);z-index:-1}
+  .zlayer.emblem img{width:min(300px,54vw);filter:drop-shadow(0 14px 44px rgba(63,200,240,.5))}
+  .zlayer.lockup{flex-direction:column;text-align:center;gap:0;opacity:0}
+  .zlayer.lockup .emwrap{position:relative;display:grid;place-items:center;margin:0 auto 18px}
+  .zlayer.lockup .emwrap::before{content:"";position:absolute;width:160%;aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle,rgba(140,200,255,.30),rgba(140,200,255,.08) 50%,transparent 70%);filter:blur(8px);z-index:-1}
+  .zlayer.lockup .em2{width:min(150px,34vw);filter:drop-shadow(0 12px 32px rgba(63,200,240,.45))}
+  .zlayer.lockup .wm{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(34px,7vw,72px);letter-spacing:.04em;
+    background:linear-gradient(100deg,#fff,var(--ice) 55%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+  .zlayer.lockup .jp{font-weight:800;font-size:clamp(18px,3.2vw,30px);color:#fff;margin-top:22px;letter-spacing:.03em;line-height:1.5}
+  .zlayer.lockup .jp .grad{background:linear-gradient(100deg,var(--cyan),var(--ice));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .zlayer.lockup .en2{margin-top:14px;font-size:clamp(13px,2.2vw,19px);font-weight:700;color:var(--ice);letter-spacing:.08em;font-family:'Manrope',sans-serif}
+  .zhint{position:absolute;left:0;right:0;bottom:34px;text-align:center;font-size:11px;letter-spacing:.3em;color:var(--sub);text-transform:uppercase;z-index:5}
+  .zhint span{display:block;width:1px;height:38px;margin:12px auto 0;background:linear-gradient(var(--cyan),transparent);animation:drop 1.8s ease-in-out infinite}
+
+  /* generic section */
+  section{padding:92px 0;position:relative}
+  .sec-tag{font-size:12px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);text-align:center;margin-bottom:16px}
+  .sec-h{font-size:clamp(24px,3.6vw,38px);font-weight:800;color:#fff;text-align:center;letter-spacing:.01em;margin-bottom:18px;line-height:1.5}
+  .sec-sub{text-align:center;color:var(--sub);max-width:640px;margin:0 auto 50px;font-size:15px}
+
+  /* complexity diagram */
+  .cx{max-width:760px;margin:0 auto}
+  .cx svg{width:100%;height:auto;overflow:visible}
+  .cx .edge{stroke:var(--cyan);stroke-width:1.1;opacity:.28}
+  .cx .edge.pulse{animation:edgepulse 4s ease-in-out infinite}
+  @keyframes edgepulse{0%,100%{opacity:.14}50%{opacity:.6}}
+  .cx .node circle{fill:rgba(0,160,233,.16);stroke:var(--cyan);stroke-width:1.4}
+  .cx .node.core circle{fill:rgba(63,200,240,.22);stroke:var(--ice);stroke-width:2}
+  .cx .node circle.dot{fill:var(--cyan);stroke:none;animation:nodepulse 4s ease-in-out infinite}
+  @keyframes nodepulse{0%,100%{r:3;opacity:.6}50%{r:5;opacity:1}}
+  .cx text{fill:#EAF4FB;font-size:13px;font-weight:700;text-anchor:middle;font-family:'Zen Kaku Gothic New',sans-serif}
+  .cx .node.core text{font-size:13px;fill:var(--ice)}
+  .cx .cap{font-size:11px;fill:var(--sub);font-weight:500}
+
+  /* statement */
+  .statement{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(6px);max-width:880px;margin:0 auto;padding:56px clamp(24px,5vw,68px);text-align:center;position:relative;overflow:hidden}
+  .statement::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--cyan),var(--blue))}
+  .statement .lead{font-size:clamp(20px,2.8vw,27px);font-weight:800;color:#fff;line-height:1.7;margin-bottom:30px}
+  .statement p{font-size:clamp(15px,1.9vw,17.5px);color:#D6E6F2;line-height:2.2;margin:0}
+  .statement p + p{margin-top:22px}
+  .statement .close{font-weight:800;font-size:clamp(18px,2.4vw,22px);margin-top:32px;
+    background:linear-gradient(100deg,var(--cyan),var(--ice));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .statement b{color:#fff}
+  .statement .hl{color:var(--cyan)}
+
+  /* values */
+  .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:0 auto}
+  @media(max-width:760px){.vgrid{grid-template-columns:1fr}}
+  .vcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;backdrop-filter:blur(6px);transition:.3s;position:relative;overflow:hidden}
+  .vcard::after{content:"";position:absolute;inset:0;background:radial-gradient(300px 160px at 80% -20%,rgba(0,160,233,.22),transparent 70%);opacity:0;transition:.3s}
+  .vcard:hover{transform:translateY(-6px);border-color:var(--cyan);box-shadow:0 20px 50px rgba(0,160,233,.2)}
+  .vcard:hover::after{opacity:1}
+  .vic{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;font-size:26px;color:var(--cyan);background:rgba(0,160,233,.12);border:1px solid var(--border);margin-bottom:18px}
+  .vcard h3{font-size:18px;font-weight:800;color:#fff;margin-bottom:10px}
+  .vcard p{font-size:13.5px;color:var(--sub);line-height:1.9}
+  .vcard .no{position:absolute;top:18px;right:22px;font-size:34px;font-weight:800;color:rgba(120,190,240,.12);font-family:'Manrope',sans-serif}
+
+  /* name story */
+  .name-inner{display:grid;grid-template-columns:320px 1fr;gap:56px;align-items:center;max-width:1020px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(6px);padding:clamp(28px,4vw,56px)}
+  @media(max-width:820px){.name-inner{grid-template-columns:1fr;gap:32px;text-align:center}}
+  .name-fig{text-align:center}
+  .name-fig .df{width:230px;margin:0 auto 16px;filter:drop-shadow(0 14px 36px rgba(63,200,240,.32))}
+  .name-fig .sci{font-style:italic;font-weight:700;color:var(--cyan);font-size:19px;letter-spacing:.03em;font-family:'Manrope',sans-serif}
+  .name-fig .sci span{font-style:normal;color:var(--sub);font-size:13px;display:block;margin-top:3px;font-family:'Zen Kaku Gothic New',sans-serif}
+  .name-body h2{font-size:clamp(22px,3vw,29px);font-weight:800;color:#fff;margin-bottom:20px;line-height:1.55}
+  .name-body h2 .grad{background:linear-gradient(100deg,var(--cyan),var(--ice));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .name-body p{font-size:15px;color:#D6E6F2;line-height:2.05;margin-bottom:16px}
+  .name-body p:last-child{margin-bottom:0}
+  .name-body b{color:#fff;font-weight:800}
+  .name-body .hl{color:var(--cyan)}
+  .kachi{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(100deg,var(--blue),var(--cyan));color:#04203b;font-weight:800;font-size:13px;padding:5px 14px;border-radius:999px;margin:0 3px;letter-spacing:.05em}
+
+  /* cta */
+  .cta{text-align:center;border:1px solid var(--border);border-radius:var(--radius);max-width:1000px;margin:0 auto;padding:58px 24px;background:var(--card);backdrop-filter:blur(6px);position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 260px at 50% -40%,rgba(0,160,233,.3),transparent 70%)}
+  .cta > *{position:relative;z-index:2}
+  .cta h2{font-size:clamp(22px,3vw,32px);font-weight:800;color:#fff;margin-bottom:12px}
+  .cta p{color:var(--sub);margin-bottom:28px}
+  .btn{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(100deg,var(--blue),var(--cyan));color:#04203b;font-weight:800;font-size:15px;padding:14px 32px;border-radius:999px;transition:.2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,160,233,.35)}
+
+  /* footer */
+  footer{border-top:1px solid var(--border);text-align:center;padding:50px 24px 44px;position:relative;z-index:2}
+  footer img{height:32px;margin:0 auto 16px;filter:brightness(0) invert(1);opacity:.92}
+  footer p{font-size:13px;color:var(--sub)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;will-change:opacity,transform}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none}
+    .df,.cx .edge.pulse,.cx circle.dot,.scrollcue span,.zhint span{animation:none!important}
+    .zoomstage{height:auto}.zoomsticky{position:static;height:auto;min-height:70vh}
+    .zlayer.df,.zlayer.emblem,.zhint{display:none}
+    .zlayer.lockup{position:static;opacity:1!important;transform:none!important;padding:80px 0}}
+</style>
+</head>
+<body>
+
+<canvas id="bgNet"></canvas>
+<div class="veil"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></symbol>
+  <symbol id="i-network" viewBox="0 0 24 24"><line x1="6.6" y1="6.6" x2="12" y2="12"/><line x1="17.4" y1="5.6" x2="12" y2="12"/><line x1="12" y1="12" x2="7" y2="18"/><line x1="12" y1="12" x2="17.6" y2="17.6"/><circle cx="6.6" cy="6.6" r="2"/><circle cx="17.4" cy="5.6" r="2"/><circle cx="12" cy="12" r="2.4"/><circle cx="7" cy="18" r="2"/><circle cx="17.6" cy="17.6" r="2"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12 C5 7 9 4.8 12 4.8 C15 4.8 19 7 21.5 12 C19 17 15 19.2 12 19.2 C9 19.2 5 17 2.5 12 Z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><polygon points="12,3 21,8 12,13 3,8"/><polyline points="3,12 12,17 21,12"/><polyline points="3,16 12,21 21,16"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="5"/><polyline points="6,11 12,5 18,11"/></symbol>
+</defs></svg>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap nav">
+    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata"></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">ホーム</a>
+      <a href="philosophy.html" class="active">Philosophy</a>
+      <a href="index.html#features">機能</a>
+      <a href="guide.html">使い方ガイド</a>
+      <a class="nav-cta" href="index.html">トップへ <svg class="ic"><use href="#i-arrow"/></svg></a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+  </div>
+</header>
+
+<!-- HERO : scroll-zoom into the compound eyes → Odonata logo -->
+<div class="zoomstage" id="zoomStage">
+  <div class="zoomsticky">
+    <div class="zlayer df" id="zDf"><img src="assets/dragonfly.png" alt="Odonata dragonfly"></div>
+    <div class="zlayer emblem" id="zEmblem"><img src="assets/odonata-emblem.png" alt=""></div>
+    <div class="zlayer lockup" id="zLockup">
+      <span class="emwrap"><img class="em2" src="assets/odonata-emblem.png" alt=""></span>
+      <div class="wm">Odonata</div>
+      <p class="jp">複雑な世界を、<span class="grad">複眼で読む。</span></p>
+      <p class="en2">Read the complexity. Shape the game.</p>
+    </div>
+    <div class="zhint" id="zHint">SCROLL<span></span></div>
+  </div>
+</div>
+
+<!-- COMPLEXITY -->
+<section>
+  <div class="wrap">
+    <div class="sec-tag">Complex System</div>
+    <h2 class="sec-h">サッカーは、ひとつの要素では<br>成り立たない。</h2>
+    <p class="sec-sub">個人・チーム・パフォーマンス・準備・コンディション・環境——<br>無数の要素が<b style="color:#fff">相互に影響し合う複雑系</b>。その関係性の中で、試合の流れは絶えず変化している。</p>
+    <div class="cx reveal">
+      <svg viewBox="0 0 520 380" role="img" aria-label="要素どうしが相互に影響し合うネットワーク図">
+        <!-- edges -->
+        <g fill="none">
+          <line class="edge pulse" x1="260" y1="190" x2="260" y2="58"/>
+          <line class="edge pulse" x1="260" y1="190" x2="452" y2="120"/>
+          <line class="edge pulse" x1="260" y1="190" x2="452" y2="262"/>
+          <line class="edge pulse" x1="260" y1="190" x2="260" y2="324"/>
+          <line class="edge pulse" x1="260" y1="190" x2="68" y2="262"/>
+          <line class="edge pulse" x1="260" y1="190" x2="68" y2="120"/>
+          <line class="edge" x1="260" y1="58" x2="452" y2="120"/>
+          <line class="edge" x1="452" y1="120" x2="452" y2="262"/>
+          <line class="edge" x1="452" y1="262" x2="260" y2="324"/>
+          <line class="edge" x1="260" y1="324" x2="68" y2="262"/>
+          <line class="edge" x1="68" y1="262" x2="68" y2="120"/>
+          <line class="edge" x1="68" y1="120" x2="260" y2="58"/>
+          <line class="edge pulse" x1="260" y1="58" x2="452" y2="262"/>
+          <line class="edge pulse" x1="68" y1="120" x2="260" y2="324"/>
+          <line class="edge pulse" x1="68" y1="262" x2="452" y2="120"/>
+        </g>
+        <!-- nodes -->
+        <g class="node core"><circle cx="260" cy="190" r="46"/>
+          <text x="260" y="184">試合の流れ</text><text x="260" y="202">プレーの可能性</text></g>
+        <g class="node"><circle cx="260" cy="58" r="30"/><circle class="dot" cx="260" cy="58" r="3"/><text x="260" y="14">個人</text></g>
+        <g class="node"><circle cx="452" cy="120" r="30"/><circle class="dot" cx="452" cy="120" r="3"/><text x="452" y="80">パフォーマンス</text></g>
+        <g class="node"><circle cx="452" cy="262" r="30"/><circle class="dot" cx="452" cy="262" r="3"/><text x="452" y="312">コンディション</text></g>
+        <g class="node"><circle cx="260" cy="324" r="30"/><circle class="dot" cx="260" cy="324" r="3"/><text x="260" y="372">環境</text></g>
+        <g class="node"><circle cx="68" cy="262" r="30"/><circle class="dot" cx="68" cy="262" r="3"/><text x="68" y="312">準備</text></g>
+        <g class="node"><circle cx="68" cy="120" r="30"/><circle class="dot" cx="68" cy="120" r="3"/><text x="68" y="80">チーム</text></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-tag">Philosophy</div>
+    <h2 class="sec-h">私たちの思想</h2>
+    <div class="statement reveal">
+      <p class="lead">複雑な世界を、複眼で読む。</p>
+      <p>
+        個人、チーム、パフォーマンス、準備、コンディション、環境——
+        こうした要素は<b>相互に影響し合い</b>、その関係性の中で、試合の流れやプレーの可能性は常に変化しています。
+      </p>
+      <p>
+        <b class="hl">Odonata</b> は、その複雑な世界を<b>多角的に読み解く</b>ためのツールです。
+      </p>
+      <p>
+        目に見える現象にとどまらず、その背後にある<b>構造</b>、<b>変化の兆し</b>、<b>関係性の連鎖</b>を捉えることで、
+        現場の意思決定を支え、チームの成長と選手の可能性を最大化します。
+      </p>
+      <p class="close">複雑な世界を、複眼で読む。そして、ゲームを形づくります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="vgrid">
+      <div class="vcard reveal">
+        <span class="no">01</span>
+        <div class="vic"><svg class="ic"><use href="#i-eye"/></svg></div>
+        <h3>複眼で捉える</h3>
+        <p>一面的な数値ではなく、要素どうしの<b style="color:#cfe2f2">関係性</b>から全体像を立体的に捉える。トンボの複眼のように、世界を多角的に。</p>
+      </div>
+      <div class="vcard reveal">
+        <span class="no">02</span>
+        <div class="vic"><svg class="ic"><use href="#i-network"/></svg></div>
+        <h3>関係性を読み解く</h3>
+        <p>散らばったデータを<b style="color:#cfe2f2">ネットワーク</b>としてつなぎ、構造と変化の兆しを可視化。現象の背後にある連鎖を見抜く。</p>
+      </div>
+      <div class="vcard reveal">
+        <span class="no">03</span>
+        <div class="vic"><svg class="ic"><use href="#i-arrow-up"/></svg></div>
+        <h3>勝利へ前進する</h3>
+        <p>退かず、前へ。読み解いた知見を<b style="color:#cfe2f2">意思決定</b>につなげ、チームの成長と選手の可能性を最大化する。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NAME STORY -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-tag">The Name</div>
+    <h2 class="sec-h">なぜ「Odonata」なのか</h2>
+    <div class="name-inner reveal">
+      <div class="name-fig">
+        <img class="df" src="assets/dragonfly.png" alt="トンボ（Odonata）">
+        <div class="sci">Odonata<span>— トンボ目の学名</span></div>
+      </div>
+      <div class="name-body">
+        <h2><span class="grad">多くを読み解き、前へ進む。</span><br>「勝ち虫」に名を借りて。</h2>
+        <p>
+          <b>Odonata</b> は、<span class="hl">トンボの学名</span>です。トンボは大きな<b>複眼</b>を使い、
+          膨大な情報を複雑に処理しながら獲物を捉え、その行動を瞬時に最適化します。
+        </p>
+        <p>
+          さらにトンボは、<b>前にしか進まず、退かない</b>——後ろに下がらないその力強い姿から、
+          古くより武士に縁起の良い <span class="hl">勝ち虫</span> として愛されてきました。
+        </p>
+        <p>
+          多くのデータをまとめ、複雑なコンディションを読み解き、<b class="hl">勝利に向かって前進するためのツール</b>。
+          このサービスには、そんな勝ち虫の名前を冠しました。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Odonata を、現場へ。</h2>
+      <p>散らばったデータをひとつに。そして、読み解く。</p>
+      <a class="btn" href="guide.html">使い方を見る <svg class="ic"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/odonata-logo.png" alt="Odonata">
+    <p>サッカーのためのコンディショニング・プラットフォーム</p>
+    <p style="margin-top:8px;opacity:.7">© <span id="year"></span> Odonata. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // reveal on scroll
+  (function(){
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const targets = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      targets.forEach(el => el.classList.add('in')); return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    targets.forEach(el => io.observe(el));
+  })();
+
+  // scroll-zoom hero: zoom into the dragonfly's compound eyes, then assemble the Odonata logo
+  (function(){
+    const stage=document.getElementById('zoomStage');
+    if(!stage) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const df=document.getElementById('zDf'),
+          emblem=document.getElementById('zEmblem'),
+          lockup=document.getElementById('zLockup'),
+          hint=document.getElementById('zHint');
+    const dfImg=df.querySelector('img');
+    const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+    const lerp=(a,b,t)=>a+(b-a)*t;
+    // smoothstep'd progress within [a,b]
+    const seg=(p,a,b)=>{let t=clamp((p-a)/(b-a),0,1);return t*t*(3-2*t);};
+    let ticking=false;
+    function update(){
+      ticking=false;
+      const total=stage.offsetHeight-innerHeight;
+      const p=clamp(-stage.getBoundingClientRect().top/total,0,1);
+      // dragonfly: accelerate hard INTO the compound eyes (origin 50% 30%), then fade out
+      const tz=clamp(p/0.52,0,1);
+      const dfScale=1+4*Math.pow(tz,2.2);
+      const dfOp=1-seg(p,0.40,0.54);
+      dfImg.style.transform=`scale(${dfScale.toFixed(2)})`;
+      df.style.opacity=dfOp.toFixed(3);
+      // emblem: born tiny AT the eye (above centre), then grows + settles to centre
+      const emIn=seg(p,0.45,0.55), emOut=seg(p,0.72,0.86);
+      const emScale=lerp(0.05,1,seg(p,0.45,0.66));
+      const emY=lerp(-13,0,seg(p,0.5,0.72));   // start at eye height, settle to centre (vh)
+      emblem.style.opacity=(emIn*(1-emOut)).toFixed(3);
+      emblem.style.transform=`translateY(${emY.toFixed(2)}vh) scale(${emScale.toFixed(3)})`;
+      // final lockup: emblem + wordmark + tagline
+      const lk=seg(p,0.72,0.93);
+      lockup.style.opacity=lk.toFixed(3);
+      lockup.style.transform=`translateY(${lerp(26,0,lk).toFixed(1)}px) scale(${lerp(.94,1,lk).toFixed(3)})`;
+      // scroll hint fades quickly
+      hint.style.opacity=(1-seg(p,0.02,0.12)).toFixed(3);
+    }
+    addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(update);}},{passive:true});
+    addEventListener('resize',update);
+    update();
+  })();
+
+  // full-page network backdrop
+  const canvas = document.getElementById('bgNet');
+  if(canvas && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    const ctx = canvas.getContext('2d');
+    let w,h,nodes;
+    const density = 13000; // lower = more nodes
+    const resize=()=>{
+      w=canvas.width=innerWidth*devicePixelRatio;
+      h=canvas.height=innerHeight*devicePixelRatio;
+      const count=Math.min(90,Math.max(40,Math.round((innerWidth*innerHeight)/density)));
+      nodes=Array.from({length:count},()=>({
+        x:Math.random()*w,y:Math.random()*h,
+        vx:(Math.random()-.5)*.22*devicePixelRatio,
+        vy:(Math.random()-.5)*.22*devicePixelRatio,
+        r:(Math.random()*1.8+1)*devicePixelRatio}));
+    };
+    const draw=()=>{
+      ctx.clearRect(0,0,w,h);const maxD=160*devicePixelRatio;
+      for(let i=0;i<nodes.length;i++){const a=nodes[i];a.x+=a.vx;a.y+=a.vy;
+        if(a.x<0||a.x>w)a.vx*=-1;if(a.y<0||a.y>h)a.vy*=-1;
+        for(let j=i+1;j<nodes.length;j++){const b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+          if(d<maxD){ctx.strokeStyle=`rgba(120,200,250,${(1-d/maxD)*.4})`;ctx.lineWidth=1*devicePixelRatio;
+            ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}}
+      for(const n of nodes){ctx.fillStyle='rgba(180,225,255,.9)';ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fill();}
+      requestAnimationFrame(draw);};
+    resize();draw();
+    let t;window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(resize,200);});
+  }
+</script>
+</body>
+</html>
