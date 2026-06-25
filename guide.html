@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>使い方ガイド — Odonata</title>
+<meta name="description" content="Odonata コンディショニングツールの詳しい使い方ガイド。選手向け・コーチ向けの全機能と、ネットワーク分析の読み方を解説します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#E0F5FD; --card:#FFFFFF; --text:#15233B; --sub:#5A7A8A;
+    --border:#CCE9F6; --blue:#00A0E9; --navy:#0B2A5B; --navy-deep:#071A3A;
+    --cyan:#3FC8F0; --teal:#1B8FB3; --red:#DC2626; --green:#16A34A;
+    --orange:#FF9933; --radius:18px; --radius-sm:12px;
+    --shadow:0 10px 30px rgba(11,42,91,.08); --shadow-lg:0 24px 60px rgba(11,42,91,.16);
+    --grad-hero:linear-gradient(135deg,#071A3A 0%,#0B2A5B 38%,#0E5F9E 72%,#00A0E9 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter','Noto Sans JP',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.14em}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(224,245,253,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .nav-logo img{height:30px}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-size:14px;font-weight:600;color:var(--navy);opacity:.8;transition:.2s}
+  .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--blue)}
+  .nav-cta{background:var(--navy);color:#fff!important;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:700;opacity:1!important;display:inline-flex;align-items:center;gap:7px}
+  .nav-cta:hover{background:var(--blue)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;font-size:24px;color:var(--navy)}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}
+    .nav-links.open{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--card);padding:18px 24px;gap:16px;box-shadow:var(--shadow);border-bottom:1px solid var(--border)}}
+
+  /* page hero */
+  .ghero{background:var(--grad-hero);color:#fff;padding:64px 0 70px;position:relative;overflow:hidden}
+  .ghero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.4}
+  .ghero .wrap{position:relative;z-index:2}
+  .crumb{font-size:13px;color:#9fe2ff;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .ghero h1{font-size:clamp(28px,4.5vw,44px);font-weight:800;letter-spacing:-.01em;margin-bottom:14px}
+  .ghero p{font-size:16px;color:#cfe6f5;max-width:680px}
+
+  /* layout */
+  .glayout{display:grid;grid-template-columns:248px 1fr;gap:42px;align-items:start;padding:48px 0 96px}
+  @media(max-width:920px){.glayout{grid-template-columns:1fr;gap:24px}}
+  .toc{position:sticky;top:90px}
+  @media(max-width:920px){.toc{position:static}}
+  .toc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;box-shadow:var(--shadow)}
+  .toc-card h4{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin:14px 8px 8px}
+  .toc-card h4:first-child{margin-top:4px}
+  .toc-card a{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:9px;font-size:13.5px;color:var(--navy);font-weight:600;transition:.15s}
+  .toc-card a:hover{background:var(--bg);color:var(--blue)}
+  .toc-card a svg.ic{font-size:16px;color:var(--blue);opacity:.8}
+
+  /* content */
+  .doc{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px 44px;box-shadow:var(--shadow);margin-bottom:26px;scroll-margin-top:84px}
+  @media(max-width:560px){.doc{padding:28px 22px}}
+  .doc-h{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .doc-h .dh-ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:24px;color:var(--blue);background:linear-gradient(135deg,#E0F5FD,#CCE9F6);flex:none}
+  .doc h2{font-size:25px;font-weight:800;color:var(--navy);letter-spacing:-.01em}
+  .doc .sub{color:var(--sub);font-size:14px;margin:2px 0 22px;padding-left:60px}
+  @media(max-width:560px){.doc .sub{padding-left:0}}
+  .doc h3{font-size:18px;font-weight:800;color:var(--navy);margin:28px 0 10px;display:flex;align-items:center;gap:9px}
+  .doc h3 svg.ic{font-size:19px;color:var(--blue)}
+  .doc h3:first-of-type{margin-top:8px}
+  .doc p{font-size:15px;margin-bottom:12px}
+  .doc ul,.doc ol{margin:6px 0 16px 4px;padding-left:22px}
+  .doc li{font-size:14.5px;margin-bottom:7px}
+  .doc b,.doc strong{color:var(--navy)}
+  .doc a.inl{color:var(--blue);font-weight:700;border-bottom:1px solid rgba(0,160,233,.35)}
+
+  /* step list */
+  .steps{list-style:none;counter-reset:s;margin:8px 0 18px;padding:0}
+  .steps li{counter-increment:s;position:relative;padding:4px 0 14px 44px;font-size:14.5px}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:2px;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center}
+  .steps li:not(:last-child)::after{content:'';position:absolute;left:13.5px;top:32px;bottom:0;width:1.5px;background:var(--border)}
+
+  /* table */
+  .tbl{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:14px;overflow:hidden;border-radius:10px;border:1px solid var(--border)}
+  .tbl th{background:#EAF7FF;color:var(--navy);font-weight:700;text-align:left;padding:11px 14px;font-size:13px}
+  .tbl td{padding:11px 14px;border-top:1px solid var(--border);vertical-align:top}
+  .tbl tr:nth-child(even) td{background:#F7FCFE}
+  .req{display:inline-block;background:#FEF2F2;color:#c0392b;font-size:11px;font-weight:700;padding:1px 8px;border-radius:6px;border:1px solid #FECACA}
+  .opt{display:inline-block;background:#F2FBFE;color:var(--sub);font-size:11px;font-weight:700;padding:1px 8px;border-radius:6px;border:1px solid var(--border)}
+
+  /* pills */
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:999px;vertical-align:middle}
+  .pill.top{background:var(--navy);color:#fff}
+  .pill.cond{background:#E0F5FD;color:#0073a8}
+  .pill.gps{background:#FFF1E6;color:#b06400}
+
+  /* callout */
+  .note{display:flex;gap:15px;border-radius:var(--radius-sm);padding:18px 20px;margin:18px 0;font-size:14px;line-height:1.75}
+  .note svg.ic{font-size:24px;flex:none;margin-top:1px}
+  .note.tip{background:#EAF7FF;border:1px solid #BFE6FA;border-left:5px solid var(--blue)}
+  .note.tip svg.ic{color:var(--blue)} .note.tip b{color:var(--navy)}
+  .note.warn{background:#FFF8E8;border:1px solid #FFE2A8;border-left:5px solid var(--orange);color:#6b4e1a}
+  .note.warn svg.ic{color:var(--orange)} .note.warn b{color:#8a5a00}
+
+  /* network deep dive (reuse from landing) */
+  .na-wrap{background:var(--grad-hero);border-radius:var(--radius);padding:36px 34px;color:#fff;margin-top:8px}
+  .na-wrap h3{color:#fff} .na-wrap h3 svg.ic{color:#9fe2ff}
+  .na-legend{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+  @media(max-width:680px){.na-legend{grid-template-columns:1fr}}
+  .glass{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius-sm);padding:18px}
+  .glass h4{font-size:14px;font-weight:800;margin-bottom:11px;color:#fff}
+  .legrow{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:13px;color:#dceefb}
+  .swatch{width:16px;height:16px;border-radius:50%;flex:none}
+  .linechip{width:26px;height:3px;border-radius:2px;flex:none}
+  .vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+  @media(max-width:680px){.vs-grid{grid-template-columns:1fr}}
+  .vs-card{background:rgba(255,255,255,.96);color:var(--text);border-radius:var(--radius-sm);padding:22px}
+  .vs-card .tophead{display:flex;align-items:center;gap:11px;margin-bottom:8px}
+  .vs-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:22px;flex:none}
+  .vs-temporal .vs-icon{background:#E0F5FD;color:var(--blue)} .vs-contemp .vs-icon{background:#FFF1E6;color:var(--orange)}
+  .vs-card h4{font-size:17px;font-weight:800;color:var(--navy);margin:0}
+  .vs-card .subt{font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--blue)}
+  .vs-contemp .subt{color:var(--orange)}
+  .vs-card .tagline{font-weight:800;font-size:14px;margin-bottom:6px}
+  .vs-temporal .tagline{color:var(--blue)} .vs-contemp .tagline{color:var(--orange)}
+  .vs-card p{font-size:13.5px;margin-bottom:8px}
+  .vs-card code{background:var(--bg);padding:1px 6px;border-radius:5px;font-weight:700;font-family:inherit}
+  .vs-card .ex{background:var(--bg);border-radius:9px;padding:11px 13px;font-size:12.5px;line-height:1.85;margin-top:8px}
+  .led{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;margin-right:3px}
+  .led.pos{background:var(--green)} .led.neg{background:var(--red)}
+  .pos{color:var(--green);font-weight:700} .neg{color:var(--red);font-weight:700}
+  /* use cases */
+  .usecase{background:#fff;color:var(--text);border-radius:var(--radius-sm);padding:20px 22px;margin-bottom:14px;box-shadow:0 6px 18px rgba(7,26,58,.18)}
+  .uc-head{font-weight:800;color:var(--navy);font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+  .uc-num{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:#fff;background:var(--blue);padding:3px 11px;border-radius:999px}
+  .uc-row{display:grid;grid-template-columns:118px 1fr;gap:13px;align-items:start;padding:10px 0;border-top:1px dashed var(--border);font-size:13.5px;line-height:1.7}
+  .uc-row:first-of-type{border-top:none}
+  .uc-tag{font-size:11.5px;font-weight:700;padding:4px 8px;border-radius:7px;text-align:center;white-space:nowrap;height:fit-content}
+  .uc-tag.situation{background:#E0F5FD;color:#0073a8}
+  .uc-tag.insight{background:#FFF7E6;color:#8a5a00}
+  .uc-tag.action{background:#EAF9F0;color:#16774a}
+  .uc-row .net{font-weight:700;color:var(--navy);background:var(--bg);padding:1px 7px;border-radius:5px;font-size:12.5px}
+  @media(max-width:560px){.uc-row{grid-template-columns:1fr;gap:4px}.uc-tag{justify-self:start}}
+  /* use-case mini figure */
+  .uc-fig{display:flex;align-items:center;gap:7px;flex-wrap:wrap;background:var(--bg);border-radius:10px;padding:13px 15px;margin:2px 0 12px}
+  .ucnode{font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:999px;color:#fff;white-space:nowrap}
+  .ucnode.cond{background:#4db8ff} .ucnode.gps{background:#ff6666}
+  .ucedge{display:flex;flex-direction:column;align-items:center;line-height:1.1}
+  .ucedge .lab{font-size:10px;font-weight:700;color:var(--sub);margin-bottom:1px;white-space:nowrap}
+  .ucedge .ar{font-size:18px;font-weight:800;line-height:1;color:#c0392b}
+  .ucedge.pos .ar{color:#16774a}
+  @media(max-width:560px){.uc-fig{justify-content:flex-start}}
+
+  /* screenshot placeholder */
+  .shot{margin:16px 0 6px;border-radius:var(--radius-sm);border:2px dashed var(--border);background:repeating-linear-gradient(45deg,#fff,#fff 14px,#f4fbfe 14px,#f4fbfe 28px);min-height:170px;display:grid;place-items:center;text-align:center;color:var(--sub)}
+  .shot .ph{font-size:13.5px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .shot .ph svg.ic{font-size:30px;color:#bcd7e5}
+  .shot small{color:#9bb6c4;font-weight:500}
+
+  /* back to top / footer */
+  footer{background:var(--navy-deep);color:#9fb8d6;padding:46px 0 38px;text-align:center;font-size:13px}
+  footer img{height:26px;margin:0 auto 14px;filter:brightness(0) invert(1);opacity:.9}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;border:none;transition:.2s}
+  .btn svg.ic{font-size:18px}
+  .btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--blue)}
+  .center{text-align:center}
+</style>
+</head>
+<body>
+
+<!-- SVG ICON SPRITE -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-network" viewBox="0 0 24 24"><line x1="6.6" y1="6.6" x2="12" y2="12"/><line x1="17.4" y1="5.6" x2="12" y2="12"/><line x1="12" y1="12" x2="7" y2="18"/><line x1="12" y1="12" x2="17.6" y2="17.6"/><circle cx="6.6" cy="6.6" r="2"/><circle cx="17.4" cy="5.6" r="2"/><circle cx="12" cy="12" r="2.4"/><circle cx="7" cy="18" r="2"/><circle cx="17.6" cy="17.6" r="2"/></symbol>
+  <symbol id="i-hub" viewBox="0 0 24 24"><line x1="12" y1="12" x2="5" y2="5"/><line x1="12" y1="12" x2="19" y2="6"/><line x1="12" y1="12" x2="5" y2="19"/><line x1="12" y1="12" x2="19" y2="18"/><circle cx="12" cy="12" r="2.7"/><circle cx="5" cy="5" r="1.8"/><circle cx="19" cy="6" r="1.8"/><circle cx="5" cy="19" r="1.8"/><circle cx="19" cy="18" r="1.8"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><polyline points="2,13 7,13 9.2,6.5 12,17.5 14.6,11 16.6,13 22,13"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M15.5 4.5 a2.1 2.1 0 0 1 3 3 L7.5 18.5 l-4 1 1-4 Z"/><line x1="13.7" y1="6.3" x2="17.7" y2="10.3"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><polyline points="4,4 4,20 20,20"/><polyline points="7.5,15 11,10.5 14,13 19,6.5"/><circle cx="7.5" cy="15" r="1.1" fill="currentColor" stroke="none"/><circle cx="14" cy="13" r="1.1" fill="currentColor" stroke="none"/><circle cx="19" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><circle cx="12" cy="17.5" r="1.5" fill="currentColor" stroke="none"/><path d="M8 13.5 a5.6 5.6 0 0 1 8 0"/><path d="M5.3 10.6 a9.4 9.4 0 0 1 13.4 0"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 L12 4 L20 11"/><path d="M6 9.8 V20 H18 V9.8"/><line x1="10.2" y1="20" x2="10.2" y2="15"/><line x1="13.8" y1="20" x2="13.8" y2="15"/><line x1="10.2" y1="15" x2="13.8" y2="15"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"/><line x1="4" y1="9.2" x2="20" y2="9.2"/><line x1="8" y1="3" x2="8" y2="6"/><line x1="16" y1="3" x2="16" y2="6"/><circle cx="9" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="13.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-dumbbell" viewBox="0 0 24 24"><line x1="3" y1="9" x2="3" y2="15"/><line x1="6" y1="7" x2="6" y2="17"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="18" y1="7" x2="18" y2="17"/><line x1="21" y1="9" x2="21" y2="15"/></symbol>
+  <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polygon points="12,8 15.3,10.4 14,14.3 10,14.3 8.7,10.4"/><line x1="12" y1="8" x2="12" y2="4.5"/><line x1="15.3" y1="10.4" x2="18.5" y2="9.2"/><line x1="14" y1="14.3" x2="16" y2="17.3"/><line x1="10" y1="14.3" x2="8" y2="17.3"/><line x1="8.7" y1="10.4" x2="5.5" y2="9.2"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="2.1" fill="#fff"/><circle cx="15" cy="12" r="2.1" fill="#fff"/><circle cx="8" cy="17" r="2.1" fill="#fff"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><polyline points="12,7 12,12 15.5,14"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><circle cx="7" cy="12" r="3.2"/><circle cx="17" cy="12" r="3.2"/><line x1="10.2" y1="12" x2="13.8" y2="12"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 L19 6 V11 C19 16 16 19 12 21 C8 19 5 16 5 11 V6 Z"/><polyline points="9,12 11,14 15,9.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="5,12.5 10,17 19,6.5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3 H14 L18 7 V21 H6.5 Z"/><polyline points="14,3 14,7 18,7"/><line x1="9.2" y1="12" x2="15.3" y2="12"/><line x1="9.2" y1="16" x2="13.5" y2="16"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.7 19 a5.3 5.3 0 0 1 10.6 0"/><circle cx="17.2" cy="9" r="2.3"/><path d="M16 19 a4.4 4.4 0 0 1 5.6 -3.8"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16.5" rx="2.2"/><rect x="9" y="2.6" width="6" height="3.6" rx="1.2"/><line x1="8.5" y1="11" x2="15.5" y2="11"/><line x1="8.5" y1="15" x2="13.5" y2="15"/></symbol>
+  <symbol id="i-shuffle" viewBox="0 0 24 24"><polyline points="4,8 16,8"/><polyline points="13,5 16,8 13,11"/><polyline points="20,16 8,16"/><polyline points="11,13 8,16 11,19"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><circle cx="8.5" cy="10.5" r="1.8"/><polyline points="3.5,17.5 9,12.5 13,15.5 16.5,12 20.5,16"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5 C10 4.8 7 4.5 4 5.5 V18.5 C7 17.5 10 17.8 12 19.5"/><path d="M12 6.5 C14 4.8 17 4.5 20 5.5 V18.5 C17 17.5 14 17.8 12 19.5"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4 L21 19 H3 Z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="16.6" r=".6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="8" r=".7" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20 a7 7 0 0 1 14 0"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><ellipse cx="12" cy="12" rx="4" ry="8.5"/><line x1="3.5" y1="12" x2="20.5" y2="12"/></symbol>
+  <symbol id="i-login" viewBox="0 0 24 24"><path d="M10 4 H6 a2 2 0 0 0-2 2 V18 a2 2 0 0 0 2 2 h4"/><polyline points="14,8 18,12 14,16"/><line x1="18" y1="12" x2="9" y2="12"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3 L13.6 9.4 L20 11 L13.6 12.6 L12 19 L10.4 12.6 L4 11 L10.4 9.4 Z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18 a8 8 0 0 1 16 0"/><line x1="12" y1="18" x2="15.5" y2="11.5"/><circle cx="12" cy="18" r="1.3" fill="currentColor" stroke="none"/></symbol>
+</defs></svg>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap nav">
+    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata"></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">ホーム</a>
+      <a href="#player">選手向け</a>
+      <a href="#coach">コーチ向け</a>
+      <a href="#network" class="active">ネットワーク分析</a>
+      <a class="nav-cta" href="index.html">トップへ <svg class="ic"><use href="#i-arrow"/></svg></a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<div class="ghero">
+  <canvas id="netCanvas"></canvas>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px"><use href="#i-arrow"/></svg> 使い方ガイド</div>
+    <h1>使い方ガイド</h1>
+    <p>選手・コーチそれぞれの全機能と、Odonata の象徴である<strong style="color:#fff">ネットワーク分析の読み方</strong>を、画面に沿ってくわしく解説します。</p>
+  </div>
+</div>
+
+<div class="wrap glayout">
+  <!-- ───── TOC ───── -->
+  <aside class="toc">
+    <div class="toc-card">
+      <h4>はじめに</h4>
+      <a href="#basics"><svg class="ic"><use href="#i-login"/></svg> 共通操作・画面の見方</a>
+      <h4>選手向け</h4>
+      <a href="#p-cond"><svg class="ic"><use href="#i-pen"/></svg> コンディション入力</a>
+      <a href="#p-home"><svg class="ic"><use href="#i-home"/></svg> ホーム</a>
+      <a href="#p-schedule"><svg class="ic"><use href="#i-calendar"/></svg> スケジュール／練習</a>
+      <a href="#p-match"><svg class="ic"><use href="#i-ball"/></svg> 試合履歴</a>
+      <a href="#p-medical"><svg class="ic"><use href="#i-pulse"/></svg> ケガ履歴</a>
+      <a href="#p-idp"><svg class="ic"><use href="#i-target"/></svg> IDP（目標）</a>
+      <a href="#p-analysis"><svg class="ic"><use href="#i-network"/></svg> 個別分析</a>
+      <a href="#p-profile"><svg class="ic"><use href="#i-user"/></svg> プロフィール・設定</a>
+      <h4>コーチ・スタッフ向け</h4>
+      <a href="#c-switch"><svg class="ic"><use href="#i-shuffle"/></svg> 表示モード・チーム切替</a>
+      <a href="#c-team"><svg class="ic"><use href="#i-users"/></svg> チームを見る</a>
+      <a href="#c-ops"><svg class="ic"><use href="#i-calendar"/></svg> 試合・練習・運営</a>
+      <a href="#c-menu"><svg class="ic"><use href="#i-dumbbell"/></svg> メニュービルダー</a>
+      <a href="#c-risk"><svg class="ic"><use href="#i-pulse"/></svg> 傷害リスク予測</a>
+      <a href="#c-analysis"><svg class="ic"><use href="#i-network"/></svg> 個別分析（3タブ）</a>
+      <a href="#c-admin"><svg class="ic"><use href="#i-sliders"/></svg> 運営・管理メニュー</a>
+      <h4>分析の読み方</h4>
+      <a href="#network"><svg class="ic"><use href="#i-network"/></svg> ネットワーク分析</a>
+      <a href="#trouble"><svg class="ic"><use href="#i-info"/></svg> 困ったとき</a>
+    </div>
+  </aside>
+
+  <!-- ───── CONTENT ───── -->
+  <main>
+
+    <!-- 共通操作 -->
+    <section class="doc" id="basics">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-login"/></svg></div><h2>共通操作・画面の見方</h2></div>
+      <p class="sub">どの立場でも共通の、ログインから画面の基本までです。</p>
+
+      <h3><svg class="ic"><use href="#i-login"/></svg> ログイン</h3>
+      <ol class="steps">
+        <li>招待メールのリンク、またはログイン画面からサインインします。</li>
+        <li>複数の役割（選手・コーチ等）を持つ場合は、ログイン後にサイドバーで<b>表示モード</b>を切り替えられます。</li>
+      </ol>
+
+      <h3><svg class="ic"><use href="#i-home"/></svg> 画面の基本構成</h3>
+      <ul>
+        <li><b>左サイドバー</b>：メニュー。役割によって項目が変わります。</li>
+        <li><b>中央</b>：選んだ機能の内容が表示されます。</li>
+        <li>サイドバー上部のセレクトで<b>表示モード</b>や<b>表示チーム</b>を切り替えます。</li>
+      </ul>
+
+      <h3><svg class="ic"><use href="#i-globe"/></svg> 言語切り替え（選手のみ）</h3>
+      <p>選手画面では、サイドバーの <b>日本語 / English</b> ボタンで表示言語を切り替えられます。</p>
+
+      <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
+        <div><b>まずやること：</b> 選手は毎日「コンディション入力」を済ませましょう。これがすべての分析の土台になります。</div></div>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> ログイン／サイドバーのスクリーンショット<small>assets/ に画像を置いて差し替え</small></div></div>
+    </section>
+
+    <!-- ══════════ 選手向け ══════════ -->
+    <h2 id="player" style="font-size:15px;font-weight:800;letter-spacing:.12em;color:var(--blue);margin:8px 4px 14px;text-transform:uppercase">For Players ／ 選手向け</h2>
+
+    <!-- コンディション入力 -->
+    <section class="doc" id="p-cond">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-pen"/></svg></div><h2>コンディション入力</h2></div>
+      <p class="sub">毎日の主役。練習前と練習後の2回に分けて入力します。</p>
+
+      <h3><svg class="ic"><use href="#i-clock"/></svg> 入力のタイミング</h3>
+      <table class="tbl">
+        <tr><th>タブ</th><th>いつ？</th><th>内容</th></tr>
+        <tr><td><b>練習前</b></td><td>朝・練習前</td><td>睡眠・疲労・気分・痛み・体温・体重・筋の張り・やる気</td></tr>
+        <tr><td><b>練習後</b></td><td>練習・試合の後</td><td>RPE（運動強度）・主観パフォーマンス</td></tr>
+      </table>
+
+      <h3><svg class="ic"><use href="#i-sliders"/></svg> スライダー（VAS）の使い方</h3>
+      <p>多くの項目は <b>1〜100 のスライダー</b> です。各スライダーの下に「どちら向きが何を意味するか」が書かれています。</p>
+      <ul>
+        <li><b>睡眠の質</b> → 深く眠れたほど右へ（100に近いほど良い）</li>
+        <li><b>疲労</b> → 疲れているほど右へ（100に近いほど疲れている）</li>
+      </ul>
+
+      <h3><svg class="ic"><use href="#i-doc"/></svg> 練習前の入力項目</h3>
+      <table class="tbl">
+        <tr><th>項目</th><th>説明</th><th>区分</th></tr>
+        <tr><td>本日はオフ</td><td>チーム練習がない日だけ ON</td><td><span class="opt">任意</span></td></tr>
+        <tr><td>睡眠の質</td><td>1（浅い）〜100（深い）</td><td></td></tr>
+        <tr><td>睡眠時間 (h)</td><td>数値で入力</td><td><span class="req">必須</span></td></tr>
+        <tr><td>疲労</td><td>1（快調）〜100（極度）</td><td></td></tr>
+        <tr><td>不安・気分の落ち込み</td><td>1（なし）〜100（非常に強い）</td><td></td></tr>
+        <tr><td>痛み</td><td>スイッチON→強さ(0〜10)と部位を入力</td><td><span class="opt">任意</span></td></tr>
+        <tr><td>体温 (℃)</td><td>身体計測。ケガ予測に使用</td><td><span class="req">必須</span></td></tr>
+        <tr><td>体重 (kg)</td><td>身体計測。ケガ予測に使用</td><td><span class="req">必須</span></td></tr>
+        <tr><td>筋の張り</td><td>1（なし）〜100（非常に強い）</td><td><span class="req">必須</span></td></tr>
+        <tr><td>やる気</td><td>1（低い）〜100（高い）</td><td><span class="req">必須</span></td></tr>
+        <tr><td>メモ</td><td>気になることを自由記入</td><td><span class="opt">任意</span></td></tr>
+      </table>
+
+      <h3><svg class="ic"><use href="#i-gauge"/></svg> 練習後の入力項目</h3>
+      <table class="tbl">
+        <tr><th>項目</th><th>説明</th><th>区分</th></tr>
+        <tr><td>RPE</td><td>主観的運動強度 1〜10</td><td><span class="req">必須</span></td></tr>
+        <tr><td>主観パフォーマンス</td><td>1（低い）〜100（高い）自己評価</td><td><span class="req">必須</span></td></tr>
+        <tr><td>メモ</td><td>試合・練習の振り返りを自由記入</td><td><span class="opt">任意</span></td></tr>
+      </table>
+
+      <div class="note tip"><svg class="ic"><use href="#i-pulse"/></svg>
+        <div><b>痛みの入力：</b> 気になる痛みがあるときは「痛み」スイッチを ON にして、強さ（0〜10）と部位（頭・肩・腰・ハム・膝・足首…）を選びましょう。スタッフが早めに気づけます。</div></div>
+      <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
+        <div><b>カスタム項目／個人項目：</b> チームが追加した独自の質問が表示されることがあります。「個人」タグの付いた項目は、<b>あなただけが見られる</b>非公開のメモです。</div></div>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> コンディション入力画面のスクリーンショット</div></div>
+    </section>
+
+    <!-- ホーム -->
+    <section class="doc" id="p-home">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-home"/></svg></div><h2>ホーム</h2></div>
+      <p class="sub">ログインして最初に開く画面。今日やることと自分の状態がひと目でわかります。</p>
+      <ul>
+        <li><b>あいさつと日付</b>：今日の日付を表示。</li>
+        <li><b>今日のメニュー</b>：「コンディション入力」へのショートカット。</li>
+        <li><b>トレーナーからのコメント</b>：スタッフからのメッセージ。</li>
+        <li><b>チーム情報</b>：スケジュール・トレーニング・試合・ケガ・IDP へのショートカット。</li>
+        <li><b>自分の状態</b>：コンディション推移グラフ（期間・指標を選択）。</li>
+        <li><b>自分の負荷推移</b>：直近14日のGPS負荷（走行距離・スプリント・ACWR 等）。</li>
+        <li><b>直近の戦績</b>：チームの最近の試合結果。</li>
+      </ul>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 選手ホームのスクリーンショット</div></div>
+    </section>
+
+    <!-- スケジュール・トレーニング -->
+    <section class="doc" id="p-schedule">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-calendar"/></svg></div><h2>スケジュール／トレーニング</h2></div>
+      <p class="sub">チームの予定とその日の練習メニューを確認します。</p>
+      <h3><svg class="ic"><use href="#i-calendar"/></svg> スケジュール</h3>
+      <ul>
+        <li>月を <b>‹ ›</b> で切り替え、「今月」ボタンで現在の月に戻れます。</li>
+        <li>日付をタップすると、その日の予定（練習・試合・ミーティング等）が表示されます。</li>
+      </ul>
+      <h3><svg class="ic"><use href="#i-dumbbell"/></svg> トレーニング</h3>
+      <p>その日のトレーニングメニューをカレンダー形式で確認。コーチが「メニュービルダー」で作ったメニューや配布資料（PDF）を見られます。</p>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> スケジュール／トレーニングのスクリーンショット</div></div>
+    </section>
+
+    <!-- 試合履歴 -->
+    <section class="doc" id="p-match">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-ball"/></svg></div><h2>試合履歴</h2></div>
+      <p class="sub">自分が関わった試合の結果とスタッツを確認・記録します。</p>
+      <ul>
+        <li><b>絞り込み</b>：表示チーム／「すべての試合」or「自分の出場試合のみ」</li>
+        <li><b>試合カード</b>：日付・大会・勝敗（◯-◯）・対戦相手</li>
+        <li><b>自分のスタッツ</b>：出場時間・ゴール・アシスト・コーチ評価</li>
+        <li><b>コーチ講評</b>：コーチからのコメント</li>
+        <li><b>自己評価の記録</b>：自己評価（1〜10）と振り返りコメントを入力して「保存」</li>
+      </ul>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 試合履歴のスクリーンショット</div></div>
+    </section>
+
+    <!-- ケガ履歴 -->
+    <section class="doc" id="p-medical">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-pulse"/></svg></div><h2>ケガ履歴（メディカル）</h2></div>
+      <p class="sub">ケガや体調についての情報を入力・確認します。</p>
+      <ul>
+        <li><b>メディカル情報を入力</b>：症状・部位、痛みの出る動き、現在困っていることを記録。</li>
+        <li><b>一部参加の状況</b>：例「アップとパス練習のみ可、対人・スプリント不可」のように、できる範囲を伝えられます。</li>
+        <li>過去のケガ履歴が一覧で確認できます。</li>
+      </ul>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> ケガ履歴のスクリーンショット</div></div>
+    </section>
+
+    <!-- IDP -->
+    <section class="doc" id="p-idp">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-target"/></svg></div><h2>IDP（個人育成計画）</h2></div>
+      <p class="sub">自分の成長目標を立てて、進み具合を管理します。</p>
+      <ul>
+        <li><b>目標を追加</b>：例「試合終盤でもスプリント回数を落とさない」＋ 取り組み方法「週2回の加速走」</li>
+        <li><b>進行中の目標</b>：いま取り組んでいる目標と進捗。</li>
+        <li><b>修了ログ</b>：達成・完了した目標の記録。</li>
+        <li><b>面談記録</b>：コーチとの面談メモ。</li>
+      </ul>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> IDP のスクリーンショット</div></div>
+    </section>
+
+    <!-- 個別分析 -->
+    <section class="doc" id="p-analysis">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-network"/></svg></div><h2>個別分析</h2></div>
+      <p class="sub">自分のデータを深く掘り下げる分析ページ。3つの見方があります。</p>
+      <ol class="steps">
+        <li><b>ネットワーク分析</b>：自分のコンディション変数どうしの関係を図にします。</li>
+        <li><b>2期間の比較</b>：「ケガの前後」「好調期と不調期」など2つの期間を並べて比べます。</li>
+        <li><b>推移グラフ</b>：各項目の時系列推移を、ケガ・体調不良のマーカー付きで表示。</li>
+      </ol>
+      <div class="note tip"><svg class="ic"><use href="#i-network"/></svg>
+        <div>ネットワーク図の読み方は最重要ポイントです。 <a class="inl" href="#network">→ ネットワーク分析の読み方へ</a></div></div>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 選手の個別分析のスクリーンショット</div></div>
+    </section>
+
+    <!-- プロフィール -->
+    <section class="doc" id="p-profile">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-user"/></svg></div><h2>プロフィール・項目設定・アカウント</h2></div>
+      <p class="sub">自分の情報と入力項目、セキュリティの設定です。</p>
+      <ul>
+        <li><b>プロフィール</b>：氏名、競技プロフィール（生年・身長・体重・ポジション等）を編集。</li>
+        <li><b>項目設定</b>：自分用のカスタム入力項目（個人項目）を設定。</li>
+        <li><b>アカウント設定</b>：パスワード変更、パスキー（生体認証）などのセキュリティ。</li>
+      </ul>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> プロフィールのスクリーンショット</div></div>
+    </section>
+
+    <!-- ══════════ コーチ向け ══════════ -->
+    <h2 id="coach" style="font-size:15px;font-weight:800;letter-spacing:.12em;color:var(--blue);margin:30px 4px 14px;text-transform:uppercase">For Coaches ／ コーチ・スタッフ向け</h2>
+
+    <!-- 切替 -->
+    <section class="doc" id="c-switch">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-shuffle"/></svg></div><h2>表示モード・表示チームの切替</h2></div>
+      <p class="sub">サイドバー上部に2つの重要なセレクトがあります。</p>
+      <table class="tbl">
+        <tr><th>セレクト</th><th>役割</th></tr>
+        <tr><td><b>表示モード</b></td><td>複数の役割を持つ場合、選手／コーチ／staff／admin を切替</td></tr>
+        <tr><td><b>表示チーム</b></td><td>「全チーム」または特定チームを選ぶと、すべてのコーチ画面の対象がそのチームに絞られます</td></tr>
+      </table>
+      <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
+        <div>分析や一覧が「思った選手と違う」ときは、まず <b>表示チーム</b> を確認しましょう。</div></div>
+      <p style="font-size:13.5px;color:var(--sub)">※ スタッフは権限設定により、表示されるメニューが一部制限される場合があります。</p>
+    </section>
+
+    <!-- チームを見る -->
+    <section class="doc" id="c-team">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-users"/></svg></div><h2>チームを見る</h2></div>
+      <p class="sub">チーム全体や個々の選手を見渡す機能です。</p>
+      <h3><svg class="ic"><use href="#i-home"/></svg> ダッシュボード</h3>
+      <p>チーム全体の状況をまとめて見る入り口。コンディションや負荷の概況を把握できます。</p>
+      <h3><svg class="ic"><use href="#i-users"/></svg> 選手一覧・選手詳細</h3>
+      <ul>
+        <li><b>選手一覧</b>：登録選手を一覧表示。</li>
+        <li><b>選手詳細</b>：個々の選手のコンディション・負荷・ケガ・IDP などを横断的に確認。</li>
+      </ul>
+      <h3><svg class="ic"><use href="#i-pen"/></svg> コンディション（概観・代行入力）</h3>
+      <ul>
+        <li><b>代行入力</b>：選手が入力できないとき、選手・日付を選んでコーチが代わりに入力（練習前／後タブ、選手と同じフォーム）。</li>
+        <li><b>項目別 現在値</b>：期間（直近7〜90日／期間指定）と、チーム平均／個別選手、参加区分で絞り込んで確認。</li>
+      </ul>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> ダッシュボード／コンディション概観のスクリーンショット</div></div>
+    </section>
+
+    <!-- 試合・練習・運営 -->
+    <section class="doc" id="c-ops">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-calendar"/></svg></div><h2>試合・トレーニング・予定・メディカル・IDP</h2></div>
+      <p class="sub">日々の運営に関わる機能です。</p>
+      <h3><svg class="ic"><use href="#i-ball"/></svg> 試合</h3>
+      <ul>
+        <li><b>試合一覧</b>：登録された試合を管理。</li>
+        <li><b>試合詳細</b>：スコア、出場メンバー（ラインアップ）、各選手のスタッツ・評価・講評を記録。</li>
+      </ul>
+      <h3><svg class="ic"><use href="#i-dumbbell"/></svg> トレーニング・メニュービルダー</h3>
+      <ul>
+        <li><b>トレーニング</b>：練習セッションをカレンダーで管理。</li>
+        <li><b>メニュービルダー</b>：ドリル・出欠グループ・フィールド図を1枚のメニューにまとめ、PDF出力・選手へ配布。 <a class="inl" href="#c-menu">→ 詳しい使い方へ</a></li>
+      </ul>
+      <h3><svg class="ic"><use href="#i-calendar"/></svg> スケジュール／メディカル／IDP概観</h3>
+      <ul>
+        <li><b>スケジュール</b>：チームの予定を作成・編集（選手画面に反映）。</li>
+        <li><b>メディカル</b>：受傷日・部位・診断・復帰予定・一部参加の状況を記録・追跡。</li>
+        <li><b>IDP 概観</b>：全選手の目標・評価・面談を俯瞰。</li>
+      </ul>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 試合詳細のスクリーンショット</div></div>
+    </section>
+
+    <!-- メニュービルダー -->
+    <section class="doc" id="c-menu">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-dumbbell"/></svg></div><h2>メニュービルダー（トレーニングメニュー作成）</h2></div>
+      <p class="sub">ドリル・出欠グループ・フィールド図を1枚のメニューにまとめ、PDF出力・選手への配布までを一画面で行えます。</p>
+
+      <h3><svg class="ic"><use href="#i-arrow"/></svg> どこから開く？</h3>
+      <ul>
+        <li>コーチ画面の <b>トレーニング</b> →「<b>メニュー作成</b>」から新規作成。</li>
+        <li>作成済みメニューは、その<b>メニューを開いて編集</b>できます。</li>
+        <li>トレーニングの<b>セッションから開くと日付などが引き継がれ</b>、メニューと練習セッションが自動でひもづきます。</li>
+      </ul>
+
+      <h3><svg class="ic"><use href="#i-check"/></svg> 作成の流れ（6ステップ）</h3>
+      <ol class="steps">
+        <li><b>セッション情報</b>を入力（日付・時間・場所・テーマ など）。</li>
+        <li><b>出欠・グループ</b>を整える（自動同期も可）。</li>
+        <li><b>ドリル</b>を追加して内容を書く。</li>
+        <li>必要なら<b>フィールド図</b>を描く。</li>
+        <li><b>保存</b>する（こまめに）。</li>
+        <li><b>配布</b>して選手に公開、または<b>PDF出力</b>。</li>
+      </ol>
+      <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
+        <div>画面右上に<b>未保存の変更を示すドット</b>が出ます。「保存」を押すまで変更は確定しません。こまめに保存しましょう。</div></div>
+
+      <h3><svg class="ic"><use href="#i-calendar"/></svg> ① セッション情報</h3>
+      <table class="tbl">
+        <tr><th>項目</th><th>内容</th></tr>
+        <tr><td><b>日付</b> <span class="req">必須</span></td><td>このメニューの実施日。</td></tr>
+        <tr><td>開始／終了時刻</td><td>練習の時間帯。</td></tr>
+        <tr><td>場所</td><td>例：中央グラウンド。</td></tr>
+        <tr><td>テーマ</td><td>例：ビルドアップ／ハイプレス。PDFの見出しにも表示。</td></tr>
+        <tr><td>FP人数／GK人数</td><td>フィールドプレーヤー・GKの人数。</td></tr>
+        <tr><td>メモ</td><td>全体に関する補足。</td></tr>
+      </table>
+      <p style="font-size:13.5px;color:var(--sub)">※ ここで入れた日付・時間・場所・テーマは、ひもづく<b>練習セッションにも自動で反映</b>されます。</p>
+
+      <h3><svg class="ic"><use href="#i-users"/></svg> ② 出欠・グループ管理</h3>
+      <p>選手を参加状況ごとのグループに振り分けます。標準で次のグループが用意されています。</p>
+      <table class="tbl">
+        <tr><th>グループ</th><th>色</th><th>用途</th></tr>
+        <tr><td>フル参加（FP）</td><td><span class="led" style="background:#2563EB"></span> 青</td><td>通常どおり全メニュー参加</td></tr>
+        <tr><td>部分参加</td><td><span class="led" style="background:#EA580C"></span> 橙</td><td>一部メニューのみ可</td></tr>
+        <tr><td>リハビリ</td><td><span class="led" style="background:#7C3AED"></span> 紫</td><td>リハビリメニュー中心</td></tr>
+        <tr><td>欠席</td><td><span class="led" style="background:#6B7280"></span> 灰</td><td>オフ・欠席</td></tr>
+        <tr><td>GK</td><td><span class="led" style="background:#CA8A04"></span> 黄</td><td>GK</td></tr>
+      </table>
+      <p>3つのボタンで効率よく振り分けられます。</p>
+      <ul>
+        <li><b>📊 ステータスで同期</b>：その日の<b>コンディション入力とケガ情報から自動で振り分け</b>ます。<br>
+          ・「本日はオフ」または痛み7以上 → <b>欠席</b>（メモに「オフ」「痛み◯/10」）<br>
+          ・ケガの参加可否が「部分参加／リハビリのみ／全休」 → それぞれ<b>部分参加・リハビリ・欠席</b>（できる範囲のメモ付き）<br>
+          ・ポジションがGK → <b>GK</b>、それ以外 → <b>フル参加</b>。</li>
+        <li><b>前回から引き継ぐ</b>：直近のメニューのグループ構成を読み込みます。</li>
+        <li><b>＋グループ追加</b>：独自のグループ（名前・色）を追加できます。各選手にメモも付けられます。</li>
+      </ul>
+      <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
+        <div>「ステータスで同期」はあくまで<b>下書き（候補）</b>です。自動分類のあと、手で調整してから保存してください。</div></div>
+
+      <h3><svg class="ic"><use href="#i-doc"/></svg> ③ ドリル構成</h3>
+      <p>「＋ドリルを追加」または「ライブラリから追加」で、練習の各メニューを並べます。1つのドリルに次を入力できます。</p>
+      <table class="tbl">
+        <tr><th>項目</th><th>例・内容</th></tr>
+        <tr><td>ドリル名</td><td>例：4v4+3／クロス&amp;フィニッシュ</td></tr>
+        <tr><td>時間（開始・終了）</td><td>例：0:00〜15:00。「W-UP後」「30分」などラベルでも可</td></tr>
+        <tr><td>FP人数</td><td>そのドリルの参加人数</td></tr>
+        <tr><td>フィールド（幅×縦）</td><td>例：27.5 × 24 m</td></tr>
+        <tr><td>詳細（箇条書き）</td><td>ルールや条件を「＋」で複数行（例：×Ballout → Throw-in）</td></tr>
+        <tr><td>コーチングポイント</td><td>狙い・キュー（声かけのポイント）</td></tr>
+        <tr><td>フィールド図</td><td>下記エディタで作図して添付</td></tr>
+      </table>
+      <p style="font-size:13.5px;color:var(--sub)">※ ドリルはドラッグ等で<b>並べ替え</b>でき、その順番がそのままメニュー・PDFの並びになります。</p>
+
+      <h3><svg class="ic"><use href="#i-image"/></svg> ④ フィールド図エディタ</h3>
+      <p>各ドリルの「フィールド図を描く」を押すと、ホワイトボード感覚で図を作れます。描いた図はメニューとPDFに表示されます。</p>
+      <table class="tbl">
+        <tr><th>分類</th><th>使えるもの</th></tr>
+        <tr><td>選手・動き</td><td>FP（⊙）・GK（○）・矢印・ライン・5.5mライン・テキスト・フリーハンド</td></tr>
+        <tr><td>器具</td><td>コーン・マーカー・ボール・ラインマーカー・フラットマーカー・ミニゴール・人形（マネキン）・ミニハードル・ポール・ラダー・バランスディスク・ジャンプボックス・メディシンボール</td></tr>
+        <tr><td>線・色</td><td>実線／点線、6色のカラー、フリーハンドの太さ</td></tr>
+        <tr><td>背景</td><td>コート種類の切替＋背景色（芝グリーン・濃いグリーン・土・グレー・ダーク・白）</td></tr>
+        <tr><td>操作</td><td>選択して移動・削除、元に戻す（undo）、クリア</td></tr>
+      </table>
+      <p>描き終えたら「<b>保存</b>」でそのドリルに図が添付されます。</p>
+
+      <h3><svg class="ic"><use href="#i-book"/></svg> ⑤ ライブラリとテンプレートで再利用</h3>
+      <ul>
+        <li><b>ドリルライブラリ</b>（📚）：よく使うドリルを保存しておき、別のメニューに<b>ワンクリックで追加</b>。名前で検索でき、よく使う順に並びます。</li>
+        <li><b>テンプレート</b>（📋）：メニュー全体（ドリル構成＋グループの枠）を<b>ひな型として保存</b>。テンプレートを適用すると、日付を指定して新しいメニューを一気に作れます（選手の割り当ては空の状態から）。</li>
+      </ul>
+
+      <h3><svg class="ic"><use href="#i-signal"/></svg> ⑥ 保存・配布・PDF出力</h3>
+      <ul>
+        <li><b>保存</b>：セッション情報・グループ・ドリルをまとめて保存します。</li>
+        <li><b>配布（公開）</b>：ボタンで公開のON/OFFを切り替えます。<b>配布をONにしたメニューだけが選手に表示</b>されます。</li>
+        <li><b>PDF出力</b>：A4横で「ドリル構成／フィールド図／出欠・グループ」の3カラムに整形して出力。印刷やボード掲示に便利です。</li>
+      </ul>
+      <div class="note tip"><svg class="ic"><use href="#i-signal"/></svg>
+        <div>その日の<b>GPS実測データがあるチーム</b>では、PDFの上部に当日の<b>走行距離・高速走行・スプリント</b>のサマリーが自動で入ります（GPS連携チームのみ）。</div></div>
+      <div class="note warn"><svg class="ic"><use href="#i-warn"/></svg>
+        <div><b>配布を忘れずに。</b> 保存しただけでは選手に表示されません。選手に見せるには「配布（公開）」をONにしてください。</div></div>
+
+      <h3><svg class="ic"><use href="#i-ball"/></svg> 選手側の見え方</h3>
+      <p>配布されたメニューは、選手の<b>トレーニング</b>画面のその日付に表示され、ドリル内容・フィールド図・自分がどのグループかを確認できます。</p>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> メニュービルダー（編集画面・フィールド図・PDF）のスクリーンショット</div></div>
+    </section>
+
+    <!-- 傷害リスク予測 -->
+    <section class="doc" id="c-risk">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-pulse"/></svg></div><h2>傷害発生リスク予測 ＋ 練習負荷設計</h2></div>
+      <p class="sub">機械学習で各選手のケガ発生確率を予測します。 <span class="pill top"><svg class="ic"><use href="#i-signal"/></svg> GPS連携チームのみ</span></p>
+
+      <div class="note warn"><svg class="ic"><use href="#i-warn"/></svg>
+        <div>この機能は GPS 負荷データを入力に使うため、<b>GPSを導入し、API連携しているチームのみ</b>で利用できます。GPS未導入のチームでは表示されません。</div></div>
+
+      <h3><svg class="ic"><use href="#i-info"/></svg> このモデルについて（大切な前提）</h3>
+      <ul>
+        <li><b>過去の怪我データから構築しています。</b> これまで蓄積してきた選手の受傷記録と、GPS・コンディションの履歴をもとに、機械学習で予測モデルを作っています。データが積み上がるほど精度の向上が期待できます。</li>
+        <li><b>対象は「非接触系」の怪我に限ります。</b> 肉離れ・筋損傷・腱や関節への負担など、<b>自分の身体の状態（疲労・負荷の蓄積など）から起こるケガ</b>を想定しています。相手との接触による打撲・骨折などの<b>偶発的・接触系のケガは予測の対象外</b>です。</li>
+        <li><b>モデルは万能ではありません。</b> スコアは「データから見たリスクの目安」であって、確定診断ではありません。低スコアでも痛みや違和感があればそちらを優先し、高スコアでも実際の状態を必ず確認してください。</li>
+      </ul>
+      <div class="note warn"><svg class="ic"><use href="#i-warn"/></svg>
+        <div><b>あくまで意思決定の材料として使ってください。</b> リスク予測は、コーチ・トレーナーが練習量や起用を判断するときの<b>補助情報</b>のひとつです。最終的な判断は、選手の主観・メディカルの所見・現場の目と合わせて、人が行ってください。</div></div>
+
+      <h3><svg class="ic"><use href="#i-gauge"/></svg> リスク予測の使い方</h3>
+      <ol class="steps">
+        <li>「予測を開始する」を押すと、最新データを取得して予測を実行します。</li>
+        <li>各選手のリスクスコア（％）が色分けで表示されます。</li>
+      </ol>
+      <table class="tbl">
+        <tr><th>色</th><th>リスク</th><th>目安と対応</th></tr>
+        <tr><td><span class="led" style="background:#DC2626"></span> 赤</td><td>高リスク</td><td>5%以上 — 練習制限を推奨</td></tr>
+        <tr><td><span class="led" style="background:#D97706"></span> オレンジ</td><td>中リスク</td><td>2〜5% — モニタリング強化</td></tr>
+        <tr><td><span class="led" style="background:#16A34A"></span> 緑</td><td>低リスク</td><td>2%未満 — 通常通り</td></tr>
+      </table>
+
+      <h3><svg class="ic"><use href="#i-info"/></svg> スコアの算出方法（参考）</h3>
+      <ol style="font-size:14px">
+        <li>各選手のGPS・コンディションを読み込み</li>
+        <li>Z-score標準化（選手ごとの過去平均・標準偏差で正規化）</li>
+        <li>ラグ・ローリング平均・ACWR など 200以上の特徴量を生成</li>
+        <li>学習済みモデルで予測確率を算出</li>
+        <li>各選手について「なぜそのスコアか」の要因を分解</li>
+      </ol>
+
+      <h3><svg class="ic"><use href="#i-sliders"/></svg> 練習負荷設計</h3>
+      <p>選手をクリックすると <b>練習負荷設計モーダル</b> が開きます。強度プリセット（低／中／高）やGPS負荷を自由に設計し、リスクへの影響を見ながら練習計画を立てられます。</p>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> リスク予測／負荷設計モーダルのスクリーンショット</div></div>
+    </section>
+
+    <!-- 個別分析（コーチ・3タブ） -->
+    <section class="doc" id="c-analysis">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-network"/></svg></div><h2>個別分析（ネットワーク）</h2></div>
+      <p class="sub">選手・チームのデータを多角的に分析する、このアプリの分析の中心。3つのタブがあります。</p>
+      <table class="tbl">
+        <tr><th>タブ</th><th>何ができる？</th></tr>
+        <tr><td><b>ネットワーク分析</b></td><td>1人の選手の変数どうしの関係を図にする</td></tr>
+        <tr><td><b>2期間の比較</b></td><td>同じ選手の2つの期間（平均値・ネットワーク構造）を並べて比べる</td></tr>
+        <tr><td><b>チーム傾向</b></td><td>チーム全体に共通する変数間の関係を図にする</td></tr>
+      </table>
+
+      <h3><svg class="ic"><use href="#i-network"/></svg> ネットワーク分析タブ</h3>
+      <ol class="steps">
+        <li><b>選手・期間</b>を選ぶ。</li>
+        <li><b>変数を3〜15個</b>選ぶ（コンディション=青、GPS負荷=赤）。</li>
+        <li>「個別変数」か「合成変数」モードを選ぶ。</li>
+        <li>「分析を実行」。</li>
+        <li>図の下の<b>エッジ閾値スライダー</b>で、弱い関係を隠して見やすくできる（再分析不要）。</li>
+      </ol>
+      <p>下部に分析期間の<b>推移グラフ</b>（ケガ=赤点線、体調不良=青点線）も表示されます。</p>
+
+      <h3><svg class="ic"><use href="#i-chart"/></svg> 2期間の比較タブ</h3>
+      <ul>
+        <li>期間①（青）と 期間②（橙）を指定。</li>
+        <li><b>イベント基準の前後比較</b>：怪我・IDP・試合・チーム移動などを選び、「前後◯日」で2期間を自動設定（当日は除外）。</li>
+        <li><b>平均値の比較</b>：各項目の平均を棒グラフで比較。</li>
+        <li><b>ネットワーク構造の比較</b>：2期間のネットワークを左右に並べ、構造の変化を見ます。</li>
+      </ul>
+
+      <h3><svg class="ic"><use href="#i-users"/></svg> チーム傾向タブ</h3>
+      <p>チームの<b>平均的な傾向</b>を可視化。「うちのチームは疲労が翌日のやる気に響きやすい」といった方針づくりに使えます（※2名以上の選手データが必要）。</p>
+      <div class="note tip"><svg class="ic"><use href="#i-users"/></svg>
+        <div><b>少ないデータでも安定しやすいのが利点：</b> チーム傾向は複数選手のデータをまとめて推定するため、<b>個人ごとのネットワークほどデータ数がなくても安定した結果が得られます</b>。1人分では日数が足りない場合や、導入して間もない時期は、まずチーム傾向から眺めるのがおすすめです。</div></div>
+
+      <div class="note tip"><svg class="ic"><use href="#i-network"/></svg>
+        <div>図の読み方は次の章で徹底解説します。 <a class="inl" href="#network">→ ネットワーク分析の読み方へ</a></div></div>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 個別分析 3タブのスクリーンショット</div></div>
+    </section>
+
+    <!-- 運営・管理 -->
+    <section class="doc" id="c-admin">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-sliders"/></svg></div><h2>運営・管理メニュー</h2></div>
+      <p class="sub">招待・名簿・項目設定・データ出力・ユーザー管理など。</p>
+      <table class="tbl">
+        <tr><th>メニュー</th><th>内容</th></tr>
+        <tr><td><b>選手招待</b></td><td>新しい選手を招待（招待リンク／コード発行）</td></tr>
+        <tr><td><b>選手管理（ロスター）</b></td><td>選手の登録情報・チーム所属を管理</td></tr>
+        <tr><td><b>要確認</b></td><td>確認が必要な選手・データの一覧</td></tr>
+        <tr><td><b>項目設定</b></td><td>チーム独自のコンディション入力項目を設定（練習前/後・必須/任意を指定）</td></tr>
+        <tr><td><b>データ出力</b></td><td>コンディション・GPS などのデータをエクスポート</td></tr>
+        <tr><td><b>GPSデータ</b> <span class="pill gps">GPS連携チーム</span></td><td>走行距離・スプリント・加減速・衝撃・ACWR 等を確認</td></tr>
+        <tr><td><b>ユーザー管理</b> <span class="pill" style="background:#EAF7FF;color:#0073a8">管理者</span></td><td>アカウント・役割・スタッフの機能権限を管理</td></tr>
+      </table>
+      <div class="shot"><div class="ph"><svg class="ic"><use href="#i-image"/></svg> 運営メニューのスクリーンショット</div></div>
+    </section>
+
+    <!-- ══════════ ネットワーク分析の読み方 ══════════ -->
+    <section class="doc" id="network" style="padding:0;border:none;background:transparent;box-shadow:none">
+      <div class="na-wrap">
+        <div class="doc-h" style="margin-bottom:8px"><div class="dh-ic" style="background:rgba(255,255,255,.16);color:#9fe2ff"><svg class="ic"><use href="#i-network"/></svg></div><h2 style="color:#fff">ネットワーク分析の読み方</h2></div>
+        <p style="color:#cfe6f5;font-size:15px;margin-bottom:6px">
+          ロゴそのものがネットワーク図——Odonata の象徴です。ふつうのグラフは「1つの指標の動き」を見ますが、ネットワーク分析は
+          <b style="color:#fff">「どの指標が、どの指標に、どう影響しているか」</b>を図にします。
+        </p>
+        <p style="color:#cfe6f5;font-size:14px">
+          <b style="color:#fff">丸（ノード）</b>＝1つの変数、<b style="color:#fff">線（エッジ）</b>＝変数どうしの関係。
+        </p>
+
+        <h3 style="margin-top:24px"><svg class="ic"><use href="#i-info"/></svg> 図の見方：3つのポイント</h3>
+        <div class="na-legend">
+          <div class="glass">
+            <h4>① 丸の色 ＝ 変数の種類</h4>
+            <div class="legrow"><span class="swatch" style="background:#4db8ff"></span> 青：コンディション（睡眠・疲労…）</div>
+            <div class="legrow"><span class="swatch" style="background:#ff6666"></span> 赤：GPS負荷（走行距離…）</div>
+            <div class="legrow"><span class="swatch" style="background:#ff9933"></span> 橙：合成変数（スプリント系…）</div>
+          </div>
+          <div class="glass">
+            <h4>② 線の色 ＝ 関係の向き</h4>
+            <div class="legrow"><span class="linechip" style="background:#16A34A"></span> 緑：正（片方↑でもう片方も↑）</div>
+            <div class="legrow"><span class="linechip" style="background:#DC2626"></span> 赤：負（片方↑でもう片方は↓）</div>
+            <div class="legrow" style="color:#9fe2ff">数字の絶対値が大きいほど強い</div>
+          </div>
+          <div class="glass">
+            <h4>③ 線の太さ ＝ 強さ</h4>
+            <div class="legrow">太い線・大きい数字 ＝ 重要</div>
+            <div class="legrow"><b style="color:#fff">閾値スライダー</b>で弱い線を隠せる</div>
+            <div class="legrow" style="color:#9fe2ff">要点だけ残して見やすく</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:26px"><svg class="ic"><use href="#i-network"/></svg> 最重要：2種類のネットワーク（タブ）の違い</h3>
+        <p style="color:#cfe6f5;font-size:14px">結果には2つのタブがあります。<b style="color:#fff">意味がまったく違う</b>ので、必ず区別してください。</p>
+        <div class="vs-grid">
+          <div class="vs-card vs-temporal">
+            <div class="tophead"><div class="vs-icon"><svg class="ic"><use href="#i-clock"/></svg></div>
+              <div><div class="subt">TEMPORAL</div><h4>時系列関係（先行関係）</h4></div></div>
+            <div class="tagline">＝「昨日 → 今日」　矢印に向きがある</div>
+            <p><code>A → B</code> は <b>「昨日の A が、今日の B を予測する」</b>という意味。時間的な<b>先行→後続</b>の関係で、他の変数やB自身の昨日の値の影響を取り除いて推定しています。</p>
+            <div class="ex">
+              <span class="led pos"></span> <b>疲労 → やる気</b>（<span class="pos">正</span>）… 昨日の疲労が高いと翌日のやる気も高まる傾向<br>
+              <span class="led neg"></span> <b>走行距離 → 睡眠の質</b>（<span class="neg">負</span>）… よく走った翌日は睡眠の質が下がる傾向
+            </div>
+            <p style="font-size:12.5px;color:var(--sub);margin-top:10px;margin-bottom:0">
+              <b style="color:var(--navy)">自己ループ</b>（自分へ戻る矢印）＝「昨日の状態が今日まで持ち越されやすい」持続性。<br>
+              <b style="color:#b06400">注意：</b>「予測」であって、必ずしも「原因」ではありません。
+            </p>
+          </div>
+          <div class="vs-card vs-contemp">
+            <div class="tophead"><div class="vs-icon"><svg class="ic"><use href="#i-link"/></svg></div>
+              <div><div class="subt">CONTEMPORANEOUS</div><h4>同時相関（相関関係）</h4></div></div>
+            <div class="tagline">＝「同じ日のつながり」　向きは意味を持たない</div>
+            <p>線で結ばれた2つの変数は、<b>同じ日に一緒に動く（連動する）</b>ことを表します。「どちらが先か」は問わず、<b>お互いに関連している</b>という意味です。</p>
+            <div class="ex">
+              <span class="led pos"></span> <b>疲労 ─ 筋の張り</b>（<span class="pos">正</span>）… 疲労が高い日は同じ日の筋の張りも強い<br>
+              <span class="led neg"></span> <b>やる気 ─ 不安</b>（<span class="neg">負</span>）… やる気が高い日は同じ日の不安は低い
+            </div>
+            <p style="font-size:12.5px;color:var(--sub);margin-top:10px;margin-bottom:0">
+              <b style="color:var(--navy)">ポイント：</b>図に矢印の頭が描かれても、このタブでは<b>向きは無視</b>してOK。「線がある＝同じ日に関係している」とだけ読みます。
+            </p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:26px"><svg class="ic"><use href="#i-info"/></svg> どう活用する？</h3>
+        <table class="tbl" style="background:#fff">
+          <tr><th>知りたいこと</th><th>見るタブ</th></tr>
+          <tr><td>翌日に響く要因を見つけたい</td><td><b>時系列関係</b></td></tr>
+          <tr><td>同じ日に連動する指標を知りたい</td><td><b>同時相関</b></td></tr>
+          <tr><td>期間で関係が変わったか見たい</td><td><b>2期間の比較</b></td></tr>
+          <tr><td>チーム全体の傾向を方針に活かしたい</td><td><b>チーム傾向</b></td></tr>
+        </table>
+
+        <h3 style="margin-top:28px"><svg class="ic"><use href="#i-spark"/></svg> ユースケース：図から対策へ</h3>
+        <p style="color:#cfe6f5;font-size:14px;margin-bottom:14px">「こういう図が出たら、こういう傾向 → こんな対策」という読み解きの例です。</p>
+
+        <div class="usecase">
+          <div class="uc-head"><span class="uc-num">CASE 1</span> 高負荷 → 睡眠悪化 → 疲労、の悪循環を見つける</div>
+          <div class="uc-fig">
+            <span class="ucnode gps">走行距離</span>
+            <span class="ucedge"><span class="lab">睡眠を下げる</span><span class="ar">→</span></span>
+            <span class="ucnode cond">睡眠の質</span>
+            <span class="ucedge"><span class="lab">疲労を高める</span><span class="ar">→</span></span>
+            <span class="ucnode cond">疲労</span>
+          </div>
+          <div class="uc-row"><span class="uc-tag situation">こんな図が出たら</span>
+            <div><b>時系列関係</b>タブで <span class="net">走行距離 → 睡眠の質</span>（負）と <span class="net">睡眠の質 → 疲労</span>（負）が両方つながっている。</div></div>
+          <div class="uc-row"><span class="uc-tag insight">わかること</span>
+            <div>よく走った日の夜は<b>睡眠の質が落ち</b>、睡眠が悪い翌日は<b>疲労が高まる</b>。高負荷練習が「睡眠悪化 → 疲労蓄積」という悪循環の入口になっている可能性。</div></div>
+          <div class="uc-row"><span class="uc-tag action">考えられる対策</span>
+            <div>高負荷日の夜は<b>リカバリーを重点化</b>（就寝ルーティン・補食・入浴・カフェイン制限）。<b>高負荷を連日にしない</b>、翌日のメニュー強度を一段下げる。改善したかを2期間の比較で確認する。</div></div>
+        </div>
+
+        <div class="usecase">
+          <div class="uc-head"><span class="uc-num">CASE 2</span> 「不安 → 睡眠 → パフォーマンス」の心理的な連鎖を見つける</div>
+          <div class="uc-fig">
+            <span class="ucnode cond">不安</span>
+            <span class="ucedge"><span class="lab">睡眠時間を減らす</span><span class="ar">→</span></span>
+            <span class="ucnode cond">睡眠時間</span>
+            <span class="ucedge"><span class="lab">パフォを下げる</span><span class="ar">→</span></span>
+            <span class="ucnode cond">主観パフォーマンス</span>
+          </div>
+          <div class="uc-row"><span class="uc-tag situation">こんな図が出たら</span>
+            <div><b>時系列関係</b>タブで <span class="net">不安 → 睡眠時間</span>（不安が高い翌日は睡眠時間が短くなる）と、<span class="net">睡眠時間 → 主観パフォーマンス</span>（睡眠時間が短い翌日はパフォーマンスも下がる）がつながっている。</div></div>
+          <div class="uc-row"><span class="uc-tag insight">わかること</span>
+            <div><b>不安が睡眠時間を減らし、その睡眠不足によってパフォーマンスが落ちる</b>——と本人が感じている状態。からだの負荷ではなく、<b>心理面が睡眠を介してパフォーマンスに波及</b>していることが読み取れます。</div></div>
+          <div class="uc-row"><span class="uc-tag action">対策（コーチ）</span>
+            <div>何に不安を感じているのかを<b>聞き取って</b>あげる。<b>個別の面談の機会</b>をつくり、心理的な負担を早めに把握する。</div></div>
+          <div class="uc-row"><span class="uc-tag action">対策（選手）</span>
+            <div><b>心理的なサポート</b>（チームスタッフ・専門家など）を探してみる。あわせて<b>睡眠時間を延ばす工夫</b>（就寝前のルーティン、デジタル機器を控える等）を試す。</div></div>
+        </div>
+
+        <div class="note tip" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);border-left-color:#9fe2ff;color:#dceefb">
+          <svg class="ic" style="color:#9fe2ff"><use href="#i-info"/></svg>
+          <div>ここで挙げた関係はあくまで例です。<b style="color:#fff">選手によって出る図は異なります</b>。まずは図から仮説を立て、対策の前後を「2期間の比較」で検証する——この往復が使い方のコツです。</div></div>
+
+        <div class="note warn" style="margin-bottom:0;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);border-left-color:#9fe2ff;color:#dceefb">
+          <svg class="ic" style="color:#9fe2ff"><use href="#i-info"/></svg>
+          <div><b style="color:#fff">結果を信頼してよい目安：</b> ネットワーク分析はデータ量が多いほど安定します。個人ごとの分析は<b style="color:#fff">約100日分より少ない</b>と不安定になることがあり、警告が出ます。少ないデータの図は「傾向のヒント」として扱ってください。データが少ないときは<b style="color:#fff">変数を3〜5個に絞る</b>と安定しやすくなります。<b style="color:#fff">チーム傾向は複数選手をまとめるため、個人ごとのネットワークほどデータ数がなくても安定しやすい</b>のが利点です。なお選手ごとに標準化しているため、図は<b style="color:#fff">その選手の中での相対的な動き</b>の連動を表します。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 困ったとき -->
+    <section class="doc" id="trouble">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-info"/></svg></div><h2>困ったとき（ネットワーク分析）</h2></div>
+      <table class="tbl">
+        <tr><th>症状</th><th>対処</th></tr>
+        <tr><td>線が多すぎて読めない</td><td>エッジ閾値スライダーを<b>上げる</b>（強い関係だけ残す）</td></tr>
+        <tr><td>線が1本も出ない</td><td>エッジ閾値を<b>下げる</b>／期間を広げてデータを増やす</td></tr>
+        <tr><td>「データが不十分」と出る</td><td>期間を長くする（最低10日、目安100日以上）</td></tr>
+        <tr><td>GPS指標が選べない</td><td>そのチームはGPS非計測です（コンディション変数で分析を）</td></tr>
+        <tr><td><b>結果が安定しない／毎回変わる</b></td><td><b>変数を3〜5個に絞る。</b>データが少ないのに項目を多く選びすぎると不安定になります。まず重要な変数だけで分析し、あわせて<b>分析期間を広げる</b>とより安定します</td></tr>
+      </table>
+      <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
+        <div><b>変数は「少なく始める」のがコツ：</b> データ日数に対して変数が多いほど推定は不安定になります。最初は<b>3〜5個</b>の知りたい変数に絞り、安定して読めることを確認してから少しずつ増やしましょう。</div></div>
+
+      <h3><svg class="ic"><use href="#i-check"/></svg> まとめ：3ステップで読む</h3>
+      <ol class="steps">
+        <li><b>どのタブ？</b>「昨日→今日（時系列）」か「同じ日（相関）」かを確認。</li>
+        <li><b>色は？</b> 線が緑＝一緒に増える／赤＝逆。丸が青＝コンディション、赤＝GPS。</li>
+        <li><b>強さは？</b> 太い線・大きい数字が重要。閾値スライダーで要点を絞る。</li>
+      </ol>
+
+      <div class="center" style="margin-top:24px">
+        <a class="btn btn-navy" href="index.html"><svg class="ic"><use href="#i-arrow"/></svg> トップページへ戻る</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/odonata-logo.png" alt="Odonata">
+    <p>サッカーのためのコンディショニング・プラットフォーム</p>
+    <p style="margin-top:8px;opacity:.7">© <span id="year"></span> Odonata. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // hero network animation
+  const canvas = document.getElementById('netCanvas');
+  if(canvas){
+    const ctx = canvas.getContext('2d');
+    let w,h,nodes; const COUNT=44;
+    const resize=()=>{w=canvas.width=canvas.offsetWidth*devicePixelRatio;h=canvas.height=canvas.offsetHeight*devicePixelRatio};
+    const init=()=>{nodes=Array.from({length:COUNT},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.25*devicePixelRatio,vy:(Math.random()-.5)*.25*devicePixelRatio,r:(Math.random()*2+1.1)*devicePixelRatio}))};
+    const draw=()=>{ctx.clearRect(0,0,w,h);const maxD=150*devicePixelRatio;
+      for(let i=0;i<nodes.length;i++){const a=nodes[i];a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>w)a.vx*=-1;if(a.y<0||a.y>h)a.vy*=-1;
+        for(let j=i+1;j<nodes.length;j++){const b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+          if(d<maxD){ctx.strokeStyle=`rgba(160,220,255,${(1-d/maxD)*.4})`;ctx.lineWidth=1*devicePixelRatio;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}}
+      for(const n of nodes){ctx.fillStyle='rgba(200,235,255,.9)';ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fill();}
+      requestAnimationFrame(draw);};
+    resize();init();draw();
+    window.addEventListener('resize',()=>{resize();init();});
+  }
+</script>
+</body>
+</html>
