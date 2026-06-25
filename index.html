@@ -25,6 +25,10 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
+  /* 日本語の自然な改行（スマホ最適化）：文節単位で折り返し、行頭禁則・ぶら下がりを抑制 */
+  :where(h1,h2,h3,h4,h5,h6){text-wrap:balance;word-break:auto-phrase}
+  :where(p,li,dd,dt,figcaption,blockquote,th,td){text-wrap:pretty;word-break:auto-phrase}
+  body{line-break:strict;overflow-wrap:break-word}
   body{
     font-family:'Manrope','Zen Kaku Gothic New',system-ui,-apple-system,sans-serif;
     color:var(--text); background:var(--bg); line-height:1.75;
