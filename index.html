@@ -24,11 +24,16 @@
     --grad-hero:linear-gradient(135deg,#071A3A 0%,#0B2A5B 38%,#0E5F9E 72%,#00A0E9 100%);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   /* 日本語の自然な改行（スマホ最適化）：文節単位で折り返し、行頭禁則・ぶら下がりを抑制 */
   :where(h1,h2,h3,h4,h5,h6){text-wrap:balance;word-break:auto-phrase}
   :where(p,li,dd,dt,figcaption,blockquote,th,td){text-wrap:pretty;word-break:auto-phrase}
   body{line-break:strict;overflow-wrap:break-word}
+  /* auto-phrase 非対応ブラウザ（iOS Safari / Firefox）向け：文節単位の折り返しユニット */
+  .np{display:inline-block}
+  /* 見出しは約物を詰めて、日本語らしく引き締める */
+  :where(h1,h2,h3,h4){font-feature-settings:"palt" 1}
+  ::selection{background:rgba(0,160,233,.22)}
   body{
     font-family:'Manrope','Zen Kaku Gothic New',system-ui,-apple-system,sans-serif;
     color:var(--text); background:var(--bg); line-height:1.75;
@@ -335,6 +340,10 @@
 
   /* ───── CTA + Footer ───── */
   .cta{background:var(--card);border-radius:28px;padding:60px 40px;text-align:center;box-shadow:var(--shadow-lg);border:1px solid var(--border);position:relative;overflow:hidden}
+  .cta::after{content:"";position:absolute;right:-44px;bottom:-52px;width:280px;height:216px;
+    background:url(assets/dragonfly.svg) no-repeat center/contain;opacity:.07;
+    transform:rotate(-18deg);pointer-events:none}
+  .cta>*{position:relative;z-index:2}
   .cta h2{font-size:clamp(24px,3.6vw,36px);font-weight:800;color:var(--navy);margin-bottom:14px}
   .cta p{color:var(--sub);max-width:560px;margin:0 auto 30px;font-size:16px}
   footer{background:var(--navy-deep);color:#9fb8d6;padding:50px 0 40px;text-align:center;font-size:13px}
@@ -393,6 +402,31 @@
   @media(prefers-reduced-motion:reduce){.core::before,.scrolly-hint .mouse::after{animation:none}}
   .section-alt{background:linear-gradient(180deg,#fff 0%,#F2FBFE 100%)}
   .center{text-align:center}
+
+  /* ───── スマホ最適化（余白・サイズの引き締め） ───── */
+  @media(max-width:560px){
+    .wrap{padding:0 20px}
+    section{padding:68px 0}
+    .hero{padding:88px 0 108px}
+    .hero h1{margin-bottom:18px}
+    .hero p.lead{margin-bottom:32px}
+    .hero-actions{gap:10px}
+    .btn{padding:13px 22px;font-size:14px}
+    .section-lead{font-size:15.5px}
+    .stats{gap:12px;margin-top:-52px}
+    .stat{padding:20px 12px;border-radius:14px}
+    .stat .num{font-size:26px}
+    .stat .lbl{font-size:11.5px;margin-top:6px}
+    .panel{padding:24px 20px}
+    .feat{padding:24px 20px}
+    .tab{padding:10px 18px;font-size:14px}
+    .callout{padding:18px;gap:13px}
+    .vs-card{padding:22px 18px}
+    .qa summary{padding:17px 18px;font-size:14.5px}
+    .qa .ans{padding:0 18px 18px}
+    .cta{padding:44px 24px;border-radius:22px}
+    .flow-step{padding:22px 16px 18px}
+  }
 </style>
 </head>
 <body>
@@ -462,11 +496,9 @@
   <canvas id="netCanvas"></canvas>
   <div class="wrap">
     <div class="hero-logo"><img src="assets/odonata-full.png" alt="Odonata — 複雑な世界を、複眼で読む。"></div>
-    <h1>散らばったデータを、<br><span class="grad">ひとつに。</span>そして<span class="grad">読み解く。</span></h1>
+    <h1>散らばったデータを、<br><span class="np"><span class="grad">ひとつに。</span>そして</span><span class="np"><span class="grad">読み解く。</span></span></h1>
     <p class="lead">
-      コンディション・GPS・トレーニング・試合・ケガ・目標——
-      バラバラに管理していた選手のデータを<strong>一元管理</strong>。
-      さらに<strong>ネットワーク分析</strong>で「何が何に影響しているか」を可視化します。
+      <span class="np">コンディション・GPS・</span><span class="np">トレーニング・</span><span class="np">試合・ケガ・目標——</span><span class="np">バラバラに管理していた</span><span class="np">選手のデータを</span><span class="np"><strong>一元管理</strong>。</span><span class="np">さらに<strong>ネットワーク分析</strong>で</span><span class="np">「何が何に影響しているか」を</span><span class="np">可視化します。</span>
     </p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="guide.html">使い方ガイドへ <svg class="ic"><use href="#i-arrow"/></svg></a>
@@ -507,18 +539,18 @@
       <div class="scrolly-caption" id="storyCaption">
         <div class="scap" data-phase="0">
           <div class="step">Before</div>
-          <h2>データは、バラバラに眠っていた。</h2>
+          <h2><span class="np">データは、</span><span class="np">バラバラに</span><span class="np">眠っていた。</span></h2>
           <div class="tags"><span>GPS</span><span>コンディション</span><span>トレーニング</span><span>ケガ</span><span>目標</span><span>試合</span></div>
         </div>
         <div class="scap" data-phase="1">
           <div class="step">Unify</div>
-          <h2>Odonata が、ひとつに集約する。</h2>
-          <p>別々の場所にあった情報が、1つのプラットフォームへ。</p>
+          <h2><span class="np">Odonata が、</span><span class="np">ひとつに</span><span class="np">集約する。</span></h2>
+          <p><span class="np">別々の場所にあった情報が、</span><span class="np">1つのプラットフォームへ。</span></p>
         </div>
         <div class="scap" data-phase="2">
           <div class="step">Analyze</div>
-          <h2>集まったデータが、洞察に変わる。</h2>
-          <p>ネットワーク分析と傷害予測で、コンディションを読み解く。</p>
+          <h2><span class="np">集まったデータが、</span><span class="np">洞察に変わる。</span></h2>
+          <p><span class="np">ネットワーク分析と</span><span class="np">傷害予測で、</span><span class="np">コンディションを</span><span class="np">読み解く。</span></p>
         </div>
         <div class="scap" data-phase="3">
           <div class="step">Result</div>
@@ -547,7 +579,7 @@
   <div class="wrap">
     <div class="center" style="max-width:760px;margin:0 auto">
       <span class="eyebrow">Why Odonata</span>
-      <h2 class="section-title">データの散在を終わりにする。</h2>
+      <h2 class="section-title"><span class="np">データの散在を</span><span class="np">終わりにする。</span></h2>
       <p class="section-lead" style="margin-left:auto;margin-right:auto">
         トレーニングはエクセル、コンディションはあのアプリ、GPSは違うアプリ……。
         バラバラだから、つなげて考えられない。Odonata はすべてを1つの場所に集めます。
@@ -594,13 +626,13 @@
   <div class="wrap">
     <span class="eyebrow">Features</span>
     <h2 class="section-title">主な機能</h2>
-    <p class="section-lead">散らばっていた情報を <strong>集める → 整理する → 読み解く</strong> の流れでひとつに。入力はシンプルに、分析はパワフルに。</p>
+    <p class="section-lead"><span class="np">散らばっていた情報を</span> <span class="np"><strong>集める → 整理する → 読み解く</strong></span> <span class="np">の流れでひとつに。</span><span class="np">入力はシンプルに、</span><span class="np">分析はパワフルに。</span></p>
 
     <!-- ───── 集める ───── -->
     <div class="feat-group">
       <div class="fg-head">
         <span class="fg-step">STEP 1 ── 集める</span>
-        <h3>チームの活動を、ひとつに記録する</h3>
+        <h3><span class="np">チームの活動を、</span><span class="np">ひとつに記録する</span></h3>
         <p>日々のコンディションから試合・ケガ・育成計画・練習メニューまで、あらゆるデータを同じ場所へ。</p>
       </div>
       <div class="feat-grid">
@@ -647,7 +679,7 @@
     <div class="feat-group">
       <div class="fg-head">
         <span class="fg-step">STEP 2 ── 整理する</span>
-        <h3>時間軸でならべて、変化をつかむ</h3>
+        <h3><span class="np">時間軸でならべて、</span><span class="np">変化をつかむ</span></h3>
         <p>集めたデータを推移として可視化し、特定のイベントの前後で並べて比べられます。</p>
       </div>
       <div class="feat-grid">
@@ -668,7 +700,7 @@
     <div class="feat-group">
       <div class="fg-head">
         <span class="fg-step">STEP 3 ── 読み解く</span>
-        <h3>関係性とリスクを、分析する</h3>
+        <h3><span class="np">関係性とリスクを、</span><span class="np">分析する</span></h3>
         <p>整理したデータから「何が何に影響しているか」を読み解き、先回りの意思決定につなげます。</p>
       </div>
       <div class="feat-grid">
@@ -694,7 +726,7 @@
     <div class="callout">
       <svg class="ic cic"><use href="#i-signal"/></svg>
       <div>
-        <h4>GPSデータと傷害リスク予測について</h4>
+        <h4><span class="np">GPSデータと</span><span class="np">傷害リスク予測について</span></h4>
         <p>
           GPS（走行距離・スプリント・加速度などの運動負荷データ）は、
           <span class="badge-top">GPSを導入し、API連携しているチーム</span> でのみ取り込まれます。
@@ -796,7 +828,7 @@
 <section id="network" class="na">
   <div class="wrap">
     <span class="eyebrow"><svg class="ic"><use href="#i-spark"/></svg> 複雑なコンディションを表現する</span>
-    <h2 class="section-title">ネットワーク分析の読み方</h2>
+    <h2 class="section-title"><span class="np">ネットワーク分析の</span><span class="np">読み方</span></h2>
     <p class="section-lead">
       ロゴそのものがネットワーク図——Odonata の象徴です。
       ふつうのグラフは「1つの指標の動き」を見ますが、ネットワーク分析は
@@ -826,7 +858,7 @@
     </div>
 
     <!-- THE KEY: two network types -->
-    <h3 style="font-size:22px;font-weight:800;margin:64px 0 6px;color:#fff;text-align:center">2種類のネットワークを区別する</h3>
+    <h3 style="font-size:22px;font-weight:800;margin:64px 0 6px;color:#fff;text-align:center"><span class="np">2種類のネットワークを</span><span class="np">区別する</span></h3>
     <p class="center" style="color:#cfe6f5;max-width:640px;margin:0 auto">結果には2つのタブがあります。意味がまったく違うので、必ず区別してください。</p>
 
     <div class="vs-grid">
@@ -836,10 +868,10 @@
           <div class="vs-icon"><svg class="ic"><use href="#i-clock"/></svg></div>
           <div>
             <div class="sub">TEMPORAL</div>
-            <h3>時系列関係（先行関係）</h3>
+            <h3><span class="np">時系列関係</span><span class="np">（先行関係）</span></h3>
           </div>
         </div>
-        <div class="tagline">＝「昨日 → 今日」　矢印に向きがある</div>
+        <div class="tagline"><span class="np">＝「昨日 → 今日」</span>　<span class="np">矢印に向きがある</span></div>
         <div class="body">
           <code>A → B</code> は
           <b>「昨日の A が、今日の B を予測する」</b>という意味。時間的な<b>先行→後続</b>の関係です。
@@ -861,10 +893,10 @@
           <div class="vs-icon"><svg class="ic"><use href="#i-link"/></svg></div>
           <div>
             <div class="sub">CONTEMPORANEOUS</div>
-            <h3>同時相関（相関関係）</h3>
+            <h3><span class="np">同時相関</span><span class="np">（相関関係）</span></h3>
           </div>
         </div>
-        <div class="tagline">＝「同じ日のつながり」　向きは意味を持たない</div>
+        <div class="tagline"><span class="np">＝「同じ日のつながり」</span>　<span class="np">向きは意味を持たない</span></div>
         <div class="body">
           線で結ばれた2つの変数は、<b>同じ日に一緒に動く（連動する）</b>ことを表します。
           「どちらが先か」は問わず、<b>お互いに関連している</b>という意味。
@@ -900,11 +932,11 @@
     </div>
 
     <!-- use cases -->
-    <h3 style="font-size:22px;font-weight:800;margin:64px 0 6px;color:#fff;text-align:center">ユースケース：図から対策へ</h3>
+    <h3 style="font-size:22px;font-weight:800;margin:64px 0 6px;color:#fff;text-align:center"><span class="np">ユースケース：</span><span class="np">図から対策へ</span></h3>
     <p class="center" style="color:#cfe6f5;max-width:640px;margin:0 auto">「こういう図が出たら、こういう傾向 → こんな対策」の読み解き例。</p>
     <div class="uc2">
       <div class="ucard">
-        <div class="uctop"><span class="ucnum">CASE 1</span> 高負荷→睡眠悪化→疲労の悪循環</div>
+        <div class="uctop"><span class="ucnum">CASE 1</span> <span class="np">高負荷→睡眠悪化→</span><span class="np">疲労の悪循環</span></div>
         <div class="uc-fig">
           <span class="ucnode gps">走行距離</span>
           <span class="ucedge"><span class="lab">睡眠を下げる</span><span class="ar">→</span></span>
@@ -916,7 +948,7 @@
         <div class="ur"><b>対策：</b>高負荷日の夜はリカバリーを重点化し、連日の高負荷を避ける。</div>
       </div>
       <div class="ucard">
-        <div class="uctop"><span class="ucnum">CASE 2</span> 不安→睡眠→パフォーマンスの心理的連鎖</div>
+        <div class="uctop"><span class="ucnum">CASE 2</span> <span class="np">不安→睡眠→</span><span class="np">パフォーマンスの</span><span class="np">心理的連鎖</span></div>
         <div class="uc-fig">
           <span class="ucnode cond">不安</span>
           <span class="ucedge"><span class="lab">睡眠を減らす</span><span class="ar">→</span></span>
@@ -976,8 +1008,8 @@
 <section style="padding-top:0">
   <div class="wrap">
     <div class="cta">
-      <h2>データをひとつに。チームをもう一段、強く。</h2>
-      <p>散らばっていた情報を集約し、ネットワーク分析で読み解く。Odonata で、コンディショニングを科学しましょう。</p>
+      <h2><span class="np">データをひとつに。</span><span class="np">チームをもう一段、</span><span class="np">強く。</span></h2>
+      <p><span class="np">散らばっていた情報を集約し、</span><span class="np">ネットワーク分析で読み解く。</span><span class="np">Odonata で、</span><span class="np">コンディショニングを</span><span class="np">科学しましょう。</span></p>
       <a class="btn btn-primary" style="background:var(--navy);color:#fff" href="guide.html">
         <svg class="ic"><use href="#i-book"/></svg> 使い方ガイドを開く
       </a>
@@ -989,7 +1021,7 @@
 <footer>
   <div class="wrap">
     <img src="assets/odonata-logo.png" alt="Odonata">
-    <p>サッカーのためのコンディショニング・プラットフォーム</p>
+    <p><span class="np">サッカーのための</span><span class="np">コンディショニング・</span><span class="np">プラットフォーム</span></p>
     <p style="margin-top:10px;opacity:.7">© <span id="year"></span> Odonata. All rights reserved.</p>
   </div>
 </footer>

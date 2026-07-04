@@ -21,10 +21,14 @@
     --shadow:0 18px 50px rgba(0,0,0,.4);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   /* 日本語の自然な改行（スマホ最適化）：文節単位で折り返し、行頭禁則・ぶら下がりを抑制 */
   :where(h1,h2,h3,h4,h5,h6){text-wrap:balance;word-break:auto-phrase}
   :where(p,li,dd,dt,figcaption,blockquote,th,td){text-wrap:pretty;word-break:auto-phrase}
+  /* auto-phrase 非対応ブラウザ（iOS Safari / Firefox）向け：文節単位の折り返しユニット */
+  .np{display:inline-block}
+  :where(h1,h2,h3,h4){font-feature-settings:"palt" 1}
+  ::selection{background:rgba(63,200,240,.3)}
   body{font-family:'Manrope','Zen Kaku Gothic New',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-break:strict;overflow-wrap:break-word}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
@@ -160,6 +164,15 @@
   /* reveal */
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;will-change:opacity,transform}
   .reveal.in{opacity:1;transform:none}
+
+  /* スマホ最適化 */
+  @media(max-width:560px){
+    .wrap{padding:0 20px}
+    section{padding:68px 0}
+    .statement{padding:40px 24px}
+    .vcard{padding:26px 22px}
+    .cta{padding:46px 20px}
+  }
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none}
     .df,.cx .edge.pulse,.cx circle.dot,.scrollcue span,.zhint span{animation:none!important}
     .zoomstage{height:auto}.zoomsticky{position:static;height:auto;min-height:70vh}
@@ -203,7 +216,7 @@
     <div class="zlayer lockup" id="zLockup">
       <span class="emwrap"><img class="em2" src="assets/odonata-emblem.png" alt=""></span>
       <div class="wm">Odonata</div>
-      <p class="jp">複雑な世界を、<span class="grad">複眼で読む。</span></p>
+      <p class="jp"><span class="np">複雑な世界を、</span><span class="np grad">複眼で読む。</span></p>
       <p class="en2">Read the complexity. Shape the game.</p>
     </div>
     <div class="zhint" id="zHint">SCROLL<span></span></div>
@@ -214,8 +227,8 @@
 <section>
   <div class="wrap">
     <div class="sec-tag">Complex System</div>
-    <h2 class="sec-h">サッカーは、ひとつの要素では<br>成り立たない。</h2>
-    <p class="sec-sub">個人・チーム・パフォーマンス・準備・コンディション・環境——<br>無数の要素が<b style="color:#fff">相互に影響し合う複雑系</b>。その関係性の中で、試合の流れは絶えず変化している。</p>
+    <h2 class="sec-h"><span class="np">サッカーは、</span><span class="np">ひとつの要素では</span><br>成り立たない。</h2>
+    <p class="sec-sub"><span class="np">個人・チーム・</span><span class="np">パフォーマンス・準備・</span><span class="np">コンディション・環境——</span><br><span class="np">無数の要素が</span><b style="color:#fff" class="np">相互に影響し合う複雑系</b>。<span class="np">その関係性の中で、</span><span class="np">試合の流れは</span><span class="np">絶えず変化している。</span></p>
     <div class="cx reveal">
       <svg viewBox="0 0 520 380" role="img" aria-label="要素どうしが相互に影響し合うネットワーク図">
         <!-- edges -->
@@ -256,7 +269,7 @@
     <div class="sec-tag">Philosophy</div>
     <h2 class="sec-h">私たちの思想</h2>
     <div class="statement reveal">
-      <p class="lead">複雑な世界を、複眼で読む。</p>
+      <p class="lead"><span class="np">複雑な世界を、</span><span class="np">複眼で読む。</span></p>
       <p>
         個人、チーム、パフォーマンス、準備、コンディション、環境——
         こうした要素は<b>相互に影響し合い</b>、その関係性の中で、試合の流れやプレーの可能性は常に変化しています。
@@ -268,7 +281,7 @@
         目に見える現象にとどまらず、その背後にある<b>構造</b>、<b>変化の兆し</b>、<b>関係性の連鎖</b>を捉えることで、
         現場の意思決定を支え、チームの成長と選手の可能性を最大化します。
       </p>
-      <p class="close">複雑な世界を、複眼で読む。そして、ゲームを形づくります。</p>
+      <p class="close"><span class="np">複雑な世界を、</span><span class="np">複眼で読む。</span><span class="np">そして、</span><span class="np">ゲームを形づくります。</span></p>
     </div>
   </div>
 </section>
@@ -310,7 +323,7 @@
         <div class="sci">Odonata<span>— トンボ目の学名</span></div>
       </div>
       <div class="name-body">
-        <h2><span class="grad">多くを読み解き、前へ進む。</span><br>「勝ち虫」に名を借りて。</h2>
+        <h2><span class="np grad">多くを読み解き、</span><span class="np grad">前へ進む。</span><br><span class="np">「勝ち虫」に</span><span class="np">名を借りて。</span></h2>
         <p>
           <b>Odonata</b> は、<span class="hl">トンボの学名</span>です。トンボは大きな<b>複眼</b>を使い、
           膨大な情報を複雑に処理しながら獲物を捉え、その行動を瞬時に最適化します。
@@ -332,8 +345,8 @@
 <section style="padding-top:0">
   <div class="wrap">
     <div class="cta reveal">
-      <h2>Odonata を、現場へ。</h2>
-      <p>散らばったデータをひとつに。そして、読み解く。</p>
+      <h2><span class="np">Odonata を、</span><span class="np">現場へ。</span></h2>
+      <p><span class="np">散らばったデータを</span><span class="np">ひとつに。</span><span class="np">そして、読み解く。</span></p>
       <a class="btn" href="guide.html">使い方を見る <svg class="ic"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
@@ -342,7 +355,7 @@
 <footer>
   <div class="wrap">
     <img src="assets/odonata-logo.png" alt="Odonata">
-    <p>サッカーのためのコンディショニング・プラットフォーム</p>
+    <p><span class="np">サッカーのための</span><span class="np">コンディショニング・</span><span class="np">プラットフォーム</span></p>
     <p style="margin-top:8px;opacity:.7">© <span id="year"></span> Odonata. All rights reserved.</p>
   </div>
 </footer>

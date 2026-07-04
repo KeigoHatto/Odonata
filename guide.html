@@ -23,10 +23,14 @@
     --grad-hero:linear-gradient(135deg,#071A3A 0%,#0B2A5B 38%,#0E5F9E 72%,#00A0E9 100%);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   /* 日本語の自然な改行（スマホ最適化）：文節単位で折り返し、行頭禁則・ぶら下がりを抑制 */
   :where(h1,h2,h3,h4,h5,h6){text-wrap:balance;word-break:auto-phrase}
   :where(p,li,dd,dt,figcaption,blockquote,th,td){text-wrap:pretty;word-break:auto-phrase}
+  /* auto-phrase 非対応ブラウザ（iOS Safari / Firefox）向け：文節単位の折り返しユニット */
+  .np{display:inline-block}
+  :where(h1,h2,h3,h4){font-feature-settings:"palt" 1}
+  ::selection{background:rgba(0,160,233,.22)}
   body{font-family:'Manrope','Zen Kaku Gothic New',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased;line-break:strict;overflow-wrap:break-word}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
@@ -68,7 +72,7 @@
 
   /* content */
   .doc{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px 44px;box-shadow:var(--shadow);margin-bottom:26px;scroll-margin-top:84px}
-  @media(max-width:560px){.doc{padding:28px 22px}}
+  @media(max-width:560px){.doc{padding:28px 22px}.doc h2{font-size:21px}.doc h3{font-size:16.5px}.wrap{padding:0 20px}}
   .doc-h{display:flex;align-items:center;gap:14px;margin-bottom:6px}
   .doc-h .dh-ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:24px;color:var(--blue);background:linear-gradient(135deg,#E0F5FD,#CCE9F6);flex:none}
   .doc h2{font-size:25px;font-weight:800;color:var(--navy);letter-spacing:-.01em}
@@ -227,7 +231,7 @@
   <div class="wrap">
     <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px"><use href="#i-arrow"/></svg> 使い方ガイド</div>
     <h1>使い方ガイド</h1>
-    <p>選手・コーチそれぞれの全機能と、Odonata の象徴である<strong style="color:#fff">ネットワーク分析の読み方</strong>を、画面に沿ってくわしく解説します。</p>
+    <p><span class="np">選手・コーチそれぞれの</span><span class="np">全機能と、</span><span class="np">Odonata の象徴である</span><strong style="color:#fff" class="np">ネットワーク分析の読み方</strong>を、<span class="np">画面に沿って</span><span class="np">くわしく解説します。</span></p>
   </div>
 </div>
 
@@ -265,7 +269,7 @@
 
     <!-- 共通操作 -->
     <section class="doc" id="basics">
-      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-login"/></svg></div><h2>共通操作・画面の見方</h2></div>
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-login"/></svg></div><h2><span class="np">共通操作・</span><span class="np">画面の見方</span></h2></div>
       <p class="sub">どの立場でも共通の、ログインから画面の基本までです。</p>
 
       <h3><svg class="ic"><use href="#i-login"/></svg> ログイン</h3>
@@ -281,7 +285,7 @@
         <li>サイドバー上部のセレクトで<b>表示モード</b>や<b>表示チーム</b>を切り替えます。</li>
       </ul>
 
-      <h3><svg class="ic"><use href="#i-globe"/></svg> 言語切り替え（選手のみ）</h3>
+      <h3><svg class="ic"><use href="#i-globe"/></svg> <span class="np">言語切り替え</span><span class="np">（選手のみ）</span></h3>
       <p>選手画面では、サイドバーの <b>日本語 / English</b> ボタンで表示言語を切り替えられます。</p>
 
       <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
@@ -303,7 +307,7 @@
         <tr><td><b>練習後</b></td><td>練習・試合の後</td><td>RPE（運動強度）・主観パフォーマンス</td></tr>
       </table>
 
-      <h3><svg class="ic"><use href="#i-sliders"/></svg> スライダー（VAS）の使い方</h3>
+      <h3><svg class="ic"><use href="#i-sliders"/></svg> <span class="np">スライダー（VAS）の</span><span class="np">使い方</span></h3>
       <p>多くの項目は <b>1〜100 のスライダー</b> です。各スライダーの下に「どちら向きが何を意味するか」が書かれています。</p>
       <ul>
         <li><b>睡眠の質</b> → 深く眠れたほど右へ（100に近いほど良い）</li>
@@ -357,7 +361,7 @@
 
     <!-- スケジュール・トレーニング -->
     <section class="doc" id="p-schedule">
-      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-calendar"/></svg></div><h2>スケジュール／トレーニング</h2></div>
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-calendar"/></svg></div><h2><span class="np">スケジュール／</span><span class="np">トレーニング</span></h2></div>
       <p class="sub">チームの予定とその日の練習メニューを確認します。</p>
       <h3><svg class="ic"><use href="#i-calendar"/></svg> スケジュール</h3>
       <ul>
@@ -383,7 +387,7 @@
 
     <!-- ケガ履歴 -->
     <section class="doc" id="p-medical">
-      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-pulse"/></svg></div><h2>ケガ履歴（メディカル）</h2></div>
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-pulse"/></svg></div><h2><span class="np">ケガ履歴</span><span class="np">（メディカル）</span></h2></div>
       <p class="sub">ケガや体調についての情報を入力・確認します。</p>
       <ul>
         <li><b>メディカル情報を入力</b>：症状・部位、痛みの出る動き、現在困っていることを記録。</li>
@@ -394,7 +398,7 @@
 
     <!-- IDP -->
     <section class="doc" id="p-idp">
-      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-target"/></svg></div><h2>IDP（個人育成計画）</h2></div>
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-target"/></svg></div><h2><span class="np">IDP</span><span class="np">（個人育成計画）</span></h2></div>
       <p class="sub">自分の成長目標を立てて、進み具合を管理します。</p>
       <ul>
         <li><b>目標を追加</b>：例「試合終盤でもスプリント回数を落とさない」＋ 取り組み方法「週2回の加速走」</li>
@@ -419,7 +423,7 @@
 
     <!-- プロフィール -->
     <section class="doc" id="p-profile">
-      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-user"/></svg></div><h2>プロフィール・項目設定・アカウント</h2></div>
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-user"/></svg></div><h2><span class="np">プロフィール・</span><span class="np">項目設定・</span><span class="np">アカウント</span></h2></div>
       <p class="sub">自分の情報と入力項目、セキュリティの設定です。</p>
       <ul>
         <li><b>プロフィール</b>：氏名、競技プロフィール（生年・身長・体重・ポジション等）を編集。</li>
@@ -433,7 +437,7 @@
 
     <!-- 切替 -->
     <section class="doc" id="c-switch">
-      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-shuffle"/></svg></div><h2>表示モード・表示チームの切替</h2></div>
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-shuffle"/></svg></div><h2><span class="np">表示モード・</span><span class="np">表示チームの切替</span></h2></div>
       <p class="sub">サイドバー上部に2つの重要なセレクトがあります。</p>
       <table class="tbl">
         <tr><th>セレクト</th><th>役割</th></tr>
@@ -456,7 +460,7 @@
         <li><b>選手一覧</b>：登録選手を一覧表示。</li>
         <li><b>選手詳細</b>：個々の選手のコンディション・負荷・ケガ・IDP などを横断的に確認。</li>
       </ul>
-      <h3><svg class="ic"><use href="#i-pen"/></svg> コンディション（概観・代行入力）</h3>
+      <h3><svg class="ic"><use href="#i-pen"/></svg> <span class="np">コンディション</span><span class="np">（概観・代行入力）</span></h3>
       <ul>
         <li><b>代行入力</b>：選手が入力できないとき、選手・日付を選んでコーチが代わりに入力（練習前／後タブ、選手と同じフォーム）。</li>
         <li><b>項目別 現在値</b>：期間（直近7〜90日／期間指定）と、チーム平均／個別選手、参加区分で絞り込んで確認。</li>
@@ -465,19 +469,19 @@
 
     <!-- 試合・練習・運営 -->
     <section class="doc" id="c-ops">
-      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-calendar"/></svg></div><h2>試合・トレーニング・予定・メディカル・IDP</h2></div>
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-calendar"/></svg></div><h2><span class="np">試合・</span><span class="np">トレーニング・</span><span class="np">予定・</span><span class="np">メディカル・</span><span class="np">IDP</span></h2></div>
       <p class="sub">日々の運営に関わる機能です。</p>
       <h3><svg class="ic"><use href="#i-ball"/></svg> 試合</h3>
       <ul>
         <li><b>試合一覧</b>：登録された試合を管理。</li>
         <li><b>試合詳細</b>：スコア、出場メンバー（ラインアップ）、各選手のスタッツ・評価・講評を記録。</li>
       </ul>
-      <h3><svg class="ic"><use href="#i-dumbbell"/></svg> トレーニング・メニュービルダー</h3>
+      <h3><svg class="ic"><use href="#i-dumbbell"/></svg> <span class="np">トレーニング・</span><span class="np">メニュービルダー</span></h3>
       <ul>
         <li><b>トレーニング</b>：練習セッションをカレンダーで管理。</li>
         <li><b>メニュービルダー</b>：ドリル・出欠グループ・フィールド図を1枚のメニューにまとめ、PDF出力・選手へ配布。 <a class="inl" href="#c-menu">→ 詳しい使い方へ</a></li>
       </ul>
-      <h3><svg class="ic"><use href="#i-calendar"/></svg> スケジュール／メディカル／IDP概観</h3>
+      <h3><svg class="ic"><use href="#i-calendar"/></svg> <span class="np">スケジュール／</span><span class="np">メディカル／</span><span class="np">IDP概観</span></h3>
       <ul>
         <li><b>スケジュール</b>：チームの予定を作成・編集（選手画面に反映）。</li>
         <li><b>メディカル</b>：受傷日・部位・診断・復帰予定・一部参加の状況を記録・追跡。</li>
@@ -487,7 +491,7 @@
 
     <!-- メニュービルダー -->
     <section class="doc" id="c-menu">
-      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-dumbbell"/></svg></div><h2>メニュービルダー（トレーニングメニュー作成）</h2></div>
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-dumbbell"/></svg></div><h2><span class="np">メニュービルダー</span><span class="np">（トレーニング</span><span class="np">メニュー作成）</span></h2></div>
       <p class="sub">ドリル・出欠グループ・フィールド図を1枚のメニューにまとめ、PDF出力・選手への配布までを一画面で行えます。</p>
 
       <h3><svg class="ic"><use href="#i-arrow"/></svg> どこから開く？</h3>
@@ -497,7 +501,7 @@
         <li>トレーニングの<b>セッションから開くと日付などが引き継がれ</b>、メニューと練習セッションが自動でひもづきます。</li>
       </ul>
 
-      <h3><svg class="ic"><use href="#i-check"/></svg> 作成の流れ（6ステップ）</h3>
+      <h3><svg class="ic"><use href="#i-check"/></svg> <span class="np">作成の流れ</span><span class="np">（6ステップ）</span></h3>
       <ol class="steps">
         <li><b>セッション情報</b>を入力（日付・時間・場所・テーマ など）。</li>
         <li><b>出欠・グループ</b>を整える（自動同期も可）。</li>
@@ -569,7 +573,7 @@
       </table>
       <p>描き終えたら「<b>保存</b>」でそのドリルに図が添付されます。</p>
 
-      <h3><svg class="ic"><use href="#i-book"/></svg> ⑤ ライブラリとテンプレートで再利用</h3>
+      <h3><svg class="ic"><use href="#i-book"/></svg> ⑤ <span class="np">ライブラリと</span><span class="np">テンプレートで</span><span class="np">再利用</span></h3>
       <ul>
         <li><b>ドリルライブラリ</b>（📚）：よく使うドリルを保存しておき、別のメニューに<b>ワンクリックで追加</b>。名前で検索でき、よく使う順に並びます。</li>
         <li><b>テンプレート</b>（📋）：メニュー全体（ドリル構成＋グループの枠）を<b>ひな型として保存</b>。テンプレートを適用すると、日付を指定して新しいメニューを一気に作れます（選手の割り当ては空の状態から）。</li>
@@ -592,13 +596,13 @@
 
     <!-- 傷害リスク予測 -->
     <section class="doc" id="c-risk">
-      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-pulse"/></svg></div><h2>傷害発生リスク予測 ＋ 練習負荷設計</h2></div>
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-pulse"/></svg></div><h2><span class="np">傷害発生リスク予測</span> <span class="np">＋ 練習負荷設計</span></h2></div>
       <p class="sub">機械学習で各選手のケガ発生確率を予測します。 <span class="pill top"><svg class="ic"><use href="#i-signal"/></svg> GPS連携チームのみ</span></p>
 
       <div class="note warn"><svg class="ic"><use href="#i-warn"/></svg>
         <div>この機能は GPS 負荷データを入力に使うため、<b>GPSを導入し、API連携しているチームのみ</b>で利用できます。GPS未導入のチームでは表示されません。</div></div>
 
-      <h3><svg class="ic"><use href="#i-info"/></svg> このモデルについて（大切な前提）</h3>
+      <h3><svg class="ic"><use href="#i-info"/></svg> <span class="np">このモデルについて</span><span class="np">（大切な前提）</span></h3>
       <ul>
         <li><b>過去の怪我データから構築しています。</b> これまで蓄積してきた選手の受傷記録と、GPS・コンディションの履歴をもとに、機械学習で予測モデルを作っています。データが積み上がるほど精度の向上が期待できます。</li>
         <li><b>対象は「非接触系」の怪我に限ります。</b> 肉離れ・筋損傷・腱や関節への負担など、<b>自分の身体の状態（疲労・負荷の蓄積など）から起こるケガ</b>を想定しています。相手との接触による打撲・骨折などの<b>偶発的・接触系のケガは予測の対象外</b>です。</li>
@@ -634,7 +638,7 @@
 
     <!-- 個別分析（コーチ・3タブ） -->
     <section class="doc" id="c-analysis">
-      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-network"/></svg></div><h2>個別分析（ネットワーク）</h2></div>
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-network"/></svg></div><h2><span class="np">個別分析</span><span class="np">（ネットワーク）</span></h2></div>
       <p class="sub">選手・チームのデータを多角的に分析する、このアプリの分析の中心。3つのタブがあります。</p>
       <table class="tbl">
         <tr><th>タブ</th><th>何ができる？</th></tr>
@@ -689,7 +693,7 @@
     <!-- ══════════ ネットワーク分析の読み方 ══════════ -->
     <section class="doc" id="network" style="padding:0;border:none;background:transparent;box-shadow:none">
       <div class="na-wrap">
-        <div class="doc-h" style="margin-bottom:8px"><div class="dh-ic" style="background:rgba(255,255,255,.16);color:#9fe2ff"><svg class="ic"><use href="#i-network"/></svg></div><h2 style="color:#fff">ネットワーク分析の読み方</h2></div>
+        <div class="doc-h" style="margin-bottom:8px"><div class="dh-ic" style="background:rgba(255,255,255,.16);color:#9fe2ff"><svg class="ic"><use href="#i-network"/></svg></div><h2 style="color:#fff"><span class="np">ネットワーク分析の</span><span class="np">読み方</span></h2></div>
         <p style="color:#cfe6f5;font-size:15px;margin-bottom:6px">
           ロゴそのものがネットワーク図——Odonata の象徴です。ふつうのグラフは「1つの指標の動き」を見ますが、ネットワーク分析は
           <b style="color:#fff">「どの指標が、どの指標に、どう影響しているか」</b>を図にします。
@@ -720,12 +724,12 @@
           </div>
         </div>
 
-        <h3 style="margin-top:26px"><svg class="ic"><use href="#i-network"/></svg> 最重要：2種類のネットワーク（タブ）の違い</h3>
+        <h3 style="margin-top:26px"><svg class="ic"><use href="#i-network"/></svg> <span class="np">最重要：</span><span class="np">2種類のネットワーク</span><span class="np">（タブ）の違い</span></h3>
         <p style="color:#cfe6f5;font-size:14px">結果には2つのタブがあります。<b style="color:#fff">意味がまったく違う</b>ので、必ず区別してください。</p>
         <div class="vs-grid">
           <div class="vs-card vs-temporal">
             <div class="tophead"><div class="vs-icon"><svg class="ic"><use href="#i-clock"/></svg></div>
-              <div><div class="subt">TEMPORAL</div><h4>時系列関係（先行関係）</h4></div></div>
+              <div><div class="subt">TEMPORAL</div><h4><span class="np">時系列関係</span><span class="np">（先行関係）</span></h4></div></div>
             <div class="tagline">＝「昨日 → 今日」　矢印に向きがある</div>
             <p><code>A → B</code> は <b>「昨日の A が、今日の B を予測する」</b>という意味。時間的な<b>先行→後続</b>の関係で、他の変数やB自身の昨日の値の影響を取り除いて推定しています。</p>
             <div class="ex">
@@ -739,7 +743,7 @@
           </div>
           <div class="vs-card vs-contemp">
             <div class="tophead"><div class="vs-icon"><svg class="ic"><use href="#i-link"/></svg></div>
-              <div><div class="subt">CONTEMPORANEOUS</div><h4>同時相関（相関関係）</h4></div></div>
+              <div><div class="subt">CONTEMPORANEOUS</div><h4><span class="np">同時相関</span><span class="np">（相関関係）</span></h4></div></div>
             <div class="tagline">＝「同じ日のつながり」　向きは意味を持たない</div>
             <p>線で結ばれた2つの変数は、<b>同じ日に一緒に動く（連動する）</b>ことを表します。「どちらが先か」は問わず、<b>お互いに関連している</b>という意味です。</p>
             <div class="ex">
@@ -844,7 +848,7 @@
 <footer>
   <div class="wrap">
     <img src="assets/odonata-logo.png" alt="Odonata">
-    <p>サッカーのためのコンディショニング・プラットフォーム</p>
+    <p><span class="np">サッカーのための</span><span class="np">コンディショニング・</span><span class="np">プラットフォーム</span></p>
     <p style="margin-top:8px;opacity:.7">© <span id="year"></span> Odonata. All rights reserved.</p>
   </div>
 </footer>
