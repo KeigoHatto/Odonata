@@ -140,8 +140,9 @@
   .vs-card code{background:var(--bg);padding:1px 6px;border-radius:5px;font-weight:700;font-family:inherit}
   .vs-card .ex{background:var(--bg);border-radius:9px;padding:11px 13px;font-size:12.5px;line-height:1.85;margin-top:8px}
   .led{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;margin-right:3px}
-  .led.pos{background:var(--green)} .led.neg{background:var(--red)}
-  .pos{color:var(--green);font-weight:700} .neg{color:var(--red);font-weight:700}
+  /* 正=青 / 負=赤（アプリの EDGE_POS_COLOR / EDGE_NEG_COLOR と一致）。赤×緑は色覚多様性で区別しづらいため正側は青 */
+  .led.pos{background:#2A78D6} .led.neg{background:var(--red)}
+  .pos{color:#2A78D6;font-weight:700} .neg{color:var(--red);font-weight:700}
   /* use cases */
   .usecase{background:#fff;color:var(--text);border-radius:var(--radius-sm);padding:20px 22px;margin-bottom:14px;box-shadow:0 6px 18px rgba(7,26,58,.18)}
   .uc-head{font-weight:800;color:var(--navy);font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
@@ -161,7 +162,7 @@
   .ucedge{display:flex;flex-direction:column;align-items:center;line-height:1.1}
   .ucedge .lab{font-size:10px;font-weight:700;color:var(--sub);margin-bottom:1px;white-space:nowrap}
   .ucedge .ar{font-size:18px;font-weight:800;line-height:1;color:#c0392b}
-  .ucedge.pos .ar{color:#16774a}
+  .ucedge.pos .ar{color:#2A78D6}
   @media(max-width:560px){.uc-fig{justify-content:flex-start}}
 
   /* back to top / footer */
@@ -254,9 +255,10 @@
       <a href="#c-switch"><svg class="ic"><use href="#i-shuffle"/></svg> 表示モード・チーム切替</a>
       <a href="#c-team"><svg class="ic"><use href="#i-users"/></svg> チームを見る</a>
       <a href="#c-ops"><svg class="ic"><use href="#i-calendar"/></svg> 試合・練習・運営</a>
+      <a href="#c-summary"><svg class="ic"><use href="#i-chart"/></svg> サマリー（集計ビュー）</a>
       <a href="#c-menu"><svg class="ic"><use href="#i-dumbbell"/></svg> メニュービルダー</a>
       <a href="#c-risk"><svg class="ic"><use href="#i-pulse"/></svg> 傷害リスク予測</a>
-      <a href="#c-analysis"><svg class="ic"><use href="#i-network"/></svg> 個別分析（3タブ）</a>
+      <a href="#c-analysis"><svg class="ic"><use href="#i-network"/></svg> 個別分析（4タブ）</a>
       <a href="#c-admin"><svg class="ic"><use href="#i-sliders"/></svg> 運営・管理メニュー</a>
       <h4>分析の読み方</h4>
       <a href="#network"><svg class="ic"><use href="#i-network"/></svg> ネットワーク分析</a>
@@ -415,11 +417,10 @@
     <!-- 個別分析 -->
     <section class="doc" id="p-analysis">
       <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-network"/></svg></div><h2>個別分析</h2></div>
-      <p class="sub">自分のデータを深く掘り下げる分析ページ。3つの見方があります。</p>
+      <p class="sub">自分のデータを深く掘り下げる分析ページ。2つのタブがあります。</p>
       <ol class="steps">
-        <li><b>ネットワーク分析</b>：自分のコンディション変数どうしの関係を図にします。</li>
+        <li><b>ネットワーク分析</b>：自分のコンディション変数どうしの関係を図にします。図の下には、分析期間の<b>推移グラフ</b>（各項目の時系列推移をケガ・体調不良のマーカー付きで表示）も並びます。</li>
         <li><b>2期間の比較</b>：「ケガの前後」「好調期と不調期」など2つの期間を並べて比べます。</li>
-        <li><b>推移グラフ</b>：各項目の時系列推移を、ケガ・体調不良のマーカー付きで表示。</li>
       </ol>
       <h3><svg class="ic"><use href="#i-book"/></svg> 結果の読み取り（自動解釈文）</h3>
       <p>分析を実行すると、図の下に「<b>結果の読み取り</b>」として、見つかった関係を<b>日本語の文章で自動解説</b>します（例：「睡眠の質が高い日は、同じ日のやる気も高いことが多いようです」）。関連の強いもの・弱いもの・一見意外なものに分けて表示され、<b>文にふれると図の該当する線がハイライト</b>されるので、図と文章を行き来しながら読めます。</p>
@@ -460,7 +461,7 @@
       <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-users"/></svg></div><h2>チームを見る</h2></div>
       <p class="sub">チーム全体や個々の選手を見渡す機能です。</p>
       <h3><svg class="ic"><use href="#i-home"/></svg> ダッシュボード</h3>
-      <p>チーム全体の状況をまとめて見る入り口。コンディションや負荷の概況を把握できます。</p>
+      <p>チーム全体の状況をまとめて見る入り口。コンディションや負荷の概況に加え、<b>直近の戦績（試合サマリー）</b>・<b>IDPのKPI</b>（前日比の矢印付き）・<b>怪我サマリー</b>が集約表示されます。 <a class="inl" href="#c-summary">→ サマリーの見方へ</a></p>
 
       <h3><svg class="ic"><use href="#i-warn"/></svg> 要確認選手（自動アラート）</h3>
       <p>気にかけるべき選手を自動で抽出し、ダッシュボードと「要確認」リストに表示します。次のいずれかに該当すると挙がります。</p>
@@ -509,8 +510,8 @@
       <p class="sub">日々の運営に関わる機能です。</p>
       <h3><svg class="ic"><use href="#i-ball"/></svg> 試合</h3>
       <ul>
-        <li><b>試合一覧</b>：登録された試合を管理。</li>
-        <li><b>試合詳細</b>：スコア、出場メンバー（ラインアップ）、各選手のスタッツ・評価・講評を記録。</li>
+        <li><b>試合一覧</b>：登録された試合を管理。ページ上部に<b>試合サマリー</b>（戦績・時間帯分析など）。</li>
+        <li><b>試合詳細</b>：スコア、出場メンバー（ラインアップ）、各選手のスタッツ・評価・講評を記録。得点の分数・得点者もここで入力できます。</li>
       </ul>
       <h3><svg class="ic"><use href="#i-dumbbell"/></svg> <span class="np">トレーニング・</span><span class="np">メニュービルダー</span></h3>
       <ul>
@@ -520,8 +521,8 @@
       <h3><svg class="ic"><use href="#i-calendar"/></svg> <span class="np">スケジュール／</span><span class="np">メディカル／</span><span class="np">IDP概観</span></h3>
       <ul>
         <li><b>スケジュール</b>：チームの予定を作成・編集（選手画面に反映）。</li>
-        <li><b>メディカル</b>：受傷日・部位・診断・復帰予定・一部参加の状況を記録・追跡。選手が入力した受診先・リハビリ実施場所や、選手自身による復帰登録もここに反映されます。</li>
-        <li><b>IDP 概観</b>：全選手の目標・評価・面談を俯瞰。上部の<b>サマリーバー</b>で「進行中◯名／未設定◯名」がすぐわかり、各選手カードも<b>進行中／未設定のバッジと色</b>で区別されます（進行中の目標数順に並びます）。</li>
+        <li><b>メディカル</b>：受傷日・部位・診断・復帰予定・一部参加の状況を記録・追跡。選手が入力した受診先・リハビリ実施場所や、選手自身による復帰登録もここに反映されます。ページ上部に<b>怪我サマリー</b>。</li>
+        <li><b>IDP 概観</b>：全選手の目標・評価・面談を俯瞰。ページ上部の<b>目標（IDP）サマリー</b>で設定率・達成率や「進行中◯名／未設定◯名」がすぐわかり、各選手カードも<b>進行中／未設定のバッジと色</b>で区別されます（進行中の目標数順に並びます）。</li>
       </ul>
       <h3><svg class="ic"><use href="#i-calendar"/></svg> スケジュールの新機能</h3>
       <ul>
@@ -529,6 +530,45 @@
         <li><b>スタッフのみ閲覧可</b>：チェックを入れた予定は選手には表示されず、スタッフ間の共有用にできます。</li>
         <li><b>表示倍率（ズーム）</b>：カレンダーの「−／＋」で表示の大きさを調整。「今日」ボタンで今日の位置に戻れます。</li>
       </ul>
+      <div class="note tip"><svg class="ic"><use href="#i-chart"/></svg>
+        <div>試合・ケガ・目標の各ページ上部には、期間で絞り込める<b>サマリー（集計ビュー）</b>があります。 <a class="inl" href="#c-summary">→ サマリーの見方へ</a></div></div>
+    </section>
+
+    <!-- サマリー（集計ビュー） -->
+    <section class="doc" id="c-summary">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-chart"/></svg></div><h2><span class="np">サマリー</span><span class="np">（集計ビュー）</span></h2></div>
+      <p class="sub">試合・ケガ・目標を、期間で絞り込んでグラフで俯瞰する集計ビューです。各ページの上部に表示され、グラフをクリックすると該当データの一覧へ絞り込めます。</p>
+
+      <h3><svg class="ic"><use href="#i-ball"/></svg> 試合サマリー</h3>
+      <p><b>試合</b>ページの上部に表示されます。<b>期間・大会・H/A（ホーム／アウェイ／中立地）・対戦相手</b>で絞り込めます。</p>
+      <ul>
+        <li><b>勝敗の割合</b>：勝・分・敗をドーナツで表示。</li>
+        <li><b>対戦相手ごとの勝率</b>：相手別の成績を一覧。</li>
+        <li><b>試合展開（逆転・逃切り）</b>：リードを守り切った／逆転したなど、試合の流れの傾向。</li>
+        <li><b>得点・失点の時間帯分析</b>：どの時間帯に取って／取られているかを可視化。<b>期間表示／期間比較</b>を切り替えでき、得点と失点を「分けて／まとめて」表示できます。</li>
+      </ul>
+      <div class="note warn"><svg class="ic"><use href="#i-warn"/></svg>
+        <div>時間帯分析は<b>分数（時間）が登録された得点・失点だけ</b>を集計します。分数・得点者は、新規試合登録時または各試合詳細の「得点の詳細」で入力してください。</div></div>
+
+      <h3><svg class="ic"><use href="#i-pulse"/></svg> 怪我サマリー</h3>
+      <p><b>メディカル</b>ページの上部（および<b>ダッシュボード</b>）に表示されます。表示は2モードです。</p>
+      <ul>
+        <li><b>期間表示</b>：月ごとの怪我発生数（棒グラフ）と、<b>受傷場所・受傷部位・受傷原因</b>それぞれの割合（3つの円グラフ）。期間は 3ヶ月／12ヶ月／全期間、または月を指定。</li>
+        <li><b>月別比較</b>：2つの月を並べて、発生数と各割合を見比べられます。</li>
+      </ul>
+      <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
+        <div>棒グラフの月や、円グラフ・凡例の項目を<b>クリックすると</b>、その条件（月・部位・原因・場所）の<b>受傷記録一覧へ絞り込み</b>されます。</div></div>
+
+      <h3><svg class="ic"><use href="#i-target"/></svg> <span class="np">目標（IDP）</span><span class="np">サマリー</span></h3>
+      <p><b>IDP 概観</b>ページの上部に表示されます。</p>
+      <ul>
+        <li><b>IDP設定率</b>：目標を設定済みの選手の割合（設定済み◯／全◯名）。</li>
+        <li><b>達成率</b>：全目標のうち達成した割合（達成◯／全◯件）。</li>
+        <li><b>進行中◯名／未設定◯名</b>：ひと目で取り組み状況を把握。</li>
+        <li>選手カードは<b>進行中の目標数が多い順</b>に並び、目標の期間タイプ別の件数や修了ログ件数も表示されます。</li>
+      </ul>
+      <div class="note tip"><svg class="ic"><use href="#i-home"/></svg>
+        <div><b>ダッシュボードにも要点が集約：</b> コーチの<b>ダッシュボード</b>には、直近の戦績（試合サマリー）・IDPのKPI（前日比の矢印付き）・怪我サマリーがまとめて表示され、チーム全体の状況をひと目で確認できます。</div></div>
     </section>
 
     <!-- メニュービルダー -->
@@ -695,15 +735,16 @@
       </ul>
     </section>
 
-    <!-- 個別分析（コーチ・3タブ） -->
+    <!-- 個別分析（コーチ・4タブ） -->
     <section class="doc" id="c-analysis">
       <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-network"/></svg></div><h2><span class="np">個別分析</span><span class="np">（ネットワーク）</span></h2></div>
-      <p class="sub">選手・チームのデータを多角的に分析する、このアプリの分析の中心。3つのタブがあります。</p>
+      <p class="sub">選手・チームのデータを多角的に分析する、このアプリの分析の中心。4つのタブがあります。</p>
       <table class="tbl">
         <tr><th>タブ</th><th>何ができる？</th></tr>
         <tr><td><b>ネットワーク分析</b></td><td>1人の選手の変数どうしの関係を図にする</td></tr>
         <tr><td><b>2期間の比較</b></td><td>同じ選手の2つの期間（平均値・ネットワーク構造）を並べて比べる</td></tr>
         <tr><td><b>チーム傾向</b></td><td>チーム全体に共通する変数間の関係を図にする</td></tr>
+        <tr><td><b>特徴レーダー</b></td><td>選手の特徴を標準得点（T得点）化してレーダーチャートで俯瞰する</td></tr>
       </table>
 
       <h3><svg class="ic"><use href="#i-network"/></svg> ネットワーク分析タブ</h3>
@@ -737,8 +778,16 @@
       <div class="note tip"><svg class="ic"><use href="#i-users"/></svg>
         <div><b>少ないデータでも安定しやすいのが利点：</b> チーム傾向は複数選手のデータをまとめて推定するため、<b>個人ごとのネットワークほどデータ数がなくても安定した結果が得られます</b>。1人分では日数が足りない場合や、導入して間もない時期は、まずチーム傾向から眺めるのがおすすめです。</div></div>
 
+      <h3><svg class="ic"><use href="#i-target"/></svg> 特徴レーダータブ</h3>
+      <p>選手のコンディション変数とGPS指標（TOP・B1のみ）を、チーム内または全チームの平均・標準偏差で<b>標準得点（T得点）化</b>し、<b>レーダーチャート</b>でその選手の特徴をまとめて表示します。</p>
+      <ul>
+        <li><b>比較基準</b>：チーム平均／同ポジション平均／過去の自分と比較できます。</li>
+        <li><b>GPSの集計</b>：試合・練習を分けて確認できます。</li>
+        <li>選手を選んで「特徴レーダーを開く」を押すと、<b>選手詳細ページの「この選手の特徴」</b>に表示されます。</li>
+      </ul>
+
       <div class="note tip"><svg class="ic"><use href="#i-network"/></svg>
-        <div>図の読み方は次の章で徹底解説します。 <a class="inl" href="#network">→ ネットワーク分析の読み方へ</a></div></div>
+        <div>ネットワーク図（ネットワーク分析・2期間の比較・チーム傾向の3タブ）の読み方は次の章で徹底解説します。 <a class="inl" href="#network">→ ネットワーク分析の読み方へ</a></div></div>
     </section>
 
     <!-- 運営・管理 -->
@@ -779,10 +828,10 @@
             <div class="legrow"><span class="swatch" style="background:#ff9933"></span> 橙：合成変数（スプリント系…）</div>
           </div>
           <div class="glass">
-            <h4>② 線の色 ＝ 関係の向き</h4>
-            <div class="legrow"><span class="linechip" style="background:#16A34A"></span> 緑：正（片方↑でもう片方も↑）</div>
-            <div class="legrow"><span class="linechip" style="background:#DC2626"></span> 赤：負（片方↑でもう片方は↓）</div>
-            <div class="legrow" style="color:#9fe2ff">数字の絶対値が大きいほど強い</div>
+            <h4>② 線の色・線種 ＝ 関係の向き</h4>
+            <div class="legrow"><span class="linechip" style="background:#2A78D6"></span> 青の実線：正（片方↑でもう片方も↑）</div>
+            <div class="legrow"><span class="linechip" style="background:none;height:0;border-top:3px dashed #DC2626;border-radius:0"></span> 赤の破線：負（片方↑でもう片方は↓）</div>
+            <div class="legrow" style="color:#9fe2ff">色に加え実線／破線でも区別／数字が大きいほど強い</div>
           </div>
           <div class="glass">
             <h4>③ 線の太さ ＝ 強さ</h4>
@@ -901,7 +950,7 @@
       <h3><svg class="ic"><use href="#i-check"/></svg> まとめ：3ステップで読む</h3>
       <ol class="steps">
         <li><b>どのタブ？</b>「昨日→今日（時系列）」か「同じ日（相関）」かを確認。</li>
-        <li><b>色は？</b> 線が緑＝一緒に増える／赤＝逆。丸が青＝コンディション、赤＝GPS。</li>
+        <li><b>色は？</b> 線が青（実線）＝一緒に増える／赤（破線）＝逆。丸が青＝コンディション、赤＝GPS、橙＝合成変数。</li>
         <li><b>強さは？</b> 太い線・大きい数字が重要。閾値スライダーで要点を絞る。</li>
       </ol>
 
