@@ -50,7 +50,8 @@
   svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;
     stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.14em}
   .led{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;margin-right:3px}
-  .led.pos{background:var(--green)} .led.neg{background:var(--red)}
+  /* 正=青 / 負=赤（アプリの EDGE_POS_COLOR / EDGE_NEG_COLOR と一致）。赤×緑は色覚多様性で区別しづらいため正側は青 */
+  .led.pos{background:#2A78D6} .led.neg{background:var(--red)}
 
   .eyebrow{
     display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;
@@ -306,7 +307,7 @@
   .vs-card code{background:var(--bg);padding:2px 7px;border-radius:5px;font-weight:700;font-family:inherit}
   .vs-card .ex{background:var(--bg);border-radius:10px;padding:13px 15px;margin-top:14px;font-size:13px;line-height:1.9}
   .vs-card .ex b{color:var(--navy)}
-  .pos{color:var(--green);font-weight:700}
+  .pos{color:#2A78D6;font-weight:700}
   .neg{color:var(--red);font-weight:700}
   .vs-card .keypoint{
     margin-top:14px;font-size:12.5px;font-weight:600;background:#fff;border:1px dashed var(--border);
@@ -628,6 +629,44 @@
     <p class="center section-lead" style="margin:36px auto 0;max-width:720px">
       データが1か所に集まるから、<strong>「昨日の練習負荷が今日のコンディションにどう響いたか？」「目標達成しやすい選手はどんな選手か？」「試合で活躍しやすい選手のコンディショニングの特徴は？」</strong>
       といった問いに答えることができる。これが Odonata の最大の価値です。
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════ 過去データの活用 / 導入 ═══════════ -->
+<section id="legacy">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <span class="eyebrow"><svg class="ic"><use href="#i-clock"/></svg> Onboarding</span>
+      <h2 class="section-title"><span class="np">過去データも、</span><span class="np">資産に。</span></h2>
+      <p class="section-lead" style="margin-left:auto;margin-right:auto">
+        <span class="np">これまで蓄積してきた</span><strong class="np">試合・コンディション・GPS</strong><span class="np">のデータは、</span><span class="np">眠らせておくには</span><span class="np">もったいない。</span>
+        Odonata では、<strong>過去データを分析してチームが活用できる形でお返しする</strong>ことも、
+        <strong>データを取り込んだ状態で運用を始める</strong>こともできます。
+      </p>
+    </div>
+
+    <div class="feat-grid" style="margin-top:36px">
+      <div class="feat">
+        <div class="ficon"><svg class="ic"><use href="#i-doc"/></svg></div>
+        <h3>過去データをお預かり</h3>
+        <p>Excelや他アプリ・GPSソフトに散らばった<strong>過去の試合・コンディション・GPSデータ</strong>を、まとめてお預かりします。フォーマットが揃っていなくても、まずはご相談ください。</p>
+      </div>
+      <div class="feat">
+        <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
+        <h3>分析して「使える形」で返す</h3>
+        <p>ネットワーク分析や傾向の可視化を<strong>過去データにも適用</strong>。「どの選手が・どんな時に活躍／離脱しやすいか」といった、<strong>チームがすぐ活用できる知見</strong>としてお返しします。</p>
+      </div>
+      <div class="feat">
+        <div class="ficon"><svg class="ic"><use href="#i-hub"/></svg></div>
+        <h3>蓄積済みの状態で開始</h3>
+        <p>過去データを<strong>Odonata に流し込んだ状態から</strong>スタート可能。導入初日から推移・2期間比較・ネットワーク分析が動き、<strong>「データが貯まるまで待つ」必要がありません。</strong></p>
+      </div>
+    </div>
+
+    <p class="center section-lead" style="margin:32px auto 0;max-width:720px">
+      <strong>ゼロから貯め始めるのではなく、これまでの歩みを土台に。</strong>
+      <span class="np">過去データの活用や移行については、</span><span class="np">お気軽にお問い合わせください。</span>
     </p>
   </div>
 </section>
@@ -1004,7 +1043,7 @@
       <details class="qa"><summary>GPSがないチームでも使えますか？</summary>
         <div class="ans">はい。GPSはGPSを導入しAPI連携しているチームでのみ取り込まれますが、その他のチームは主観コンディションのデータだけで推移・2期間比較・ネットワーク分析をご利用いただけます。GPS関連の指標は自動的に非表示になります。</div></details>
       <details class="qa"><summary>傷害リスク予測はどのチームで使えますか？</summary>
-        <div class="ans">予測モデルはGPS負荷を入力に使うため、<b>GPSを使用しAPI連携しているチームのみ</b>対象です。モデルは過去の怪我データから構築しており、対象は<b>非接触系の怪我（肉離れ・筋損傷など）</b>に限ります。接触による打撲・骨折などは対象外です。スコアは色分け（赤=高/橙=中/緑=低）で表示されますが、<b>モデルは万能ではなく、あくまで意思決定の材料</b>としてご利用ください。最終判断は選手の主観・メディカル所見と合わせて人が行います。</div></details>
+        <div class="ans">予測モデルはGPS負荷を入力に使うため、<b>GPSを使用しAPI連携しているチームのみ</b>対象です。モデルは過去の怪我データから構築しており、対象は<b>非接触系の怪我（肉離れ・筋損傷など）</b>に限ります。接触による打撲・骨折などは対象外です。スコアは色分け（濃い赤=高／黄〜オレンジ=中／青=低。低リスクを緑にしないのは、赤緑が色覚多様性で区別しづらいため）で表示されますが、<b>モデルは万能ではなく、あくまで意思決定の材料</b>としてご利用ください。最終判断は選手の主観・メディカル所見と合わせて人が行います。</div></details>
       <details class="qa"><summary>ネットワーク図の線が多すぎて読めません。</summary>
         <div class="ans">図の下の「エッジ閾値スライダー」を上げると、弱い関係が消えて強い関係だけが残ります（再分析は不要）。逆に線が1本も出ないときは閾値を下げるか、分析期間を広げてデータを増やしてください。</div></details>
       <details class="qa"><summary>「時系列関係」と「同時相関」はどう使い分けますか？</summary>
