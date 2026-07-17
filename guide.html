@@ -46,6 +46,8 @@
   .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--blue)}
   .nav-cta{background:var(--navy);color:#fff!important;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:700;opacity:1!important;display:inline-flex;align-items:center;gap:7px}
   .nav-cta:hover{background:var(--blue)}
+  .nav-login{color:var(--navy)!important;padding:8px 18px;border-radius:999px;border:1.5px solid var(--navy);font-size:13px;font-weight:700;opacity:1!important;display:inline-flex;align-items:center;gap:7px}
+  .nav-login:hover{background:var(--navy);color:#fff!important}
   .nav-toggle{display:none;background:none;border:none;cursor:pointer;font-size:24px;color:var(--navy)}
   @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}
     .nav-links.open{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--card);padding:18px 24px;gap:16px;box-shadow:var(--shadow);border-bottom:1px solid var(--border)}}
@@ -220,6 +222,7 @@
       <a href="#coach">コーチ向け</a>
       <a href="#network" class="active">ネットワーク分析</a>
       <a href="philosophy.html">Philosophy</a>
+      <a class="nav-login" href="https://soccer-conditiontool.onrender.com/login">ログイン</a>
       <a class="nav-cta" href="index.html">トップへ <svg class="ic"><use href="#i-arrow"/></svg></a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
