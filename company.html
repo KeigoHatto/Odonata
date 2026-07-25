@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社情報 — Odonata</title>
+<meta name="description" content="Odonataの会社情報。Philosophy「複雑な世界を、複眼で読む。」、社名の由来（トンボ＝勝ち虫）、筑波大学発の研究者と現場出身者からなるメンバー、会社概要・沿革・ビジョン。">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#071A3A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* Philosophy ステートメント（ダークカード） */
+  .phil{background:var(--grad-hero);border-radius:var(--radius);color:#fff;box-shadow:var(--shadow-lg);
+    max-width:880px;margin:48px auto 0;padding:56px clamp(24px,5vw,68px);text-align:center;position:relative;overflow:hidden}
+  .phil::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#3FC8F0,#00A0E9)}
+  .phil::after{content:"";position:absolute;right:-40px;bottom:-56px;width:280px;height:216px;background:url(assets/dragonfly.svg) no-repeat center/contain;opacity:.08;transform:rotate(-16deg)}
+  .phil>*{position:relative;z-index:2}
+  .phil .lead{font-size:clamp(21px,3vw,28px);font-weight:800;line-height:1.7;margin-bottom:8px}
+  .phil .en{font-size:clamp(12px,1.8vw,15px);font-weight:700;color:#9fe2ff;letter-spacing:.12em;font-family:'Manrope',sans-serif;margin-bottom:28px}
+  .phil p{font-size:clamp(14.5px,1.9vw,16.5px);color:#D6E6F2;line-height:2.2;margin:0}
+  .phil p + p{margin-top:20px}
+  .phil b{color:#fff}
+  .phil .hl{color:#7FE3FF}
+  .phil .close{font-weight:800;font-size:clamp(17px,2.3vw,21px);margin-top:30px;
+    background:linear-gradient(100deg,#7FE3FF,#BFF0D6);-webkit-background-clip:text;background-clip:text;color:transparent}
+  /* 社名の由来 */
+  .name-inner{display:grid;grid-template-columns:300px 1fr;gap:52px;align-items:center;max-width:1000px;margin:48px auto 0;
+    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(28px,4vw,52px)}
+  @media(max-width:820px){.name-inner{grid-template-columns:1fr;gap:30px;text-align:center}}
+  .name-fig{text-align:center}
+  .name-fig .df{width:220px;margin:0 auto 16px;filter:drop-shadow(0 14px 36px rgba(0,160,233,.28))}
+  .name-fig .sci{font-style:italic;font-weight:700;color:var(--blue);font-size:19px;letter-spacing:.03em;font-family:'Manrope',sans-serif}
+  .name-fig .sci span{font-style:normal;color:var(--sub);font-size:13px;display:block;margin-top:3px;font-family:'Zen Kaku Gothic New',sans-serif}
+  .name-body h3{font-size:clamp(21px,2.8vw,27px);font-weight:800;color:var(--navy);margin-bottom:18px;line-height:1.6}
+  .name-body h3 .grad{background:linear-gradient(100deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .name-body p{font-size:14.5px;color:var(--text);line-height:2.05;margin-bottom:14px}
+  .name-body p:last-child{margin-bottom:0}
+  .name-body b{color:var(--navy)}
+  .name-body .hl{color:var(--blue);font-weight:700}
+  /* メンバー詳細 */
+  .members.detail{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:760px){.members.detail{grid-template-columns:1fr}}
+  .members.detail .member{text-align:left;display:grid;grid-template-columns:96px 1fr;gap:20px;align-items:start}
+  @media(max-width:440px){.members.detail .member{grid-template-columns:1fr;text-align:center}
+    .members.detail .member .avatar{margin:0 auto}}
+  .members.detail .avatar{margin:0}
+  .members.detail .avatar{font-size:22px;letter-spacing:.05em;font-family:'Zen Kaku Gothic New',sans-serif}
+  .members.detail h3{margin:2px 0 8px}
+  /* 会社概要・沿革 */
+  .co-tbl{max-width:820px;margin:40px auto 0}
+  .co-tbl .tbl th{width:180px}
+  @media(max-width:560px){.co-tbl .tbl th{width:110px}}
+  .history{max-width:640px;margin:40px auto 0;list-style:none}
+  .history li{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid var(--border);font-size:14.5px}
+  .history li .y{font-weight:800;color:var(--blue);font-family:'Manrope',sans-serif}
+  /* ビジョン */
+  .vision{max-width:820px;margin:44px auto 0;text-align:center;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:48px clamp(24px,4vw,56px)}
+  .vision p{font-size:clamp(17px,2.4vw,22px);font-weight:800;color:var(--navy);line-height:2}
+  .vision p .hl{color:var(--blue)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 3.5 h4"/><path d="M10.8 3.5 V9 L5.5 18.5 a1.6 1.6 0 0 0 1.4 2.4 h10.2 a1.6 1.6 0 0 0 1.4 -2.4 L13.2 9 V3.5"/><line x1="8.2" y1="14" x2="15.8" y2="14"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.7 19 a5.3 5.3 0 0 1 10.6 0"/><circle cx="17.2" cy="9" r="2.3"/><path d="M16 19 a4.4 4.4 0 0 1 5.6 -3.8"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M7 11 V6.5 a1.5 1.5 0 0 1 3 0 V10 M10 10 V5 a1.5 1.5 0 0 1 3 0 V10 M13 10 V6 a1.5 1.5 0 0 1 3 0 V11 M16 11 a1.5 1.5 0 0 1 3 1 c0 3-1 5-2.5 6.5 A6.5 6.5 0 0 1 12 21 c-2.6 0-4.3-1-5.4-2.8 L4.2 14 a1.4 1.4 0 0 1 2.3-1.5 L7.5 14"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.2"/><polyline points="4.5,7.5 12,13 19.5,7.5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="15"/><polyline points="7,10.5 12,15.5 17,10.5"/><line x1="5" y1="19.5" x2="19" y2="19.5"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12 C5 7 9 4.8 12 4.8 C15 4.8 19 7 21.5 12 C19 17 15 19.2 12 19.2 C9 19.2 5 17 2.5 12 Z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+</defs>
+</svg>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata"></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="approach.html">複雑系アプローチ</a>
+      <div class="nav-item">
+        <a tabindex="0">サービス <span class="caret">▼</span></a>
+        <div class="sub-menu">
+          <a href="service-analysis.html">データ分析・伴走支援<small>眠っているデータを、意思決定に</small></a>
+          <a href="service-platform.html">データプラットフォーム<small>集める・整理する・読み解く</small></a>
+        </div>
+      </div>
+      <a href="research.html">実績・研究</a>
+      <a href="company.html">会社情報</a>
+      <a href="news.html">ニュース</a>
+      <a class="nav-login" href="https://app.getodonata.com/login">ログイン</a>
+      <a class="nav-cta" href="contact.html?purpose=doc"><svg class="ic"><use href="#i-download"/></svg> 資料請求</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+  </div>
+</header>
+
+<!-- ═══════════ PAGE HERO ═══════════ -->
+<div class="phero">
+  <canvas id="pheroNet"></canvas>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px"><use href="#i-arrow"/></svg> 会社情報</div>
+    <div class="p-eyebrow">Company</div>
+    <h1><span class="np">誰が、なぜ、</span><span class="np">やっているのか。</span></h1>
+    <p class="lead">
+      <span class="np">Odonataの最大の資産は、</span><span class="np">思想とチームです。</span>
+      <span class="np">私たちが何を信じ、</span><span class="np">どんなメンバーで</span><span class="np">取り組んでいるのかを</span><span class="np">紹介します。</span>
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════ 1. Philosophy ═══════════ -->
+<section id="philosophy">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Philosophy</span>
+      <h2 class="section-title">私たちの思想</h2>
+    </div>
+    <div class="phil reveal">
+      <p class="lead"><span class="np">複雑な世界を、</span><span class="np">複眼で読む。</span></p>
+      <div class="en">READ THE COMPLEXITY. SHAPE THE GAME.</div>
+      <p>
+        個人、チーム、パフォーマンス、準備、コンディション、環境——
+        こうした要素は<b>相互に影響し合い</b>、その関係性の中で、試合の流れやプレーの可能性は常に変化しています。
+      </p>
+      <p>
+        <b class="hl">Odonata</b> は、その複雑な世界を<b>多角的に読み解く</b>ためのツールです。
+      </p>
+      <p>
+        目に見える現象にとどまらず、その背後にある<b>構造</b>、<b>変化の兆し</b>、<b>関係性の連鎖</b>を捉えることで、
+        現場の意思決定を支え、チームの成長と選手の可能性を最大化します。
+      </p>
+      <p class="close"><span class="np">複雑な世界を、</span><span class="np">複眼で読む。</span><span class="np">そして、</span><span class="np">ゲームを形づくります。</span></p>
+    </div>
+    <div class="center" style="margin-top:28px">
+      <a class="btn btn-line" href="philosophy.html"><svg class="ic"><use href="#i-eye"/></svg> Philosophy ページを全画面で見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 2. 社名の由来 ═══════════ -->
+<section class="section-alt" id="name">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">The Name</span>
+      <h2 class="section-title">なぜ「Odonata」なのか</h2>
+    </div>
+    <div class="name-inner reveal">
+      <div class="name-fig">
+        <img class="df" src="assets/dragonfly.png" alt="トンボ（Odonata）">
+        <div class="sci">Odonata<span>— トンボ目の学名</span></div>
+      </div>
+      <div class="name-body">
+        <h3><span class="np grad">多くを読み解き、</span><span class="np grad">前へ進む。</span><br><span class="np">「勝ち虫」に</span><span class="np">名を借りて。</span></h3>
+        <p>
+          <b>Odonata</b> は、<span class="hl">トンボの学名</span>です。トンボは無数の個眼が集まった大きな<b>複眼</b>で膨大な情報を処理しながら獲物を捉え、行動を瞬時に最適化します。
+          一つひとつの目には見えない世界像が、複眼の全体から結ばれる——多角的にサッカーを読み解く、私たちの思想の象徴です。
+        </p>
+        <p>
+          さらにトンボは、<b>前にしか進まず、退かない</b>。その力強い姿から、古くより武士に縁起の良い<span class="hl">「勝ち虫」</span>として愛されてきました。
+        </p>
+        <p>
+          多くのデータをまとめ、複雑な現象を読み解き、<b>勝利に向かって前進するためのツール</b>。このサービスには、そんな勝ち虫の名前を冠しました。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 3. メンバー ═══════════ -->
+<section id="members">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <span class="eyebrow">Members</span>
+      <h2 class="section-title">メンバー</h2>
+      <p class="section-lead center">
+        <span class="np">筑波大学出身の、</span><span class="np">研究者と現場経験者のチーム。</span>
+        <span class="np">メンバーには博士課程在籍者、</span><span class="np">日本学術振興会特別研究員（DC2）、</span><span class="np">産業技術総合研究所での研究従事者、</span><span class="np">臨床心理士・公認心理師、</span><span class="np">理学療法士、</span><span class="np">広告代理店出身者、</span><span class="np">蹴球部での選手・指導経験者が</span><span class="np">含まれます。</span>
+      </p>
+    </div>
+    <!-- 各メンバーの詳細経歴・写真は、サービス資料p6の記載と本人確認に合わせて差し替えてください -->
+    <div class="members detail">
+      <div class="member reveal">
+        <div class="avatar">横田</div>
+        <div>
+          <div class="role">Founder ／ R&amp;D</div>
+          <h3>横田</h3>
+          <p>統括・研究開発。複雑系アプローチによる分析モデルの設計と、事業全体の統括を担う。データと現場の言葉をつなぐことを信条とする。</p>
+        </div>
+      </div>
+      <div class="member reveal">
+        <div class="avatar">大内</div>
+        <div>
+          <div class="role">Engineering</div>
+          <h3>大内</h3>
+          <p>エンジニア。データプラットフォーム「Odonata」の設計・開発を担当。研究知見を、現場で毎日使える形に実装する。</p>
+        </div>
+      </div>
+      <div class="member reveal">
+        <div class="avatar">八斗</div>
+        <div>
+          <div class="role">R&amp;D</div>
+          <h3>八斗</h3>
+          <p>研究開発。分析手法の研究と検証を担い、学術知見とプロダクトの橋渡しを行う。</p>
+        </div>
+      </div>
+      <div class="member reveal">
+        <div class="avatar">澤田</div>
+        <div>
+          <div class="role">Business</div>
+          <h3>澤田</h3>
+          <p>事業推進。クラブ・教育機関との連携、導入支援、事業開発を担当。現場に寄り添う導入設計を大切にする。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 4. 会社概要 ═══════════ -->
+<section class="section-alt" id="overview">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Overview</span>
+      <h2 class="section-title">会社概要</h2>
+    </div>
+    <div class="co-tbl tbl-scroll">
+      <table class="tbl">
+        <tr><th>社名</th><td>株式会社Odonata（設立準備中）</td></tr>
+        <tr><th>事業内容</th><td>① スポーツデータの分析・伴走支援<br>② データプラットフォームの開発・提供</td></tr>
+        <tr><th>所在地</th><td>設立準備中につき、法人登記後に掲載します</td></tr>
+        <tr><th>連絡先</th><td><a href="contact.html" style="color:var(--blue);font-weight:700">お問い合わせフォーム</a>よりご連絡ください</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 5. 沿革 ═══════════ -->
+<section id="history">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">History</span>
+      <h2 class="section-title">沿革</h2>
+    </div>
+    <ul class="history">
+      <li class="reveal"><span class="y">2026.06</span><span>筑波大学蹴球部にてデータプラットフォームの実証導入を開始</span></li>
+      <li class="reveal"><span class="y">2026.07</span><span>サービス提供開始・コーポレートサイト公開</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════ 6. ビジョン ═══════════ -->
+<section class="section-alt" id="vision">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Vision</span>
+      <h2 class="section-title">ビジョン</h2>
+    </div>
+    <div class="vision reveal">
+      <p><span class="np">スポーツデータを、</span><span class="np"><span class="hl">現場の意思決定基盤</span>に。</span><br><span class="np"><span class="hl">チームの成長</span>と、</span><span class="np"><span class="hl">選手の資産</span>に、</span><span class="np">変えていく。</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 7. 連携・お誘い ═══════════ -->
+<section id="collab">
+  <div class="wrap">
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <span class="eyebrow">Collaboration</span>
+      <h2 class="section-title"><span class="np">一緒に取り組む仲間を、</span><span class="np">探しています。</span></h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-flask"/></svg></div>
+        <h3>研究機関の皆さまへ</h3>
+        <p>スポーツ科学・データサイエンス・心理学領域での共同研究のご相談を歓迎します。</p>
+        <a class="more" href="contact.html?purpose=research">共同研究の相談 <svg class="ic"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-hand"/></svg></div>
+        <h3>パートナーの皆さまへ</h3>
+        <p>GPS・計測機器・スポーツテック事業者さまとの連携、メディアの取材のご相談はこちらから。</p>
+        <a class="more" href="contact.html?purpose=media">連携・取材の相談 <svg class="ic"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-users"/></svg></div>
+        <h3>仲間になりたい方へ</h3>
+        <p>「サッカー×複雑系」に本気で取り組みたいエンジニア・研究者・現場出身の方。まずは話しましょう。</p>
+        <a class="more" href="contact.html?purpose=other">参画の相談 <svg class="ic"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2><span class="np">サッカーの複雑さを、</span><span class="np">チームの武器に。</span></h2>
+      <p><span class="np">導入のご相談から、</span><span class="np">取材・共同研究まで。</span><span class="np">まずはお気軽に</span><span class="np">ご連絡ください。</span></p>
+      <div class="cta-actions">
+        <a class="btn btn-blue" href="contact.html?purpose=doc"><svg class="ic"><use href="#i-download"/></svg> サービス資料をダウンロード</a>
+        <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> お問い合わせ・相談</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/odonata-logo.png" alt="Odonata">
+        <p><span class="np">サッカーの複雑な現象を、</span><span class="np">データと科学で読み解く。</span><br><span class="np">複雑系アプローチで、</span><span class="np">現場の意思決定と</span><span class="np">チームの成長を支えます。</span></p>
+      </div>
+      <div class="foot-col">
+        <h4>Service</h4>
+        <a href="service-analysis.html">データ分析・伴走支援</a>
+        <a href="service-platform.html">データプラットフォーム</a>
+        <a href="guide.html">使い方ガイド</a>
+      </div>
+      <div class="foot-col">
+        <h4>About</h4>
+        <a href="approach.html">複雑系アプローチ</a>
+        <a href="research.html">実績・研究</a>
+        <a href="company.html">会社情報</a>
+        <a href="philosophy.html">Philosophy</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="news.html">ニュース</a>
+        <a href="contact.html">お問い合わせ・資料請求</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span data-year></span> Odonata. All rights reserved.</span>
+      <span>株式会社Odonata（設立準備中）</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

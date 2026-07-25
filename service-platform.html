@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>データプラットフォーム「Odonata」 — 散らばるデータを、ひとつに</title>
+<meta name="description" content="コンディション・GPS・試合・メディカル・育成計画を一元管理し、AI傷害予測とネットワーク分析で読み解く。サッカーのためのデータプラットフォーム「Odonata」。GPSがなくても始められます。料金プラン・導入プロセス・データの取り扱い方針を掲載。">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#071A3A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* ───── Scroll story（データ統合アニメーション／旧LPから移設） ───── */
+  .scrolly{position:relative;background:var(--grad-hero);color:#fff}
+  .scrolly-track{height:380vh;position:relative}
+  .scrolly-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+  .scrolly-stage>canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.4}
+  .stage-glow{position:absolute;left:50%;top:42%;width:520px;height:520px;transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(63,200,240,.4),rgba(63,200,240,0) 66%);opacity:0;filter:blur(6px);z-index:1;pointer-events:none}
+  .stage-inner{position:absolute;inset:0;z-index:2}
+  .core{position:absolute;left:50%;top:42%;width:150px;height:150px;border-radius:34px;
+    background:rgba(255,255,255,.97);display:grid;place-items:center;opacity:0;
+    transform:translate(-50%,-50%) scale(.6);box-shadow:0 24px 70px rgba(0,0,0,.45);z-index:6;will-change:transform,opacity}
+  .core img{width:106px;height:106px}
+  .core::before{content:"";position:absolute;inset:-12px;border-radius:44px;border:1.5px solid rgba(127,227,255,.6);animation:corePulse 2.6s ease-out infinite}
+  @keyframes corePulse{0%{transform:scale(.92);opacity:.6}100%{transform:scale(1.28);opacity:0}}
+  .snode{position:absolute;left:50%;top:42%;display:flex;flex-direction:column;align-items:center;gap:9px;z-index:5;will-change:transform,opacity}
+  .snode .chip{width:64px;height:64px;border-radius:19px;background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;color:#fff;
+    box-shadow:0 8px 24px rgba(0,0,0,.25);backdrop-filter:blur(5px)}
+  .snode .chip svg.ic{font-size:30px}
+  .snode .lbl{font-size:12px;font-weight:700;color:#dbeefc;white-space:nowrap;letter-spacing:.02em}
+  .rchip{position:absolute;left:50%;top:42%;display:flex;align-items:center;gap:10px;
+    background:rgba(255,255,255,.97);border-radius:14px;padding:12px 16px;opacity:0;z-index:6;
+    box-shadow:0 14px 40px rgba(0,0,0,.32);will-change:transform,opacity;white-space:nowrap}
+  .rchip svg.ic{font-size:24px;color:var(--blue)}
+  .rchip b{font-size:14px;font-weight:800;color:var(--navy);display:block}
+  .rchip span{font-size:11px;color:var(--sub);display:block;font-weight:600}
+  .stage-beam{position:absolute;left:50%;top:42%;height:2px;width:0;transform-origin:left center;z-index:4;opacity:0;
+    background:linear-gradient(90deg,rgba(127,227,255,.85),rgba(127,227,255,0));pointer-events:none}
+  .scrolly-caption{position:absolute;left:0;right:0;bottom:6vh;text-align:center;z-index:8;padding:0 24px;pointer-events:none}
+  .scap{position:absolute;left:0;right:0;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;padding:0 24px;text-shadow:0 2px 16px rgba(7,26,58,.7)}
+  .scap.on{opacity:1;transform:none;position:relative}
+  .scap .step{font-size:12px;font-weight:700;letter-spacing:.18em;color:#9fe2ff;text-transform:uppercase;margin-bottom:8px}
+  .scap h2{font-size:clamp(22px,4vw,40px);font-weight:800;color:#fff;line-height:1.25}
+  .scap p{font-size:14px;color:#cfe6f5;margin-top:8px}
+  .scap .tags{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:11px}
+  .scap .tags span{font-size:10.5px;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#dbeefc;padding:3px 9px;border-radius:999px}
+  .strength{display:inline-flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px}
+  .strength .bar{width:240px;max-width:70vw;height:9px;border-radius:999px;background:rgba(255,255,255,.18);overflow:hidden}
+  .strength .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7FE3FF,#5ee0a0);border-radius:999px;transition:width .15s linear}
+  .scrolly-hint{position:absolute;left:50%;bottom:3vh;transform:translateX(-50%);color:#bfe0f2;font-size:11px;font-weight:600;letter-spacing:.1em;z-index:8;display:flex;flex-direction:column;align-items:center;gap:6px;transition:opacity .4s}
+  .scrolly-hint .mouse{width:20px;height:32px;border:2px solid rgba(191,224,242,.7);border-radius:12px;position:relative}
+  .scrolly-hint .mouse::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:6px;background:#bfe0f2;border-radius:2px;transform:translateX(-50%);animation:scrollWheel 1.6s ease-in-out infinite}
+  @keyframes scrollWheel{0%{opacity:0;top:6px}40%{opacity:1}100%{opacity:0;top:15px}}
+  @media(max-width:640px){
+    .core{width:110px;height:110px}.core img{width:78px;height:78px}
+    .snode .chip{width:50px;height:50px}.snode .chip svg.ic{font-size:23px}.snode .lbl{font-size:10.5px}
+    .rchip{padding:8px 11px;gap:7px}.rchip b{font-size:12px}.rchip span{display:none}.rchip svg.ic{font-size:21px}
+    .scrolly-track{height:340vh}
+  }
+  @media(prefers-reduced-motion:reduce){.core::before,.scrolly-hint .mouse::after{animation:none}}
+
+  /* ───── Before / After（一元管理） ───── */
+  .unify-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:30px;align-items:center;margin-top:52px}
+  @media(max-width:900px){.unify-grid{grid-template-columns:1fr;gap:24px}}
+  .panel{border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
+  .panel-before{background:#fff;border:1px dashed #f0a5a5}
+  .panel-after{background:var(--grad-hero);color:#fff}
+  .panel h3{font-size:18px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .panel h3 svg.ic{font-size:22px}
+  .panel-before h3{color:#c0392b} .panel-before h3 svg.ic{color:#dc6b5c}
+  .scatter-item{
+    display:flex;align-items:center;gap:11px;background:#FEF2F2;border:1px solid #FECACA;
+    border-radius:10px;padding:11px 14px;margin-bottom:10px;font-size:14px;font-weight:600;color:#9b2c2c;
+  }
+  .scatter-item svg.ic{font-size:19px;color:#cf5b4e}
+  .unified-list{list-style:none}
+  .unified-list li{display:flex;align-items:center;gap:11px;padding:10px 0;font-size:14.5px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.14)}
+  .unified-list li:last-child{border-bottom:none}
+  .unified-list .chk{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:13px;color:#bff0d6}
+  .arrow-mid{color:var(--blue);text-align:center;font-size:0}
+  .arrow-mid svg.ic{font-size:38px}
+  @media(max-width:900px){.arrow-mid svg.ic{transform:rotate(90deg)}}
+
+  /* ───── 機能グループ：集める / 整理する / 読み解く ───── */
+  .feat-group{margin-top:54px}
+  .feat-group + .feat-group{margin-top:50px}
+  .fg-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1.5px solid var(--border)}
+  .fg-step{font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--blue);background:#E0F5FD;border:1px solid #CCE9F6;border-radius:999px;padding:5px 14px;white-space:nowrap}
+  .fg-head h3{font-size:clamp(20px,2.4vw,26px);font-weight:800;color:var(--navy)}
+  .fg-head p{font-size:14px;color:var(--sub);flex:1 1 240px;min-width:200px}
+  .feat-group .feat-grid{margin-top:24px}
+  .feat-grid:hover .feat:not(:hover){filter:opacity(.55) saturate(.7)}
+
+  /* ───── 使い方タブ ───── */
+  .tabs{display:flex;gap:10px;justify-content:center;margin-top:44px;flex-wrap:wrap}
+  .tab{display:inline-flex;align-items:center;gap:9px;padding:12px 26px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;
+    border:1.5px solid var(--border);background:var(--card);color:var(--navy);transition:.2s}
+  .tab svg.ic{font-size:18px}
+  .tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .tab-panel{display:none;margin-top:40px}
+  .tab-panel.active{display:block;animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SVG ICON SPRITE ═══════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <symbol id="i-network" viewBox="0 0 24 24"><line x1="6.6" y1="6.6" x2="12" y2="12"/><line x1="17.4" y1="5.6" x2="12" y2="12"/><line x1="12" y1="12" x2="7" y2="18"/><line x1="12" y1="12" x2="17.6" y2="17.6"/><circle cx="6.6" cy="6.6" r="2"/><circle cx="17.4" cy="5.6" r="2"/><circle cx="12" cy="12" r="2.4"/><circle cx="7" cy="18" r="2"/><circle cx="17.6" cy="17.6" r="2"/></symbol>
+  <symbol id="i-hub" viewBox="0 0 24 24"><line x1="12" y1="12" x2="5" y2="5"/><line x1="12" y1="12" x2="19" y2="6"/><line x1="12" y1="12" x2="5" y2="19"/><line x1="12" y1="12" x2="19" y2="18"/><circle cx="12" cy="12" r="2.7"/><circle cx="5" cy="5" r="1.8"/><circle cx="19" cy="6" r="1.8"/><circle cx="5" cy="19" r="1.8"/><circle cx="19" cy="18" r="1.8"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><polyline points="2,13 7,13 9.2,6.5 12,17.5 14.6,11 16.6,13 22,13"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M15.5 4.5 a2.1 2.1 0 0 1 3 3 L7.5 18.5 l-4 1 1-4 Z"/><line x1="13.7" y1="6.3" x2="17.7" y2="10.3"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><polyline points="4,4 4,20 20,20"/><polyline points="7.5,15 11,10.5 14,13 19,6.5"/><circle cx="7.5" cy="15" r="1.1" fill="currentColor" stroke="none"/><circle cx="14" cy="13" r="1.1" fill="currentColor" stroke="none"/><circle cx="19" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><circle cx="12" cy="17.5" r="1.5" fill="currentColor" stroke="none"/><path d="M8 13.5 a5.6 5.6 0 0 1 8 0"/><path d="M5.3 10.6 a9.4 9.4 0 0 1 13.4 0"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 L12 4 L20 11"/><path d="M6 9.8 V20 H18 V9.8"/><line x1="10.2" y1="20" x2="10.2" y2="15"/><line x1="13.8" y1="20" x2="13.8" y2="15"/><line x1="10.2" y1="15" x2="13.8" y2="15"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"/><line x1="4" y1="9.2" x2="20" y2="9.2"/><line x1="8" y1="3" x2="8" y2="6"/><line x1="16" y1="3" x2="16" y2="6"/><circle cx="9" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="13.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-dumbbell" viewBox="0 0 24 24"><line x1="3" y1="9" x2="3" y2="15"/><line x1="6" y1="7" x2="6" y2="17"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="18" y1="7" x2="18" y2="17"/><line x1="21" y1="9" x2="21" y2="15"/></symbol>
+  <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polygon points="12,8 15.3,10.4 14,14.3 10,14.3 8.7,10.4"/><line x1="12" y1="8" x2="12" y2="4.5"/><line x1="15.3" y1="10.4" x2="18.5" y2="9.2"/><line x1="14" y1="14.3" x2="16" y2="17.3"/><line x1="10" y1="14.3" x2="8" y2="17.3"/><line x1="8.7" y1="10.4" x2="5.5" y2="9.2"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="2.1" fill="#fff"/><circle cx="15" cy="12" r="2.1" fill="#fff"/><circle cx="8" cy="17" r="2.1" fill="#fff"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><polyline points="12,7 12,12 15.5,14"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 L19 6 V11 C19 16 16 19 12 21 C8 19 5 16 5 11 V6 Z"/><polyline points="9,12 11,14 15,9.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="5,12.5 10,17 19,6.5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3 H14 L18 7 V21 H6.5 Z"/><polyline points="14,3 14,7 18,7"/><line x1="9.2" y1="12" x2="15.3" y2="12"/><line x1="9.2" y1="16" x2="13.5" y2="16"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.7 19 a5.3 5.3 0 0 1 10.6 0"/><circle cx="17.2" cy="9" r="2.3"/><path d="M16 19 a4.4 4.4 0 0 1 5.6 -3.8"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16.5" rx="2.2"/><rect x="9" y="2.6" width="6" height="3.6" rx="1.2"/><line x1="8.5" y1="11" x2="15.5" y2="11"/><line x1="8.5" y1="15" x2="13.5" y2="15"/></symbol>
+  <symbol id="i-shuffle" viewBox="0 0 24 24"><polyline points="4,8 16,8"/><polyline points="13,5 16,8 13,11"/><polyline points="20,16 8,16"/><polyline points="11,13 8,16 11,19"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5 C10 4.8 7 4.5 4 5.5 V18.5 C7 17.5 10 17.8 12 19.5"/><path d="M12 6.5 C14 4.8 17 4.5 20 5.5 V18.5 C17 17.5 14 17.8 12 19.5"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4 L21 19 H3 Z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="16.6" r=".6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="8" r=".7" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3 L13.6 9.4 L20 11 L13.6 12.6 L12 19 L10.4 12.6 L4 11 L10.4 9.4 Z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18 a8 8 0 0 1 16 0"/><line x1="12" y1="18" x2="15.5" y2="11.5"/><circle cx="12" cy="18" r="1.3" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.2"/><polyline points="4.5,7.5 12,13 19.5,7.5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="15"/><polyline points="7,10.5 12,15.5 17,10.5"/><line x1="5" y1="19.5" x2="19" y2="19.5"/></symbol>
+</defs>
+</svg>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata"></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="approach.html">複雑系アプローチ</a>
+      <div class="nav-item">
+        <a tabindex="0">サービス <span class="caret">▼</span></a>
+        <div class="sub-menu">
+          <a href="service-analysis.html">データ分析・伴走支援<small>眠っているデータを、意思決定に</small></a>
+          <a href="service-platform.html">データプラットフォーム<small>集める・整理する・読み解く</small></a>
+        </div>
+      </div>
+      <a href="research.html">実績・研究</a>
+      <a href="company.html">会社情報</a>
+      <a href="news.html">ニュース</a>
+      <a class="nav-login" href="https://app.getodonata.com/login">ログイン</a>
+      <a class="nav-cta" href="contact.html?purpose=doc"><svg class="ic"><use href="#i-download"/></svg> 資料請求</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+  </div>
+</header>
+
+<!-- ═══════════ PAGE HERO ═══════════ -->
+<div class="phero">
+  <canvas id="pheroNet"></canvas>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px"><use href="#i-arrow"/></svg> サービス <svg class="ic" style="font-size:14px"><use href="#i-arrow"/></svg> データプラットフォーム</div>
+    <div class="p-eyebrow">Data Platform "Odonata"</div>
+    <h1><span class="np">散らばるデータを、</span><span class="np">ひとつに。</span><br><span class="np">記録を、チームの</span><span class="np">武器に。</span></h1>
+    <p class="lead">
+      <span class="np">コンディション・GPS・試合・</span><span class="np">メディカル・育成計画を</span><span class="np">一元管理。</span>
+      <span class="np">入力すると予測・分析が</span><span class="np">返ってくるから、</span><span class="np">記録が続く。</span>
+      <span class="np">AI傷害予測とネットワーク分析を</span><span class="np">搭載した、</span><span class="np">サッカーのための</span><span class="np">データプラットフォームです。</span>
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="contact.html?purpose=demo"><svg class="ic"><use href="#i-spark"/></svg> デモ・トライアルを相談する</a>
+      <a class="btn btn-ghost" href="contact.html?purpose=doc"><svg class="ic"><use href="#i-download"/></svg> 資料をダウンロード</a>
+      <a class="btn btn-ghost" href="guide.html"><svg class="ic"><use href="#i-book"/></svg> 使い方ガイド</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SCROLL STORY（データ統合アニメーション） ═══════════ -->
+<section class="scrolly" id="story" aria-label="Odonata のデータ統合ストーリー" style="padding:0">
+  <div class="scrolly-track" id="storyTrack">
+    <div class="scrolly-stage">
+      <canvas id="storyCanvas"></canvas>
+      <div class="stage-glow" id="stageGlow"></div>
+
+      <div class="stage-inner" id="stageInner">
+        <div class="snode" data-x="-300" data-y="-150"><div class="chip"><svg class="ic"><use href="#i-signal"/></svg></div><div class="lbl">GPS</div></div>
+        <div class="snode" data-x="300" data-y="-160"><div class="chip"><svg class="ic"><use href="#i-pen"/></svg></div><div class="lbl">コンディション</div></div>
+        <div class="snode" data-x="-360" data-y="55"><div class="chip"><svg class="ic"><use href="#i-dumbbell"/></svg></div><div class="lbl">トレーニング</div></div>
+        <div class="snode" data-x="360" data-y="70"><div class="chip"><svg class="ic"><use href="#i-pulse"/></svg></div><div class="lbl">ケガデータ</div></div>
+        <div class="snode" data-x="-165" data-y="128"><div class="chip"><svg class="ic"><use href="#i-target"/></svg></div><div class="lbl">目標設定</div></div>
+        <div class="snode" data-x="165" data-y="132"><div class="chip"><svg class="ic"><use href="#i-ball"/></svg></div><div class="lbl">試合データ</div></div>
+
+        <div class="stage-beam" id="beamL"></div>
+        <div class="stage-beam" id="beamR"></div>
+
+        <div class="core" id="storyCore"><img src="assets/odonata-emblem.png" alt="Odonata"></div>
+
+        <div class="rchip" id="rchipL" data-x="-265" data-y="62"><svg class="ic"><use href="#i-network"/></svg><div><b>ネットワーク分析</b><span>関係を可視化</span></div></div>
+        <div class="rchip" id="rchipR" data-x="265" data-y="62"><svg class="ic"><use href="#i-gauge"/></svg><div><b>傷害予測</b><span>リスクを先読み</span></div></div>
+      </div>
+
+      <div class="scrolly-caption" id="storyCaption">
+        <div class="scap" data-phase="0">
+          <div class="step">Before</div>
+          <h2><span class="np">データは、</span><span class="np">バラバラに</span><span class="np">眠っていた。</span></h2>
+          <div class="tags"><span>GPS</span><span>コンディション</span><span>トレーニング</span><span>ケガ</span><span>目標</span><span>試合</span></div>
+        </div>
+        <div class="scap" data-phase="1">
+          <div class="step">Unify</div>
+          <h2><span class="np">Odonata が、</span><span class="np">ひとつに</span><span class="np">集約する。</span></h2>
+          <p><span class="np">別々の場所にあった情報が、</span><span class="np">1つのプラットフォームへ。</span></p>
+        </div>
+        <div class="scap" data-phase="2">
+          <div class="step">Analyze</div>
+          <h2><span class="np">集まったデータが、</span><span class="np">洞察に変わる。</span></h2>
+          <p><span class="np">ネットワーク分析と</span><span class="np">傷害予測で、</span><span class="np">コンディションを</span><span class="np">読み解く。</span></p>
+        </div>
+        <div class="scap" data-phase="3">
+          <div class="step">Result</div>
+          <h2>チームを強くする。</h2>
+          <div class="strength"><div class="bar"><i id="strengthFill"></i></div></div>
+        </div>
+      </div>
+
+      <div class="scrolly-hint" id="storyHint"><div class="mouse"></div><span>SCROLL</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 2. 現場の3課題 ═══════════ -->
+<section id="problem">
+  <div class="wrap">
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <span class="eyebrow">Problem</span>
+      <h2 class="section-title"><span class="np">データの散在を、</span><span class="np">終わりにする。</span></h2>
+      <p class="section-lead center">
+        トレーニングはエクセル、コンディションはあのアプリ、GPSは違うソフト……。
+        バラバラだから、つなげて考えられない。Odonataはすべてを1つの場所に集めます。
+      </p>
+    </div>
+
+    <div class="unify-grid">
+      <div class="panel panel-before reveal">
+        <h3><svg class="ic"><use href="#i-shuffle"/></svg> これまで（バラバラ）</h3>
+        <div class="scatter-item"><svg class="ic"><use href="#i-doc"/></svg> コンディションは紙・別アプリ</div>
+        <div class="scatter-item"><svg class="ic"><use href="#i-signal"/></svg> GPSはGPSソフトウェア</div>
+        <div class="scatter-item"><svg class="ic"><use href="#i-dumbbell"/></svg> 練習メニューは別管理</div>
+        <div class="scatter-item"><svg class="ic"><use href="#i-pulse"/></svg> ケガ情報はトレーナーの手元</div>
+        <div class="scatter-item"><svg class="ic"><use href="#i-ball"/></svg> 試合のスタッツは表計算</div>
+        <div class="scatter-item" style="margin-bottom:0"><svg class="ic"><use href="#i-target"/></svg> 目標・面談はノート</div>
+      </div>
+
+      <div class="arrow-mid reveal"><svg class="ic"><use href="#i-arrow"/></svg></div>
+
+      <div class="panel panel-after reveal">
+        <h3><svg class="ic"><use href="#i-hub"/></svg> Odonata（一元管理）</h3>
+        <ul class="unified-list">
+          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> 毎日のコンディションを選手が入力</li>
+          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> GPS負荷データを自動で取り込み</li>
+          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> トレーニングメニューを作成・配布</li>
+          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> ケガ・メディカル情報を追跡</li>
+          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> 試合の出場・スタッツ・評価</li>
+          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> IDP（目標）・面談まで一気通貫</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="center section-lead" style="margin:36px auto 0;max-width:720px">
+      現場で聞く課題は3つ——<strong>①入力・記録の負荷 ②データの散在 ③分析・活用の限界</strong>。
+      Odonataはこの3つに、次の3つの機能で答えます。
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════ 3. 解決の3機能 ═══════════ -->
+<section id="features" class="section-alt">
+  <div class="wrap">
+    <span class="eyebrow">Features</span>
+    <h2 class="section-title">解決の3機能</h2>
+    <p class="section-lead"><span class="np">散らばっていた情報を</span> <span class="np"><strong>集める → 整理する → 読み解く</strong></span> <span class="np">の流れでひとつに。</span><span class="np">入力はシンプルに、</span><span class="np">分析はパワフルに。</span></p>
+
+    <!-- ───── 集める ───── -->
+    <div class="feat-group">
+      <div class="fg-head">
+        <span class="fg-step">① 集める</span>
+        <h3><span class="np">チームの活動を、</span><span class="np">ひとつに記録する</span></h3>
+        <p>入力すると予測・分析が返ってくる設計だから、記録が続く。すべてのデータを一つのWebアプリへ。</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat reveal">
+          <div class="ficon"><svg class="ic"><use href="#i-pen"/></svg></div>
+          <h3>かんたんコンディション入力</h3>
+          <p>練習前・練習後の2回、スライダー中心の入力で完結。痛みの部位やチーム独自の項目にも対応し、すべての分析の土台になります。</p>
+        </div>
+        <div class="feat reveal">
+          <div class="ficon"><svg class="ic"><use href="#i-ball"/></svg></div>
+          <h3>試合データの記録</h3>
+          <p>スコアや対戦相手だけでなく、出場時間・スタッツ・選手ごとの自己評価まで、<strong>試合の詳細を1試合ずつ記録</strong>。あとから振り返れます。</p>
+        </div>
+        <div class="feat reveal">
+          <div class="ficon"><svg class="ic"><use href="#i-shield"/></svg></div>
+          <h3>メディカル（ケガ記録）</h3>
+          <p><strong>だれが・いつ・どこを負傷し、いつ復帰したか</strong>をチームのカルテとして蓄積。リハビリの経過や一部参加の状況も残せます。</p>
+        </div>
+        <div class="feat reveal">
+          <div class="ficon"><svg class="ic"><use href="#i-target"/></svg></div>
+          <h3>IDP（個人育成計画）</h3>
+          <p>選手ごとの目標と取り組みを設定し、達成度の評価や面談記録まで一元管理。育成のプロセスを見える形で残します。</p>
+        </div>
+        <div class="feat reveal">
+          <div class="ficon"><svg class="ic"><use href="#i-dumbbell"/></svg></div>
+          <h3>トレーニングメニュービルダー</h3>
+          <p>練習メニューの<strong>作成から選手への配布まで完結</strong>。テンプレートとドリルライブラリで、<strong>使うほど作成時間が短くなります</strong>。</p>
+        </div>
+        <div class="feat reveal">
+          <div class="ficon"><svg class="ic"><use href="#i-signal"/></svg></div>
+          <h3>GPS負荷データ連携</h3>
+          <p>走行距離・スプリント・加減速・衝撃・ACWRなどの運動負荷を、API連携で自動取り込み・可視化。</p>
+          <span class="tag"><svg class="ic"><use href="#i-warn"/></svg> GPS連携チームのみ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── 整理する ───── -->
+    <div class="feat-group">
+      <div class="fg-head">
+        <span class="fg-step">② 整理する</span>
+        <h3><span class="np">探す時間を、</span><span class="np">判断の時間へ</span></h3>
+        <p>選手・チームの2軸で即座に閲覧。推移として可視化し、イベントの前後で並べて比べられます。</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat reveal">
+          <div class="ficon"><svg class="ic"><use href="#i-home"/></svg></div>
+          <h3>ダッシュボード</h3>
+          <p>チーム概況・要確認選手・当日の予定をひと目で。<strong>同一選手を横断して見られる</strong>ことが、すべての判断の起点になります。</p>
+        </div>
+        <div class="feat reveal">
+          <div class="ficon"><svg class="ic"><use href="#i-chart"/></svg></div>
+          <h3>推移の確認</h3>
+          <p>各指標の推移を、ケガ・体調不良マーカー付きのグラフで表示。期間と指標を選ぶだけで、調子の波がひと目で分かります。</p>
+        </div>
+        <div class="feat reveal">
+          <div class="ficon"><svg class="ic"><use href="#i-shuffle"/></svg></div>
+          <h3>イベント前後の比較</h3>
+          <p>「ケガの前後」「好調期と不調期」など、<strong>特定のイベントの前後の2期間を並べて比較</strong>。何がどう変わったのかを確かめられます。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── 読み解く ───── -->
+    <div class="feat-group">
+      <div class="fg-head">
+        <span class="fg-step">③ 読み解く</span>
+        <h3><span class="np">関係性とリスクを、</span><span class="np">分析する</span></h3>
+        <p>整理したデータから「何が何に影響しているか」を読み解き、先回りの意思決定につなげます。</p>
+      </div>
+      <div class="feat-grid cols2">
+        <div class="feat reveal">
+          <div class="ficon"><svg class="ic"><use href="#i-gauge"/></svg></div>
+          <h3>AI傷害リスク予測</h3>
+          <p>機械学習が各選手のケガ発生確率を算出。要因も分解して表示し、練習負荷の設計に活かせます。Precision約70%<sup class="fn"><a href="#pf-notes">※</a></sup>。</p>
+          <span class="tag"><svg class="ic"><use href="#i-warn"/></svg> GPS連携チームのみ</span>
+        </div>
+        <div class="feat reveal">
+          <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
+          <h3>ネットワーク分析</h3>
+          <p>変数どうしの「先行関係（昨日→今日）」と「同時相関（同じ日）」を図で可視化。コンディションの構造が見えます。</p>
+          <a class="more" href="guide.html#network">読み方ガイドへ <svg class="ic"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footnotes" id="pf-notes">
+      <p>※ 傷害の完全な予防を保証するものではなく、意思決定支援を目的としています。対象は筋肉系・非接触靭帯系・オーバーユース系の傷害です。数値は筑波大学蹴球部での実証結果であり、チーム・データ環境により異なります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 4. 機能一覧 ═══════════ -->
+<section id="function-list">
+  <div class="wrap">
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <span class="eyebrow">Function List</span>
+      <h2 class="section-title">機能一覧</h2>
+    </div>
+    <div class="tbl-scroll">
+      <table class="tbl">
+        <tr><th style="width:220px">機能</th><th>概要</th></tr>
+        <tr><td><b>コンディション管理</b></td><td>練習前後の主観コンディション入力（スライダー中心・約1分）、痛み部位、チーム独自項目、代行入力</td></tr>
+        <tr><td><b>GPSデータ管理</b></td><td>走行距離・スプリント・加減速・ACWR等をAPI連携で自動取込・可視化（GPS連携チームのみ）</td></tr>
+        <tr><td><b>メディカル・リハビリ管理</b></td><td>受傷・復帰の記録、リハビリ経過、一部参加の管理、怪我サマリー</td></tr>
+        <tr><td><b>試合・トレーニング記録</b></td><td>試合の出場・スタッツ・自己評価、練習メニューの作成・配布・PDF出力、ドリルライブラリ</td></tr>
+        <tr><td><b>IDP（個人育成計画）</b></td><td>目標設定・達成度評価・面談記録の一元管理、目標サマリー</td></tr>
+        <tr><td><b>スケジュール管理</b></td><td>練習・試合予定のカレンダー管理、チーム別の切替表示</td></tr>
+        <tr><td><b>ダッシュボード</b></td><td>チーム概況・要確認選手の自動アラート・選手一覧・特徴レーダー</td></tr>
+        <tr><td><b>傷害予測</b></td><td>選手別リスクスコア（日次・週次）・要因分解・1週間プラン（GPS連携チームのみ）</td></tr>
+        <tr><td><b>ネットワーク分析</b></td><td>時系列関係・同時相関の可視化、2期間比較、チーム傾向、自動解釈文</td></tr>
+      </table>
+    </div>
+    <div class="center" style="margin-top:32px">
+      <a class="btn btn-line" href="guide.html"><svg class="ic"><use href="#i-book"/></svg> 全機能の詳しい使い方ガイド</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 5. GPSがなくても始められる ═══════════ -->
+<section class="section-alt" id="no-gps">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <span class="eyebrow">For Youth &amp; Amateur</span>
+      <h2 class="section-title"><span class="np">GPSがなくても、</span><span class="np">始められる。</span></h2>
+      <p class="section-lead center">
+        <span class="np">主観コンディション・試合・</span><span class="np">メディカルのデータから、</span><span class="np">推移・2期間比較・</span><span class="np">ネットワーク分析まで</span><span class="np">利用できます。</span>
+        <span class="np">GPS関連の指標は</span><span class="np">自動的に非表示になるため、</span><span class="np">迷うこともありません。</span>
+      </p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-pen"/></svg></div>
+        <h3>主観データだけで開始</h3>
+        <p>毎日の主観コンディションだけでも、選手・チームの傾向分析は動きます。まず記録の習慣づくりから。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-clock"/></svg></div>
+        <h3>過去データも資産に</h3>
+        <p>Excelや他アプリの過去データを取り込んだ状態でスタート可能。<strong>「貯まるまで待つ」必要がありません</strong>。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-signal"/></svg></div>
+        <h3>GPSは後からでも</h3>
+        <p>GPSを導入したタイミングでAPI連携を追加すれば、傷害予測・負荷分析まで拡張できます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 6. 料金プラン ═══════════ -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="section-title">料金プラン</h2>
+      <p class="section-lead center"><span class="np">チームの体制と</span><span class="np">活用の深さに合わせた</span><span class="np">3プラン。</span><span class="np">いずれも試験導入から</span><span class="np">始められます。</span></p>
+    </div>
+    <div class="price-grid">
+      <div class="price reveal">
+        <h3>プランA</h3>
+        <div class="for">記録と管理から始めたいチームに（育成年代・大学など）</div>
+        <div class="amount">月額 8万円<small>（税別）</small></div>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg> コンディション・試合・メディカル・IDP・スケジュール管理</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> ダッシュボード・推移・2期間比較</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> 選手アカウント無制限</li>
+        </ul>
+      </div>
+      <div class="price rec reveal">
+        <div class="badge">おすすめ</div>
+        <h3>プランB</h3>
+        <div class="for">分析まで使い切りたいチームに</div>
+        <div class="amount">月額 15万円<small>（税別）</small></div>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg> プランAの全機能</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> GPS API連携・負荷分析</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> ネットワーク分析（個人・チーム傾向）</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> 導入・運用サポート</li>
+        </ul>
+      </div>
+      <div class="price reveal">
+        <h3>プランC</h3>
+        <div class="for">予測と伴走まで含めたフル活用に（プロ・大学上位）</div>
+        <div class="amount">月額 40万円<small>（税別）</small></div>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg> プランBの全機能</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> AI傷害予測（チーム個別モデル構築）</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> 分析レポート・定例伴走支援</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footnotes">
+      <p>※ 過去データの取込・API連携の新規開発・カスタム分析は別途お見積りとなります。プラン内容の詳細・契約条件は資料およびお打ち合わせにてご案内します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 7. データの取り扱い ═══════════ -->
+<section class="section-alt" id="privacy">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <span class="eyebrow">Data Governance</span>
+      <h2 class="section-title"><span class="np">選手のデータを、</span><span class="np">選手のために。</span></h2>
+      <p class="section-lead center">
+        <span class="np">コンディションやメディカル情報は、</span><span class="np">選手の大切な個人データです。</span>
+        <span class="np">Odonataは、その取り扱いの方針を</span><span class="np">明確にお約束します。</span>
+      </p>
+    </div>
+    <div class="feat-grid" style="grid-template-columns:repeat(2,1fr)">
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-check"/></svg></div>
+        <h3>選手本人の同意を前提に</h3>
+        <p>データの取得・利用は、選手本人（未成年の場合は保護者を含む）の同意を前提とします。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-shield"/></svg></div>
+        <h3>医療・心理の生データは原則非公開</h3>
+        <p>センシティブな情報は権限を厳格に管理し、指導者側にも必要な範囲でのみ表示します。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-warn"/></svg></div>
+        <h3>目的外利用の禁止</h3>
+        <p>取得したデータを、チーム支援・分析以外の目的で利用することはありません。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-sliders"/></svg></div>
+        <h3>公開範囲は段階設定</h3>
+        <p>項目ごとに「本人のみ／スタッフまで／チーム全体」など、公開範囲を段階的に設定できます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 8. 導入プロセス ═══════════ -->
+<section id="onboarding">
+  <div class="wrap">
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <span class="eyebrow">Onboarding</span>
+      <h2 class="section-title">導入プロセス</h2>
+      <p class="section-lead center"><span class="np">いきなり本格導入では</span><span class="np">ありません。</span><span class="np">現場と一緒に試し、</span><span class="np">直しながら、</span><span class="np">定着させていきます。</span></p>
+    </div>
+    <div class="flow seq">
+      <div class="flow-step reveal">
+        <span class="stepn">STEP 1</span>
+        <div class="flow-ic"><svg class="ic"><use href="#i-spark"/></svg></div>
+        <h4>試験導入</h4>
+        <p>一部チーム・期間を区切ってスモールスタート。過去データの取込もこの段階で。</p>
+      </div>
+      <div class="flow-step reveal">
+        <span class="stepn">STEP 2</span>
+        <div class="flow-ic"><svg class="ic"><use href="#i-users"/></svg></div>
+        <h4>フィードバック収集</h4>
+        <p>選手・スタッフの使い勝手を確認。入力が続く運用ルールを一緒に設計します。</p>
+      </div>
+      <div class="flow-step reveal">
+        <span class="stepn">STEP 3</span>
+        <div class="flow-ic"><svg class="ic"><use href="#i-sliders"/></svg></div>
+        <h4>改善</h4>
+        <p>現場の声をもとに項目・画面・運用を調整。「現場と一緒に作る」がOdonataの流儀です。</p>
+      </div>
+      <div class="flow-step reveal">
+        <span class="stepn">STEP 4</span>
+        <div class="flow-ic"><svg class="ic"><use href="#i-check"/></svg></div>
+        <h4>本格導入</h4>
+        <p>全体展開へ。分析・予測の活用フェーズに入り、伴走を継続します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 9. 使い方の概要（ガイド統合） ═══════════ -->
+<section id="guide" class="section-alt">
+  <div class="wrap">
+    <span class="eyebrow">Guide</span>
+    <h2 class="section-title">使い方の概要</h2>
+    <p class="section-lead">あなたの立場を選んでください。各機能の詳しい手順は<strong>使い方ガイド</strong>にまとめています。</p>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="player"><svg class="ic"><use href="#i-ball"/></svg> 選手向け</button>
+      <button class="tab" data-tab="coach"><svg class="ic"><use href="#i-clipboard"/></svg> コーチ・スタッフ向け</button>
+    </div>
+
+    <!-- PLAYER -->
+    <div class="tab-panel active" id="tab-player">
+      <p class="center" style="color:var(--sub);font-size:14px;margin:0 auto 26px;max-width:560px">毎日の入力から分析まで、選手はこの4ステップ。</p>
+      <div class="flow seq" style="margin-top:0">
+        <div class="flow-step">
+          <span class="stepn">STEP 1</span>
+          <div class="flow-ic"><svg class="ic"><use href="#i-pen"/></svg></div>
+          <h4>コンディション入力</h4>
+          <p>練習前後にスライダーで。すべての分析の土台。</p>
+        </div>
+        <div class="flow-step">
+          <span class="stepn">STEP 2</span>
+          <div class="flow-ic"><svg class="ic"><use href="#i-home"/></svg></div>
+          <h4>ホームで確認</h4>
+          <p>推移・負荷・戦績とトレーナーのコメントをひと目で。</p>
+        </div>
+        <div class="flow-step">
+          <span class="stepn">STEP 3</span>
+          <div class="flow-ic"><svg class="ic"><use href="#i-calendar"/></svg></div>
+          <h4>予定・練習・試合</h4>
+          <p>スケジュール、当日メニュー、試合スタッツを確認。</p>
+        </div>
+        <div class="flow-step">
+          <span class="stepn">STEP 4</span>
+          <div class="flow-ic"><svg class="ic"><use href="#i-target"/></svg></div>
+          <h4>ケガ・目標・分析</h4>
+          <p>ケガ履歴・IDP、個別のネットワーク分析まで。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COACH -->
+    <div class="tab-panel" id="tab-coach">
+      <div class="callout info" style="margin-top:0;margin-bottom:26px">
+        <svg class="ic cic"><use href="#i-shuffle"/></svg>
+        <div>
+          <h4>最初に「表示チーム」を確認</h4>
+          <p>サイドバー上部で <b>表示モード</b> と <b>表示チーム</b> を切り替えられます。分析が思った選手と違うときは、まず表示チームを確認しましょう。</p>
+        </div>
+      </div>
+      <div class="flow" style="margin-top:0">
+        <div class="flow-step">
+          <div class="flow-ic"><svg class="ic"><use href="#i-home"/></svg></div>
+          <h4>見る</h4>
+          <p>チーム概況・選手一覧・コンディション概観。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-ic"><svg class="ic"><use href="#i-calendar"/></svg></div>
+          <h4>運営する</h4>
+          <p>試合、メニュー作成・配布、スケジュール管理。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-ic"><svg class="ic"><use href="#i-chart"/></svg></div>
+          <h4>分析する</h4>
+          <p>傷害リスク予測・GPS・ネットワーク分析。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-ic"><svg class="ic"><use href="#i-sliders"/></svg></div>
+          <h4>管理する</h4>
+          <p>選手招待・項目設定・データ出力・ユーザー管理。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="center" style="margin-top:34px">
+      <a class="btn btn-navy" href="guide.html"><svg class="ic"><use href="#i-book"/></svg> 詳しい使い方ガイドを開く</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 10. FAQ ═══════════ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow" style="display:inline-flex">FAQ</span>
+      <h2 class="section-title">よくある質問</h2>
+    </div>
+    <div class="faq">
+      <details class="qa"><summary>過去データの取り込みは可能ですか？</summary>
+        <div class="ans">可能です。Excel・CSV・他アプリやGPSソフトに散らばった過去の試合・コンディション・GPSデータをお預かりし、<b>取り込んだ状態で運用を開始</b>できます。導入初日から推移・比較・ネットワーク分析が動くため、「データが貯まるまで待つ」必要がありません。</div></details>
+      <details class="qa"><summary>既存のGPS・他社ソフトからの移行はできますか？</summary>
+        <div class="ans">主要なGPSサービスとのAPI連携に対応しています。他社コンディション管理ソフトからの移行も、エクスポートデータがあれば取り込み可能です。個別の環境についてはお問い合わせください。</div></details>
+      <details class="qa"><summary>対応デバイスを教えてください。</summary>
+        <div class="ans">Webアプリのため、スマートフォン・タブレット・PCのブラウザからそのまま利用できます。選手はスマホ、スタッフはPC・タブレットという使い分けが一般的です。アプリのインストールは不要です。</div></details>
+      <details class="qa"><summary>毎日の入力はどれくらい手間ですか？</summary>
+        <div class="ans">スライダー中心で、練習前・練習後の2回。必須項目は数個だけなので、各回1分ほどで完了します。入力すると分析が返ってくる設計にすることで、<b>入力の継続</b>という最大の壁に答えています。</div></details>
+      <details class="qa"><summary>GPSがないチームでも使えますか？</summary>
+        <div class="ans">はい。主観コンディションのデータだけで推移・2期間比較・ネットワーク分析をご利用いただけます。GPS関連の指標は自動的に非表示になります。傷害リスク予測はGPS負荷を入力に使うため、GPS連携チーム限定の機能です。</div></details>
+      <details class="qa"><summary>傷害リスク予測はどこまで信頼できますか？</summary>
+        <div class="ans">モデルは過去の怪我データから構築しており、対象は<b>非接触系の怪我（肉離れ・筋損傷など）</b>に限ります。実証環境でのPrecisionは約70%ですが、<b>モデルは万能ではなく、あくまで意思決定の材料</b>です。最終判断は選手の主観・メディカル所見と合わせて人が行います。</div></details>
+      <details class="qa"><summary>最低利用期間はありますか？</summary>
+        <div class="ans">試験導入期間を経てからの本契約を基本としています。契約条件の詳細はお打ち合わせでご案内します。シーズン途中からの導入もご相談ください。</div></details>
+      <details class="qa"><summary>選手のアカウントに費用はかかりますか？</summary>
+        <div class="ans">かかりません。料金はチーム単位の月額で、選手アカウントの数による追加費用はありません。</div></details>
+      <details class="qa"><summary>導入までどれくらいかかりますか？</summary>
+        <div class="ans">お申し込みからアカウント発行まで最短1週間程度です。過去データの取込やGPS連携を含む場合は、内容に応じて2週間〜1ヶ月程度をいただきます。</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-band" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2><span class="np">まずは、現場で</span><span class="np">試してみませんか。</span></h2>
+      <p><span class="np">デモ画面のご案内から、</span><span class="np">試験導入のご相談まで。</span><span class="np">チームの状況に合わせて</span><span class="np">ご提案します。</span></p>
+      <div class="cta-actions">
+        <a class="btn btn-blue" href="contact.html?purpose=demo"><svg class="ic"><use href="#i-spark"/></svg> デモ・トライアルを相談する</a>
+        <a class="btn btn-line" href="contact.html?purpose=doc"><svg class="ic"><use href="#i-download"/></svg> 資料をダウンロード</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/odonata-logo.png" alt="Odonata">
+        <p><span class="np">サッカーの複雑な現象を、</span><span class="np">データと科学で読み解く。</span><br><span class="np">複雑系アプローチで、</span><span class="np">現場の意思決定と</span><span class="np">チームの成長を支えます。</span></p>
+      </div>
+      <div class="foot-col">
+        <h4>Service</h4>
+        <a href="service-analysis.html">データ分析・伴走支援</a>
+        <a href="service-platform.html">データプラットフォーム</a>
+        <a href="guide.html">使い方ガイド</a>
+      </div>
+      <div class="foot-col">
+        <h4>About</h4>
+        <a href="approach.html">複雑系アプローチ</a>
+        <a href="research.html">実績・研究</a>
+        <a href="company.html">会社情報</a>
+        <a href="philosophy.html">Philosophy</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="news.html">ニュース</a>
+        <a href="contact.html">お問い合わせ・資料請求</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span data-year></span> Odonata. All rights reserved.</span>
+      <span>株式会社Odonata（設立準備中）</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/scrolly.js"></script>
+<script>
+  // 使い方タブ切替
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

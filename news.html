@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ニュース — Odonata</title>
+<meta name="description" content="Odonataのお知らせ・プレスリリース・コラム。筑波大学蹴球部での実証導入、サッカー現場のデータ活用調査、複雑系アプローチのコラムなど。">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#071A3A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.2"/><polyline points="4.5,7.5 12,13 19.5,7.5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="15"/><polyline points="7,10.5 12,15.5 17,10.5"/><line x1="5" y1="19.5" x2="19" y2="19.5"/></symbol>
+</defs>
+</svg>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata"></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="approach.html">複雑系アプローチ</a>
+      <div class="nav-item">
+        <a tabindex="0">サービス <span class="caret">▼</span></a>
+        <div class="sub-menu">
+          <a href="service-analysis.html">データ分析・伴走支援<small>眠っているデータを、意思決定に</small></a>
+          <a href="service-platform.html">データプラットフォーム<small>集める・整理する・読み解く</small></a>
+        </div>
+      </div>
+      <a href="research.html">実績・研究</a>
+      <a href="company.html">会社情報</a>
+      <a href="news.html">ニュース</a>
+      <a class="nav-login" href="https://app.getodonata.com/login">ログイン</a>
+      <a class="nav-cta" href="contact.html?purpose=doc"><svg class="ic"><use href="#i-download"/></svg> 資料請求</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+  </div>
+</header>
+
+<!-- ═══════════ PAGE HERO ═══════════ -->
+<div class="phero">
+  <canvas id="pheroNet"></canvas>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px"><use href="#i-arrow"/></svg> ニュース</div>
+    <div class="p-eyebrow">News</div>
+    <h1>ニュース</h1>
+    <p class="lead"><span class="np">お知らせ・プレスリリース・</span><span class="np">コラムをお届けします。</span></p>
+  </div>
+</div>
+
+<!-- ═══════════ ニュース一覧 ═══════════ -->
+<section>
+  <div class="wrap">
+    <div class="news-tabs">
+      <button class="tab active" data-cat="all">すべて</button>
+      <button class="tab" data-cat="notice">お知らせ</button>
+      <button class="tab" data-cat="press">プレスリリース</button>
+      <button class="tab" data-cat="column">コラム</button>
+    </div>
+
+    <div class="news-list">
+
+      <!-- 1. サイト公開 -->
+      <details class="news-item" data-cat="notice" id="n-site">
+        <summary>
+          <span class="date">2026.07.25</span>
+          <span class="cat notice">お知らせ</span>
+          <span class="ttl">コーポレートサイトを公開しました</span>
+        </summary>
+        <div class="body">
+          <p>Odonataのコーポレートサイトを公開しました。私たちの思想である<a href="approach.html" style="color:var(--blue);font-weight:700">複雑系アプローチ</a>、2つのサービス（<a href="service-analysis.html" style="color:var(--blue);font-weight:700">データ分析・伴走支援</a>／<a href="service-platform.html" style="color:var(--blue);font-weight:700">データプラットフォーム</a>）、<a href="research.html" style="color:var(--blue);font-weight:700">実績・研究</a>の情報を掲載しています。</p>
+          <p>サービス資料のダウンロード・導入のご相談は<a href="contact.html" style="color:var(--blue);font-weight:700">お問い合わせページ</a>より受け付けています。今後ともよろしくお願いいたします。</p>
+        </div>
+      </details>
+
+      <!-- 2. 調査リリース -->
+      <details class="news-item" data-cat="press" id="n-survey">
+        <summary>
+          <span class="date">2026.07.15</span>
+          <span class="cat press">プレスリリース</span>
+          <span class="ttl">サッカー現場のデータ活用に関する調査（n=62）を公開 — 94%が「怪我の予兆提示は有用」と回答</span>
+        </summary>
+        <div class="body">
+          <p>Odonataは、サッカー現場経験者62名を対象とした「サッカー現場のデータ活用に関する調査」の結果を公開しました。</p>
+          <h4>主な調査結果</h4>
+          <p>・<b>94%</b>が、怪我・不調の「予兆」の提示は有用と回答<br>
+          ・<b>79%</b>が、AIによる負荷調整・起用の「提案」を許容<br>
+          ・最大の障壁は「入力の継続」（<b>61%</b>）</p>
+          <p>現場はデータによる予測・提案を強く求めている一方で、日々の入力を続けることが最大の壁になっている——この結果は、「入力すると分析が返ってくるから続く」というOdonataのプロダクト設計の原点になっています。</p>
+          <p>調査結果の詳細は<a href="research.html#survey" style="color:var(--blue);font-weight:700">実績・研究ページ</a>に掲載しています。</p>
+          <p class="note">※ サッカー現場経験者（競技経験者・指導者を含む）を対象とした当社アンケート調査（n=62）。</p>
+        </div>
+      </details>
+
+      <!-- 3. 筑波大実証 -->
+      <details class="news-item" data-cat="press" id="n-tsukuba">
+        <summary>
+          <span class="date">2026.06.01</span>
+          <span class="cat press">プレスリリース</span>
+          <span class="ttl">筑波大学蹴球部にてデータプラットフォームの実証導入を開始</span>
+        </summary>
+        <div class="body">
+          <p>Odonataは、筑波大学蹴球部において、データプラットフォーム「Odonata」の実証導入を開始しました。</p>
+          <p>本実証では、GPS・主観コンディション・メディカル記録を統合し、AI傷害予測モデルとネットワーク分析を現場の意思決定に組み込みます。大学サッカー トップレベルの競技環境で、選手・スタッフとともにプロダクトを検証・改善していきます。</p>
+          <p>実証の経過・成果は<a href="research.html" style="color:var(--blue);font-weight:700">実績・研究ページ</a>で順次公開します。</p>
+        </div>
+      </details>
+
+      <!-- 4. コラム：複雑系 -->
+      <details class="news-item" data-cat="column" id="n-column-complex">
+        <summary>
+          <span class="date">2026.07.20</span>
+          <span class="cat column">コラム</span>
+          <span class="ttl">サッカーは複雑系である — "More is different" から考える</span>
+        </summary>
+        <div class="body">
+          <p>「スター選手を11人集めても、最強のチームにはならない」——サッカーに関わる人なら、誰もが実感として知っている事実です。では、なぜそうなるのでしょうか。</p>
+          <p>1972年、物理学者P. W. Andersonは "More is different"（多いことは、違うことだ）という論文で、要素をいくら詳しく調べても全体のふるまいは説明できない、と指摘しました。ニューロン1つに意識はないのに、脳全体からは意識が生まれる。この「創発」と呼ばれる性質こそ、サッカーというゲームの本質です。</p>
+          <p>チームの強さは選手個々の能力の合計ではなく、選手間の<b>つながり方</b>から生まれます。怪我もまた同じで、負荷・疲労・睡眠・日程——単独では正常な要因の「重なり」が、ある日突然リスクに変わる。だから単一指標の監視では、怪我は読めません。</p>
+          <p>私たちOdonataが「要素」ではなく「要素間の相互作用」を分析の単位に据えるのは、この理解が出発点です。詳しくは<a href="approach.html" style="color:var(--blue);font-weight:700">複雑系アプローチ</a>のページをご覧ください。</p>
+        </div>
+      </details>
+
+      <!-- 5. コラム：傷害予測AI -->
+      <details class="news-item" data-cat="column" id="n-column-ai">
+        <summary>
+          <span class="date">2026.07.22</span>
+          <span class="cat column">コラム</span>
+          <span class="ttl">傷害予測AIは現場で何を見ているのか — Precision 70%の中身</span>
+        </summary>
+        <div class="body">
+          <p>「傷害予測の的中率 約70%」——この数字だけを見ると、魔法のように聞こえるかもしれません。このコラムでは、数字の中身を正直にお話しします。</p>
+          <p>Precision（適合率）約70%とは、「モデルが『危険』と警告した日のうち、実際に傷害が起きた割合」です。比較対象とした従来手法（ACWR：急性慢性負荷比）では約5%でした。つまり従来の単一指標の監視では、警報の大半が空振りになり、やがて誰も警報を見なくなります。<b>警報が信頼できる水準にあること</b>が、現場で使われ続けるための条件です。</p>
+          <p>一方で、Recall（再現率）は約20%——起きた傷害のうち、事前に捉えられていたのは5件に1件です。すべての怪我を予測することはできませんし、対象も筋肉系・非接触靭帯系・オーバーユース系に限られます。接触による骨折は、データからは読めません。</p>
+          <p>だから私たちは、傷害予測AIを「怪我を防ぐ魔法」ではなく<b>「スタッフの直感を補完する、もう一つの目」</b>と位置づけています。リスクスコアの裏にある要因分解を見て、最終判断は選手の主観・メディカル所見と合わせて人が行う。それが、私たちの考えるAIと現場の正しい関係です。</p>
+          <p class="note">※ 数値は筑波大学蹴球部での実証結果であり、チーム・データ環境により異なります。</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2><span class="np">サッカーの複雑さを、</span><span class="np">チームの武器に。</span></h2>
+      <p><span class="np">取材のご依頼・掲載に関する</span><span class="np">お問い合わせも、</span><span class="np">こちらから受け付けています。</span></p>
+      <div class="cta-actions">
+        <a class="btn btn-blue" href="contact.html?purpose=doc"><svg class="ic"><use href="#i-download"/></svg> サービス資料をダウンロード</a>
+        <a class="btn btn-line" href="contact.html?purpose=media"><svg class="ic"><use href="#i-mail"/></svg> 取材・メディアの方はこちら</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/odonata-logo.png" alt="Odonata">
+        <p><span class="np">サッカーの複雑な現象を、</span><span class="np">データと科学で読み解く。</span><br><span class="np">複雑系アプローチで、</span><span class="np">現場の意思決定と</span><span class="np">チームの成長を支えます。</span></p>
+      </div>
+      <div class="foot-col">
+        <h4>Service</h4>
+        <a href="service-analysis.html">データ分析・伴走支援</a>
+        <a href="service-platform.html">データプラットフォーム</a>
+        <a href="guide.html">使い方ガイド</a>
+      </div>
+      <div class="foot-col">
+        <h4>About</h4>
+        <a href="approach.html">複雑系アプローチ</a>
+        <a href="research.html">実績・研究</a>
+        <a href="company.html">会社情報</a>
+        <a href="philosophy.html">Philosophy</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="news.html">ニュース</a>
+        <a href="contact.html">お問い合わせ・資料請求</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span data-year></span> Odonata. All rights reserved.</span>
+      <span>株式会社Odonata（設立準備中）</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+  // カテゴリフィルタ
+  document.querySelectorAll('.news-tabs .tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.news-tabs .tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.cat;
+      document.querySelectorAll('.news-item').forEach(item => {
+        item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
+      });
+    });
+  });
+  // ハッシュ付きで来たら該当記事を開く
+  if (location.hash) {
+    const target = document.querySelector(location.hash);
+    if (target && target.classList.contains('news-item')) {
+      target.open = true;
+      target.scrollIntoView({ block: 'start' });
+    }
+  }
+</script>
+</body>
+</html>
