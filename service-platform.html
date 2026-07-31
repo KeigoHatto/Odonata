@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>データプラットフォーム「Odonata」 — 散らばるデータを、ひとつに</title>
-<meta name="description" content="コンディション・GPS・試合・メディカル・育成計画を一元管理し、複雑系アプローチの分析で読み解く。サッカーのためのデータプラットフォーム「Odonata」。GPSがなくても始められます。料金プラン・導入プロセス・データの取り扱い方針を掲載。">
+<meta name="description" content="コンディション・GPS・試合・メディカル・育成計画を一元管理し、複雑系アプローチの分析で読み解く。サッカーのためのデータプラットフォーム「Odonata」。AI傷害予測・ネットワーク分析・カスタム分析の実装まで、導入プロセス・データの取り扱い方針を掲載。">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -98,6 +98,107 @@
   .feat-group .feat-grid{margin-top:24px}
   .feat-grid:hover .feat:not(:hover){filter:opacity(.55) saturate(.7)}
 
+  /* ───── 図解：バラバラ → 一元管理 ───── */
+  .chaos-fig,.hub-fig{position:relative;height:340px;margin-top:6px}
+  .d-chip{position:absolute;transform:translate(-50%,-50%) rotate(var(--r,0deg));display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;z-index:2}
+  .d-chip .box{width:62px;height:62px;border-radius:17px;display:grid;place-items:center;font-size:28px}
+  .d-chip .nm{font-size:12px;font-weight:800;line-height:1.25;white-space:nowrap}
+  .d-chip .src{font-size:10.5px;font-weight:600;opacity:.85;white-space:nowrap}
+  .chaos-fig .d-chip .box{background:#FEF2F2;border:1.5px dashed #F0A5A5;color:#CF5B4E}
+  .chaos-fig .d-chip .nm{color:#9b2c2c}
+  .chaos-fig .d-chip .src{color:#c0392b}
+  .chaos-x{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%) rotate(-3deg);font-size:12.5px;font-weight:800;color:#c0392b;background:#fff;border:1.5px dashed #F0A5A5;border-radius:999px;padding:7px 16px;z-index:1;white-space:nowrap}
+  .hub-fig .lines{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+  .hub-fig .d-chip .box{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.32);color:#fff;backdrop-filter:blur(3px)}
+  .hub-fig .d-chip .nm{color:#dbeefc}
+  .hub-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:96px;height:96px;border-radius:26px;background:rgba(255,255,255,.97);display:grid;place-items:center;box-shadow:0 14px 40px rgba(0,0,0,.35);z-index:3}
+  .hub-core img{width:68px;height:68px}
+  .hub-core::before{content:"";position:absolute;inset:-9px;border-radius:32px;border:1.5px solid rgba(127,227,255,.55);animation:corePulse 2.6s ease-out infinite}
+  .fig-cap{margin-top:16px;font-size:13.5px;font-weight:600;line-height:1.75}
+  .panel-before .fig-cap{color:#9b2c2c}
+  .panel-after .fig-cap{color:#cfe6f5}
+  .fig-cap b{font-weight:800}
+  .panel-after .fig-cap b{color:#fff}
+  @media(max-width:560px){
+    .chaos-fig,.hub-fig{height:290px}
+    .d-chip .box{width:50px;height:50px;font-size:23px;border-radius:14px}
+    .d-chip .nm{font-size:10.5px}
+    .d-chip .src{display:none}
+    .hub-core{width:78px;height:78px;border-radius:20px}
+    .hub-core img{width:54px;height:54px}
+  }
+
+  /* ───── アプリ画面スクリーンショット ───── */
+  .shot-row{display:grid;gap:20px;margin-top:26px}
+  .shot-row.cols2{grid-template-columns:1fr 1fr}
+  .shot-row.cols3{grid-template-columns:repeat(3,1fr)}
+  .shot-row.solo{max-width:860px;margin-left:auto;margin-right:auto}
+  @media(max-width:860px){.shot-row.cols2,.shot-row.cols3{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}}
+  .shot{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+  .shot .sbar{display:flex;gap:5px;padding:9px 13px;border-bottom:1px solid var(--bg);background:#F7FCFE;flex:none}
+  .shot .sbar i{width:8px;height:8px;border-radius:50%;background:var(--border)}
+  .shot img{width:100%;display:block}
+  .shot.fix img{height:230px;object-fit:cover;object-position:top}
+  /* 機能カード内スクリーンショット */
+  .feat-shot{margin-top:16px;width:100%;height:170px;object-fit:cover;object-position:top;border-radius:10px;border:1px solid var(--border);display:block;background:#fff}
+  .feat-shot + .feat-shot{margin-top:10px}
+  .feat-shot.mid{object-position:center}
+  .feat-shot.auto{height:auto}
+  .feat-shot.capped{height:440px}
+  .feat-shot.nat{width:auto;max-width:100%;margin-left:auto;margin-right:auto}
+
+  /* 大画像レイアウト：テキスト＋大きなスクリーンショットの全幅カード */
+  .feat-stack{display:grid;gap:22px;margin-top:24px}
+  .feat.row{display:grid;grid-template-columns:300px 1fr;gap:30px;align-items:center}
+  .feat.row .feat-shot{margin-top:0}
+  .feat.row .feat-shot + .feat-shot{margin-top:12px}
+  .fs-col{display:grid;gap:0;align-content:center}
+  @media(max-width:860px){
+    .feat.row{grid-template-columns:1fr}
+    .feat.row .feat-shot{margin-top:14px}
+  }
+
+  /* ───── 読み解く：分析サブブロック ───── */
+  .rg-block{margin-top:40px}
+  .rg-block + .rg-block{margin-top:48px}
+  .rg-head{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+  .rg-head .ficon{width:46px;height:46px;font-size:23px;margin-bottom:0;flex:none}
+  .rg-head h4{font-size:clamp(18px,2.3vw,22px);font-weight:800;color:var(--navy)}
+  .rg-head .tag{margin-top:0}
+  .rg-note{font-size:12.5px;color:var(--sub);font-weight:700}
+  .rg-head .more{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;color:var(--blue);margin-left:auto}
+  .rg-block .feat-grid{margin-top:20px}
+
+  /* ───── カスタム分析の反映（強調バンド） ───── */
+  .custom-band{margin-top:28px;background:var(--grad-hero);border-radius:var(--radius);padding:34px 36px;color:#fff;display:flex;gap:26px;align-items:center;flex-wrap:wrap;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .custom-band::before{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(63,200,240,.4),transparent 70%)}
+  .cb-icon{flex:none;width:64px;height:64px;border-radius:18px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);display:grid;place-items:center;font-size:32px;color:#7FE3FF;position:relative}
+  .cb-body{flex:1 1 380px;position:relative}
+  .cb-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.16em;background:#7FE3FF;color:#04203b;border-radius:999px;padding:4px 13px;margin-bottom:10px}
+  .custom-band h3{font-size:clamp(18px,2.4vw,23px);font-weight:800;line-height:1.5;margin-bottom:8px}
+  .custom-band p{font-size:14.5px;color:#cfe6f5;line-height:1.85}
+  .custom-band p strong{color:#fff}
+  .custom-band .btn{position:relative;flex:none}
+  .cb-ex{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .cb-ex span{font-size:12.5px;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);color:#dbeefc;padding:5px 14px;border-radius:999px}
+  @media(max-width:560px){.custom-band{padding:26px 22px}}
+
+  /* ───── データは資産（ダークバンド） ───── */
+  .asset-band{background:var(--grad-hero);color:#fff;padding:92px 0;position:relative;overflow:hidden}
+  .asset-band .section-title{color:#fff}
+  .asset-band .section-lead{color:#cfe6f5}
+  .asset-band .section-lead strong{color:#7FE3FF}
+  .asset-svg{width:100%;max-width:800px;margin:42px auto 0;display:block}
+  .asset-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:46px}
+  @media(max-width:860px){.asset-cards{grid-template-columns:1fr}}
+  .asset-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius);padding:26px 24px}
+  .asset-card .ficon{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#7FE3FF}
+  .asset-card h3{color:#fff;font-size:18px;font-weight:800;margin-bottom:9px}
+  .asset-card p{color:#cfe6f5;font-size:14px;line-height:1.8}
+  .asset-card p strong{color:#fff}
+  .asset-note{margin:36px auto 0;max-width:660px;text-align:center;font-size:14.5px;color:#cfe6f5;line-height:1.9}
+  .asset-note b{color:#fff}
+
   /* ───── 使い方タブ ───── */
   .tabs{display:flex;gap:10px;justify-content:center;margin-top:44px;flex-wrap:wrap}
   .tab{display:inline-flex;align-items:center;gap:9px;padding:12px 26px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;
@@ -139,6 +240,7 @@
   <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></symbol>
   <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3 L13.6 9.4 L20 11 L13.6 12.6 L12 19 L10.4 12.6 L4 11 L10.4 9.4 Z"/></symbol>
   <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18 a8 8 0 0 1 16 0"/><line x1="12" y1="18" x2="15.5" y2="11.5"/><circle cx="12" cy="18" r="1.3" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 3.5 h4"/><path d="M10.8 3.5 V9 L5.5 18.5 a1.6 1.6 0 0 0 1.4 2.4 h10.2 a1.6 1.6 0 0 0 1.4 -2.4 L13.2 9 V3.5"/><line x1="8.2" y1="14" x2="15.8" y2="14"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.2"/><polyline points="4.5,7.5 12,13 19.5,7.5"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="15"/><polyline points="7,10.5 12,15.5 17,10.5"/><line x1="5" y1="19.5" x2="19" y2="19.5"/></symbol>
 </defs>
@@ -254,37 +356,121 @@
     <div class="unify-grid">
       <div class="panel panel-before reveal">
         <h3><svg class="ic"><use href="#i-shuffle"/></svg> これまで（バラバラ）</h3>
-        <div class="scatter-item"><svg class="ic"><use href="#i-doc"/></svg> コンディションは紙・別アプリ</div>
-        <div class="scatter-item"><svg class="ic"><use href="#i-signal"/></svg> GPSはGPSソフトウェア</div>
-        <div class="scatter-item"><svg class="ic"><use href="#i-dumbbell"/></svg> 練習メニューは別管理</div>
-        <div class="scatter-item"><svg class="ic"><use href="#i-pulse"/></svg> ケガ情報はトレーナーの手元</div>
-        <div class="scatter-item"><svg class="ic"><use href="#i-ball"/></svg> 試合のスタッツは表計算</div>
-        <div class="scatter-item" style="margin-bottom:0"><svg class="ic"><use href="#i-target"/></svg> 目標・面談はノート</div>
+        <div class="chaos-fig" aria-hidden="true">
+          <span class="chaos-x">つながらない</span>
+          <div class="d-chip" style="left:22%;top:17%;--r:-7deg"><div class="box"><svg class="ic"><use href="#i-pen"/></svg></div><span class="nm">コンディション</span><span class="src">紙・別アプリ</span></div>
+          <div class="d-chip" style="left:76%;top:14%;--r:5deg"><div class="box"><svg class="ic"><use href="#i-signal"/></svg></div><span class="nm">GPS</span><span class="src">GPSソフト</span></div>
+          <div class="d-chip" style="left:14%;top:52%;--r:6deg"><div class="box"><svg class="ic"><use href="#i-dumbbell"/></svg></div><span class="nm">トレーニング</span><span class="src">Excel</span></div>
+          <div class="d-chip" style="left:86%;top:50%;--r:-6deg"><div class="box"><svg class="ic"><use href="#i-ball"/></svg></div><span class="nm">試合</span><span class="src">表計算</span></div>
+          <div class="d-chip" style="left:30%;top:81%;--r:-4deg"><div class="box"><svg class="ic"><use href="#i-pulse"/></svg></div><span class="nm">ケガ・メディカル</span><span class="src">トレーナーの手元</span></div>
+          <div class="d-chip" style="left:71%;top:82%;--r:7deg"><div class="box"><svg class="ic"><use href="#i-target"/></svg></div><span class="nm">目標・面談</span><span class="src">ノート</span></div>
+        </div>
+        <p class="fig-cap">同じ選手のデータなのに、置き場所も形式も別々。<b>横断して見られず、つなげて考えられない。</b></p>
       </div>
 
       <div class="arrow-mid reveal"><svg class="ic"><use href="#i-arrow"/></svg></div>
 
       <div class="panel panel-after reveal">
         <h3><svg class="ic"><use href="#i-hub"/></svg> Odonata（一元管理）</h3>
-        <ul class="unified-list">
-          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> 毎日のコンディションを選手が入力</li>
-          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> GPS負荷データを自動で取り込み</li>
-          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> トレーニングメニューを作成・配布</li>
-          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> ケガ・メディカル情報を追跡</li>
-          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> 試合の出場・スタッツ・評価</li>
-          <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> IDP（目標）・面談まで一気通貫</li>
-        </ul>
+        <div class="hub-fig" aria-hidden="true">
+          <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <g stroke="#7FE3FF" stroke-opacity=".55" stroke-width="1.5">
+              <line x1="50" y1="50" x2="21" y2="16" vector-effect="non-scaling-stroke"/>
+              <line x1="50" y1="50" x2="79" y2="14" vector-effect="non-scaling-stroke"/>
+              <line x1="50" y1="50" x2="13" y2="50" vector-effect="non-scaling-stroke"/>
+              <line x1="50" y1="50" x2="87" y2="50" vector-effect="non-scaling-stroke"/>
+              <line x1="50" y1="50" x2="30" y2="82" vector-effect="non-scaling-stroke"/>
+              <line x1="50" y1="50" x2="71" y2="83" vector-effect="non-scaling-stroke"/>
+            </g>
+          </svg>
+          <div class="d-chip" style="left:21%;top:16%"><div class="box"><svg class="ic"><use href="#i-pen"/></svg></div><span class="nm">コンディション</span></div>
+          <div class="d-chip" style="left:79%;top:14%"><div class="box"><svg class="ic"><use href="#i-signal"/></svg></div><span class="nm">GPS</span></div>
+          <div class="d-chip" style="left:13%;top:50%"><div class="box"><svg class="ic"><use href="#i-dumbbell"/></svg></div><span class="nm">トレーニング</span></div>
+          <div class="d-chip" style="left:87%;top:50%"><div class="box"><svg class="ic"><use href="#i-ball"/></svg></div><span class="nm">試合</span></div>
+          <div class="d-chip" style="left:30%;top:82%"><div class="box"><svg class="ic"><use href="#i-pulse"/></svg></div><span class="nm">ケガ・メディカル</span></div>
+          <div class="d-chip" style="left:71%;top:83%"><div class="box"><svg class="ic"><use href="#i-target"/></svg></div><span class="nm">目標・面談</span></div>
+          <div class="hub-core"><img src="assets/odonata-emblem.png" alt="Odonata"></div>
+        </div>
+        <p class="fig-cap">すべてが<b>同じ選手・同じ時間軸のデータ</b>としてつながり、入力から分析まで1つの場所で完結。</p>
       </div>
     </div>
 
     <p class="center section-lead" style="margin:36px auto 0;max-width:720px">
       現場で聞く課題は3つ——<strong>①入力・記録の負荷 ②データの散在 ③分析・活用の限界</strong>。
-      Odonataはこの3つに、次の3つの機能で答えます。
+      Odonataはこの3つに、<strong>「集める・整理する・読み解く」の3つの機能</strong>で答えます。
     </p>
   </div>
 </section>
 
-<!-- ═══════════ 3. 解決の3機能 ═══════════ -->
+<!-- ═══════════ 3. データは資産 ═══════════ -->
+<section class="asset-band" id="asset">
+  <div class="wrap">
+    <div class="center" style="max-width:820px;margin:0 auto">
+      <span class="eyebrow">Data as Asset</span>
+      <h2 class="section-title"><span class="np">データは、早く集めるほど、</span><br><span class="np">チームと選手の</span><span class="np">財産になる。</span></h2>
+      <p class="section-lead center">
+        <span class="np">記録は、その日限りの</span><span class="np">消耗品ではありません。</span>
+        <span class="np">今日から貯まるデータが、</span><span class="np">1年後・3年後の</span><span class="np"><strong>判断の質の差</strong>になります。</span>
+      </p>
+    </div>
+    <svg class="asset-svg" viewBox="0 0 660 212" aria-hidden="true">
+      <defs>
+        <linearGradient id="agrow" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="rgba(63,200,240,.3)"/>
+          <stop offset="1" stop-color="#3FC8F0"/>
+        </linearGradient>
+      </defs>
+      <line x1="28" y1="177" x2="632" y2="177" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+      <g fill="url(#agrow)">
+        <rect x="60" y="143" width="90" height="34" rx="8"/>
+        <rect x="205" y="113" width="90" height="64" rx="8"/>
+        <rect x="350" y="73" width="90" height="104" rx="8"/>
+        <rect x="495" y="27" width="90" height="150" rx="8"/>
+      </g>
+      <g fill="#fff" font-size="12.5" font-weight="800" text-anchor="middle" font-family="'Manrope','Zen Kaku Gothic New',sans-serif">
+        <text x="105" y="164">記録</text>
+        <text x="250" y="134">傾向</text>
+        <text x="395" y="94">分析</text>
+        <text x="540" y="48">予測・知見</text>
+      </g>
+      <path d="M120 118 C 280 82 440 40 604 12" stroke="#7FE3FF" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".9"/>
+      <polygon points="608,11 593,11 599,23" fill="#7FE3FF"/>
+      <text x="265" y="30" fill="#7FE3FF" font-size="12.5" font-weight="800" text-anchor="middle" font-family="'Manrope','Zen Kaku Gothic New',sans-serif">データ資産の積み上がり</text>
+      <g fill="#cfe6f5" font-size="13" font-weight="700" text-anchor="middle" font-family="'Manrope','Zen Kaku Gothic New',sans-serif">
+        <text x="105" y="200">今日</text>
+        <text x="250" y="200">半年後</text>
+        <text x="395" y="200">1年後</text>
+        <text x="540" y="200">3年後</text>
+      </g>
+    </svg>
+    <div class="asset-cards">
+      <div class="asset-card reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-gauge"/></svg></div>
+        <h3>分析の精度が上がる</h3>
+        <p>データが貯まるほど、傷害予測・ネットワーク分析の<strong>精度と解像度が向上</strong>。早く始めたチームほど、深く読めるようになります。</p>
+      </div>
+      <div class="asset-card reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-doc"/></svg></div>
+        <h3>選手の「キャリアの記録」になる</h3>
+        <p>成長の推移・コンディション・ケガと復帰の履歴が、<strong>選手個人の財産</strong>として積み上がる。進路や次のカテゴリーでも活きるデータに。</p>
+      </div>
+      <div class="asset-card reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-book"/></svg></div>
+        <h3>チームの知見として残る</h3>
+        <p>スタッフが入れ替わっても、データと分析は<strong>クラブに残り、引き継がれる</strong>。個人の経験と勘を、チームの資産に変えます。</p>
+      </div>
+    </div>
+    <p class="asset-note">
+      <span class="np">過去のExcel・他アプリのデータを</span><span class="np">取り込んだ状態で始められるので、</span><span class="np"><b>これまでの記録も無駄になりません</b>。</span><br>
+      <span class="np">貯め始めるなら、</span><span class="np">早いほど。</span>
+    </p>
+    <div class="center" style="margin-top:26px">
+      <a class="btn btn-ghost" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 過去データの取り込みを相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 4. 解決の3機能 ═══════════ -->
 <section id="features" class="section-alt">
   <div class="wrap">
     <span class="eyebrow">Features</span>
@@ -298,26 +484,30 @@
         <h3><span class="np">チームの活動を、</span><span class="np">ひとつに記録する</span></h3>
         <p>入力すると予測・分析が返ってくる設計だから、記録が続く。すべてのデータを一つのWebアプリへ。</p>
       </div>
-      <div class="feat-grid">
+      <div class="feat-grid cols2">
         <div class="feat reveal">
           <div class="ficon"><svg class="ic"><use href="#i-pen"/></svg></div>
           <h3>かんたんコンディション入力</h3>
           <p>練習前・練習後の2回、スライダー中心の入力で完結。痛みの部位やチーム独自の項目にも対応し、すべての分析の土台になります。</p>
+          <img class="feat-shot capped" src="assets/app-input-pre.png" alt="練習前コンディション入力画面" loading="lazy">
         </div>
         <div class="feat reveal">
           <div class="ficon"><svg class="ic"><use href="#i-ball"/></svg></div>
           <h3>試合データの記録</h3>
           <p>スコアや対戦相手だけでなく、出場時間・スタッツ・選手ごとの自己評価まで、<strong>試合の詳細を1試合ずつ記録</strong>。あとから振り返れます。</p>
+          <img class="feat-shot auto" src="assets/app-match.png" alt="試合レポート画面" loading="lazy">
         </div>
         <div class="feat reveal">
           <div class="ficon"><svg class="ic"><use href="#i-shield"/></svg></div>
           <h3>メディカル（ケガ記録）</h3>
           <p><strong>だれが・いつ・どこを負傷し、いつ復帰したか</strong>をチームのカルテとして蓄積。リハビリの経過や一部参加の状況も残せます。</p>
+          <img class="feat-shot auto" src="assets/app-medical.png" alt="ケガ記録画面" loading="lazy">
         </div>
         <div class="feat reveal">
           <div class="ficon"><svg class="ic"><use href="#i-target"/></svg></div>
           <h3>IDP（個人育成計画）</h3>
           <p>選手ごとの目標と取り組みを設定し、達成度の評価や面談記録まで一元管理。育成のプロセスを見える形で残します。</p>
+          <img class="feat-shot auto" src="assets/app-idp.png" alt="IDP（個人育成計画）画面" loading="lazy">
         </div>
         <div class="feat reveal">
           <div class="ficon"><svg class="ic"><use href="#i-dumbbell"/></svg></div>
@@ -328,6 +518,7 @@
           <div class="ficon"><svg class="ic"><use href="#i-signal"/></svg></div>
           <h3>GPS負荷データ連携</h3>
           <p>走行距離・スプリント・加減速・衝撃・ACWRなどの運動負荷を、API連携で自動取り込み・可視化。</p>
+          <img class="feat-shot auto" src="assets/app-gps.png" alt="GPSトレンド画面" loading="lazy">
           <span class="tag"><svg class="ic"><use href="#i-warn"/></svg> GPS連携チームのみ</span>
         </div>
       </div>
@@ -347,21 +538,30 @@
         <h3><span class="np">探す時間を、</span><span class="np">判断の時間へ</span></h3>
         <p>選手・チームの2軸で即座に閲覧。推移として可視化し、イベントの前後で並べて比べられます。</p>
       </div>
-      <div class="feat-grid">
-        <div class="feat reveal">
-          <div class="ficon"><svg class="ic"><use href="#i-home"/></svg></div>
-          <h3>ダッシュボード</h3>
-          <p>チーム概況・要確認選手・当日の予定をひと目で。<strong>同一選手を横断して見られる</strong>ことが、すべての判断の起点になります。</p>
+      <div class="feat-stack">
+        <div class="feat row reveal">
+          <div>
+            <div class="ficon"><svg class="ic"><use href="#i-home"/></svg></div>
+            <h3>ダッシュボード</h3>
+            <p>入力状況・選手ステータス・戦績・コンディション・負荷推移をひと目で。<strong>同一選手を横断して見られる</strong>ことが、すべての判断の起点になります。</p>
+          </div>
+          <img class="feat-shot auto" src="assets/app-dashboard.png" alt="ダッシュボード画面：入力状況・選手ステータス内訳・戦績・コンディション・負荷推移" loading="lazy">
         </div>
-        <div class="feat reveal">
-          <div class="ficon"><svg class="ic"><use href="#i-chart"/></svg></div>
-          <h3>推移の確認</h3>
-          <p>各指標の推移を、ケガ・体調不良マーカー付きのグラフで表示。期間と指標を選ぶだけで、調子の波がひと目で分かります。</p>
+        <div class="feat row reveal">
+          <div>
+            <div class="ficon"><svg class="ic"><use href="#i-chart"/></svg></div>
+            <h3>推移の確認</h3>
+            <p>各指標の推移をグラフで表示。期間と指標を選ぶだけで、<strong>調子の波がひと目で分かります</strong>。</p>
+          </div>
+          <img class="feat-shot auto" src="assets/app-trends.png" alt="チーム平均の疲労推移グラフ" loading="lazy">
         </div>
-        <div class="feat reveal">
-          <div class="ficon"><svg class="ic"><use href="#i-shuffle"/></svg></div>
-          <h3>イベント前後の比較</h3>
-          <p>「ケガの前後」「好調期と不調期」など、<strong>特定のイベントの前後の2期間を並べて比較</strong>。何がどう変わったのかを確かめられます。</p>
+        <div class="feat row reveal">
+          <div>
+            <div class="ficon"><svg class="ic"><use href="#i-shuffle"/></svg></div>
+            <h3>イベント前後の比較</h3>
+            <p>「ケガの前後」「好調期と不調期」など、<strong>特定のイベントの前後の2期間を並べて比較</strong>。何がどう変わったのかを確かめられます。</p>
+          </div>
+          <img class="feat-shot auto" src="assets/app-compare.png" alt="2期間比較画面" loading="lazy">
         </div>
       </div>
     </div>
@@ -370,22 +570,91 @@
     <div class="feat-group">
       <div class="fg-head">
         <span class="fg-step">③ 読み解く</span>
-        <h3><span class="np">関係性とリスクを、</span><span class="np">分析する</span></h3>
-        <p>整理したデータから「何が何に影響しているか」を読み解き、先回りの意思決定につなげます。</p>
+        <h3><span class="np">高度な分析を、</span><span class="np">現場で使える形に</span></h3>
+        <p>研究レベルの分析結果を、専門家がいなくても<strong style="color:var(--navy)">毎日使える画面として実装</strong>。「何が何に影響しているか」を読み解き、先回りの意思決定につなげます。</p>
       </div>
-      <div class="feat-grid cols2">
-        <div class="feat reveal">
+
+      <!-- AI傷害リスク予測 -->
+      <div class="rg-block">
+        <div class="rg-head">
           <div class="ficon"><svg class="ic"><use href="#i-gauge"/></svg></div>
-          <h3>AI傷害リスク予測</h3>
-          <p>機械学習が各選手のケガ発生確率を算出。要因も分解して表示し、練習負荷の設計に活かせます。的中率 約70%<sup class="fn"><a href="#pf-notes">※</a></sup>。</p>
+          <h4>AI傷害リスク予測</h4>
           <span class="tag"><svg class="ic"><use href="#i-warn"/></svg> GPS連携チームのみ</span>
+          <span class="rg-note">的中率 約70%<sup class="fn"><a href="#pf-notes">※</a></sup></span>
         </div>
-        <div class="feat reveal">
+        <div class="feat-stack">
+          <div class="feat row reveal">
+            <div>
+              <h3>各選手のリスク表示</h3>
+              <p>機械学習が全選手のケガ発生リスクを日次で算出。<strong>高・中・低リスクの人数と要注意選手</strong>がひと目で分かります。</p>
+            </div>
+            <img class="feat-shot auto" src="assets/app-risk.png" alt="チーム全体のリスクサマリ：高リスク・中リスク・低リスク・負傷離脱の人数と要注意アラート" loading="lazy">
+          </div>
+          <div class="feat row reveal">
+            <div>
+              <h3>リスク上昇要因の表示</h3>
+              <p>「なぜ高リスクなのか」を要因分解して提示。<strong>根拠が見えるから、納得して対処</strong>できます。</p>
+            </div>
+            <img class="feat-shot auto" src="assets/app-risk-factor.png" alt="高リスク選手のリスク上昇要因の分解表示" loading="lazy">
+          </div>
+          <div class="feat row reveal">
+            <div>
+              <h3>リスクシミュレーション</h3>
+              <p>週間プランで練習強度を組むと、<strong>1週間先までのリスク推移を事前にシミュレーション</strong>。負荷設計に活かせます。</p>
+            </div>
+            <div class="fs-col">
+              <img class="feat-shot auto" src="assets/app-plan.png" alt="週間プラン設計画面：曜日ごとに練習強度を選択" loading="lazy">
+              <img class="feat-shot auto" src="assets/app-plan-curve.png" alt="計画した1週間の負荷によるリスク推移のシミュレーショングラフ" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ネットワーク分析 -->
+      <div class="rg-block">
+        <div class="rg-head">
           <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
-          <h3>ネットワーク分析</h3>
-          <p>変数どうしの「先行関係（昨日→今日）」と「同時相関（同じ日）」を図で可視化。コンディションの構造が見えます。</p>
+          <h4>ネットワーク分析</h4>
           <a class="more" href="guide.html#network">読み方ガイドへ <svg class="ic"><use href="#i-arrow"/></svg></a>
         </div>
+        <div class="feat-stack">
+          <div class="feat row reveal">
+            <div>
+              <h3>時系列関係の図</h3>
+              <p>「昨日の睡眠は、今日の疲労にどう効くか」。<strong>時間差の影響（先行関係）</strong>を矢印で可視化します。</p>
+            </div>
+            <img class="feat-shot auto nat" src="assets/app-network-graph.png" alt="時系列関係（先行関係）のネットワーク図" loading="lazy">
+          </div>
+          <div class="feat row reveal">
+            <div>
+              <h3>同時相関の図</h3>
+              <p>同じ日に<strong>一緒に動く指標のつながり</strong>を可視化。コンディションの構造が見えてきます。</p>
+            </div>
+            <img class="feat-shot auto nat" src="assets/app-network-cor.png" alt="同時相関のネットワーク図" loading="lazy">
+          </div>
+          <div class="feat row reveal">
+            <div>
+              <h3>目的別ネットワークの作成</h3>
+              <p>「睡眠とリカバリー」「ケガの予兆」など、<strong>目的別プリセットを選ぶだけ</strong>。専門知識がなくても、知りたい関係の図を作れます。</p>
+            </div>
+            <img class="feat-shot auto" src="assets/app-network-setup.png" alt="目的別プリセットからネットワーク図を作成する画面" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <div class="custom-band reveal">
+        <div class="cb-icon"><svg class="ic"><use href="#i-flask"/></svg></div>
+        <div class="cb-body">
+          <span class="cb-tag">CUSTOM ANALYSIS</span>
+          <h3><span class="np">クラブのデータで行った分析も、</span><span class="np">この画面に反映できる。</span></h3>
+          <p><span class="np">搭載済みの分析だけでは</span><span class="np">ありません。</span><span class="np"><strong>クラブ保有データを使った個別分析</strong>（データ分析・伴走支援）の結果を、</span><span class="np">プラットフォームの画面に</span><span class="np">実装・反映します。</span><span class="np">チーム専用の分析が、</span><span class="np"><strong>現場で毎日使える形</strong>に。</span></p>
+          <div class="cb-ex">
+            <span>パフォーマンス変動予測</span>
+            <span>トレーニング効果測定</span>
+            <span>補強・編成シミュレーション</span>
+            <span>ほか、クラブの課題に合わせて</span>
+          </div>
+        </div>
+        <a class="btn btn-primary" href="service-analysis.html">データ分析・伴走支援を見る <svg class="ic"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
 
@@ -414,6 +683,7 @@
         <tr><td><b>ダッシュボード</b></td><td>チーム概況・要確認選手の自動アラート・選手一覧・特徴レーダー</td></tr>
         <tr><td><b>傷害予測</b></td><td>選手別リスクスコア（日次・週次）・要因分解・1週間プラン（GPS連携チームのみ）</td></tr>
         <tr><td><b>ネットワーク分析</b></td><td>時系列関係・同時相関の可視化、2期間比較、チーム傾向、自動解釈文</td></tr>
+        <tr><td><b>カスタム分析の実装</b></td><td>クラブ保有データを使った個別分析（データ分析・伴走支援）の結果を、プラットフォームの画面に実装・反映</td></tr>
         <tr><td><b>収集機能の追加</b></td><td>チーム独自の入力項目・新しいデータ種別の収集機能を、要望に応じて追加開発</td></tr>
       </table>
     </div>
@@ -423,86 +693,7 @@
   </div>
 </section>
 
-<!-- ═══════════ 5. GPSがなくても始められる ═══════════ -->
-<section class="section-alt" id="no-gps">
-  <div class="wrap">
-    <div class="center" style="max-width:780px;margin:0 auto">
-      <span class="eyebrow">For Youth &amp; Amateur</span>
-      <h2 class="section-title"><span class="np">GPSがなくても、</span><span class="np">始められる。</span></h2>
-      <p class="section-lead center">
-        <span class="np">主観コンディション・試合・</span><span class="np">メディカルのデータから、</span><span class="np">推移・2期間比較・</span><span class="np">ネットワーク分析まで</span><span class="np">利用できます。</span>
-        <span class="np">GPS関連の指標は</span><span class="np">自動的に非表示になるため、</span><span class="np">迷うこともありません。</span>
-      </p>
-    </div>
-    <div class="feat-grid">
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-pen"/></svg></div>
-        <h3>主観データだけで開始</h3>
-        <p>毎日の主観コンディションだけでも、選手・チームの傾向分析は動きます。まず記録の習慣づくりから。</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-clock"/></svg></div>
-        <h3>過去データも資産に</h3>
-        <p>Excelや他アプリの過去データを取り込んだ状態でスタート可能。<strong>「貯まるまで待つ」必要がありません</strong>。</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-signal"/></svg></div>
-        <h3>GPSは後からでも</h3>
-        <p>GPSを導入したタイミングでAPI連携を追加すれば、傷害予測・負荷分析まで拡張できます。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 6. 料金プラン ═══════════ -->
-<section id="pricing">
-  <div class="wrap">
-    <div class="center" style="max-width:760px;margin:0 auto">
-      <span class="eyebrow">Pricing</span>
-      <h2 class="section-title">料金プラン</h2>
-      <p class="section-lead center"><span class="np">チームの体制と</span><span class="np">活用の深さに合わせた</span><span class="np">3プラン。</span><span class="np">いずれも試験導入から</span><span class="np">始められます。</span></p>
-    </div>
-    <div class="price-grid">
-      <div class="price reveal">
-        <h3>プランA</h3>
-        <div class="for">記録と管理から始めたいチームに（育成年代・大学など）</div>
-        <div class="amount">月額 8万円<small>（税別）</small></div>
-        <ul>
-          <li><svg class="ic"><use href="#i-check"/></svg> コンディション・試合・メディカル・IDP・スケジュール管理</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> ダッシュボード・推移・2期間比較</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> 選手アカウント無制限</li>
-        </ul>
-      </div>
-      <div class="price rec reveal">
-        <div class="badge">おすすめ</div>
-        <h3>プランB</h3>
-        <div class="for">分析まで使い切りたいチームに</div>
-        <div class="amount">月額 15万円<small>（税別）</small></div>
-        <ul>
-          <li><svg class="ic"><use href="#i-check"/></svg> プランAの全機能</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> GPS API連携・負荷分析</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> ネットワーク分析（個人・チーム傾向）</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> 導入・運用サポート</li>
-        </ul>
-      </div>
-      <div class="price reveal">
-        <h3>プランC</h3>
-        <div class="for">予測と伴走まで含めたフル活用に（プロ・大学上位）</div>
-        <div class="amount">月額 40万円<small>（税別）</small></div>
-        <ul>
-          <li><svg class="ic"><use href="#i-check"/></svg> プランBの全機能</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> AI傷害予測（チーム個別モデル構築）</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> 分析レポート・定例伴走支援</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footnotes">
-      <p>※ 過去データの取込・API連携の新規開発・カスタム分析は別途お見積りとなります。プラン内容の詳細・契約条件は資料およびお打ち合わせにてご案内します。</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 7. データの取り扱い ═══════════ -->
+<!-- ═══════════ 5. データの取り扱い ═══════════ -->
 <section class="section-alt" id="privacy">
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
