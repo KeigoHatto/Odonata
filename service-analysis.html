@@ -15,6 +15,66 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
+  /* ───── アプローチ比較（ネイビー帯） ───── */
+  .approach-band{background:var(--grad-hero);color:#fff;padding:92px 0}
+  .approach-band .section-title{color:#fff}
+  .approach-band .section-lead{color:#cfe6f5}
+  .approach-band .section-lead strong{color:#7FE3FF}
+
+  /* パラダイム比較図（従来 vs 複雑系） */
+  .para-fig{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;margin-top:48px}
+  @media(max-width:880px){.para-fig{grid-template-columns:1fr;gap:0;max-width:560px;margin-left:auto;margin-right:auto}}
+  .para-col{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:28px 28px 22px;box-shadow:var(--shadow)}
+  .para-col.old{background:linear-gradient(180deg,#fff,#F5F8FA)}
+  .para-col.new{border-color:var(--blue);box-shadow:0 16px 44px rgba(0,160,233,.3);background:linear-gradient(180deg,#fff,#F0FAFE)}
+  .para-tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;border-radius:999px;padding:6px 16px;margin-bottom:14px}
+  .para-col.old .para-tag{background:#EDF1F4;color:var(--sub)}
+  .para-col.new .para-tag{background:var(--blue);color:#fff;box-shadow:0 6px 16px rgba(0,160,233,.3)}
+  .para-col h4{font-size:clamp(20px,2.6vw,24px);font-weight:800;color:var(--navy);line-height:1.35}
+  .para-col.old h4{color:#4A6272}
+  .para-sub{font-size:13.5px;font-weight:600;color:var(--sub);margin-top:4px}
+  .para-svg{width:100%;height:auto;max-width:320px;margin:14px auto 4px;display:block}
+  .para-cap{text-align:center;font-size:14px;color:var(--sub);font-weight:600;margin-bottom:14px}
+  .para-cap strong{color:var(--navy)}
+  .para-col.old .para-cap strong{color:#B03A2E}
+  .para-points{list-style:none;margin-top:6px}
+  .para-points li{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-top:1.5px dashed var(--border);font-size:15.5px;font-weight:700;color:var(--navy);line-height:1.65}
+  .para-points li small{display:block;font-size:12.5px;font-weight:600;color:var(--sub);margin-top:2px}
+  .para-points .mark{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;margin-top:3px}
+  .para-points.bad li{color:#5A7A8A}
+  .para-points.bad .mark{background:#FDECEC;color:#D64541}
+  .para-points.bad b{color:#B03A2E}
+  .para-points.good .mark{background:#DCF5E7;color:#16A34A}
+  .para-points.good b{color:var(--navy)}
+  .para-shift{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+  .para-word{font-size:12.5px;font-weight:800;letter-spacing:.12em;color:#7FE3FF;text-align:center;line-height:1.5}
+  .para-shift svg.ic{font-size:40px;stroke-width:2;color:#7FE3FF}
+  @media(max-width:880px){
+    .para-shift{flex-direction:row;padding:16px 0;gap:10px}
+    .para-shift svg.ic{transform:rotate(90deg);font-size:34px}
+    .para-word br{display:none}
+  }
+  .fn-inverse a{color:#9fe2ff}
+
+  /* ───── 統合図：複数指標 ⇒ 1つの現象 ───── */
+  .cv-fig{display:grid;grid-template-columns:minmax(200px,1fr) clamp(56px,9vw,110px) 1.25fr;align-items:center;margin-top:40px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+  .cv-src{display:grid;gap:10px}
+  .cv-chip{display:flex;align-items:center;gap:9px;background:#EAF7FF;border:1px solid var(--border);border-radius:11px;padding:10px 14px;font-size:14px;font-weight:700;color:var(--navy)}
+  .cv-chip svg.ic{color:var(--blue);font-size:18px;flex:none}
+  .cv-lines{width:100%;height:100%;min-height:140px;display:block}
+  .cv-lines line{stroke:var(--cyan);stroke-width:2;vector-effect:non-scaling-stroke;stroke-linecap:round}
+  .cv-core{background:var(--grad-hero);color:#fff;border-radius:16px;padding:26px 28px;box-shadow:0 14px 36px rgba(11,42,91,.25)}
+  .cv-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#9fe2ff;border-radius:999px;padding:4px 13px;margin-bottom:12px}
+  .cv-node{font-size:clamp(17px,2.2vw,21px);font-weight:800;display:flex;align-items:center;gap:10px;line-height:1.5}
+  .cv-node svg.ic{font-size:26px;color:#7FE3FF;flex:none}
+  .cv-core p{font-size:13.5px;color:#cfe6f5;margin-top:10px;line-height:1.85}
+  .cv-core p b{color:#fff}
+  @media(max-width:760px){
+    .cv-fig{grid-template-columns:1fr;padding:22px}
+    .cv-lines{display:none}
+    .cv-core{margin-top:18px}
+  }
+
   /* 傷害予測：入力→モデル→出力 */
   .risk-fig{display:grid;grid-template-columns:1fr auto 1fr auto 1.15fr;gap:16px;align-items:stretch;margin-top:48px}
   @media(max-width:900px){.risk-fig{grid-template-columns:1fr}}
@@ -31,14 +91,75 @@
   .rf-core p{font-size:12px;color:#cfe6f5;margin-top:8px}
   .rf-arrow{display:grid;place-items:center;color:var(--blue);font-size:26px}
   @media(max-width:900px){.rf-arrow{transform:rotate(90deg);padding:2px 0}}
-  /* 性能数値 */
-  .perf{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-  @media(max-width:760px){.perf{grid-template-columns:1fr}}
-  .perf .p{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 22px;text-align:center;box-shadow:var(--shadow)}
-  .perf .p .v{font-size:38px;font-weight:800;color:var(--blue);line-height:1;font-family:'Manrope',sans-serif}
-  .perf .p .v small{font-size:18px}
-  .perf .p .k{font-size:13.5px;font-weight:700;color:var(--navy);margin-top:10px}
-  .perf .p .s{font-size:12px;color:var(--sub);margin-top:6px;line-height:1.7}
+  /* ───── 実績ありバッジ ───── */
+  .feat.proven{border-color:var(--blue);box-shadow:0 14px 40px rgba(0,160,233,.16);overflow:visible;position:relative}
+  .pv-badge{position:absolute;top:-13px;right:16px;background:var(--blue);color:#fff;font-size:12px;font-weight:800;border-radius:999px;padding:4px 14px;box-shadow:0 6px 16px rgba(0,160,233,.35);letter-spacing:.04em}
+
+  /* ───── ミニ統合図（分析3例） ───── */
+  .mcv{display:grid;gap:14px;margin-top:26px}
+  .mcv-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 22px;box-shadow:var(--shadow)}
+  .mcv-name{flex:none;min-width:180px;font-size:16px;font-weight:800;color:var(--navy)}
+  .mcv-chip{font-size:14px;font-weight:700;background:#EAF7FF;border:1px solid var(--border);border-radius:999px;padding:6px 14px;color:var(--navy)}
+  .mcv-plus{color:var(--cyan);font-weight:800;font-size:15px}
+  .mcv-arr{color:var(--blue);font-size:22px;display:inline-flex}
+  .mcv-out{font-size:14.5px;font-weight:800;background:var(--navy);color:#fff;border-radius:999px;padding:8px 18px}
+  @media(max-width:700px){.mcv-name{min-width:0;width:100%}}
+
+  /* ───── 的中率比較（従来→Odonata） ───── */
+  .acc-fig{max-width:880px;margin:44px auto 0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:34px clamp(22px,4vw,40px)}
+  .acc-head{text-align:center;font-size:17px;font-weight:800;color:var(--navy);margin-bottom:24px}
+  .acc-row{display:grid;grid-template-columns:minmax(150px,230px) 1fr auto;gap:16px;align-items:center;padding:10px 0}
+  @media(max-width:640px){.acc-row{grid-template-columns:1fr auto}.acc-label{grid-column:1/-1}}
+  .acc-label{font-size:15px;font-weight:700;color:var(--sub)}
+  .acc-row.new .acc-label{color:var(--navy);font-weight:800}
+  .acc-bar{height:28px;background:var(--bg);border-radius:999px;overflow:hidden}
+  .acc-bar i{display:block;height:100%;border-radius:999px}
+  .acc-row.old .acc-bar i{width:7%;background:#B9CBD8}
+  .acc-row.new .acc-bar i{width:70%;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+  .acc-val{font-family:'Manrope','Zen Kaku Gothic New',sans-serif;font-weight:800;color:var(--sub);font-size:21px;min-width:92px;text-align:right}
+  .acc-row.new .acc-val{color:var(--blue);font-size:38px}
+  .acc-x{display:flex;align-items:center;gap:12px;margin:8px 0}
+  .acc-x::before,.acc-x::after{content:"";flex:1;border-top:1.5px dashed var(--border)}
+  .acc-x span{background:var(--navy);color:#fff;font-weight:800;border-radius:999px;padding:7px 20px;font-size:15px}
+  .acc-note{margin-top:18px;font-size:13px;color:var(--sub);text-align:center;line-height:1.8}
+
+  /* ───── ネットワーク図の読み取り＋ユースケース ───── */
+  .net-ex{display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center;margin-top:44px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px}
+  @media(max-width:860px){.net-ex{grid-template-columns:1fr}}
+  .net-fig{position:relative}
+  .net-fig img{width:100%;border:1px solid var(--border);border-radius:12px;display:block;background:#EAF7FF}
+  .net-badge{position:absolute;top:-12px;left:14px;background:var(--navy);color:#fff;font-size:12.5px;font-weight:800;border-radius:999px;padding:5px 15px;z-index:2}
+  .net-ex.flip .net-fig{order:2}
+  @media(max-width:860px){.net-ex.flip .net-fig{order:0}}
+  .net-read h3{font-size:clamp(19px,2.4vw,23px);font-weight:800;color:var(--navy);line-height:1.5}
+  .net-insight{font-size:15.5px;color:var(--text);margin-top:10px;line-height:1.9}
+  .net-insight b{color:var(--navy)}
+  .uc{display:flex;gap:12px;align-items:flex-start;margin-top:14px;background:#F2FBFE;border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+  .uc-tag{flex:none;font-size:12.5px;font-weight:800;border-radius:999px;padding:4px 13px;background:var(--blue);color:#fff;margin-top:3px}
+  .uc-tag.coach{background:var(--navy)}
+  .uc p{font-size:15px;color:var(--text);line-height:1.8}
+  .uc p b{color:var(--navy)}
+
+  /* ───── 文字サイズ底上げ ───── */
+  .section-lead{font-size:clamp(17px,2.1vw,19.5px)}
+  .section-lead strong{color:var(--navy)}
+  .approach-band .section-lead strong{color:#7FE3FF}
+  .feat h3{font-size:20px}
+  .feat p{font-size:15px;line-height:1.85}
+  .check-list li{font-size:15.5px}
+  .rf-box li{font-size:15px}
+  .rf-box h4{font-size:13.5px}
+  .rf-core .big{font-size:19px}
+  .rf-core p{font-size:13px}
+  .cv-chip{font-size:15px}
+  .cv-core p{font-size:14.5px}
+  .qa summary{font-size:16.5px}
+  .qa .ans{font-size:15px}
+  .price li{font-size:14px}
+  .callout p{font-size:15px}
+  .roi p{font-size:15.5px}
+  .flow-step h4{font-size:17px}
+  .flow-step p{font-size:13.5px}
   /* 費用カード */
   .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
   @media(max-width:820px){.price-grid{grid-template-columns:1fr}}
@@ -82,6 +203,8 @@
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 L19 6 V11 C19 16 16 19 12 21 C8 19 5 16 5 11 V6 Z"/><polyline points="9,12 11,14 15,9.5"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.2"/><polyline points="4.5,7.5 12,13 19.5,7.5"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="15"/><polyline points="7,10.5 12,15.5 17,10.5"/><line x1="5" y1="19.5" x2="19" y2="19.5"/></symbol>
+  <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polygon points="12,8 15.3,10.4 14,14.3 10,14.3 8.7,10.4"/><line x1="12" y1="8" x2="12" y2="4.5"/><line x1="15.3" y1="10.4" x2="18.5" y2="9.2"/><line x1="14" y1="14.3" x2="16" y2="17.3"/><line x1="10" y1="14.3" x2="8" y2="17.3"/><line x1="8.7" y1="10.4" x2="5.5" y2="9.2"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"/><line x1="4" y1="9.2" x2="20" y2="9.2"/><line x1="8" y1="3" x2="8" y2="6"/><line x1="16" y1="3" x2="16" y2="6"/><circle cx="9" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="13.5" r="1" fill="currentColor" stroke="none"/></symbol>
 </defs>
 </svg>
 
@@ -147,6 +270,92 @@
   </div>
 </section>
 
+<!-- ═══════════ 2.5 アプローチの違い ═══════════ -->
+<section class="approach-band" id="method">
+  <div class="wrap">
+    <div class="center" style="max-width:800px;margin:0 auto">
+      <span class="eyebrow">Our Method</span>
+      <h2 class="section-title"><span class="np">同じデータでも、</span><span class="np">読み方がちがう。</span></h2>
+      <p class="section-lead center">
+        <span class="np">Odonataの分析は、</span><span class="np">指標を1つずつ見る</span><span class="np">従来の要素還元アプローチとは、</span><span class="np">根本から異なります。</span>
+        <span class="np">読むのは、</span><span class="np">データの</span><strong class="np">「関係性」</strong><span class="np">です。</span>
+      </p>
+    </div>
+    <div class="para-fig">
+      <div class="para-col old reveal">
+        <span class="para-tag">従来の分析 ── 要素還元アプローチ</span>
+        <h4>指標を1つずつ見る</h4>
+        <p class="para-sub">データを切り出して個別に監視・平均と比較</p>
+        <svg class="para-svg" viewBox="0 0 300 168" aria-hidden="true">
+          <g stroke="#A8BCC9" stroke-width="1.6" stroke-dasharray="4 4" fill="none">
+            <circle cx="62" cy="46" r="24"/>
+            <circle cx="222" cy="38" r="24"/>
+            <circle cx="150" cy="92" r="26"/>
+            <circle cx="70" cy="134" r="24"/>
+            <circle cx="230" cy="128" r="24"/>
+          </g>
+          <g fill="#B9CBD8">
+            <circle cx="62" cy="46" r="11"/>
+            <circle cx="222" cy="38" r="11"/>
+            <circle cx="150" cy="92" r="12"/>
+            <circle cx="70" cy="134" r="11"/>
+            <circle cx="230" cy="128" r="11"/>
+          </g>
+          <g fill="#94A9B8" font-size="14" font-weight="800" font-family="'Manrope','Zen Kaku Gothic New',sans-serif" text-anchor="middle">
+            <text x="106" y="74">?</text>
+            <text x="190" y="66">?</text>
+            <text x="110" y="120">?</text>
+            <text x="196" y="116">?</text>
+          </g>
+        </svg>
+        <p class="para-cap">指標は測れても、<strong>つながりは見えない</strong></p>
+        <ul class="para-points bad">
+          <li><span class="mark">✕</span><span><b>単独では「正常」な変化を見逃す</b><small>傷害予測の的中率は約5%——警報の大半が空振りに<sup class="fn"><a href="#risk-notes">※</a></sup></small></span></li>
+          <li><span class="mark">✕</span><span>指標の間にある関係性——<b>サッカーの本質——が抜け落ちる</b></span></li>
+        </ul>
+      </div>
+      <div class="para-shift reveal" aria-hidden="true">
+        <span class="para-word">パラダイム<br>シフト</span>
+        <svg class="ic"><use href="#i-arrow"/></svg>
+      </div>
+      <div class="para-col new reveal">
+        <span class="para-tag">Odonata ── 複雑系アプローチ</span>
+        <h4>関係性ごと読む</h4>
+        <p class="para-sub">複数指標を統合し、「重なり」ごと分析</p>
+        <svg class="para-svg" viewBox="0 0 300 168" aria-hidden="true">
+          <g stroke="#3FC8F0" stroke-width="2">
+            <line x1="62" y1="46" x2="150" y2="92"/>
+            <line x1="222" y1="38" x2="150" y2="92"/>
+            <line x1="70" y1="134" x2="150" y2="92"/>
+            <line x1="230" y1="128" x2="150" y2="92"/>
+            <line x1="62" y1="46" x2="222" y2="38" opacity=".55"/>
+            <line x1="70" y1="134" x2="230" y2="128" opacity=".55"/>
+            <line x1="62" y1="46" x2="70" y2="134" opacity=".55"/>
+            <line x1="222" y1="38" x2="230" y2="128" opacity=".55"/>
+          </g>
+          <g fill="#00A0E9">
+            <circle cx="62" cy="46" r="11"/>
+            <circle cx="222" cy="38" r="11"/>
+            <circle cx="70" cy="134" r="11"/>
+            <circle cx="230" cy="128" r="11"/>
+          </g>
+          <circle cx="150" cy="92" r="13" fill="#0B2A5B"/>
+          <circle cx="150" cy="92" r="21" fill="none" stroke="#00A0E9" stroke-width="1.6" opacity=".4"/>
+          <circle cx="150" cy="92" r="29" fill="none" stroke="#00A0E9" stroke-width="1.4" opacity=".18"/>
+        </svg>
+        <p class="para-cap">要素と要素の<strong>「間」にある構造</strong>まで分析する</p>
+        <ul class="para-points good">
+          <li><span class="mark">✓</span><span><b>要因の「重なり」を捉え、予測精度が大きく向上</b><small>同一データで的中率 約70%・従来比 約14倍<sup class="fn"><a href="#risk-notes">※</a></sup></small></span></li>
+          <li><span class="mark">✓</span><span>関係性を読むから、<b>サッカーの本質を捉えた解釈</b>ができる</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="center" style="margin-top:40px">
+      <a class="btn btn-primary" href="approach.html">複雑系アプローチを詳しく読む <svg class="ic"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ 3. 提供メニュー ═══════════ -->
 <section class="section-alt" id="menu">
   <div class="wrap">
@@ -207,15 +416,19 @@
         <h3>パフォーマンス予測</h3>
         <p>コンディション・負荷・出場データからパフォーマンスの波を予測。連戦時のローテーションや起用の判断材料に。</p>
       </div>
-      <div class="feat reveal">
+      <div class="feat proven reveal">
+        <span class="pv-badge">実績あり</span>
         <div class="ficon"><svg class="ic"><use href="#i-gauge"/></svg></div>
         <h3>傷害リスク予測</h3>
         <p>要因の「重なり」からリスクを先読み。負荷を落とす・一声かけるタイミングを逃さない。</p>
+        <a class="more" href="#risk">実証結果を見る <svg class="ic"><use href="#i-arrow"/></svg></a>
       </div>
-      <div class="feat reveal">
+      <div class="feat proven reveal">
+        <span class="pv-badge">実績あり</span>
         <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
         <h3>ネットワーク分析</h3>
         <p>指標間の関係性を図として可視化。選手・チームの特性を、対話と育成の材料に。</p>
+        <a class="more" href="#network">分析例を見る <svg class="ic"><use href="#i-arrow"/></svg></a>
       </div>
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-target"/></svg></div>
@@ -233,7 +446,35 @@
         <p>育成年代のデータから、伸びる選手の兆しを捉える。指導者の眼とデータの両輪で、スカウティングを支えます。</p>
       </div>
     </div>
-    <p class="center section-lead" style="margin:32px auto 0;max-width:720px"><span class="np">ここに挙げたのは代表例です。</span><span class="np">ヒアリングをもとに、</span><span class="np">課題に合わせた分析を</span><span class="np">個別に設計します。</span></p>
+    <p class="center" style="margin:48px auto 0;max-width:760px;font-size:clamp(17px,2.2vw,20px);font-weight:800;color:var(--navy)">どの分析も、<span style="color:var(--blue)">必要な要素を統合</span>して「1つの答え」につなげます。</p>
+    <div class="mcv">
+      <div class="mcv-row reveal">
+        <span class="mcv-name">パフォーマンス予測</span>
+        <span class="mcv-chip">コンディション</span><span class="mcv-plus">＋</span>
+        <span class="mcv-chip">GPS負荷</span><span class="mcv-plus">＋</span>
+        <span class="mcv-chip">試合スタッツ</span><span class="mcv-plus">＋</span>
+        <span class="mcv-chip">スケジュール</span>
+        <span class="mcv-arr"><svg class="ic"><use href="#i-arrow"/></svg></span>
+        <span class="mcv-out">パフォーマンスの波を予測</span>
+      </div>
+      <div class="mcv-row reveal">
+        <span class="mcv-name">最適な補強戦略</span>
+        <span class="mcv-chip">試合スタッツ</span><span class="mcv-plus">＋</span>
+        <span class="mcv-chip">既存選手の特性</span><span class="mcv-plus">＋</span>
+        <span class="mcv-chip">プレースタイル</span>
+        <span class="mcv-arr"><svg class="ic"><use href="#i-arrow"/></svg></span>
+        <span class="mcv-out">「誰と組むと機能するか」を評価</span>
+      </div>
+      <div class="mcv-row reveal">
+        <span class="mcv-name">タレント発掘</span>
+        <span class="mcv-chip">成長推移</span><span class="mcv-plus">＋</span>
+        <span class="mcv-chip">コンディション</span><span class="mcv-plus">＋</span>
+        <span class="mcv-chip">面談・言語記録</span>
+        <span class="mcv-arr"><svg class="ic"><use href="#i-arrow"/></svg></span>
+        <span class="mcv-out">伸びる選手の兆しを検出</span>
+      </div>
+    </div>
+    <p class="center section-lead" style="margin:32px auto 0;max-width:720px"><span class="np">ここに挙げたのは代表例です。</span><span class="np">課題に合わせて、</span><span class="np">分析を個別に設計します。</span></p>
     <div class="callout info" style="max-width:820px;margin:36px auto 0">
       <svg class="ic cic"><use href="#i-users"/></svg>
       <div>
@@ -251,25 +492,26 @@
       <span class="eyebrow">Showcase 01</span>
       <h2 class="section-title"><span class="np">分析例① </span><span class="np">傷害リスク予測</span></h2>
       <p class="section-lead center">
-        <span class="np">複雑系アプローチの精度を示す</span><span class="np">代表例です。</span>
-        <span class="np">単独では正常な要因の「重なり」を</span><span class="np">AIが捉え、</span><span class="np">選手ごとのリスクを</span><span class="np">先読みします。</span>
+        <span class="np"><strong>GPS・コンディション・スケジュール・既往歴を統合</strong>し、</span>
+        <span class="np">単独では正常な要因の「重なり」から、</span><span class="np">選手ごとのリスクを</span><span class="np">AIが先読みします。</span>
       </p>
     </div>
 
     <div class="risk-fig">
       <div class="rf-box reveal">
-        <h4>Input ── 入力</h4>
+        <h4>Input ── 4種のデータ</h4>
         <ul>
           <li>主観コンディション（疲労・睡眠・痛み 等）</li>
           <li>GPS・運動負荷データ</li>
-          <li>メディカル・既往歴の記録</li>
+          <li>スケジュール（試合日程・連戦）</li>
+          <li>既往歴・メディカル記録</li>
         </ul>
       </div>
       <div class="rf-arrow reveal"><svg class="ic"><use href="#i-arrow"/></svg></div>
       <div class="rf-box rf-core reveal">
         <h4>Model</h4>
-        <div class="big">機械学習モデルが<br>要因の相互作用を学習</div>
-        <p>チームのデータで個別に構築・継続更新</p>
+        <div class="big">複数指標を統合し、<br>要因の相互作用を学習</div>
+        <p>1つの現象=「ケガ」を、多面的なデータで予測。チームのデータで個別に構築・継続更新</p>
       </div>
       <div class="rf-arrow reveal"><svg class="ic"><use href="#i-arrow"/></svg></div>
       <div class="rf-box reveal">
@@ -282,22 +524,20 @@
       </div>
     </div>
 
-    <div class="perf">
-      <div class="p reveal">
-        <div class="v">約70<small>%</small></div>
-        <div class="k">予測の的中率<sup class="fn"><a href="#risk-notes">※</a></sup></div>
-        <div class="s">「危険」と予測した日のうち、実際に傷害が発生した割合</div>
+    <div class="acc-fig reveal">
+      <div class="acc-head">傷害予測の的中率 ── 同一データでの比較<sup class="fn"><a href="#risk-notes">※</a></sup></div>
+      <div class="acc-row old">
+        <span class="acc-label">従来 ── 単一指標の監視</span>
+        <div class="acc-bar"><i></i></div>
+        <span class="acc-val">約5%</span>
       </div>
-      <div class="p reveal">
-        <div class="v">約5<small>%</small></div>
-        <div class="k">従来の単一指標手法の的中率<sup class="fn"><a href="#risk-notes">※</a></sup></div>
-        <div class="s">同一データでの比較。要素還元的な単一指標の監視では、警報の大半が空振りに</div>
+      <div class="acc-x"><span>精度 約14倍</span></div>
+      <div class="acc-row new">
+        <span class="acc-label">Odonata ── 複雑系アプローチ</span>
+        <div class="acc-bar"><i></i></div>
+        <span class="acc-val">約70%</span>
       </div>
-      <div class="p reveal">
-        <div class="v">約20<small>%</small></div>
-        <div class="k">傷害の捕捉率<sup class="fn"><a href="#risk-notes">※</a></sup></div>
-        <div class="s">発生した傷害のうち、事前に「危険」と予測できていた割合</div>
-      </div>
+      <p class="acc-note">的中率＝「危険」と予測した日のうち、実際に傷害が発生した割合。発生した傷害のうち事前に「危険」と予測できていた割合（捕捉率）は約20%です<sup class="fn"><a href="#risk-notes">※</a></sup>。</p>
     </div>
 
     <div class="footnotes" id="risk-notes">
@@ -316,26 +556,65 @@
       <span class="eyebrow">Showcase 02</span>
       <h2 class="section-title"><span class="np">分析例② </span><span class="np">ネットワーク分析</span></h2>
       <p class="section-lead center">
-        <span class="np">「どの指標が、どの指標に、</span><span class="np">どう影響しているか」を</span><span class="np">図として可視化。</span>
-        <span class="np">選手・チームの特性と傾向を、</span><span class="np">関係性の構造として</span><span class="np">定量化します。</span>
+        <span class="np"><strong>コンディション・GPS・試合スタッツなどを統合</strong>し、</span>
+        <span class="np">「どの指標が、どの指標に、</span><span class="np">どう影響しているか」を</span><span class="np">図として可視化します。</span>
       </p>
     </div>
-    <div class="feat-grid">
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-target"/></svg></div>
-        <h3>選手本人の自己理解</h3>
-        <p>「自分は睡眠が崩れると張りが出やすい」——自分のコンディションの構造を知ることが、セルフマネジメントの起点になります。</p>
+    <div class="cv-fig reveal">
+      <div class="cv-src">
+        <span class="cv-chip"><svg class="ic"><use href="#i-pen"/></svg> コンディション</span>
+        <span class="cv-chip"><svg class="ic"><use href="#i-signal"/></svg> GPS・運動負荷</span>
+        <span class="cv-chip"><svg class="ic"><use href="#i-ball"/></svg> 試合スタッツ</span>
       </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-users"/></svg></div>
-        <h3>指導者の観察の裏付け</h3>
-        <p>「あの選手は連戦に弱い気がする」という感覚を、データの関係性で確かめる。対話の質が変わります。</p>
+      <svg class="cv-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="0" y1="17" x2="100" y2="50"/>
+        <line x1="0" y1="50" x2="100" y2="50"/>
+        <line x1="0" y1="83" x2="100" y2="50"/>
+      </svg>
+      <div class="cv-core">
+        <span class="cv-tag">複数指標を統合して解釈</span>
+        <div class="cv-node"><svg class="ic"><use href="#i-network"/></svg> 「コンディションの構造」が見える</div>
+        <p>指標どうしのつながりを網の目として可視化。<b>1つの指標では見えない、選手というシステムの全体像</b>を解釈できます。</p>
       </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-chart"/></svg></div>
-        <h3>育成・編成の判断材料</h3>
-        <p>選手ごとの特性プロファイルを、起用・育成計画・編成の検討材料に。感覚と数値の両輪で判断できます。</p>
+    </div>
+    <div class="net-ex reveal">
+      <div class="net-fig">
+        <span class="net-badge">時系列関係の図（例）</span>
+        <img src="assets/app-network-graph.png" alt="時系列関係のネットワーク図の例：睡眠の質から疲労、RPEから疲労への影響が矢印で示されている" loading="lazy">
       </div>
+      <div class="net-read">
+        <h3><span class="np">「昨日」が「今日」に</span><span class="np">どう効くかを読む</span></h3>
+        <p class="net-insight">この例では、<b>睡眠の質が下がると翌日の疲労が大きく跳ね上がる</b>構造（-0.83）が見えます。練習の運動強度（RPE）も、翌日の疲労を押し上げています。</p>
+        <div class="uc">
+          <span class="uc-tag">選手の目線</span>
+          <p>「自分は<b>睡眠が崩れると疲労を持ち越すタイプ</b>」と自覚できる。まず夜のルーティンを整える。</p>
+        </div>
+        <div class="uc">
+          <span class="uc-tag coach">指導者の目線</span>
+          <p>連戦時は<b>睡眠の確保を最優先</b>に。朝の疲労報告から、当日の負荷を先回りして調整できる。</p>
+        </div>
+      </div>
+    </div>
+    <div class="net-ex flip reveal">
+      <div class="net-fig">
+        <span class="net-badge">同時相関の図（例）</span>
+        <img src="assets/app-network-cor.png" alt="同時相関のネットワーク図の例：疲労と筋の張り、不安・気分とやる気、やる気と主観パフォーマンスのつながり" loading="lazy">
+      </div>
+      <div class="net-read">
+        <h3><span class="np">「同じ日」に連動する</span><span class="np">指標を読む</span></h3>
+        <p class="net-insight">この例では、<b>疲労と筋の張りが同じ日に連動</b>（0.45）し、<b>不安・気分の落ち込みがやる気を下げる</b>（-0.24）構造が見えます。</p>
+        <div class="uc">
+          <span class="uc-tag">選手の目線</span>
+          <p>張りが強い日は<b>疲労のサイン</b>。セルフケアとスタッフへの申告の目安になる。</p>
+        </div>
+        <div class="uc">
+          <span class="uc-tag coach">指導者の目線</span>
+          <p>気分の揺れがパフォーマンスに波及する選手には、<b>声かけ・面談を優先</b>する判断ができる。</p>
+        </div>
+      </div>
+    </div>
+    <div class="footnotes">
+      <p>※ 図はデモ環境の表示例です。読み取れる構造は選手・チームごとに異なります。</p>
     </div>
     <div class="callout info">
       <svg class="ic cic"><use href="#i-signal"/></svg>
@@ -477,6 +756,8 @@
       <h2 class="section-title">よくある質問</h2>
     </div>
     <div class="faq">
+      <details class="qa"><summary>Odonataの分析は、他の分析サービスと何が違いますか？</summary>
+        <div class="ans">最大の違いは<b>複雑系アプローチ</b>です。指標を1つずつ切り出して評価する要素還元的な分析ではなく、<b>複数の指標を統合し、指標どうしの関係性・相互作用ごと</b>読み解きます。単独では「正常」に見える要因の重なりを捉えられるため、予測の精度が上がり（傷害予測では同一データで的中率 約5%→約70%<a href="#risk-notes" style="color:var(--blue);font-weight:700">※注記参照</a>）、「足し算では説明できない」サッカーの本質に沿った解釈ができます。さらに、汎用モデルの当てはめではなく<b>クラブ自身のデータで個別に構築</b>し、レポートで終わらせず<b>プラットフォームへの実装・現場への定着まで伴走</b>する点も特長です。</div></details>
       <details class="qa"><summary>どんな分析に対応していますか？</summary>
         <div class="ans">決まったメニューだけではありません。ヒアリングで課題を伺い、掲載していない内容も含めて<b>オーダーメイドで分析を設計</b>します。「そもそも何を分析すべきか分からない」「どの指標を取ればいいか分からない」という段階からのご相談も歓迎です。</div></details>
       <details class="qa"><summary>どんなデータがあれば分析できますか？</summary>
