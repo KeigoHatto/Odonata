@@ -39,6 +39,19 @@
   .perf .p .v small{font-size:18px}
   .perf .p .k{font-size:13.5px;font-weight:700;color:var(--navy);margin-top:10px}
   .perf .p .s{font-size:12px;color:var(--sub);margin-top:6px;line-height:1.7}
+  /* 費用カード */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+  @media(max-width:820px){.price-grid{grid-template-columns:1fr}}
+  .price{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow);text-align:center;display:flex;flex-direction:column}
+  .price.hl2{border-color:var(--blue);box-shadow:0 14px 40px rgba(0,160,233,.16)}
+  .price h3{font-size:16px;font-weight:800;color:var(--navy)}
+  .price .for{font-size:12px;font-weight:700;color:var(--sub);margin-top:4px}
+  .price .amount{margin:16px 0 4px;font-family:'Manrope','Zen Kaku Gothic New',sans-serif;font-weight:800;font-size:28px;color:var(--blue)}
+  .price .amount small{font-size:15px}
+  .price ul{list-style:none;text-align:left;margin-top:14px}
+  .price li{font-size:13px;color:var(--sub);padding:6px 0;border-bottom:1px solid var(--bg);display:flex;gap:8px;align-items:flex-start}
+  .price li:last-child{border-bottom:none}
+  .price li svg.ic{color:var(--blue);flex-shrink:0;font-size:15px;margin-top:3px}
   /* ROI */
   .roi{background:var(--grad-hero);border-radius:var(--radius);color:#fff;padding:44px clamp(24px,4vw,52px);margin-top:48px;position:relative;overflow:hidden}
   .roi::after{content:"";position:absolute;right:-40px;bottom:-60px;width:300px;height:230px;background:url(assets/dragonfly.svg) no-repeat center/contain;opacity:.08;transform:rotate(-14deg)}
@@ -104,7 +117,7 @@
     <h1><span class="np">眠っているデータを、</span><span class="np">意思決定に変える。</span></h1>
     <p class="lead">
       <span class="np">GPS・コンディション報告・</span><span class="np">メディカル記録——</span><span class="np">クラブがすでに持っているデータを、</span><span class="np">複雑系アプローチで分析。</span>
-      <span class="np">現場のニーズに合わせて</span><span class="np">適切な手法を選び、</span><span class="np">データ整理から</span><span class="np"><strong style="color:#fff">現場実装</strong>まで、</span><span class="np">伴走してお届けします。</span>
+      <span class="np">ヒアリングをもとに</span><span class="np">適切な手法を選び、</span><span class="np">とる指標の相談から</span><span class="np">データ整理・</span><span class="np"><strong style="color:#fff">現場実装</strong>まで——</span><span class="np">データ周りは、</span><span class="np">まるごとお任せください。</span>
     </p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="contact.html?purpose=analysis"><svg class="ic"><use href="#i-mail"/></svg> データの状況を相談する</a>
@@ -140,18 +153,18 @@
     <div class="center" style="max-width:760px;margin:0 auto">
       <span class="eyebrow">Menu</span>
       <h2 class="section-title">提供メニュー</h2>
-      <p class="section-lead center"><span class="np">単発の分析から</span><span class="np">継続的な伴走まで。</span><span class="np">チームの体制と目的に合わせて</span><span class="np">組み合わせられます。</span></p>
+      <p class="section-lead center"><span class="np">単発の分析から</span><span class="np">継続的な伴走まで。</span><span class="np">とる指標の相談・データ整理を含め、</span><span class="np">データ周りは</span><span class="np">まるごとお任せいただけます。</span></p>
     </div>
     <div class="feat-grid">
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-clipboard"/></svg></div>
         <h3>データ活用方針のコンサルティング</h3>
-        <p>現場のニーズを伺い、<strong>適切な分析アプローチの選択</strong>から。何を・どう取り、どう使うかの設計図づくりをご一緒します。</p>
+        <p>現場のニーズを伺い、<strong>適切な分析アプローチの選択</strong>から。取得すべき指標の選定を含め、データ活用の設計図づくりをご一緒します。</p>
       </div>
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-doc"/></svg></div>
         <h3>データの整理・取得サポート</h3>
-        <p>Excel・GPSソフト・紙に散らばる過去データを整理し、使える形に。足りないデータの<strong>取得の仕組みづくり</strong>も支援します。</p>
+        <p>Excel・GPSソフト・紙に散らばる過去データを整理し、使える形に。足りないデータは<strong>収集機能の追加開発</strong>を含め、取得の仕組みから支援します。</p>
       </div>
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-gauge"/></svg></div>
@@ -197,7 +210,7 @@
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-gauge"/></svg></div>
         <h3>傷害リスク予測</h3>
-        <p>単独では正常な要因の「重なり」からリスクを先読み。負荷を落とす・一声かけるタイミングを逃さない。</p>
+        <p>要因の「重なり」からリスクを先読み。負荷を落とす・一声かけるタイミングを逃さない。</p>
       </div>
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
@@ -220,6 +233,7 @@
         <p>育成年代のデータから、伸びる選手の兆しを捉える。指導者の眼とデータの両輪で、スカウティングを支えます。</p>
       </div>
     </div>
+    <p class="center section-lead" style="margin:32px auto 0;max-width:720px"><span class="np">ここに挙げたのは代表例です。</span><span class="np">ヒアリングをもとに、</span><span class="np">課題に合わせた分析を</span><span class="np">個別に設計します。</span></p>
     <div class="callout info" style="max-width:820px;margin:36px auto 0">
       <svg class="ic cic"><use href="#i-users"/></svg>
       <div>
@@ -271,22 +285,23 @@
     <div class="perf">
       <div class="p reveal">
         <div class="v">約70<small>%</small></div>
-        <div class="k">Precision（適合率）<sup class="fn"><a href="#risk-notes">※</a></sup></div>
+        <div class="k">予測の的中率<sup class="fn"><a href="#risk-notes">※</a></sup></div>
         <div class="s">「危険」と予測した日のうち、実際に傷害が発生した割合</div>
       </div>
       <div class="p reveal">
         <div class="v">約5<small>%</small></div>
-        <div class="k">従来手法（ACWR）のPrecision<sup class="fn"><a href="#risk-notes">※</a></sup></div>
+        <div class="k">従来の単一指標手法の的中率<sup class="fn"><a href="#risk-notes">※</a></sup></div>
         <div class="s">同一データでの比較。要素還元的な単一指標の監視では、警報の大半が空振りに</div>
       </div>
       <div class="p reveal">
         <div class="v">約20<small>%</small></div>
-        <div class="k">Recall（再現率）<sup class="fn"><a href="#risk-notes">※</a></sup></div>
+        <div class="k">傷害の捕捉率<sup class="fn"><a href="#risk-notes">※</a></sup></div>
         <div class="s">発生した傷害のうち、事前に「危険」と予測できていた割合</div>
       </div>
     </div>
 
     <div class="footnotes" id="risk-notes">
+      <p>※ 従来手法は、単一の負荷指標（急性慢性負荷比）による監視です。</p>
       <p>※ 傷害の完全な予防を保証するものではなく、現場の意思決定支援を目的としています。</p>
       <p>※ 予測対象は筋肉系・非接触靭帯系・オーバーユース系の傷害です（接触による打撲・骨折などは対象外）。</p>
       <p>※ 筑波大学蹴球部での実証結果であり、チーム・データ環境により結果は異なります。</p>
@@ -341,7 +356,7 @@
       <p class="section-lead center"><span class="np">分析例①の</span><span class="np">傷害リスク予測を例に、</span><span class="np">分析への投資が守る価値を</span><span class="np">試算します。</span></p>
     </div>
     <div class="roi reveal">
-      <h3><span class="np">稼働率は、</span><span class="np">順位・賞金・選手価値を守る</span><span class="np">「投資」の指標。</span></h3>
+      <h3><span class="np">稼働率を守ることは、</span><span class="np">順位・賞金・選手価値を守る</span><span class="np">「投資」。</span></h3>
       <p>
         傷害による選手の非稼働は、プロクラブでは<span class="num">選手人件費の約10%</span><sup class="fn" style="color:#9fe2ff"><a href="#value-notes">※1</a></sup>に相当すると試算されます。
         Odonataの傷害予測がカバーする範囲では、<span class="num">年間最大1,000万円相当</span><sup class="fn" style="color:#9fe2ff"><a href="#value-notes">※2</a></sup>の稼働価値を守れる可能性があります。
@@ -378,12 +393,33 @@
         <p>データプラットフォームで記録の仕組みから整備。貯まったデータに、分析・予測を重ねていきます。</p>
       </div>
     </div>
-    <ol class="steps" style="max-width:640px;margin-left:auto;margin-right:auto">
-      <li><b>ヒアリング・アプローチ選択</b> — 現場のニーズとデータの保有状況を伺い、適切な分析アプローチを選びます（オンライン可）</li>
-      <li><b>データ整理・取得</b> — 散らばったデータの整理から、足りないデータの取得設計まで。フォーマットが揃っていなくても対応します</li>
-      <li><b>データ分析・読み合わせ</b> — 複雑系アプローチを軸に分析し、結果を現場の言葉でご説明します</li>
-      <li><b>現場実装</b> — 伴走支援・モデル搭載アプリ・プラットフォーム導入で、日々の意思決定に組み込みます</li>
-    </ol>
+    <div class="flow seq" style="margin-top:44px">
+      <div class="flow-step reveal">
+        <span class="stepn">STEP 1</span>
+        <div class="flow-ic"><svg class="ic"><use href="#i-users"/></svg></div>
+        <h4>ヒアリング</h4>
+        <p>現場のニーズを伺い、適切な分析アプローチを選択（オンライン可）。</p>
+      </div>
+      <div class="flow-step reveal">
+        <span class="stepn">STEP 2</span>
+        <div class="flow-ic"><svg class="ic"><use href="#i-doc"/></svg></div>
+        <h4>データ整理・取得</h4>
+        <p>散らばったデータの整理から、とる指標の設計・収集まで。</p>
+      </div>
+      <div class="flow-step reveal">
+        <span class="stepn">STEP 3</span>
+        <div class="flow-ic"><svg class="ic"><use href="#i-chart"/></svg></div>
+        <h4>データ分析</h4>
+        <p>複雑系アプローチを軸に分析し、現場の言葉で読み合わせ。</p>
+      </div>
+      <div class="flow-step reveal">
+        <span class="stepn">STEP 4</span>
+        <div class="flow-ic"><svg class="ic"><use href="#i-hub"/></svg></div>
+        <h4>現場実装</h4>
+        <p>伴走・アプリ搭載・プラットフォーム導入で、日々の意思決定へ。</p>
+      </div>
+    </div>
+    <p class="center" style="margin-top:22px;font-size:14px;font-weight:700;color:var(--blue)">STEP 1〜4 まで、データ周りはまるごとお任せいただけます</p>
   </div>
 </section>
 
@@ -393,13 +429,42 @@
     <div class="center" style="max-width:760px;margin:0 auto">
       <span class="eyebrow">Pricing</span>
       <h2 class="section-title">費用の考え方</h2>
-      <p class="section-lead center">
-        <span class="np">単発の分析・モデル構築は</span><strong class="np">数十万円〜</strong>、<span class="np">継続伴走は</span><strong class="np">月額制</strong><span class="np">です。</span>
-        <span class="np">データ量・支援範囲に応じて</span><span class="np">個別にお見積りします。</span><span class="np">まずは状況をお聞かせください。</span>
-      </p>
-      <div class="center" style="margin-top:30px">
-        <a class="btn btn-navy" href="contact.html?purpose=analysis"><svg class="ic"><use href="#i-mail"/></svg> 見積もり・相談する</a>
+      <p class="section-lead center"><span class="np">目安は3タイプ。</span><span class="np">データ量・支援範囲に応じて</span><span class="np">個別にお見積りします。</span></p>
+    </div>
+    <div class="price-grid">
+      <div class="price reveal">
+        <h3>単発の分析</h3>
+        <div class="for">まず試したいチームに</div>
+        <div class="amount">数十万円<small>〜</small></div>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg> データお預かり・整理</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> 分析レポート＋読み合わせ</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> 目安1〜2ヶ月で納品</li>
+        </ul>
       </div>
+      <div class="price hl2 reveal">
+        <h3>予測モデル構築</h3>
+        <div class="for">チーム個別のAIモデルを持ちたいチームに</div>
+        <div class="amount">個別お見積り</div>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg> チームのデータでモデルを個別構築</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> 約1ヶ月分のデータ連携で稼働開始</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> アプリ搭載にも対応</li>
+        </ul>
+      </div>
+      <div class="price reveal">
+        <h3>継続伴走</h3>
+        <div class="for">分析を日常にしたいチームに</div>
+        <div class="amount">月額制</div>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg> 定例の分析・読み合わせ</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> とる指標の相談・現場実装の支援</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> 単発の分析からの移行も可能</li>
+        </ul>
+      </div>
+    </div>
+    <div class="center" style="margin-top:30px">
+      <a class="btn btn-navy" href="contact.html?purpose=analysis"><svg class="ic"><use href="#i-mail"/></svg> 見積もり・相談する</a>
     </div>
   </div>
 </section>
@@ -412,6 +477,8 @@
       <h2 class="section-title">よくある質問</h2>
     </div>
     <div class="faq">
+      <details class="qa"><summary>どんな分析に対応していますか？</summary>
+        <div class="ans">決まったメニューだけではありません。ヒアリングで課題を伺い、掲載していない内容も含めて<b>オーダーメイドで分析を設計</b>します。「そもそも何を分析すべきか分からない」「どの指標を取ればいいか分からない」という段階からのご相談も歓迎です。</div></details>
       <details class="qa"><summary>どんなデータがあれば分析できますか？</summary>
         <div class="ans">GPS・主観コンディション・試合記録・メディカル記録のいずれかがあれば開始できます。組み合わせが多いほど分析は深くなりますが、<b>まずは今あるものから</b>で構いません。形式（Excel・CSV・紙のスキャン等）もご相談ください。</div></details>
       <details class="qa"><summary>GPSがなくても分析は可能ですか？</summary>
@@ -421,7 +488,7 @@
       <details class="qa"><summary>結果はどのような形で納品されますか？</summary>
         <div class="ans">分析レポート（PDF）と、オンラインでの読み合わせセッションが基本です。ご希望に応じて、分析モデルを搭載したWebアプリとしての提供、定例での継続伴走にも対応します。</div></details>
       <details class="qa"><summary>データの取り扱いが心配です。</summary>
-        <div class="ans">選手本人の同意を前提とし、医療・心理に関わる生データは原則非公開、目的外利用は行いません。詳細は<a class="inl" href="service-platform.html#privacy" style="color:var(--blue);font-weight:700">データの取り扱い方針</a>をご覧ください。秘密保持契約の締結にも対応します。</div></details>
+        <div class="ans">選手本人の同意を前提とし、医療・心理に関わる生データは原則非公開、目的外利用は行いません。詳細は<a href="service-platform.html#privacy" style="color:var(--blue);font-weight:700">データの取り扱い方針</a>をご覧ください。秘密保持契約の締結にも対応します。</div></details>
     </div>
   </div>
 </section>

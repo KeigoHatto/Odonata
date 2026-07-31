@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>実績・研究 — Odonata</title>
-<meta name="description" content="筑波大学蹴球部での実証導入の詳細と成果（傷害予測Precision約70%・従来手法比約14倍）、研究基盤。Odonataの「本当に効くのか？」への回答。">
+<meta name="description" content="筑波大学蹴球部での実証導入の詳細と成果（傷害予測の的中率約70%・単一指標手法比約14倍）、研究基盤。Odonataの「本当に効くのか？」への回答。">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -144,21 +144,22 @@
     <div class="perf">
       <div class="p reveal">
         <div class="v">約70<small>%</small></div>
-        <div class="k">傷害予測の Precision（適合率）<sup class="fn"><a href="#num-notes">※</a></sup></div>
+        <div class="k">傷害予測の的中率<sup class="fn"><a href="#num-notes">※</a></sup></div>
         <div class="s">「危険」と予測した日のうち、実際に傷害が発生した割合</div>
       </div>
       <div class="p reveal">
         <div class="v">約5<small>%</small></div>
-        <div class="k">従来手法（ACWR）の Precision<sup class="fn"><a href="#num-notes">※</a></sup></div>
+        <div class="k">従来の単一指標手法の的中率<sup class="fn"><a href="#num-notes">※</a></sup></div>
         <div class="s">同一データでの比較。単一指標の監視との差が、複雑系アプローチの価値</div>
       </div>
       <div class="p reveal">
         <div class="v">約20<small>%</small></div>
-        <div class="k">Recall（再現率）<sup class="fn"><a href="#num-notes">※</a></sup></div>
+        <div class="k">傷害の捕捉率<sup class="fn"><a href="#num-notes">※</a></sup></div>
         <div class="s">発生した傷害のうち事前に「危険」と予測できていた割合。すべての怪我は捉えられません</div>
       </div>
     </div>
     <div class="footnotes" id="num-notes">
+      <p>※ 従来手法は、単一の負荷指標（急性慢性負荷比）による監視です。</p>
       <p>※ 傷害の完全な予防を保証するものではなく、現場の意思決定支援を目的としています。</p>
       <p>※ 予測対象は筋肉系・非接触靭帯系・オーバーユース系の傷害です（接触による打撲・骨折などは対象外）。</p>
       <p>※ 筑波大学蹴球部での実証結果であり、チーム・データ環境により結果は異なります。</p>

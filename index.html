@@ -71,7 +71,6 @@
   .vs-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;padding:5px 14px;margin-bottom:14px;background:var(--bg);color:var(--sub)}
   .vs-col.now .vs-tag{background:rgba(0,160,233,.12);color:var(--blue)}
   .vs-col h4{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:8px}
-  .vs-col .sub{font-size:13.5px;color:var(--sub);line-height:1.9}
   .vs-ex{background:var(--bg);border-radius:var(--radius-sm);padding:14px 16px;margin-top:12px;font-size:13.5px;line-height:1.9;color:var(--text)}
   .vs-col.now .vs-ex{background:rgba(0,160,233,.07)}
   .vs-ex .lv{display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;color:var(--sub);margin-bottom:4px}
@@ -173,7 +172,7 @@
     </div>
     <div class="stat">
       <div class="num">約70<small>%</small></div>
-      <div class="lbl">傷害予測の的中率（Precision）<sup class="fn"><a href="#top-notes">※1</a></sup></div>
+      <div class="lbl">傷害予測の的中率<sup class="fn"><a href="#top-notes">※1</a></sup></div>
     </div>
     <div class="stat">
       <div class="num">約14<small>倍</small></div>
@@ -182,7 +181,7 @@
   </div>
   <div class="footnotes" id="top-notes" style="margin-top:20px">
     <p>※1 筑波大学蹴球部での実証結果。チーム・データ環境により異なります。傷害の完全な予防を保証するものではなく、現場の意思決定支援を目的としています。</p>
-    <p>※2 複雑系アプローチによる分析例の一つである傷害予測AIのPrecision比較（約70% vs 従来手法ACWR約5%・同一データ）。詳細は<a href="research.html" style="color:var(--blue);font-weight:700">実績・研究</a>をご覧ください。</p>
+    <p>※2 傷害予測AI（複雑系アプローチの分析例）の的中率比較：約70% vs 従来の単一指標手法 約5%（同一データ）。詳細は<a href="research.html" style="color:var(--blue);font-weight:700">実績・研究</a>へ。</p>
   </div>
 </div>
 
@@ -193,24 +192,24 @@
       <span class="eyebrow">Problem</span>
       <h2 class="section-title"><span class="np">データはある。</span><span class="np">でも、意思決定に</span><span class="np">届かない。</span></h2>
       <p class="section-lead center">
-        <span class="np">多くのチームで、</span><span class="np">データは「取ること」自体が</span><span class="np">目的になってしまっています。</span><span class="np">現場で聞く課題は、</span><span class="np">大きく3つに集約されます。</span>
+        <span class="np">データは「取ること」が</span><span class="np">目的になりがち。</span><span class="np">現場の課題は、</span><span class="np">大きく3つです。</span>
       </p>
     </div>
     <div class="feat-grid">
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-pen"/></svg></div>
         <h3>① 入力・記録の負荷</h3>
-        <p>紙・Excel・LINE・複数アプリに散らばる記録作業。<strong>入力の継続</strong>こそがデータ活用の最大の壁になっています。</p>
+        <p>紙・Excel・LINEに散らばる記録作業。<strong>入力の継続</strong>が、最大の壁に。</p>
       </div>
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-shuffle"/></svg></div>
         <h3>② データの散在</h3>
-        <p>GPS・コンディション・メディカル・試合……それぞれ別の場所に保存され、<strong>同じ選手を横断して見ることができない</strong>。</p>
+        <p>GPS・コンディション・メディカルが別々の場所に散在。<strong>同じ選手を横断して見られない</strong>。</p>
       </div>
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-chart"/></svg></div>
         <h3>③ 分析・活用の限界</h3>
-        <p>グラフを眺めて終わり。指標を<strong>1つずつ見る要素還元的な分析</strong>では、数字が意思決定につながらず、最後は経験と感覚に頼らざるを得ない。</p>
+        <p>グラフを眺めて終わり。指標を<strong>1つずつ見る要素還元的な分析</strong>では、意思決定につながらない。</p>
       </div>
     </div>
   </div>
@@ -268,46 +267,44 @@
       <h2 class="section-title"><span class="np">サッカーは、</span><span class="np">足し算では</span><span class="np">説明できない。</span></h2>
       <p class="section-lead center">
         <span class="np">スター選手を11人集めても、</span><span class="np">最強のチームには</span><span class="np">なりません。</span>
-        <span class="np">私たちは、要素を</span><span class="np">バラバラに見るのではなく、</span><strong class="np">要素間の相互作用</strong><span class="np">を読み解く</span><span class="np">「複雑系アプローチ」を</span><span class="np">採用しています。</span>
+        <span class="np">要素ではなく、</span><strong class="np">関係性</strong><span class="np">を読む——</span><span class="np">それが「複雑系アプローチ」です。</span>
       </p>
     </div>
     <div class="feat-grid">
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-hub"/></svg></div>
         <h3>足し算が成り立たない</h3>
-        <p>個々の選手の能力の合計が、チームの強さにはならない。全体は要素の和を超えて立ち現れます（<strong>創発</strong>）。</p>
+        <p>能力の合計は、チーム力にならない。全体は要素の和を超える（<strong>創発</strong>）。</p>
       </div>
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-pulse"/></svg></div>
         <h3>小さな差が、大きな違いを生む</h3>
-        <p>わずかな疲労の蓄積や睡眠の乱れが、ある日突然、怪我や不調として現れる。原因と結果は比例しません（<strong>非線形性</strong>）。</p>
+        <p>わずかな疲労の蓄積が、ある日突然、怪我として現れる。原因と結果は比例しない（<strong>非線形性</strong>）。</p>
       </div>
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-shuffle"/></svg></div>
         <h3>同じ試合は、二度とない</h3>
-        <p>相手・環境・選手の状態は常に変化し続ける。平均値だけでは、目の前の1試合の判断には届きません。</p>
+        <p>相手も選手の状態も、変わり続ける。平均値では、目の前の1試合の判断に届かない。</p>
       </div>
     </div>
     <div class="center" style="max-width:780px;margin:70px auto 0">
       <h3 style="font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--navy);line-height:1.5"><span class="np">届かない理由と、</span><span class="np">解決できる理由。</span></h3>
       <p class="section-lead center" style="margin-top:12px">
-        <span class="np">同じデータでも、</span><span class="np">要素を1つずつ見るか、</span><span class="np">関係性ごと読むかで、</span><span class="np">意思決定に使えるかどうかが</span><span class="np">変わります。</span>
+        <span class="np">同じデータでも、</span><span class="np">「読み方」で</span><span class="np">意思決定に使えるかが</span><span class="np">変わります。</span>
       </p>
     </div>
     <div class="vs-grid">
       <div class="vs-col reveal">
         <span class="vs-tag">従来 ── 要素還元アプローチ</span>
         <h4><span class="np">数字は揃うのに、</span><span class="np">判断に使えない</span></h4>
-        <p class="sub">走行距離・睡眠・疲労度……指標を1つずつ切り出して監視する。しかし現場で起きる現象は、要素単独では説明できません。</p>
-        <div class="vs-ex"><span class="lv">ピッチレベル</span>走行距離もスプリントも睡眠も「正常範囲」。それでも、ある日突然ハムストリングの肉離れは起きる。単独の指標は、休ませる根拠になり切らない。</div>
-        <div class="vs-ex"><span class="lv">強化・経営レベル</span>得点ランキング上位のFWを補強したのに、チームは点が取れなくなった。個人成績の「足し算」では、チームの強さは測れない。</div>
+        <div class="vs-ex"><span class="lv">ピッチレベル</span>走行距離も睡眠も「正常範囲」。それでも、肉離れは起きる。</div>
+        <div class="vs-ex"><span class="lv">強化・経営レベル</span>得点王を補強したのに、点が取れない。個人成績の足し算では測れない。</div>
       </div>
       <div class="vs-col now reveal">
         <span class="vs-tag">Odonata ── 複雑系アプローチ</span>
         <h4><span class="np">関係性を読むから、</span><span class="np">判断に届く</span></h4>
-        <p class="sub">要素ではなく、要素間の相互作用を分析の単位に。「重なり」と「つながり」を読み解くことで、数字が意思決定の材料に変わります。</p>
-        <div class="vs-ex"><span class="lv">ピッチレベル</span>負荷×疲労×睡眠×日程の「重なり」からリスクの兆しを捉える。「今日は強度を落とす」「この選手に一声かける」——具体的な判断につながる。</div>
-        <div class="vs-ex"><span class="lv">強化・経営レベル</span>「誰を獲るか」ではなく<b>「誰と組むと機能するか」</b>。選手間の関係性ごと評価するから、補強・編成の意思決定に使える。</div>
+        <div class="vs-ex"><span class="lv">ピッチレベル</span>負荷×疲労×睡眠の「重なり」から兆しを捉え、「今日は強度を落とす」判断へ。</div>
+        <div class="vs-ex"><span class="lv">強化・経営レベル</span>「誰を獲るか」ではなく<b>「誰と組むと機能するか」</b>で、補強・編成を判断。</div>
       </div>
     </div>
     <div class="center" style="margin-top:40px">
@@ -322,21 +319,21 @@
     <div class="center" style="max-width:760px;margin:0 auto">
       <span class="eyebrow">Services</span>
       <h2 class="section-title">2つのサービス</h2>
-      <p class="section-lead center"><span class="np">データ分析からでも、</span><span class="np">日々の記録からでも。</span><span class="np">チームの状況に合わせて、</span><span class="np">どちらからでも始められます。</span></p>
+      <p class="section-lead center"><span class="np">分析からでも、</span><span class="np">記録からでも。</span><span class="np">どちらからでも</span><span class="np">始められます。</span></p>
     </div>
     <div class="feat-grid cols2">
       <a class="feat hl reveal" href="service-analysis.html">
         <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
         <h3>データ分析・伴走支援</h3>
         <p><strong style="color:#fff">眠っているデータを、意思決定に変える。</strong><br>
-        GPS・コンディション・メディカルなど保有データを複雑系アプローチで分析。パフォーマンス予測から補強戦略・タレント発掘まで幅広く対応。データ整理から現場実装まで伴走します。</p>
+        保有データを複雑系アプローチで分析。とる指標の相談からデータ整理・現場実装まで、データ周りはまるごとお任せ。</p>
         <span class="more">詳しく見る <svg class="ic"><use href="#i-arrow"/></svg></span>
       </a>
       <a class="feat hl reveal" href="service-platform.html">
         <div class="ficon"><svg class="ic"><use href="#i-hub"/></svg></div>
         <h3>データプラットフォーム</h3>
         <p><strong style="color:#fff">散らばるデータを、ひとつに。</strong><br>
-        コンディション・GPS・試合・メディカル・育成計画を一元管理。入力すると分析が返ってくるから、記録が続く。複雑系アプローチの分析機能を搭載。</p>
+        コンディション・GPS・試合・メディカルを一元管理。入力すると分析が返ってくるから、記録が続く。</p>
         <span class="more">詳しく見る <svg class="ic"><use href="#i-arrow"/></svg></span>
       </a>
     </div>
@@ -349,7 +346,7 @@
     <div class="center" style="max-width:760px;margin:0 auto">
       <span class="eyebrow">Process</span>
       <h2 class="section-title">導入の流れ</h2>
-      <p class="section-lead center"><span class="np">「まず分析から」でも</span><span class="np">「まず記録から」でも。</span><span class="np">現場と一緒に、</span><span class="np">小さく始めて</span><span class="np">育てていきます。</span></p>
+      <p class="section-lead center"><span class="np">小さく始めて、</span><span class="np">現場と一緒に</span><span class="np">育てていきます。</span></p>
     </div>
     <div class="flow seq">
       <div class="flow-step reveal">
@@ -387,8 +384,7 @@
       <span class="eyebrow">Team</span>
       <h2 class="section-title"><span class="np">筑波大学発、</span><span class="np">研究と現場のチーム。</span></h2>
       <p class="section-lead center">
-        <span class="np">脳科学・認知科学・</span><span class="np">スポーツ科学の研究者と、</span><span class="np">蹴球部での選手・指導経験を持つ</span><span class="np">現場出身者。</span>
-        <span class="np">研究知見を、</span><span class="np">自らの手で</span><span class="np">プロダクトに実装しています。</span>
+        <span class="np">研究者と現場出身者のチームが、</span><span class="np">研究知見を</span><span class="np">自らの手で</span><span class="np">プロダクトに実装しています。</span>
       </p>
     </div>
     <div class="members">
@@ -453,7 +449,7 @@
   <div class="wrap">
     <div class="cta reveal">
       <h2><span class="np">サッカーの複雑さを、</span><span class="np">チームの武器に。</span></h2>
-      <p><span class="np">サービスの詳細・導入の流れ・</span><span class="np">料金の考え方をまとめた資料を</span><span class="np">ご用意しています。</span><span class="np">データ活用の壁打ちだけでも、</span><span class="np">お気軽にご相談ください。</span></p>
+      <p><span class="np">資料のダウンロードも、</span><span class="np">データ活用の壁打ちも、</span><span class="np">お気軽にどうぞ。</span></p>
       <div class="cta-actions">
         <a class="btn btn-blue" href="contact.html?purpose=doc"><svg class="ic"><use href="#i-download"/></svg> サービス資料をダウンロード</a>
         <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> お問い合わせ・相談</a>
