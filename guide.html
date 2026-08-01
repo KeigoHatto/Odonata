@@ -125,6 +125,42 @@
   .shot-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
   @media(max-width:680px){.shot-pair{grid-template-columns:1fr}}
 
+  /* ===== 図解: 横フロー ===== */
+  .gflow{display:flex;align-items:stretch;gap:7px;margin:18px 0}
+  .gflow .gf{flex:1;min-width:0;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 14px 11px}
+  .gflow .gf .gfn{display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;font-size:12px;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;margin-bottom:6px}
+  .gflow .gf .who{display:block;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--blue);margin-bottom:2px}
+  .gflow .gf h4{font-size:14px;font-weight:800;color:var(--navy);margin:0;line-height:1.45}
+  .gflow .gf p{font-size:12px;color:var(--sub);margin:4px 0 0;line-height:1.65}
+  .gflow .ga{display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:800;font-size:17px;flex:none;padding:0 1px}
+  .gflow.compact .gf{padding:11px 12px 10px;text-align:center}
+  .gflow.compact .gf h4{font-size:13px}
+  .gflow.compact .gf .gfn{margin:0 auto 6px}
+  @media(max-width:760px){
+    .gflow{flex-direction:column;gap:5px}
+    .gflow .ga{transform:rotate(90deg);padding:0;font-size:15px}
+    .gflow.compact .gf{text-align:left;display:flex;align-items:baseline;gap:10px}
+    .gflow.compact .gf .gfn,.gflow.compact .gf .who{margin:0;flex:none}
+    .gflow.compact .gf p{margin:0}
+  }
+
+  /* ===== 図解: 1日のタイムライン ===== */
+  .tline{position:relative;margin:16px 0 8px;padding-left:34px}
+  .tline::before{content:'';position:absolute;left:10px;top:8px;bottom:14px;width:2.5px;border-radius:2px;background:linear-gradient(180deg,var(--cyan),var(--blue))}
+  .tl{position:relative;padding-bottom:18px}
+  .tl:last-child{padding-bottom:2px}
+  .tl::before{content:'';position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+  .tl .tl-time{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--blue)}
+  .tl .tl-body{font-size:13.5px;line-height:1.8;margin-top:2px}
+  .tl .tl-body b{color:var(--navy)}
+
+  /* ===== 役割チップ ===== */
+  .rc{display:inline-block;font-size:10.5px;font-weight:800;border-radius:999px;padding:1.5px 10px;vertical-align:1px;margin-right:6px;letter-spacing:.04em;white-space:nowrap}
+  .rc.pl{background:#DFF2FD;color:#0369A1;border:1px solid #A5DDF8}
+  .rc.co{background:var(--navy);color:#fff;border:1px solid var(--navy)}
+  .rc.tr{background:#EFE7FD;color:#6D3FC8;border:1px solid #D8C6F7}
+  .rc.ad{background:#FDEEDC;color:#B45309;border:1px solid #F3CE8A}
+
   /* network deep dive (reuse from landing) */
   .na-wrap{background:var(--grad-hero);border-radius:var(--radius);padding:36px 34px;color:#fff;margin-top:8px}
   .na-wrap h3{color:#fff} .na-wrap h3 svg.ic{color:#9fe2ff}
@@ -253,6 +289,7 @@
   <aside class="toc">
     <div class="toc-card">
       <h4>はじめに</h4>
+      <a href="#intro"><svg class="ic"><use href="#i-spark"/></svg> このアプリでできること</a>
       <a href="#start"><svg class="ic"><use href="#i-login"/></svg> アカウント作成とログイン</a>
       <a href="#basics"><svg class="ic"><use href="#i-home"/></svg> 共通操作・画面の見方</a>
       <a href="#onboarding"><svg class="ic"><use href="#i-clock"/></svg> 導入・過去データの移行</a>
@@ -284,10 +321,46 @@
   <!-- ───── CONTENT ───── -->
   <main>
 
+    <!-- このアプリでできること -->
+    <section class="doc" id="intro">
+      <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-spark"/></svg></div><h2><span class="np">このアプリで</span><span class="np">できること</span></h2></div>
+      <p class="sub">中心にあるのはシンプルなサイクルです。その間の集計・可視化・予測は、アプリがすべて引き受けます。</p>
+
+      <div class="gflow">
+        <div class="gf"><span class="gfn">1</span><span class="who">選手</span><h4>毎日入力する</h4><p>練習前後のコンディション（睡眠・疲労・痛み・RPE など）を1〜2分で。GPSデータは自動で取り込み。</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">2</span><span class="who">アプリ</span><h4>ためて、予測する</h4><p>データを蓄積し、機械学習でケガのリスクを選手ごとに予測。変数どうしの関係をネットワーク図に。</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">3</span><span class="who">コーチ</span><h4>見て、判断する</h4><p>ダッシュボードで異変に気づき、リスク予測・分析で裏付け。負荷設計でメニューを調整。</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">4</span><span class="who">チーム</span><h4>練習に反映する</h4><p>試合・トレーニング・メディカル・IDPの記録が選手にも共有され、次の入力の動機になる。</p></div>
+      </div>
+
+      <h3><svg class="ic"><use href="#i-users"/></svg> 役割ごとの画面</h3>
+      <table class="tbl">
+        <tr><th>役割</th><th>主な使い方</th></tr>
+        <tr><td><span class="rc pl">選手</span></td><td>毎日コンディションを入力し、自分の状態・目標（IDP）・ケガ・試合を管理する。スマホでの利用が基本。</td></tr>
+        <tr><td><span class="rc co">コーチ・スタッフ</span></td><td>チーム全体を見渡し、ケガリスクを予測し、練習負荷を設計し、試合・メディカル・育成を運営する。</td></tr>
+        <tr><td><span class="rc ad">管理者</span></td><td>コーチ機能に加えて、ユーザーアカウントと権限（スタッフごとに使えるメニュー）を管理する。</td></tr>
+      </table>
+      <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
+        <div>初めての方は上から順に、機能を調べたい方は左の目次からどうぞ。図の読み方だけ知りたい方は <a class="inl" href="#network">ネットワーク分析の読み方</a> へ。</div></div>
+    </section>
+
     <!-- アカウント作成とログイン -->
     <section class="doc" id="start">
       <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-login"/></svg></div><h2><span class="np">アカウント作成と</span><span class="np">ログイン</span></h2></div>
       <p class="sub">アカウントは「コーチが招待コードを発行 → 本人が登録」の流れで作ります。2回目からはログインするだけです。</p>
+
+      <div class="gflow compact">
+        <div class="gf"><span class="gfn">1</span><h4>コーチが招待コードを発行</h4><p>24時間有効・1回のみ</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">2</span><h4>本人が招待URLを開く</h4><p>コード欄は自動入力</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">3</span><h4>メール＋パスワードを登録</h4><p>12文字以上・英字＋数字</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">4</span><h4>自動ログインで利用開始</h4><p>2回目以降は Face ID でも</p></div>
+      </div>
 
       <h3><svg class="ic"><use href="#i-user"/></svg> <span class="np">はじめての登録</span><span class="np">（招待コード）</span></h3>
       <ol class="steps">
@@ -373,6 +446,16 @@
       <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-pen"/></svg></div><h2>コンディション入力</h2></div>
       <p class="sub">毎日の主役。練習前と練習後の2回に分けて、1〜2分で入力します。</p>
       <figure class="shot"><img src="assets/app-input-pre.png" alt="練習前コンディション入力画面：睡眠・疲労などのスライダーが並ぶ" loading="lazy"><figcaption><b>練習前入力。</b>スライダー中心で1〜2分で完了します。</figcaption></figure>
+
+      <div class="gflow compact">
+        <div class="gf"><span class="who">朝・練習前</span><h4>練習前入力</h4><p>睡眠・疲労・痛み など（1〜2分）</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="who">日中</span><h4>練習・試合</h4><p>GPSデータは自動で記録</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="who">練習後</span><h4>練習後入力</h4><p>RPE・主観パフォーマンス・振り返り</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="who">翌朝</span><h4>コーチが確認</h4><p>ダッシュボードで異変を検知</p></div>
+      </div>
 
       <h3><svg class="ic"><use href="#i-clock"/></svg> 入力のタイミング</h3>
       <table class="tbl">
@@ -489,6 +572,17 @@
       <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-pulse"/></svg></div><h2><span class="np">ケガ履歴</span><span class="np">（メディカル）</span></h2></div>
       <p class="sub">ケガや体調についての情報を入力・確認します。登録内容はコーチ・トレーナーにすぐ共有されます。</p>
       <figure class="shot"><img src="assets/app-medical.png" alt="ケガ記録画面：登録フォームとリハビリ中・復帰済みのケガカード" loading="lazy"><figcaption><b>ケガ履歴。</b>リハビリ中／復帰済みのカードで自分のケガを管理します。</figcaption></figure>
+
+      <div class="gflow compact">
+        <div class="gf"><span class="gfn">1</span><h4>ケガを登録</h4><p>必須は発生日のみ</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">2</span><h4>練習可否を共有</h4><p>部分参加の範囲も具体的に</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">3</span><h4>リハビリ記録</h4><p>トレーナーが日々追加</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">4</span><h4>復帰を登録</h4><p>「完全復帰」で記録を残す</p></div>
+      </div>
+
       <ol class="steps">
         <li>ケガ・痛みが発生したら「<b>メディカル情報を入力</b>」フォームで登録します。必須は<b>発生日</b>のみ。ただし部位・外傷種類・<b>受傷原因</b>（接触／非接触／オーバーユース…複数選択可）・発生区分（試合／練習／自主トレ…）まで入れると集計が正確になります。</li>
         <li>「<b>練習可否</b>」で現状を伝えます。「部分参加」を選ぶと「<b>部分参加で可能な範囲</b>」欄が出るので、「アップとパス練のみ可、対人・スプリント不可」のように具体的に書きます。</li>
@@ -506,6 +600,17 @@
       <div class="doc-h"><div class="dh-ic"><svg class="ic"><use href="#i-target"/></svg></div><h2><span class="np">IDP</span><span class="np">（個人育成計画）</span></h2></div>
       <p class="sub">自分の成長目標を立てて、週次で自己評価し、面談で振り返ります。</p>
       <figure class="shot"><img src="assets/app-idp.png" alt="IDP（個人育成計画）画面：目標サマリー・進行中の目標・修了ログ・面談記録" loading="lazy"><figcaption><b>IDP。</b>目標サマリー・進行中の目標・修了ログ・面談記録が並びます。</figcaption></figure>
+
+      <div class="gflow compact">
+        <div class="gf"><span class="who">設定</span><h4>目標を立てる</h4><p>期間・カテゴリ・アクション</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="who">毎日</span><h4>練習ノート</h4><p>入力時の GOOD／MORE が紐づく</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="who">週1回</span><h4>自己評価</h4><p>取り組み度・進捗度（1〜10）</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="who">面談</span><h4>コーチと振り返り</h4><p>コーチ評価・面談記録 → 達成／中止</p></div>
+      </div>
+
       <ol class="steps">
         <li>「<b>＋ 目標の追加</b>」で登録します：期間（長期／中期／短期）・カテゴリ（技術／フィジカル／メンタル／戦術／その他）・<b>目標内容</b>（例：試合終盤でもスプリント回数を落とさない）・具体アクション（例：週2回の加速走）。</li>
         <li>週に1回、進行中の目標カードの「<b>自己評価</b>」から<b>取り組み度（1〜10）・進捗度（1〜10）・振り返り</b>を記録します。</li>
@@ -622,6 +727,17 @@
       <p class="sub">日々の運営に関わる機能です。</p>
       <h3><svg class="ic"><use href="#i-ball"/></svg> 試合</h3>
       <figure class="shot"><img src="assets/app-match.png" alt="試合レポート画面：試合情報・スタメンのピッチ図・出場記録テーブル" loading="lazy"><figcaption><b>試合詳細。</b>試合情報／相手分析資料／スタメン・ベンチ（ピッチ図）／得点の詳細／出場記録を1試合ずつ管理。</figcaption></figure>
+
+      <div class="gflow compact">
+        <div class="gf"><span class="gfn">1</span><h4>試合を登録</h4><p>スコア＋得点の詳細（分まで）</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">2</span><h4>スタメンを配置</h4><p>ピッチ図 →「反映」で一括登録</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">3</span><h4>評価・講評を入力</h4><p>選手は自己評価を記入</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">4</span><h4>サマリーで傾向</h4><p>時間帯分析・対戦相手別勝率</p></div>
+      </div>
+
       <ul>
         <li><b>試合一覧</b>：登録された試合を管理。ページ上部に<b>試合サマリー</b>（戦績・時間帯分析など）。</li>
         <li><b>新規試合</b>：試合日・対戦相手・大会・チーム（必須）・H/A・フォーメーション・スコアを登録。得点／失点の数を入れると「<b>得点の詳細</b>（分・得点者・アシスト）」の行がスコアの数だけ自動で現れます。分まで入れておくと時間帯分析に反映されます。</li>
@@ -706,14 +822,19 @@
       </ul>
 
       <h3><svg class="ic"><use href="#i-check"/></svg> <span class="np">作成の流れ</span><span class="np">（6ステップ）</span></h3>
-      <ol class="steps">
-        <li><b>セッション情報</b>を入力（日付・時間・場所・テーマ など）。</li>
-        <li><b>出欠・グループ</b>を整える（自動同期も可）。</li>
-        <li><b>ドリル</b>を追加して内容を書く。</li>
-        <li>必要なら<b>フィールド図</b>を描く。</li>
-        <li><b>保存</b>する（こまめに）。</li>
-        <li><b>配布</b>して選手に公開、または<b>PDF出力</b>。</li>
-      </ol>
+      <div class="gflow compact">
+        <div class="gf"><span class="gfn">1</span><h4>セッション情報</h4><p>日付・時間・場所・テーマ</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">2</span><h4>出欠・グループ</h4><p>ステータスで自動同期も可</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">3</span><h4>ドリルを追加</h4><p>ライブラリから再利用も</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">4</span><h4>フィールド図</h4><p>必要なら作図して添付</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">5</span><h4>保存</h4><p>こまめに</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">6</span><h4>配布・PDF</h4><p>公開ONで選手に表示</p></div>
+      </div>
       <div class="note tip"><svg class="ic"><use href="#i-info"/></svg>
         <div>画面右上に<b>未保存の変更を示すドット</b>が出ます。「保存」を押すまで変更は確定しません。こまめに保存しましょう。</div></div>
 
@@ -817,6 +938,15 @@
         <div><b>あくまで意思決定の材料として使ってください。</b> リスク予測は、コーチ・トレーナーが練習量や起用を判断するときの<b>補助情報</b>のひとつです。最終的な判断は、選手の主観・メディカルの所見・現場の目と合わせて、人が行ってください。</div></div>
 
       <h3><svg class="ic"><use href="#i-gauge"/></svg> リスク予測の使い方</h3>
+      <div class="gflow compact">
+        <div class="gf"><span class="gfn">1</span><h4>予測を開始</h4><p>全選手のリスクを算出（数十秒）</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">2</span><h4>要因を確認</h4><p>なぜ高いのかを分解表示</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">3</span><h4>負荷を設計</h4><p>1日／1週間をシミュレーション</p></div>
+        <span class="ga">→</span>
+        <div class="gf"><span class="gfn">4</span><h4>メニューに反映</h4><p>「▼改善」を確認して当日の練習へ</p></div>
+      </div>
       <div class="shot-pair">
         <figure class="shot"><img src="assets/app-risk.png" alt="チーム全体のリスクサマリ：高リスク・中リスク・低リスク・負傷離脱の人数と要注意アラート" loading="lazy"><figcaption><b>リスクサマリー。</b>高・中・低リスク／負傷離脱の人数と警告バナー。</figcaption></figure>
         <figure class="shot"><img src="assets/app-risk-factor.png" alt="高リスク選手のリスク上昇要因の分解表示" loading="lazy"><figcaption><b>リスクを上げている要因。</b>「なぜそのスコアか」を要因分解で確認。</figcaption></figure>
@@ -1081,30 +1211,33 @@
       <p class="sub">「誰が・いつ・どの画面を」の実践パターンです。チームの習慣づくりの参考にしてください。</p>
 
       <h3><svg class="ic"><use href="#i-clock"/></svg> 毎日のリズム</h3>
-      <table class="tbl">
-        <tr><th>時間帯</th><th>誰が</th><th>やること</th></tr>
-        <tr><td>朝（練習前）</td><td>選手</td><td>スマホで<b>練習前入力</b>（1〜2分）。痛みがあれば必ず申告。</td></tr>
-        <tr><td>朝（練習前）</td><td>コーチ</td><td><b>ダッシュボード</b>で要確認選手とコンディションメモを確認 → 未入力者に声かけ → 必要ならメニュー・グループ分けを調整。</td></tr>
-        <tr><td>練習後</td><td>選手</td><td><b>練習後入力</b>（RPE・主観パフォーマンス・振り返り）。</td></tr>
-        <tr><td>夕方〜夜</td><td>トレーナー</td><td>ケガの発生があれば<b>メディカル</b>に登録。リハビリ実施分を<b>リハビリ記録</b>に追加。気になる選手には<b>トレーナーコメント</b>。</td></tr>
-        <tr><td>翌朝</td><td>コーチ</td><td><b>GPSデータ</b>の自動取り込みを確認（必要なら「今すぐ取り込み」）→ 前日の負荷をチェック。</td></tr>
-      </table>
+      <div class="tline">
+        <div class="tl"><div class="tl-time">朝（練習前）</div>
+          <div class="tl-body"><span class="rc pl">選手</span>スマホで<b>練習前入力</b>（1〜2分）。痛みがあれば必ず申告。</div>
+          <div class="tl-body"><span class="rc co">コーチ</span><b>ダッシュボード</b>で要確認選手とコンディションメモを確認 → 未入力者に声かけ → 必要ならメニュー・グループ分けを調整。</div></div>
+        <div class="tl"><div class="tl-time">練習後</div>
+          <div class="tl-body"><span class="rc pl">選手</span><b>練習後入力</b>（RPE・主観パフォーマンス・振り返り）。</div></div>
+        <div class="tl"><div class="tl-time">夕方〜夜</div>
+          <div class="tl-body"><span class="rc tr">トレーナー</span>ケガの発生があれば<b>メディカル</b>に登録。リハビリ実施分を<b>リハビリ記録</b>に追加。気になる選手には<b>トレーナーコメント</b>。</div></div>
+        <div class="tl"><div class="tl-time">翌朝</div>
+          <div class="tl-body"><span class="rc co">コーチ</span><b>GPSデータ</b>の自動取り込みを確認（必要なら「今すぐ取り込み」）→ 前日の負荷をチェック。</div></div>
+      </div>
 
       <h3><svg class="ic"><use href="#i-calendar"/></svg> 週のリズム</h3>
       <table class="tbl">
         <tr><th>タイミング</th><th>やること</th></tr>
-        <tr><td>週明け</td><td><b>コーチ：</b><b>傷害リスク予測</b>を実行して高リスク選手の要因を確認し、<b>1週間プラン</b>で今週の負荷を設計（試合日を考慮）。</td></tr>
-        <tr><td>週なか</td><td><b>コーチ：</b>前日の夜に<b>メニュービルダー</b>で翌日メニューを作成・配布（「ステータスで同期」でグループ分けを自動化）。</td></tr>
-        <tr><td>週末（試合後）</td><td><b>コーチ：</b><b>試合</b>にスコア・得点の詳細・出場記録・講評を登録。<b>選手：</b>自己評価と振り返りを記入。</td></tr>
-        <tr><td>週末</td><td><b>選手：</b>IDPの<b>週次自己評価</b>（取り組み度・進捗度）を記録。</td></tr>
+        <tr><td>週明け</td><td><span class="rc co">コーチ</span><b>傷害リスク予測</b>を実行して高リスク選手の要因を確認し、<b>1週間プラン</b>で今週の負荷を設計（試合日を考慮）。</td></tr>
+        <tr><td>週なか</td><td><span class="rc co">コーチ</span>前日の夜に<b>メニュービルダー</b>で翌日メニューを作成・配布（「ステータスで同期」でグループ分けを自動化）。</td></tr>
+        <tr><td>週末（試合後）</td><td><span class="rc co">コーチ</span><b>試合</b>にスコア・得点の詳細・出場記録・講評を登録。 <span class="rc pl">選手</span>自己評価と振り返りを記入。</td></tr>
+        <tr><td>週末</td><td><span class="rc pl">選手</span>IDPの<b>週次自己評価</b>（取り組み度・進捗度）を記録。</td></tr>
       </table>
 
       <h3><svg class="ic"><use href="#i-chart"/></svg> 月のリズム</h3>
       <table class="tbl">
         <tr><th>タイミング</th><th>やること</th></tr>
-        <tr><td>月次ミーティング</td><td><b>怪我サマリー</b>と<b>試合サマリー</b>で傾向を確認。<b>データ出力</b>のPDFレポートを共有資料に。</td></tr>
-        <tr><td>個人面談</td><td><b>選手詳細</b>の標準得点レーダーと<b>ネットワーク分析</b>で材料を準備 → 面談後に<b>IDP</b>へ目標・面談記録を登録。</td></tr>
-        <tr><td>シーズン節目</td><td><b>2期間の比較</b>で強化期間の前後を検証。<b>選手管理</b>で名簿・表示設定を整理。</td></tr>
+        <tr><td>月次ミーティング</td><td><span class="rc co">コーチ</span><b>怪我サマリー</b>と<b>試合サマリー</b>で傾向を確認。<b>データ出力</b>のPDFレポートを共有資料に。</td></tr>
+        <tr><td>個人面談</td><td><span class="rc co">コーチ</span><b>選手詳細</b>の標準得点レーダーと<b>ネットワーク分析</b>で材料を準備 → 面談後に<b>IDP</b>へ目標・面談記録を登録。</td></tr>
+        <tr><td>シーズン節目</td><td><span class="rc co">コーチ</span><b>2期間の比較</b>で強化期間の前後を検証。<b>選手管理</b>で名簿・表示設定を整理。</td></tr>
       </table>
     </section>
 
