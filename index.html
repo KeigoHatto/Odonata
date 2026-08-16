@@ -156,21 +156,22 @@ undefined  /* 右：現場で使う＝暗い背景＋UIスクリーン */
     border:1px solid rgba(255,255,255,.28);box-shadow:0 18px 44px rgba(0,0,0,.38)}
   .pf-photo img{width:100%;height:auto;display:block;object-fit:contain}
 
-  /* ───── 06 サイクル：文字はSVGのtext要素で保持（英語化時に作り直さない） ───── */
-  .cycle{max-width:980px;margin:48px auto 0}
+  /* ───── 06 サイクル：円環図。文字はSVGのtext要素で保持（英語化時に作り直さない） ───── */
+  .cycle{max-width:880px;margin:48px auto 0}
   .cycle svg{width:100%;height:auto;display:block;overflow:visible}
-  .cycle .cy-step circle{fill:#fff;stroke:#00A0E9;stroke-width:2.2}
-  .cycle .cy-step.last circle{fill:#0B2A5B;stroke:#0B2A5B}
-  .cycle .cy-n{fill:#0B2A5B;font-family:'Manrope',sans-serif;font-size:26px;font-weight:800;text-anchor:middle}
-  .cycle .cy-step.last .cy-n{fill:#fff}
-  .cycle .cy-t{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:19px;font-weight:800}
-  .cycle .cy-s{fill:#41616F;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:600}
-  .cycle .cy-arrow{fill:none;stroke:#00A0E9;stroke-width:2.4;opacity:.7}
-  .cycle .cy-back{fill:none;stroke:#0B2A5B;stroke-width:2.6;stroke-dasharray:7 6;opacity:.85}
-  .cycle .cy-backt{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:700}
+  .cycle .arc{fill:none;stroke:#00A0E9;stroke-width:3;opacity:.6}
+  .cycle .arc.back{stroke-width:6;opacity:1;stroke:#0B2A5B}
+  .cycle .node{fill:#fff;stroke:#00A0E9;stroke-width:2.6}
+  .cycle .node.back{fill:#0B2A5B;stroke:#0B2A5B}
+  .cycle .num{fill:#0B2A5B;font-family:'Manrope',sans-serif;font-size:27px;font-weight:800;text-anchor:middle}
+  .cycle .num.on{fill:#fff}
+  .cycle .lab{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:21px;font-weight:800}
+  .cycle .sub{fill:#41616F;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:600}
+  .cycle .core{fill:#F2FAFE;stroke:#00A0E9;stroke-width:1.6;stroke-dasharray:6 5}
+  .cycle .coretx{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;font-weight:800;text-anchor:middle}
   .cycle-note{margin:34px auto 0;font-size:15.5px;color:var(--sub);line-height:2}
   .cycle-note b{color:var(--navy)}
-  @media(max-width:640px){.cycle .cy-t{font-size:26px}.cycle .cy-s{font-size:18px}.cycle .cy-backt{font-size:19px}.cycle .cy-n{font-size:32px}}
+  @media(max-width:640px){.cycle .lab{font-size:26px}.cycle .sub{font-size:17px}.cycle .coretx{font-size:24px}.cycle .num{font-size:32px}}
   /* ───── 05 実証：成果 → 何を実証したか → 経緯 の順で見せる ───── */
   .proof{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;margin-top:48px}
   @media(max-width:900px){.proof{grid-template-columns:1fr;gap:36px}}
@@ -588,53 +589,52 @@ undefined  /* 右：現場で使う＝暗い背景＋UIスクリーン */
       <h2 class="section-title"><span class="np">データを意思決定に</span><span class="np">つなげるサイクル</span></h2>
     </div>
     <div class="cycle reveal">
-      <svg viewBox="0 0 960 300" role="img" aria-label="集める → つなぐ → 読み解く → 判断する → 蓄積する。蓄積された経験が次のデータになり、集めるへ戻る循環">
+      <svg viewBox="0 0 900 540" role="img" aria-label="集める → つなぐ → 読み解く → 判断する → 蓄積する。蓄積された経験が次のデータになり、集めるへ戻る循環図">
         <defs>
-          <marker id="ca" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <marker id="ca" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
             <path d="M1 1 L10 6 L1 11 z" fill="#00A0E9"/>
           </marker>
-          <marker id="cb" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <marker id="cb" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M1 1 L10 6 L1 11 z" fill="#0B2A5B"/>
           </marker>
         </defs>
 
-        <!-- 戻りの弧：蓄積 → 集める -->
-        <path class="cy-back" d="M868 168 C868 246 700 262 480 262 C260 262 92 246 92 168" marker-end="url(#cb)"/>
-        <text class="cy-backt" x="480" y="288" text-anchor="middle">現場での判断と結果が、次のデータになる</text>
+        <!-- 時計回りの矢印。5→1（戻り）だけ線を太くする -->
+        <path class="arc" d="M504.1 103.1 A185 185 0 0 1 601.6 173.9" marker-end="url(#ca)"/>
+        <path class="arc" d="M635.0 276.8 A185 185 0 0 1 597.7 391.3" marker-end="url(#ca)"/>
+        <path class="arc" d="M510.2 454.9 A185 185 0 0 1 389.8 454.9" marker-end="url(#ca)"/>
+        <path class="arc" d="M302.3 391.3 A185 185 0 0 1 265.0 276.8" marker-end="url(#ca)"/>
+        <path class="arc back" d="M298.4 173.9 A185 185 0 0 1 395.9 103.1" marker-end="url(#cb)"/>
 
-        <g class="cy-step">
-          <circle cx="92" cy="104" r="40"/><text class="cy-n" x="92" y="112">1</text>
-          <text class="cy-t" x="92" y="172" text-anchor="middle">集める</text>
-          <text class="cy-s" x="92" y="194" text-anchor="middle">日々の現場データ</text>
-        </g>
-        <path class="cy-arrow" d="M140 104 L188 104" marker-end="url(#ca)"/>
+        <!-- 中央 -->
+        <circle class="core" cx="450" cy="280" r="106"/>
+        <text class="coretx" x="450" y="266">使うほど、</text>
+        <text class="coretx" x="450" y="296">判断の材料が増える</text>
 
-        <g class="cy-step">
-          <circle cx="286" cy="104" r="40"/><text class="cy-n" x="286" y="112">2</text>
-          <text class="cy-t" x="286" y="172" text-anchor="middle">つなぐ</text>
-          <text class="cy-s" x="286" y="194" text-anchor="middle">同じ選手・同じ時間軸へ</text>
-        </g>
-        <path class="cy-arrow" d="M334 104 L382 104" marker-end="url(#ca)"/>
+        <!-- 1 集める -->
+        <circle class="node" cx="450" cy="95" r="34"/><text class="num" x="450" y="105">1</text>
+        <text class="lab" x="450" y="42" text-anchor="middle">集める</text>
+        <text class="sub" x="450" y="63" text-anchor="middle">日々の現場データ</text>
 
-        <g class="cy-step">
-          <circle cx="480" cy="104" r="40"/><text class="cy-n" x="480" y="112">3</text>
-          <text class="cy-t" x="480" y="172" text-anchor="middle">読み解く</text>
-          <text class="cy-s" x="480" y="194" text-anchor="middle">関係性と変化を分析</text>
-        </g>
-        <path class="cy-arrow" d="M528 104 L576 104" marker-end="url(#ca)"/>
+        <!-- 2 つなぐ -->
+        <circle class="node" cx="626" cy="223" r="34"/><text class="num" x="626" y="233">2</text>
+        <text class="lab" x="676" y="212">つなぐ</text>
+        <text class="sub" x="676" y="233">同じ選手・同じ時間軸へ</text>
 
-        <g class="cy-step">
-          <circle cx="674" cy="104" r="40"/><text class="cy-n" x="674" y="112">4</text>
-          <text class="cy-t" x="674" y="172" text-anchor="middle">判断する</text>
-          <text class="cy-s" x="674" y="194" text-anchor="middle">現場が決める</text>
-        </g>
-        <path class="cy-arrow" d="M722 104 L770 104" marker-end="url(#ca)"/>
+        <!-- 3 読み解く -->
+        <circle class="node" cx="559" cy="430" r="34"/><text class="num" x="559" y="440">3</text>
+        <text class="lab" x="559" y="492" text-anchor="middle">読み解く</text>
+        <text class="sub" x="559" y="513" text-anchor="middle">関係性と変化を分析</text>
 
-        <g class="cy-step last">
-          <circle cx="868" cy="104" r="40"/><text class="cy-n" x="868" y="112">5</text>
-          <text class="cy-t" x="868" y="172" text-anchor="middle">蓄積する</text>
-          <text class="cy-s" x="868" y="194" text-anchor="middle">経験がデータになる</text>
-        </g>
+        <!-- 4 判断する -->
+        <circle class="node" cx="341" cy="430" r="34"/><text class="num" x="341" y="440">4</text>
+        <text class="lab" x="341" y="492" text-anchor="middle">判断する</text>
+        <text class="sub" x="341" y="513" text-anchor="middle">決めるのは現場</text>
+
+        <!-- 5 蓄積する（戻りの起点） -->
+        <circle class="node back" cx="274" cy="223" r="34"/><text class="num on" x="274" y="233">5</text>
+        <text class="lab" x="224" y="212" text-anchor="end">蓄積する</text>
+        <text class="sub" x="224" y="233" text-anchor="end">経験が次のデータになる</text>
       </svg>
     </div>
     <p class="cycle-note readable center">Odonataは、現場の経験や判断を置き換えるものではありません。データを<b>新しい判断材料として加える</b>ことで、選べる手を増やすための仕組みです。</p>
