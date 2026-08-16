@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>実績・研究 — Odonata</title>
-<meta name="description" content="筑波大学蹴球部での実証導入の詳細と成果（傷害予測の的中率約70%・単一指標手法比約14倍）、研究基盤。Odonataの「本当に効くのか？」への回答。">
+<meta name="description" content="筑波大学蹴球部での実証成果（高リスク判定選手のうち約70%で傷害が発生＝Precision、Recall約20%）と、その方法・背景・研究基盤。条件と限界も併せて公開しています。">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -15,30 +15,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  /* 実証ストーリー */
-  .story{max-width:860px;margin:48px auto 0}
-  .story-step{display:grid;grid-template-columns:150px 1fr;gap:24px;position:relative;padding-bottom:40px}
-  @media(max-width:640px){.story-step{grid-template-columns:1fr;gap:8px;padding-left:26px}}
-  .story-step::before{content:"";position:absolute;left:170px;top:38px;bottom:0;width:1.5px;background:var(--border)}
-  @media(max-width:640px){.story-step::before{left:7px;top:30px}}
-  .story-step:last-child::before{display:none}
-  .story-step .ph{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);padding-top:6px;position:relative}
-  .story-step .ph::after{content:"";position:absolute;right:-27px;top:10px;width:13px;height:13px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px #E0F5FD}
-  @media(max-width:640px){.story-step .ph::after{left:-26px;right:auto;top:6px}}
-  .story-step .body{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;box-shadow:var(--shadow)}
-  .story-step h3{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:10px}
-  .story-step p{font-size:14px;color:var(--sub);line-height:1.9}
-  .story-step p b{color:var(--navy)}
-  /* 成果数値 */
-  .perf{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-  @media(max-width:760px){.perf{grid-template-columns:1fr}}
-  .perf .p{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px 22px;text-align:center;box-shadow:var(--shadow)}
-  .perf .p .v{font-size:44px;font-weight:800;color:var(--blue);line-height:1;font-family:'Manrope',sans-serif}
-  .perf .p .v small{font-size:20px}
-  .perf .p .k{font-size:14px;font-weight:700;color:var(--navy);margin-top:12px}
-  .perf .p .s{font-size:12.5px;color:var(--sub);margin-top:6px;line-height:1.7}
-  /* 現場の声（準備中） */
-  .voice-pending{max-width:720px;margin:40px auto 0;border:1.5px dashed var(--border);border-radius:var(--radius);padding:32px 28px;text-align:center;color:var(--sub);font-size:14px;background:rgba(255,255,255,.6)}
+  /* 実証成果：約70%（Precision）が主、約20%（Recall）が従。約5%は注記のみ */
+  .outcome{display:grid;grid-template-columns:1.3fr 1fr;gap:0;max-width:860px;margin:44px auto 0;
+    background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  @media(max-width:700px){.outcome{grid-template-columns:1fr}}
+  .outcome .main{padding:34px 32px}
+  .outcome .side{padding:34px 32px;background:#F7FCFE;border-left:1px solid var(--border);display:flex;flex-direction:column;justify-content:center}
+  @media(max-width:700px){.outcome .side{border-left:none;border-top:1px solid var(--border)}}
+  .outcome .side .v{font-family:'Manrope',sans-serif;font-size:32px;font-weight:800;color:var(--navy);line-height:1}
+  .outcome .k{font-size:14px;font-weight:700;color:var(--navy);margin-top:14px;line-height:1.7}
+  .outcome .side .k{font-size:13px}
+  .outcome .m{font-family:'Manrope',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--sub);margin-top:6px}
+  /* 方法：横並びカード（縦タイムラインUIを廃止） */
+  .rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+  @media(max-width:900px){.rgrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.rgrid{grid-template-columns:1fr}}
+  .rcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;box-shadow:var(--shadow)}
+  .rcard .rn{font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--blue)}
+  .rcard h3{font-size:16.5px;font-weight:800;color:var(--navy);margin:8px 0 8px;line-height:1.5}
+  .rcard p{font-size:13.5px;color:var(--sub);line-height:1.85}
+  /* 背景：2カラム */
+  .bg-2col{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;margin-top:40px}
+  @media(max-width:860px){.bg-2col{grid-template-columns:1fr;gap:28px}}
+  .bg-2col p{font-size:15.5px;color:var(--sub);line-height:2}
+  .bg-2col p b{color:var(--navy)}
 </style>
 </head>
 <body>
@@ -129,102 +129,84 @@
   </div>
 </div>
 
-<!-- ═══════════ 1. 筑波大学蹴球部での実証 ═══════════ -->
-<section id="tsukuba">
+<!-- ═══════════ 1. 実証成果 ═══════════ -->
+<section id="numbers">
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
-      <span class="eyebrow">Case Study</span>
-      <h2 class="section-title"><span class="np">筑波大学蹴球部での</span><span class="np">実証導入</span></h2>
-      <p class="section-lead center"><span class="np">2026年6月より、</span><span class="np">大学サッカー トップレベルの</span><span class="np">競技環境で、</span><span class="np">実データによる開発・検証を</span><span class="np">続けています。</span></p>
-    </div>
-    <div class="story">
-      <div class="story-step reveal">
-        <div class="ph">Background<br>背景</div>
-        <div class="body">
-          <h3>データはあるのに、つながっていなかった</h3>
-          <p>大学トップレベルの競技環境である筑波大学蹴球部。GPS・コンディション報告・メディカル記録という素材は揃っていながら、それぞれが別の場所に保存され、<b>横断して読み解く仕組み</b>がありませんでした。</p>
-        </div>
-      </div>
-      <div class="story-step reveal">
-        <div class="ph">Approach<br>取り組み</div>
-        <div class="body">
-          <h3>統合 → モデル開発 → アプリ化</h3>
-          <p>GPS×主観コンディション×メディカルのデータを統合し、チームのデータで<b>AI傷害予測モデル</b>を開発。分析を研究室に閉じず、選手・スタッフが毎日使える<b>Webアプリ</b>として現場に実装しました。</p>
-        </div>
-      </div>
-      <div class="story-step reveal">
-        <div class="ph">In Practice<br>現場での活用</div>
-        <div class="body">
-          <h3>負荷調整・起用・対話の材料に</h3>
-          <p>日々のリスクスコアと要因分解を、<b>練習負荷の調整</b>や<b>起用の検討</b>、そして<b>選手との対話</b>の材料として活用。「AIが決める」のではなく、スタッフの直感を補完する“もう一つの目”として運用しています。</p>
-        </div>
-      </div>
-      <div class="story-step reveal">
-        <div class="ph">Outcome<br>アウトカム</div>
-        <div class="body">
-          <h3>稼働率と、対話の質が変わる</h3>
-          <p>選手稼働率の向上に加えて、選手自身の<b>コンディションへの意識向上</b>、データを挟んだ<b>スタッフ・選手間の対話の質の向上</b>という変化が生まれています。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 2. 成果の数値 ═══════════ -->
-<section class="section-alt" id="numbers">
-  <div class="wrap">
-    <div class="center" style="max-width:760px;margin:0 auto">
-      <span class="eyebrow">Numbers</span>
-      <h2 class="section-title">成果の数値</h2>
+      <span class="eyebrow">Outcome</span>
+      <h2 class="section-title">実証成果</h2>
       <p class="section-lead center"><span class="np">数字は盛りません。</span><span class="np">条件と限界も、</span><span class="np">セットでお伝えします。</span></p>
     </div>
-    <div class="perf">
-      <div class="p reveal">
-        <div class="v">約70<small>%</small></div>
-        <div class="k">傷害予測の的中率<sup class="fn"><a href="#num-notes">※</a></sup></div>
-        <div class="s">「危険」と予測した日のうち、実際に傷害が発生した割合</div>
+    <div class="outcome reveal">
+      <div class="main">
+        <div class="bignum">約70<small>%</small></div>
+        <div class="k">高リスクと判定した選手で傷害が発生した割合</div>
+        <div class="m">Precision（適合率）</div>
       </div>
-      <div class="p reveal">
-        <div class="v">約5<small>%</small></div>
-        <div class="k">従来の単一指標手法の的中率<sup class="fn"><a href="#num-notes">※</a></sup></div>
-        <div class="s">同一データでの比較。単一指標の監視との差が、複雑系アプローチの価値</div>
-      </div>
-      <div class="p reveal">
+      <div class="side">
         <div class="v">約20<small>%</small></div>
-        <div class="k">傷害の捕捉率<sup class="fn"><a href="#num-notes">※</a></sup></div>
-        <div class="s">発生した傷害のうち事前に「危険」と予測できていた割合。すべての怪我は捉えられません</div>
+        <div class="k">傷害全体のうち事前に予兆を捉えた割合</div>
+        <div class="m">Recall（再現率）</div>
       </div>
     </div>
     <div class="footnotes" id="num-notes">
-      <p>※ 従来手法は、単一の負荷指標（急性慢性負荷比）による監視です。</p>
-      <p>※ 傷害の完全な予防を保証するものではなく、現場の意思決定支援を目的としています。</p>
+      <p>※ 比較対象とした従来の単一指標手法（急性慢性負荷比＝ACWR）による監視では、同一データで <b>Precision 約5%（ACWR）→ 約70%（Odonata）</b>。一方 <b>Recall はいずれも約20%</b> で同等です。</p>
       <p>※ 予測対象は筋肉系・非接触靭帯系・オーバーユース系の傷害です（接触による打撲・骨折などは対象外）。</p>
-      <p>※ 筑波大学蹴球部での実証結果であり、チーム・データ環境により結果は異なります。</p>
+      <p>※ 筑波大学蹴球部 2022–2025年データでの検証値であり、チーム・データ環境により結果は異なります。</p>
+      <p>※ 傷害の完全な予防を保証するものではなく、現場の意思決定支援を目的としています。</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ 3. 現場の声 ═══════════ -->
-<section id="voice">
+<!-- ═══════════ 2. 方法 ═══════════ -->
+<section class="section-alt" id="method">
   <div class="wrap">
-    <div class="center" style="max-width:760px;margin:0 auto">
-      <span class="eyebrow">Voice</span>
-      <h2 class="section-title">現場の声</h2>
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <span class="eyebrow">Method</span>
+      <h2 class="section-title">どうやったか</h2>
     </div>
-    <div class="voice-pending reveal">
-      <p><b style="color:var(--navy)">導入現場のスタッフ・選手の声は、公開許諾の取得後に順次掲載します。</b></p>
-      <p style="margin-top:8px">実証・導入の現場でどう使われているかは、お打ち合わせの際に具体的にご紹介できます。</p>
-    </div>
-    <!-- 掲載用テンプレート（許諾取得後に差し替え）
-    <div class="feat-grid">
-      <div class="feat">
-        <p>「コメント本文」</p>
-        <p style="margin-top:12px"><b>氏名・肩書</b>（筑波大学蹴球部）</p>
+    <div class="rgrid">
+      <div class="rcard reveal">
+        <div class="rn">01</div>
+        <h3>統合する</h3>
+        <p>GPS・主観コンディション・スケジュール・メディカル記録を1つのデータセットに統合し、200以上の観点から特徴量を生成しました。</p>
+      </div>
+      <div class="rcard reveal">
+        <div class="rn">02</div>
+        <h3>モデルを個別に組む</h3>
+        <p>傷害発生時との類似性を学習させ、チーム・選手固有の傷害リスク予測モデルを構築しました。</p>
+      </div>
+      <div class="rcard reveal">
+        <div class="rn">03</div>
+        <h3>現場に実装する</h3>
+        <p>分析を研究室に閉じず、選手・スタッフが毎日使えるWebアプリとして実装。日々のリスクスコアと要因分解を返します。</p>
+      </div>
+      <div class="rcard reveal">
+        <div class="rn">04</div>
+        <h3>判断の材料として使う</h3>
+        <p>練習負荷の調整・起用の検討・選手との対話の材料として運用。決めるのはスタッフで、AIはもう一つの目です。</p>
       </div>
     </div>
-    -->
   </div>
 </section>
+
+<!-- ═══════════ 3. 背景 ═══════════ -->
+<section id="background">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <span class="eyebrow">Background</span>
+      <h2 class="section-title"><span class="np">データはあるのに、</span><span class="np">つながっていなかった。</span></h2>
+    </div>
+    <div class="bg-2col">
+      <p class="readable">大学トップレベルの競技環境である筑波大学蹴球部では、GPS・コンディション報告・メディカル記録という素材は揃っていました。しかしそれぞれが別の場所に保存され、<b>同じ選手を横断して読み解く仕組み</b>がありませんでした。2026年6月、この状態から実証を開始しています。</p>
+      <div class="browser light reveal">
+        <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="u"></span></div>
+        <img src="assets/app-risk.png" alt="傷害発生リスク予測画面" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ═══════════ 4. 研究基盤 ═══════════ -->
 <section class="section-alt" id="academic">
@@ -273,11 +255,11 @@
 <section class="cta-band" style="padding-top:64px">
   <div class="wrap">
     <div class="cta reveal">
-      <h2><span class="np">サッカーの複雑さを、</span><span class="np">チームの武器に。</span></h2>
+      <h2><span class="np">まずは、チームの</span><span class="np">データの状況から</span><span class="np">お聞かせください。</span></h2>
       <p><span class="np">実証の詳細・分析事例を含む</span><span class="np">サービス資料をご用意しています。</span></p>
       <div class="cta-actions">
-        <a class="btn btn-blue" href="contact.html?purpose=doc">サービス資料をダウンロード</a>
-        <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> お問い合わせ・相談</a>
+        <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
       </div>
     </div>
   </div>
