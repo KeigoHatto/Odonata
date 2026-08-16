@@ -15,25 +15,59 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  /* ───── トップページ専用：ヒーロー ───── */
-  .hero{position:relative;overflow:hidden;background:var(--grad-hero);color:#fff;padding:88px 0 96px}
-  .hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
-  /* ピッチライン（不透明度8%）— サッカー領域を写真なしで示す */
-  .hero .pitch{position:absolute;inset:0;width:100%;height:100%;opacity:.08;pointer-events:none;z-index:1}
+  /* ───── トップページ専用：ヒーロー ─────
+     背景は白〜淡いブルーの抽象。サッカーフィールドの表現は使わない。 */
+  .hero{position:relative;overflow:hidden;color:var(--text);padding:96px 0 104px;
+    background:
+      radial-gradient(900px 520px at 84% 18%,rgba(0,160,233,.10),transparent 62%),
+      radial-gradient(760px 460px at 4% 92%,rgba(11,42,91,.07),transparent 58%),
+      linear-gradient(180deg,#FFFFFF 0%,#F5FBFE 62%,#EDF7FC 100%);
+  }
   .hero .wrap{position:relative;z-index:2}
-  .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
-  @media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:44px}}
-  .hero h1{font-size:clamp(32px,4.4vw,48px);font-weight:800;line-height:1.32;letter-spacing:-.02em;margin-bottom:22px}
-  .hero h1 .grad{background:linear-gradient(90deg,#7FE3FF,#BFF0D6);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p.lead{font-size:16.5px;color:#DCEAF6;line-height:1.95;max-width:620px;margin:0 0 32px}
+  .hero-grid{display:grid;grid-template-columns:45fr 55fr;gap:clamp(32px,4.4vw,64px);align-items:center}
+  @media(max-width:1024px){.hero-grid{grid-template-columns:47fr 53fr;gap:32px}}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:44px}}
+  .hero h1{font-size:clamp(30px,4.2vw,46px);font-weight:800;line-height:1.34;letter-spacing:-.02em;
+    margin-bottom:22px;color:var(--navy)}
+  .hero h1 .grad{background:linear-gradient(96deg,#0E5F9E,#00A0E9 60%,#1B8FB3);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{font-size:17px;color:var(--sub);line-height:1.95;max-width:34em;margin:0 0 34px}
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-  /* プロダクト画面：主役＝傷害リスク予測、背面に0.5枚ダッシュボード */
-  .hero-shot{position:relative;padding:26px 0 8px}
-  .hero-shot .back{position:absolute;top:0;right:8%;width:74%;opacity:.55;transform:rotate(-2.5deg)}
-  .hero-shot .front{position:relative;z-index:2}
-  .hero-shot figcaption{margin-top:14px;font-size:12px;color:#B9D2E6;text-align:right}
-  @media(max-width:960px){.hero-shot .back{display:none}.hero-shot figcaption{text-align:left}}
-  @media(max-width:560px){.hero{padding:64px 0 76px}}
+
+  /* ───── Heroビジュアル：奥＝関係性の分析／手前＝プロダクト ───── */
+  .hero-vis{position:relative;isolation:isolate}
+  /* 奥：ノードとエッジの抽象図 */
+  .hero-vis .net{display:block;width:100%;height:auto}
+  .hero-vis .net .e{stroke:#8FC7E8;stroke-width:1.4;fill:none;opacity:.55}
+  .hero-vis .net .e.hot{stroke:#FF9933;opacity:.85;stroke-width:1.8}
+  .hero-vis .net .n{fill:#fff;stroke:#0E5F9E;stroke-width:1.8}
+  .hero-vis .net .n.hot{fill:#FF9933;stroke:#E07B1E}
+  .hero-vis .net .n.core{fill:#0B2A5B;stroke:#0B2A5B}
+  .hero-vis .net .ring{fill:none;stroke:#00A0E9;opacity:.22}
+  /* 手前：デバイスモックアップ（アスペクト比を維持する） */
+  .device{position:absolute;border-radius:14px;background:#0B2A5B;padding:8px;
+    box-shadow:0 26px 60px rgba(11,42,91,.28);overflow:hidden}
+  .device img{width:100%;height:auto;display:block;object-fit:contain;border-radius:7px;background:#fff}
+  .device.tablet{left:6%;bottom:-2%;width:60%;z-index:3}
+  .device.laptop{right:0;top:4%;width:52%;z-index:2}
+  /* UI詳細を読ませすぎない：軽いぼかしと減光 */
+  .device.laptop img{filter:blur(1.1px) saturate(.94);opacity:.94}
+  .device.tablet img{filter:blur(.5px)}
+  .device::after{content:"";position:absolute;inset:0;border-radius:14px;pointer-events:none;
+    background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(11,42,91,.05) 46%,rgba(11,42,91,.14))}
+  .hero-vis .cap{position:absolute;right:0;bottom:-34px;font-size:12px;color:var(--sub)}
+  @media(max-width:860px){
+    .hero-vis .net{max-width:560px;margin:0 auto}
+    .device.tablet{width:56%}
+    .device.laptop{width:48%}
+    .hero-vis .cap{position:static;display:block;margin-top:14px;text-align:right}
+  }
+  @media(max-width:560px){
+    .hero{padding:64px 0 80px}
+    .device.laptop{display:none}
+    .device.tablet{position:static;width:100%;margin-top:-6%}
+    .hero-vis .cap{text-align:left}
+  }
 
   /* ───── 02 Odonataでできること：ユースケース3枚（カードごとに主役ビジュアルを変える） ───── */
   .uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;align-items:stretch}
@@ -251,22 +285,6 @@
 
 <!-- ═══════════ 01 HERO ═══════════ -->
 <section class="hero" id="top">
-  <canvas id="netCanvas"></canvas>
-  <!-- ピッチライン（センターサークル／ペナルティエリア）を不透明度8%で重ねる -->
-  <svg class="pitch" viewBox="0 0 1440 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <g fill="none" stroke="#fff" stroke-width="2">
-      <rect x="60" y="40" width="1320" height="540"/>
-      <line x1="720" y1="40" x2="720" y2="580"/>
-      <circle cx="720" cy="310" r="128"/>
-      <circle cx="720" cy="310" r="5" fill="#fff" stroke="none"/>
-      <rect x="60" y="140" width="210" height="340"/>
-      <rect x="60" y="228" width="80" height="164"/>
-      <rect x="1170" y="140" width="210" height="340"/>
-      <rect x="1300" y="228" width="80" height="164"/>
-      <path d="M270 228 a128 128 0 0 1 0 164"/>
-      <path d="M1170 392 a128 128 0 0 1 0 -164"/>
-    </g>
-  </svg>
   <div class="wrap">
     <div class="hero-grid">
       <!-- ▼▼ HERO COPY：Vision確定後は h1 1行と p.lead 2行のみ差し替える ▼▼ -->
@@ -277,19 +295,41 @@
           <span class="np">日々の記録を、</span><span class="np">現場で活きる判断材料に</span><span class="np">変えていきます。</span>
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="demo.html">デモを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-ghost" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
+          <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
         </div>
       </div>
       <!-- ▲▲ HERO COPY ここまで ▲▲ -->
-      <figure class="hero-shot">
-        <img class="back" src="assets/app-dashboard.png" alt="" aria-hidden="true">
-        <div class="browser front">
-          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="u"></span></div>
-          <img src="assets/app-risk.png" alt="Odonata の傷害発生リスク予測画面。選手ごとのリスク区分と要因、練習負荷の調整案が並ぶ" width="1200" height="760" fetchpriority="high">
+      <div class="hero-vis">
+        <!-- 奥：データ同士の関係性（ノードとエッジ） -->
+        <svg class="net" viewBox="0 0 640 460" role="img" aria-label="複数のデータが線でつながり、関係の強い箇所が浮かび上がる関係性の図">
+          <g class="e">
+            <path d="M96 96 L300 210"/><path d="M300 210 L536 92"/><path d="M96 330 L300 210"/>
+            <path d="M300 210 L520 352"/><path d="M300 210 L318 52"/><path d="M96 96 L96 330"/>
+            <path d="M536 92 L520 352"/><path d="M318 52 L536 92"/><path d="M96 330 L520 352"/>
+            <path d="M186 402 L300 210"/><path d="M186 402 L520 352"/>
+          </g>
+          <g class="e hot">
+            <path d="M96 96 L300 210"/><path d="M300 210 L520 352"/>
+          </g>
+          <circle class="ring" cx="300" cy="210" r="62" stroke-width="1.4"/>
+          <circle class="ring" cx="300" cy="210" r="90" stroke-width="1.1"/>
+          <g class="n">
+            <circle cx="536" cy="92" r="11"/><circle cx="96" cy="330" r="11"/>
+            <circle cx="318" cy="52" r="9"/><circle cx="186" cy="402" r="9"/>
+          </g>
+          <g class="n hot"><circle cx="96" cy="96" r="13"/><circle cx="520" cy="352" r="13"/></g>
+          <circle class="n core" cx="300" cy="210" r="17"/>
+        </svg>
+        <!-- 手前：プロダクト（アスペクト比を維持したまま縮小・軽くぼかす） -->
+        <div class="device laptop">
+          <img src="assets/app-network-graph.png" alt="Odonata のネットワーク分析画面のイメージ" loading="eager">
         </div>
-        <figcaption>実際のアプリ画面（傷害発生リスク予測）</figcaption>
-      </figure>
+        <div class="device tablet">
+          <img src="assets/app-dashboard.png" alt="Odonata のダッシュボード画面のイメージ" fetchpriority="high">
+        </div>
+        <span class="cap">実際のプロダクト画面のイメージ</span>
+      </div>
     </div>
   </div>
 </section>
@@ -728,6 +768,5 @@
 <!-- /#partial:footer -->
 
 <script src="assets/site.js"></script>
-<script src="assets/hero2d.js"></script>
 </body>
 </html>
