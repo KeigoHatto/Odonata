@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Odonata — サッカーを複雑系として読み解く、データ分析とプラットフォーム</title>
-<meta name="description" content="複雑な世界を、複眼で読む。Odonataはサッカーを複雑系として捉え、要素ではなく関係性を読み解く複雑系アプローチで、ピッチの判断から強化・経営まで、現場の意思決定とチームの成長を支えます。筑波大学蹴球部で実証導入中。">
+<title>Odonata — サッカーチーム向け データプラットフォーム</title>
+<meta name="description" content="Odonataは、GPS・コンディション・試合・メディカルなど現場に散らばるデータをひとつにまとめ、チームごとの分析まで行うサッカーチーム向けデータプラットフォームです。分析は、現場スタッフが毎日使えるWebアプリとして届けます。筑波大学蹴球部で実証中。">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -14,33 +14,32 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
-<script type="importmap">
-{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js" } }
-</script>
 <style>
   /* ───── トップページ専用：ヒーロー ───── */
-  .hero{position:relative;overflow:hidden;background:var(--grad-hero);color:#fff;padding:110px 0 120px}
-  .hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
-  .hero canvas#hero3d{opacity:.9;cursor:grab;touch-action:pan-y}
-  .hero canvas#hero3d.dragging{cursor:grabbing}
-  .hero.has3d #netCanvas{display:none}
-  .hero.has3d::after{
-    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-    background:radial-gradient(120% 90% at 50% 42%,rgba(7,26,58,.10) 0%,rgba(7,26,58,.34) 62%,rgba(7,26,58,.62) 100%);
+  .hero{position:relative;overflow:hidden;background:var(--grad-hero);color:#fff;padding:88px 0 96px}
+  .hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+  /* ピッチライン（不透明度8%）— サッカー領域を写真なしで示す */
+  .hero .pitch{position:absolute;inset:0;width:100%;height:100%;opacity:.08;pointer-events:none;z-index:1}
+  .hero .wrap{position:relative;z-index:2}
+  .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
+  @media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:44px}}
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.26);border-radius:999px;padding:7px 16px;
+    font-size:13px;font-weight:700;letter-spacing:.04em;margin-bottom:22px;color:#e6f6ff;
   }
-  .hero .wrap{position:relative;z-index:2;text-align:center}
-  .hero-badge{
-    display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:7px 16px;
-    font-size:13px;font-weight:600;margin-bottom:26px;color:#dff3ff;
-  }
-  .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:#5ee0a0;box-shadow:0 0 0 4px rgba(94,224,160,.25)}
-  .hero h1{font-size:clamp(32px,5.4vw,58px);font-weight:800;line-height:1.22;letter-spacing:-.02em;margin-bottom:14px}
+  .hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#5ee0a0;box-shadow:0 0 0 4px rgba(94,224,160,.25)}
+  .hero h1{font-size:clamp(30px,4.6vw,50px);font-weight:800;line-height:1.28;letter-spacing:-.02em;margin-bottom:18px}
   .hero h1 .grad{background:linear-gradient(90deg,#7FE3FF,#BFF0D6);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero .en{font-size:clamp(13px,1.9vw,17px);font-weight:700;color:#9fe2ff;letter-spacing:.1em;font-family:'Manrope',sans-serif;margin-bottom:24px}
-  .hero p.lead{font-size:clamp(16.5px,2.2vw,20px);color:#cfe6f5;max-width:760px;margin:0 auto 38px}
-  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  @media(max-width:560px){.hero{padding:80px 0 100px}}
+  .hero p.lead{font-size:16.5px;color:#DCEAF6;line-height:1.95;max-width:620px;margin:0 0 32px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  /* プロダクト画面：主役＝傷害リスク予測、背面に0.5枚ダッシュボード */
+  .hero-shot{position:relative;padding:26px 0 8px}
+  .hero-shot .back{position:absolute;top:0;right:8%;width:74%;opacity:.55;transform:rotate(-2.5deg)}
+  .hero-shot .front{position:relative;z-index:2}
+  .hero-shot figcaption{margin-top:14px;font-size:12px;color:#B9D2E6;text-align:right}
+  @media(max-width:960px){.hero-shot .back{display:none}.hero-shot figcaption{text-align:left}}
+  @media(max-width:560px){.hero{padding:64px 0 76px}}
 
   /* ───── Odonataとは：1枚の図 ───── */
   .about-fig{display:grid;grid-template-columns:1fr auto 1.15fr auto 1fr;gap:18px;align-items:stretch;margin-top:50px}
@@ -231,46 +230,51 @@
 </header>
 <!-- /#partial:header -->
 
-<!-- ═══════════ HERO ═══════════ -->
+<!-- ═══════════ 01 HERO ═══════════ -->
 <section class="hero" id="top">
   <canvas id="netCanvas"></canvas>
+  <!-- ピッチライン（センターサークル／ペナルティエリア）を不透明度8%で重ねる -->
+  <svg class="pitch" viewBox="0 0 1440 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#fff" stroke-width="2">
+      <rect x="60" y="40" width="1320" height="540"/>
+      <line x1="720" y1="40" x2="720" y2="580"/>
+      <circle cx="720" cy="310" r="128"/>
+      <circle cx="720" cy="310" r="5" fill="#fff" stroke="none"/>
+      <rect x="60" y="140" width="210" height="340"/>
+      <rect x="60" y="228" width="80" height="164"/>
+      <rect x="1170" y="140" width="210" height="340"/>
+      <rect x="1300" y="228" width="80" height="164"/>
+      <path d="M270 228 a128 128 0 0 1 0 164"/>
+      <path d="M1170 392 a128 128 0 0 1 0 -164"/>
+    </g>
+  </svg>
   <div class="wrap">
-    <div class="hero-badge"><span class="dot"></span> 筑波大学蹴球部で実証導入中（2026年6月〜）</div>
-    <h1><span class="np">複雑な世界を、</span><span class="np"><span class="grad">複眼で読む。</span></span></h1>
-    <div class="en">READ THE COMPLEXITY. SHAPE THE GAME.</div>
-    <p class="lead">
-      <span class="np">サッカーの複雑な現象を、</span><span class="np">データと科学で読み解く。</span><br>
-      <span class="np">要素ではなく</span><span class="np">関係性を読む</span><span class="np">複雑系アプローチで、</span><span class="np">勘と経験に</span><span class="np"><strong>“もう一つの目”</strong>を。</span>
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="contact.html?purpose=doc">サービス資料をダウンロード</a>
-      <a class="btn btn-ghost" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> お問い合わせ</a>
-      <a class="btn btn-ghost" href="https://app.getodonata.com/login">チームの方はログイン <svg class="ic"><use href="#i-arrow"/></svg></a>
+    <div class="hero-grid">
+      <!-- ▼▼ HERO COPY：Vision確定後はこのブロック内の h1 1行と p.lead 1文のみ差し替える ▼▼ -->
+      <div class="hero-copy" data-hero-copy>
+        <p class="hero-eyebrow"><span class="dot"></span>サッカーチーム向け データプラットフォーム</p>
+        <h1><span class="np">サッカーチームのデータを、</span><span class="np"><span class="grad">現場の意思決定に</span></span><span class="np"><span class="grad">つなげる。</span></span></h1>
+        <p class="lead">
+          <span class="np">Odonataは、</span><span class="np">GPS・コンディション・試合・メディカルなど</span><span class="np">現場に散らばるデータを</span><span class="np">ひとつにまとめ、</span><span class="np">チームごとの分析まで行う</span><span class="np">データプラットフォームです。</span>
+          <span class="np">分析は、</span><span class="np">現場スタッフが毎日使える</span><span class="np">Webアプリとして届けます。</span>
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="demo.html">デモを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
+        </div>
+      </div>
+      <!-- ▲▲ HERO COPY ここまで ▲▲ -->
+      <figure class="hero-shot">
+        <img class="back" src="assets/app-dashboard.png" alt="" aria-hidden="true">
+        <div class="browser front">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="u"></span></div>
+          <img src="assets/app-risk.png" alt="Odonata の傷害発生リスク予測画面。選手ごとのリスク区分と要因、練習負荷の調整案が並ぶ" width="1200" height="760" fetchpriority="high">
+        </div>
+        <figcaption>実際のアプリ画面（傷害発生リスク予測）</figcaption>
+      </figure>
     </div>
   </div>
 </section>
-
-<!-- ═══════════ 実績バー ═══════════ -->
-<div class="wrap">
-  <div class="stats">
-    <div class="stat">
-      <div class="num">2026.6〜</div>
-      <div class="lbl">筑波大学蹴球部で実証導入</div>
-    </div>
-    <div class="stat">
-      <div class="num">約70<small>%</small></div>
-      <div class="lbl">傷害予測の的中率<sup class="fn"><a href="#top-notes">※1</a></sup></div>
-    </div>
-    <div class="stat">
-      <div class="num">約14<small>倍</small></div>
-      <div class="lbl">従来の単一指標手法に対する予測精度<sup class="fn"><a href="#top-notes">※2</a></sup></div>
-    </div>
-  </div>
-  <div class="footnotes" id="top-notes" style="margin-top:20px">
-    <p>※1 筑波大学蹴球部での実証結果。チーム・データ環境により異なります。傷害の完全な予防を保証するものではなく、現場の意思決定支援を目的としています。</p>
-    <p>※2 傷害予測AI（複雑系アプローチの分析例）の的中率比較：約70% vs 従来の単一指標手法 約5%（同一データ）。詳細は<a href="research.html" style="color:var(--blue);font-weight:700">実績・研究</a>へ。</p>
-  </div>
-</div>
 
 <!-- ═══════════ 課題 ⇒ 解決策 ═══════════ -->
 <section id="problem">
@@ -703,6 +707,5 @@
 
 <script src="assets/site.js"></script>
 <script src="assets/hero2d.js"></script>
-<script type="module" src="assets/hero3d.js"></script>
 </body>
 </html>
