@@ -22,12 +22,23 @@
     background:radial-gradient(1200px 700px at 70% -5%,rgba(0,160,233,.22),transparent 60%),
                radial-gradient(900px 600px at 10% 110%,rgba(63,200,240,.14),transparent 55%),
                linear-gradient(180deg,rgba(7,26,58,.2),rgba(7,26,58,.78))}
-  header.site,main,footer.site,.cta-band{position:relative;z-index:2}
+  /* 【バグ修正】header.site を position:relative / z-index:2 で上書きすると
+     sticky が解除され、後続の main（同じz-index）がDropdownの上に重なって開けなくなる。
+     ヘッダーは site.css の sticky / z-index:100 を維持する。 */
+  main,footer.site,.cta-band,section{position:relative;z-index:2}
+  header.site{z-index:100}
 
   .sec-tag{font-size:12px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);text-align:center;margin-bottom:16px}
   .sec-h{font-size:clamp(24px,3.6vw,38px);font-weight:800;color:#fff;text-align:center;letter-spacing:.01em;margin-bottom:18px;line-height:1.5}
-  .sec-sub{text-align:center;color:var(--sub);max-width:680px;margin:0 auto;font-size:15px;line-height:2}
+  .sec-sub{text-align:center;color:var(--sub);max-width:var(--readw);margin:0 auto;font-size:16px;line-height:2}
   .sec-sub b{color:#fff}
+  .sub-h{font-size:clamp(20px,2.8vw,26px);font-weight:800;color:#fff;text-align:center;line-height:1.6;margin:72px 0 14px}
+  /* ダーク背景の本文可読性：コントラスト比4.5:1以上（#C9D4E5 以上の明度） */
+  body.dark .feat p,body.dark .pit p,body.dark .duo-card p,body.dark .domain p,
+  body.dark .m-step p,body.dark .injury-cap,body.dark .quote-hero .attr,body.dark .sq .who{color:#C9D4E5}
+  body.dark .feat p,body.dark .domain p,body.dark .pit p{font-size:14.5px;line-height:1.95}
+  body.dark .footnotes{color:#BCCBDD;font-size:12.5px}
+  body.dark .pit-k span{color:#BCCBDD}
 
   /* 冒頭の引用 */
   .quote-hero{padding:120px 0 90px;text-align:center}
@@ -105,9 +116,6 @@
   .m-step h4{font-size:16.5px;font-weight:800;color:#fff;margin-bottom:8px}
   .m-step p{font-size:12.5px;color:var(--sub);line-height:1.85}
 
-  /* 学術フィールド chips */
-  .fields{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:34px}
-  .fields span{background:rgba(0,160,233,.1);border:1px solid var(--border);color:#cfe2f2;font-size:13px;font-weight:700;padding:8px 18px;border-radius:999px}
 </style>
 </head>
 <body class="dark">
@@ -192,6 +200,7 @@
 <!-- ═══════════ 1. リード：セイルーロの言葉 ═══════════ -->
 <section class="quote-hero" style="padding-bottom:70px">
   <div class="wrap">
+    <div class="crumb" style="justify-content:center"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px"><use href="#i-arrow"/></svg> 複雑系アプローチ</div>
     <div class="q reveal" style="font-family:'Zen Kaku Gothic New','Manrope',sans-serif;font-size:clamp(24px,4.6vw,52px);line-height:1.6"><span class="np">複雑性を避けていては、</span><br><span class="np">何も向上することはできない。</span></div>
     <div class="attr reveal">— フランシスコ・セイルーロ（元FCバルセロナ フィジカルコーチ）</div>
     <p class="body reveal">
@@ -311,15 +320,10 @@
         <p>個として測った能力が、チームの文脈で同じように発揮されるとは限らない。<b>「どのチームで、誰と組むか」</b>で価値は変わります。</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══════════ 5. 世界の研究・現場の潮流 ═══════════ -->
-<section id="trend" style="padding-top:60px">
-  <div class="wrap">
-    <div class="sec-tag">Global Trend</div>
-    <h2 class="sec-h"><span class="np">世界の研究と現場は、</span><span class="np">すでに動いている。</span></h2>
-    <p class="sec-sub"><span class="np">サッカーを複雑系として捉える視点は、</span><span class="np">私たちの発明ではありません。</span><span class="np">スポーツ科学の研究と</span><span class="np">トップレベルの現場の、</span><span class="np">世界的な潮流です。</span></p>
+    <!-- 旧 GLOBAL TREND を統合 -->
+    <h3 class="sub-h">この視点は、私たちの発明ではありません。</h3>
+    <p class="sec-sub"><span class="np">サッカーを複雑系として捉える見方は、</span><span class="np">スポーツ科学の研究と</span><span class="np">トップレベルの現場の、</span><span class="np">世界的な潮流です。</span></p>
     <div class="feat-grid">
       <div class="feat reveal">
         <div class="ficon"><svg class="ic"><use href="#i-eye"/></svg></div>
@@ -383,25 +387,6 @@
   </div>
 </section>
 
-<!-- ═══════════ 7. 学術知見の直接実装 ═══════════ -->
-<section id="lab" style="padding-top:60px">
-  <div class="wrap">
-    <div class="sec-tag">Science to Pitch</div>
-    <h2 class="sec-h"><span class="np">研究者が、</span><span class="np">自らプロダクトを作る。</span></h2>
-    <p class="sec-sub">
-      <span class="np">Odonataのチームは、</span><span class="np">脳科学・認知科学・スポーツ科学の</span><span class="np">研究者と現場出身者で</span><span class="np">構成されています。</span>
-      <span class="np">論文の知見を外注で翻訳するのではなく、</span><b class="np">研究する本人が設計し、実装する。</b>
-      <span class="np">学術と現場の距離の近さが、</span><span class="np">私たちの体制そのものの</span><span class="np">特徴です。</span>
-    </p>
-    <div class="fields reveal">
-      <span>脳科学</span><span>認知科学</span><span>スポーツ科学</span><span>臨床心理</span><span>データサイエンス</span><span>サッカー指導現場</span>
-    </div>
-    <div class="center" style="margin-top:36px">
-      <a class="btn btn-line" href="company.html">メンバーを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div>
-</section>
-
 <!-- ═══════════ 8. CTA ═══════════ -->
 <section id="apply" style="padding-top:60px">
   <div class="wrap">
@@ -428,11 +413,11 @@
 <section class="cta-band">
   <div class="wrap">
     <div class="cta reveal">
-      <h2><span class="np">サッカーの複雑さを、</span><span class="np">チームの武器に。</span></h2>
+      <h2><span class="np">まずは、チームの</span><span class="np">データの状況から</span><span class="np">お聞かせください。</span></h2>
       <p><span class="np">複雑系アプローチの詳細と</span><span class="np">分析事例をまとめた資料を</span><span class="np">ご用意しています。</span></p>
       <div class="cta-actions">
-        <a class="btn btn-navy" href="contact.html?purpose=doc">サービス資料をダウンロード</a>
-        <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> お問い合わせ・相談</a>
+        <a class="btn btn-navy" href="demo.html">デモを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
       </div>
     </div>
   </div>
