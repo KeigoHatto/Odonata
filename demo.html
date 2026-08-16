@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>デモを見る — Odonata</title>
+<meta name="description" content="Odonata のデータプラットフォームを実際の画面で確認できます。ダッシュボード、コンディション入力、傷害リスク予測、練習負荷の設計、ネットワーク分析の主要画面をご紹介します。">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#071A3A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* デモ入口 */
+  .demo-entry{max-width:820px;margin:0 auto;background:var(--card);border:1.5px solid var(--border);
+    border-radius:24px;box-shadow:var(--shadow-lg);padding:44px clamp(24px,4vw,52px);text-align:center}
+  .demo-entry h2{font-size:clamp(22px,3vw,28px);font-weight:800;color:var(--navy);line-height:1.55;margin-bottom:12px}
+  .demo-entry p{font-size:15.5px;color:var(--sub);line-height:1.9;max-width:var(--readw);margin:0 auto}
+  .demo-entry .cta-actions{margin-top:28px}
+  .demo-meta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+  .demo-meta span{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--navy);
+    background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:7px 15px}
+  .demo-meta svg.ic{color:var(--blue);font-size:15px}
+  /* 画面一覧 */
+  .shots{display:grid;gap:56px;margin-top:52px}
+  .shot{display:grid;grid-template-columns:1fr 1.25fr;gap:44px;align-items:center}
+  .shot:nth-child(even){grid-template-columns:1.25fr 1fr}
+  .shot:nth-child(even) .shot-txt{order:2}
+  @media(max-width:900px){
+    .shot,.shot:nth-child(even){grid-template-columns:1fr;gap:24px}
+    .shot:nth-child(even) .shot-txt{order:0}
+  }
+  .shot-txt .n{font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--blue)}
+  .shot-txt h3{font-size:21px;font-weight:800;color:var(--navy);margin:8px 0 10px;line-height:1.5}
+  .shot-txt p{font-size:15px;color:var(--sub);line-height:1.9;max-width:var(--readw)}
+  .shot-txt ul{list-style:none;margin-top:14px}
+  .shot-txt li{display:flex;gap:9px;align-items:flex-start;font-size:14px;color:var(--sub);padding:5px 0}
+  .shot-txt li svg.ic{color:var(--blue);font-size:16px;margin-top:4px}
+</style>
+</head>
+<body>
+
+<!-- #partial:icons -->
+<!-- 全ページ共通アイコンスプライト（単一ソース：partials/icons.html） -->
+<!-- ダウンロードアイコン（i-download）は改修方針により全ページで廃止 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></symbol>
+  <symbol id="i-network" viewBox="0 0 24 24"><line x1="6.6" y1="6.6" x2="12" y2="12"/><line x1="17.4" y1="5.6" x2="12" y2="12"/><line x1="12" y1="12" x2="7" y2="18"/><line x1="12" y1="12" x2="17.6" y2="17.6"/><circle cx="6.6" cy="6.6" r="2"/><circle cx="17.4" cy="5.6" r="2"/><circle cx="12" cy="12" r="2.4"/><circle cx="7" cy="18" r="2"/><circle cx="17.6" cy="17.6" r="2"/></symbol>
+  <symbol id="i-hub" viewBox="0 0 24 24"><line x1="12" y1="12" x2="5" y2="5"/><line x1="12" y1="12" x2="19" y2="6"/><line x1="12" y1="12" x2="5" y2="19"/><line x1="12" y1="12" x2="19" y2="18"/><circle cx="12" cy="12" r="2.7"/><circle cx="5" cy="5" r="1.8"/><circle cx="19" cy="6" r="1.8"/><circle cx="5" cy="19" r="1.8"/><circle cx="19" cy="18" r="1.8"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><polyline points="2,13 7,13 9.2,6.5 12,17.5 14.6,11 16.6,13 22,13"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M15.5 4.5 a2.1 2.1 0 0 1 3 3 L7.5 18.5 l-4 1 1-4 Z"/><line x1="13.7" y1="6.3" x2="17.7" y2="10.3"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><polyline points="4,4 4,20 20,20"/><polyline points="7.5,15 11,10.5 14,13 19,6.5"/><circle cx="7.5" cy="15" r="1.1" fill="currentColor" stroke="none"/><circle cx="14" cy="13" r="1.1" fill="currentColor" stroke="none"/><circle cx="19" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><circle cx="12" cy="17.5" r="1.5" fill="currentColor" stroke="none"/><path d="M8 13.5 a5.6 5.6 0 0 1 8 0"/><path d="M5.3 10.6 a9.4 9.4 0 0 1 13.4 0"/></symbol>
+  <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polygon points="12,8 15.3,10.4 14,14.3 10,14.3 8.7,10.4"/><line x1="12" y1="8" x2="12" y2="4.5"/><line x1="15.3" y1="10.4" x2="18.5" y2="9.2"/><line x1="14" y1="14.3" x2="16" y2="17.3"/><line x1="10" y1="14.3" x2="8" y2="17.3"/><line x1="8.7" y1="10.4" x2="5.5" y2="9.2"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="2.1" fill="#fff"/><circle cx="15" cy="12" r="2.1" fill="#fff"/><circle cx="8" cy="17" r="2.1" fill="#fff"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><polyline points="12,7 12,12 15.5,14"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 L19 6 V11 C19 16 16 19 12 21 C8 19 5 16 5 11 V6 Z"/><polyline points="9,12 11,14 15,9.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="5,12.5 10,17 19,6.5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3 H14 L18 7 V21 H6.5 Z"/><polyline points="14,3 14,7 18,7"/><line x1="9.2" y1="12" x2="15.3" y2="12"/><line x1="9.2" y1="16" x2="13.5" y2="16"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.7 19 a5.3 5.3 0 0 1 10.6 0"/><circle cx="17.2" cy="9" r="2.3"/><path d="M16 19 a4.4 4.4 0 0 1 5.6 -3.8"/></symbol>
+  <symbol id="i-shuffle" viewBox="0 0 24 24"><polyline points="4,8 16,8"/><polyline points="13,5 16,8 13,11"/><polyline points="20,16 8,16"/><polyline points="11,13 8,16 11,19"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5 C10 4.8 7 4.5 4 5.5 V18.5 C7 17.5 10 17.8 12 19.5"/><path d="M12 6.5 C14 4.8 17 4.5 20 5.5 V18.5 C17 17.5 14 17.8 12 19.5"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4 L21 19 H3 Z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="16.6" r=".6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="8" r=".7" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3 L13.6 9.4 L20 11 L13.6 12.6 L12 19 L10.4 12.6 L4 11 L10.4 9.4 Z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18 a8 8 0 0 1 16 0"/><line x1="12" y1="18" x2="15.5" y2="11.5"/><circle cx="12" cy="18" r="1.3" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12 C5 7 9 4.8 12 4.8 C15 4.8 19 7 21.5 12 C19 17 15 19.2 12 19.2 C9 19.2 5 17 2.5 12 Z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 3.5 h4"/><path d="M10.8 3.5 V9 L5.5 18.5 a1.6 1.6 0 0 0 1.4 2.4 h10.2 a1.6 1.6 0 0 0 1.4 -2.4 L13.2 9 V3.5"/><line x1="8.2" y1="14" x2="15.8" y2="14"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.2"/><polyline points="4.5,7.5 12,13 19.5,7.5"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M7 11 V6.5 a1.5 1.5 0 0 1 3 0 V10 M10 10 V5 a1.5 1.5 0 0 1 3 0 V10 M13 10 V6 a1.5 1.5 0 0 1 3 0 V11 M16 11 a1.5 1.5 0 0 1 3 1 c0 3-1 5-2.5 6.5 A6.5 6.5 0 0 1 12 21 c-2.6 0-4.3-1-5.4-2.8 L4.2 14 a1.4 1.4 0 0 1 2.3-1.5 L7.5 14"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 L12 4 L20 11"/><path d="M6 9.8 V20 H18 V9.8"/><line x1="10.2" y1="20" x2="10.2" y2="15"/><line x1="13.8" y1="20" x2="13.8" y2="15"/><line x1="10.2" y1="15" x2="13.8" y2="15"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"/><line x1="4" y1="9.2" x2="20" y2="9.2"/><line x1="8" y1="3" x2="8" y2="6"/><line x1="16" y1="3" x2="16" y2="6"/><circle cx="9" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="13.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16.5" rx="2.2"/><rect x="9" y="2.6" width="6" height="3.6" rx="1.2"/><line x1="8.5" y1="11" x2="15.5" y2="11"/><line x1="8.5" y1="15" x2="13.5" y2="15"/></symbol>
+  <symbol id="i-dumbbell" viewBox="0 0 24 24"><line x1="3" y1="9" x2="3" y2="15"/><line x1="6" y1="7" x2="6" y2="17"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="18" y1="7" x2="18" y2="17"/><line x1="21" y1="9" x2="21" y2="15"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><polygon points="10.2,8.4 16,12 10.2,15.6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.4"/><path d="M8.4 10.5 V7.6 a3.6 3.6 0 0 1 7.2 0 V10.5"/><circle cx="12" cy="15.4" r="1.2" fill="currentColor" stroke="none"/></symbol>
+</defs>
+</svg>
+<!-- /#partial:icons -->
+
+<!-- #partial:header -->
+<!-- 全ページ共通ヘッダー（単一ソース：partials/header.html → tools/build-partials.mjs で全ページへ同期） -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="nav-logo" href="index.html" aria-label="Odonata ホーム"><img src="assets/odonata-logo.png" alt="Odonata"></a>
+    <nav class="nav-links" id="navLinks" aria-label="グローバルナビゲーション">
+      <div class="nav-item">
+        <button type="button" class="nav-item-btn" aria-expanded="false" aria-controls="navServices">サービス <span class="caret" aria-hidden="true">▼</span></button>
+        <div class="sub-menu" id="navServices">
+          <a href="service-analysis.html">データ分析・伴走支援</a>
+          <a href="service-platform.html">データプラットフォーム</a>
+        </div>
+      </div>
+      <a href="research.html">実績・研究</a>
+      <a href="approach.html">複雑系アプローチ</a>
+      <a href="pricing.html">料金</a>
+      <a href="company.html">会社情報</a>
+      <a href="news.html">ニュース</a>
+      <span class="nav-actions">
+        <!-- Phase 3：ここに JP | EN 切替を挿入する（.nav-lang スロット） -->
+        <span class="nav-lang" aria-hidden="true"></span>
+        <a class="nav-login" href="https://app.getodonata.com/login">ログイン</a>
+        <a class="nav-cta" href="demo.html">デモを見る</a>
+        <a class="nav-cta2" href="contact.html">資料請求・お問い合わせ</a>
+      </span>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">☰</button>
+  </div>
+</header>
+<!-- /#partial:header -->
+
+<!-- ═══════════ PAGE HERO ═══════════ -->
+<div class="phero">
+  <canvas id="pheroNet"></canvas>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px"><use href="#i-arrow"/></svg> デモを見る</div>
+    <div class="p-eyebrow">Demo</div>
+    <h1><span class="np">実際の画面で、</span><span class="np">確かめてください。</span></h1>
+    <p class="lead">
+      <span class="np">Odonataは、</span><span class="np">現場スタッフが毎日使うことを前提に</span><span class="np">設計しています。</span>
+      <span class="np">入力から分析結果の確認までの流れを、</span><span class="np">そのままの画面でご覧いただけます。</span>
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════ 1. デモ環境への入口 ═══════════ -->
+<section id="entry" style="padding-top:64px">
+  <div class="wrap">
+    <div class="demo-entry reveal">
+      <h2><span class="np">サンプルデータの入った</span><span class="np">デモ環境を</span><span class="np">ご用意します。</span></h2>
+      <p>ログイン不要で操作できるデモ環境を、ご希望のチームに個別にご案内しています。フォームからご連絡いただければ、デモ用アカウントと画面の見方をお送りします。</p>
+      <div class="demo-meta">
+        <span><svg class="ic"><use href="#i-clock"/></svg> 2営業日以内にご案内</span>
+        <span><svg class="ic"><use href="#i-check"/></svg> 費用はかかりません</span>
+        <span><svg class="ic"><use href="#i-lock"/></svg> サンプルデータのみ使用</span>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-blue" href="contact.html?purpose=service"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
+      </div>
+      <p class="note" style="margin-top:20px">※ その場で操作できる公開デモ環境は準備中です。公開までは個別のご案内で対応しています。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 2. デモで見られる画面 ═══════════ -->
+<section class="section-alt" id="screens">
+  <div class="wrap">
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <span class="eyebrow">Screens</span>
+      <h2 class="section-title">デモで見られる画面</h2>
+      <p class="section-lead center"><span class="np">入力から分析結果まで、</span><span class="np">現場で使う順に並べています。</span></p>
+    </div>
+    <div class="shots">
+
+      <div class="shot reveal">
+        <div class="shot-txt">
+          <div class="n">SCREEN 01</div>
+          <h3>コンディション入力</h3>
+          <p>選手がスマートフォンから、睡眠・疲労感・筋痛などを数十秒で入力します。</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg> 前日との差分がその場で返る</li>
+            <li><svg class="ic"><use href="#i-check"/></svg> 未入力の選手はスタッフ側で把握できる</li>
+          </ul>
+        </div>
+        <div class="browser light">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="u"></span></div>
+          <img src="assets/app-input-pre.png" alt="コンディション入力画面" loading="lazy">
+        </div>
+      </div>
+
+      <div class="shot reveal">
+        <div class="shot-txt">
+          <div class="n">SCREEN 02</div>
+          <h3>ダッシュボード</h3>
+          <p>チーム全体のコンディションと負荷の推移を、1画面でまとめて確認できます。</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg> 選手ごとの推移へそのまま展開できる</li>
+            <li><svg class="ic"><use href="#i-check"/></svg> GPS・試合・メディカルを横断して表示</li>
+          </ul>
+        </div>
+        <div class="browser light">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="u"></span></div>
+          <img src="assets/app-dashboard.png" alt="ダッシュボード画面" loading="lazy">
+        </div>
+      </div>
+
+      <div class="shot reveal">
+        <div class="shot-txt">
+          <div class="n">SCREEN 03</div>
+          <h3>傷害発生リスク予測</h3>
+          <p>選手ごとのリスク区分と、その判定に効いている要因の内訳を表示します。</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg> リスクの要因候補を分解して確認できる</li>
+            <li><svg class="ic"><use href="#i-check"/></svg> 対象は筋肉系・非接触靱帯系・オーバーユース系</li>
+          </ul>
+        </div>
+        <div class="browser light">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="u"></span></div>
+          <img src="assets/app-risk.png" alt="傷害発生リスク予測画面" loading="lazy">
+        </div>
+      </div>
+
+      <div class="shot reveal">
+        <div class="shot-txt">
+          <div class="n">SCREEN 04</div>
+          <h3>練習負荷の設計</h3>
+          <p>負荷を変えたときに翌日のコンディションがどう動くかを、選手ごとに見込みで示します。</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg> 1日単位・1週間単位で計画できる</li>
+            <li><svg class="ic"><use href="#i-check"/></svg> 反応の出方が大きい選手を個別に確認できる</li>
+          </ul>
+        </div>
+        <div class="browser light">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="u"></span></div>
+          <img src="assets/app-plan.png" alt="練習負荷の設計画面" loading="lazy">
+        </div>
+      </div>
+
+      <div class="shot reveal">
+        <div class="shot-txt">
+          <div class="n">SCREEN 05</div>
+          <h3>ネットワーク分析</h3>
+          <p>指標どうしのつながりを可視化し、その選手の状態の中心にある指標を特定します。</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg> 期間を比較して構造の変化を見られる</li>
+            <li><svg class="ic"><use href="#i-check"/></svg> 読み取りの要約が自動で付く</li>
+          </ul>
+        </div>
+        <div class="browser light">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="u"></span></div>
+          <img src="assets/app-network-graph.png" alt="ネットワーク分析画面" loading="lazy">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 3. 自チームのデータで試したい方は ═══════════ -->
+<section class="cta-band" style="padding-top:96px">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2><span class="np">自チームのデータで</span><span class="np">試したい方は。</span></h2>
+      <p><span class="np">お手元のデータをそのままお預かりし、</span><span class="np">試験導入の範囲を一緒に決めます。</span><span class="np">紙やExcelの記録からでも始められます。</span></p>
+      <div class="cta-actions">
+        <a class="btn btn-blue" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- #partial:footer -->
+<!-- 全ページ共通フッター（単一ソース：partials/footer.html → tools/build-partials.mjs で全ページへ同期） -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/odonata-logo.png" alt="Odonata">
+        <p><span class="np">サッカーチームのデータを</span><span class="np">ひとつにまとめ、</span><span class="np">分析して、</span><span class="np">現場の意思決定に</span><span class="np">つなげます。</span></p>
+      </div>
+      <div class="foot-col">
+        <h4>Service</h4>
+        <a href="service-analysis.html">データ分析・伴走支援</a>
+        <a href="service-platform.html">データプラットフォーム</a>
+        <a href="pricing.html">料金</a>
+      </div>
+      <div class="foot-col">
+        <h4>About</h4>
+        <a href="research.html">実績・研究</a>
+        <a href="approach.html">複雑系アプローチ</a>
+        <a href="company.html">会社情報</a>
+        <a href="philosophy.html">Philosophy</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="demo.html">デモを見る</a>
+        <a href="news.html">ニュース</a>
+        <a href="contact.html">資料請求・お問い合わせ</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span data-year></span> Odonata.</span>
+      <span>Odonata</span>
+    </div>
+  </div>
+</footer>
+<!-- /#partial:footer -->
+
+<script src="assets/site.js"></script>
+</body>
+</html>
