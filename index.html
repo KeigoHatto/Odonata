@@ -334,6 +334,53 @@
   </div>
 </section>
 
+<!-- ═══════════ 02 なぜ、複数のデータを横断して見るのか ═══════════ -->
+<section id="why">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <h2 class="section-title"><span class="np">なぜ、複数のデータを</span><span class="np">横断して見るのか。</span></h2>
+    </div>
+
+    <div class="why-fig reveal">
+      <svg viewBox="0 0 640 380" role="img" aria-label="トレーニング負荷・コンディション指標・スケジュール・既往歴が「怪我」を中心に線でつながるネットワーク図。単独では基準内の要因が、重なることで危険域に達することを示す">
+        <g stroke="#00A0E9" stroke-width="2" fill="none" opacity=".55">
+          <line x1="320" y1="190" x2="126" y2="84"/><line x1="320" y1="190" x2="514" y2="84"/>
+          <line x1="320" y1="190" x2="126" y2="296"/><line x1="320" y1="190" x2="514" y2="296"/>
+          <line x1="126" y1="84" x2="514" y2="84" opacity=".4"/>
+          <line x1="126" y1="84" x2="126" y2="296" opacity=".4"/>
+          <line x1="514" y1="84" x2="514" y2="296" opacity=".4"/>
+          <line x1="126" y1="296" x2="514" y2="296" opacity=".4"/>
+        </g>
+        <g class="wf-node">
+          <circle cx="126" cy="84" r="60"/><circle cx="514" cy="84" r="60"/>
+          <circle cx="126" cy="296" r="60"/><circle cx="514" cy="296" r="60"/>
+        </g>
+        <g class="wf-t">
+          <text x="126" y="78">トレーニング</text><text x="126" y="98">負荷</text>
+          <text x="514" y="78">コンディション</text><text x="514" y="98">指標</text>
+          <text x="126" y="302">スケジュール</text>
+          <text x="514" y="302">既往歴</text>
+        </g>
+        <g class="wf-ok">
+          <text x="126" y="120">単独では基準内</text><text x="514" y="120">単独では基準内</text>
+          <text x="126" y="324">単独では基準内</text><text x="514" y="324">単独では基準内</text>
+        </g>
+        <circle class="wf-core-ring" cx="320" cy="190" r="82"/>
+        <circle class="wf-core" cx="320" cy="190" r="62"/>
+        <text class="wf-core-t" x="320" y="185">怪我</text>
+        <text class="wf-core-s" x="320" y="209">重なると危険域へ</text>
+      </svg>
+      <div class="why-txt">
+        <p>選手の傷害やパフォーマンスは、GPSだけ、疲労だけ、試合スタッツだけでは決まりません。単独では異常のない要因も、重なり方次第で危険域に達します。</p>
+        <p>だからOdonataは、指標を1つずつ見るのではなく、<strong>指標どうしの関係性</strong>を分析の単位に置いています。</p>
+        <p style="margin-top:22px"><a class="tlink" href="approach.html">複雑系アプローチを読む <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
 <!-- ═══════════ 02 Odonataでできること ═══════════ -->
 <section id="usecases">
   <div class="wrap">
@@ -565,52 +612,14 @@
   </div>
 </section>
 
-<!-- ═══════════ 06 なぜOdonataにできるのか ═══════════ -->
-<section id="why">
+
+
+<!-- ═══════════ Odonataを支える体制 ═══════════ -->
+<section class="section-alt" id="team">
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
-      <span class="eyebrow">Why Odonata</span>
-      <h2 class="section-title"><span class="np">なぜ、複数のデータを</span><span class="np">横断して見るのか。</span></h2>
+      <h2 class="section-title"><span class="np">研究と現場と実装が、</span><span class="np">同じチームの中にあります。</span></h2>
     </div>
-
-    <!-- (a) 複雑系アプローチ：図1枚＋2文 -->
-    <div class="why-fig reveal">
-      <svg viewBox="0 0 640 380" role="img" aria-label="トレーニング負荷・コンディション指標・スケジュール・既往歴が「怪我」を中心に線でつながるネットワーク図。単独では基準内の要因が、重なることで危険域に達することを示す">
-        <g stroke="#00A0E9" stroke-width="2" fill="none" opacity=".55">
-          <line x1="320" y1="190" x2="126" y2="84"/><line x1="320" y1="190" x2="514" y2="84"/>
-          <line x1="320" y1="190" x2="126" y2="296"/><line x1="320" y1="190" x2="514" y2="296"/>
-          <line x1="126" y1="84" x2="514" y2="84" opacity=".4"/>
-          <line x1="126" y1="84" x2="126" y2="296" opacity=".4"/>
-          <line x1="514" y1="84" x2="514" y2="296" opacity=".4"/>
-          <line x1="126" y1="296" x2="514" y2="296" opacity=".4"/>
-        </g>
-        <g class="wf-node">
-          <circle cx="126" cy="84" r="60"/><circle cx="514" cy="84" r="60"/>
-          <circle cx="126" cy="296" r="60"/><circle cx="514" cy="296" r="60"/>
-        </g>
-        <g class="wf-t">
-          <text x="126" y="78">トレーニング</text><text x="126" y="98">負荷</text>
-          <text x="514" y="78">コンディション</text><text x="514" y="98">指標</text>
-          <text x="126" y="302">スケジュール</text>
-          <text x="514" y="302">既往歴</text>
-        </g>
-        <g class="wf-ok">
-          <text x="126" y="120">単独では基準内</text><text x="514" y="120">単独では基準内</text>
-          <text x="126" y="324">単独では基準内</text><text x="514" y="324">単独では基準内</text>
-        </g>
-        <circle class="wf-core-ring" cx="320" cy="190" r="82"/>
-        <circle class="wf-core" cx="320" cy="190" r="62"/>
-        <text class="wf-core-t" x="320" y="185">怪我</text>
-        <text class="wf-core-s" x="320" y="209">重なると危険域へ</text>
-      </svg>
-      <div class="why-txt">
-        <p>選手の傷害やパフォーマンスは、GPSだけ、疲労だけ、試合スタッツだけでは決まりません。単独では異常のない要因も、重なり方次第で危険域に達します。</p>
-        <p>だからOdonataは、指標を1つずつ見るのではなく、<strong>指標どうしの関係性</strong>を分析の単位に置いています。</p>
-        <p style="margin-top:22px"><a class="tlink" href="approach.html">複雑系アプローチを読む <svg class="ic"><use href="#i-arrow"/></svg></a></p>
-      </div>
-    </div>
-
-    <!-- (b) 一気通貫の体制 -->
     <div class="pillars">
       <div class="pillar reveal">
         <span class="pk">研究</span>
@@ -626,7 +635,6 @@
       </div>
     </div>
 
-    <!-- (c) メンバー3名 -->
     <div class="members" style="margin-top:36px">
       <div class="member reveal">
         <div class="avatar kanji">横田</div>
@@ -652,7 +660,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- ═══════════ 導入の流れ ═══════════ -->
 <section id="process">
