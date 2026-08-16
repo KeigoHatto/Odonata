@@ -181,6 +181,15 @@
   .roi p{font-size:14.5px;color:#cfe6f5;line-height:2;max-width:760px}
   .roi .num{color:#7FE3FF;font-weight:800;font-size:1.25em}
   .roi .youth{margin-top:22px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:var(--radius-sm);padding:16px 20px;font-size:13.5px;color:#dff3ff}
+  /* 分析例③：コンディション × 試合スタッツ */
+  .duel-fig{display:grid;grid-template-columns:1fr 1.1fr;gap:44px;align-items:center;margin-top:44px;
+    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:34px}
+  @media(max-width:860px){.duel-fig{grid-template-columns:1fr;gap:26px;padding:26px}}
+  .duel-fig svg{width:100%;height:auto;display:block}
+  .duel-fig h3{font-size:19px;font-weight:800;color:var(--navy);margin-bottom:12px;line-height:1.5}
+  .duel-fig p{font-size:14.5px;color:var(--sub);line-height:1.9}
+  .duel-fig p + p{margin-top:12px}
+  .duel-fig b{color:var(--navy)}
 </style>
 </head>
 <body>
@@ -265,251 +274,12 @@
     <div class="p-eyebrow">Data Analysis &amp; Support</div>
     <h1><span class="np">眠っているデータを、</span><span class="np">意思決定に変える。</span></h1>
     <p class="lead">
-      <span class="np">GPS・コンディション報告・</span><span class="np">メディカル記録——</span><span class="np">クラブがすでに持っているデータを、</span><span class="np">複雑系アプローチで分析。</span>
-      <span class="np">ヒアリングをもとに</span><span class="np">適切な手法を選び、</span><span class="np">とる指標の相談から</span><span class="np">データ整理・</span><span class="np"><strong style="color:#fff">現場実装</strong>まで——</span><span class="np">データ周りは、</span><span class="np">まるごとお任せください。</span>
+      <span class="np">GPS・コンディション報告・</span><span class="np">メディカル記録——</span><span class="np">クラブがすでに持っているデータを分析し、</span><span class="np">チーム・選手固有のモデルと示唆をつくります。</span>
+      <span class="np">とる指標の相談から</span><span class="np">データ整理・</span><span class="np"><strong style="color:#fff">現場実装</strong>まで、</span><span class="np">データ周りはまるごとお任せください。</span>
     </p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="contact.html?purpose=analysis"><svg class="ic"><use href="#i-mail"/></svg> データの状況を相談する</a>
-      <a class="btn btn-ghost" href="contact.html?purpose=doc">資料をダウンロード</a>
-    </div>
   </div>
 </div>
 
-<!-- ═══════════ 2. こんな課題はありませんか ═══════════ -->
-<section id="issues">
-  <div class="wrap">
-    <div class="center" style="max-width:760px;margin:0 auto">
-      <span class="eyebrow">Check</span>
-      <h2 class="section-title">こんな課題はありませんか</h2>
-      <p class="section-lead center"><span class="np">ひとつでも当てはまるなら、</span><span class="np">お持ちのデータには</span><span class="np">まだ使い道があります。</span></p>
-    </div>
-    <ul class="check-list">
-      <li class="reveal"><svg class="ic"><use href="#i-check"/></svg> GPSを取っているが、眺めて終わっている</li>
-      <li class="reveal"><svg class="ic"><use href="#i-check"/></svg> 選手のコンディション報告が、活用されずに溜まっている</li>
-      <li class="reveal"><svg class="ic"><use href="#i-check"/></svg> 怪我がいつ・誰に起きるか、読めない</li>
-      <li class="reveal"><svg class="ic"><use href="#i-check"/></svg> スタッフの感覚を、数値で裏付けたい</li>
-      <li class="reveal"><svg class="ic"><use href="#i-check"/></svg> データ担当を置く余裕はないが、分析はしたい</li>
-      <li class="reveal"><svg class="ic"><use href="#i-check"/></svg> 選手の目標設定・面談が、感覚頼みになっている</li>
-      <li class="reveal"><svg class="ic"><use href="#i-check"/></svg> 補強・スカウティングの判断を、データでも裏付けたい</li>
-      <li class="reveal"><svg class="ic"><use href="#i-check"/></svg> 過去シーズンのデータを、今後の編成・強化に活かしたい</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ═══════════ 2.5 アプローチの違い ═══════════ -->
-<section class="approach-band" id="method">
-  <div class="wrap">
-    <div class="center" style="max-width:800px;margin:0 auto">
-      <span class="eyebrow">Our Method</span>
-      <h2 class="section-title"><span class="np">同じデータでも、</span><span class="np">読み方がちがう。</span></h2>
-      <p class="section-lead center">
-        <span class="np">Odonataの分析は、</span><span class="np">指標を1つずつ見る</span><span class="np">従来の要素還元アプローチとは、</span><span class="np">根本から異なります。</span>
-        <span class="np">読むのは、</span><span class="np">データの</span><strong class="np">「関係性」</strong><span class="np">です。</span>
-      </p>
-    </div>
-    <div class="para-fig">
-      <div class="para-col old reveal">
-        <span class="para-tag">従来の分析 ── 要素還元アプローチ</span>
-        <h4>指標を1つずつ見る</h4>
-        <p class="para-sub">データを切り出して個別に監視・平均と比較</p>
-        <svg class="para-svg" viewBox="0 0 300 168" aria-hidden="true">
-          <g stroke="#A8BCC9" stroke-width="1.6" stroke-dasharray="4 4" fill="none">
-            <circle cx="62" cy="46" r="24"/>
-            <circle cx="222" cy="38" r="24"/>
-            <circle cx="150" cy="92" r="26"/>
-            <circle cx="70" cy="134" r="24"/>
-            <circle cx="230" cy="128" r="24"/>
-          </g>
-          <g fill="#B9CBD8">
-            <circle cx="62" cy="46" r="11"/>
-            <circle cx="222" cy="38" r="11"/>
-            <circle cx="150" cy="92" r="12"/>
-            <circle cx="70" cy="134" r="11"/>
-            <circle cx="230" cy="128" r="11"/>
-          </g>
-          <g fill="#94A9B8" font-size="14" font-weight="800" font-family="'Manrope','Zen Kaku Gothic New',sans-serif" text-anchor="middle">
-            <text x="106" y="74">?</text>
-            <text x="190" y="66">?</text>
-            <text x="110" y="120">?</text>
-            <text x="196" y="116">?</text>
-          </g>
-        </svg>
-        <p class="para-cap">指標は測れても、<strong>つながりは見えない</strong></p>
-        <ul class="para-points bad">
-          <li><span class="mark">✕</span><span><b>単独では「正常」な変化を見逃す</b><small>傷害予測の的中率は約5%——警報の大半が空振りに<sup class="fn"><a href="#risk-notes">※</a></sup></small></span></li>
-          <li><span class="mark">✕</span><span>指標の間にある関係性——<b>サッカーの本質——が抜け落ちる</b></span></li>
-        </ul>
-      </div>
-      <div class="para-shift reveal" aria-hidden="true">
-        <span class="para-word">パラダイム<br>シフト</span>
-        <svg class="ic"><use href="#i-arrow"/></svg>
-      </div>
-      <div class="para-col new reveal">
-        <span class="para-tag">Odonata ── 複雑系アプローチ</span>
-        <h4>関係性ごと読む</h4>
-        <p class="para-sub">複数指標を統合し、「重なり」ごと分析</p>
-        <svg class="para-svg" viewBox="0 0 300 168" aria-hidden="true">
-          <g stroke="#3FC8F0" stroke-width="2">
-            <line x1="62" y1="46" x2="150" y2="92"/>
-            <line x1="222" y1="38" x2="150" y2="92"/>
-            <line x1="70" y1="134" x2="150" y2="92"/>
-            <line x1="230" y1="128" x2="150" y2="92"/>
-            <line x1="62" y1="46" x2="222" y2="38" opacity=".55"/>
-            <line x1="70" y1="134" x2="230" y2="128" opacity=".55"/>
-            <line x1="62" y1="46" x2="70" y2="134" opacity=".55"/>
-            <line x1="222" y1="38" x2="230" y2="128" opacity=".55"/>
-          </g>
-          <g fill="#00A0E9">
-            <circle cx="62" cy="46" r="11"/>
-            <circle cx="222" cy="38" r="11"/>
-            <circle cx="70" cy="134" r="11"/>
-            <circle cx="230" cy="128" r="11"/>
-          </g>
-          <circle cx="150" cy="92" r="13" fill="#0B2A5B"/>
-          <circle cx="150" cy="92" r="21" fill="none" stroke="#00A0E9" stroke-width="1.6" opacity=".4"/>
-          <circle cx="150" cy="92" r="29" fill="none" stroke="#00A0E9" stroke-width="1.4" opacity=".18"/>
-        </svg>
-        <p class="para-cap">要素と要素の<strong>「間」にある構造</strong>まで分析する</p>
-        <ul class="para-points good">
-          <li><span class="mark">✓</span><span><b>要因の「重なり」を捉え、予測精度が大きく向上</b><small>同一データで的中率 約70%・従来比 約14倍<sup class="fn"><a href="#risk-notes">※</a></sup></small></span></li>
-          <li><span class="mark">✓</span><span>関係性を読むから、<b>サッカーの本質を捉えた解釈</b>ができる</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="center" style="margin-top:40px">
-      <a class="btn btn-primary" href="approach.html">複雑系アプローチを詳しく読む <svg class="ic"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 3. 提供メニュー ═══════════ -->
-<section class="section-alt" id="menu">
-  <div class="wrap">
-    <div class="center" style="max-width:760px;margin:0 auto">
-      <span class="eyebrow">Menu</span>
-      <h2 class="section-title">提供メニュー</h2>
-      <p class="section-lead center"><span class="np">単発の分析から</span><span class="np">継続的な伴走まで。</span><span class="np">とる指標の相談・データ整理を含め、</span><span class="np">データ周りは</span><span class="np">まるごとお任せいただけます。</span></p>
-    </div>
-    <div class="feat-grid">
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-clipboard"/></svg></div>
-        <h3>データ活用方針のコンサルティング</h3>
-        <p>現場のニーズを伺い、<strong>適切な分析アプローチの選択</strong>から。取得すべき指標の選定を含め、データ活用の設計図づくりをご一緒します。</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-doc"/></svg></div>
-        <h3>データの整理・取得サポート</h3>
-        <p>Excel・GPSソフト・紙に散らばる過去データを整理し、使える形に。足りないデータは<strong>収集機能の追加開発</strong>を含め、取得の仕組みから支援します。</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-gauge"/></svg></div>
-        <h3>予測モデルの個別構築</h3>
-        <p>傷害リスクやパフォーマンスの予測モデルを、<strong>チームのデータで個別に構築</strong>。約1ヶ月分のデータ連携で稼働開始できます。</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
-        <h3>分析レポート</h3>
-        <p>ネットワーク分析をはじめ、課題に合わせた手法で選手・チームの特性や傾向を定量化してレポートします。</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-hub"/></svg></div>
-        <h3>分析モデルを搭載したアプリ提供</h3>
-        <p>構築したモデルをデータプラットフォームに搭載し、日常のワークフローの中で使える形にします。</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-users"/></svg></div>
-        <h3>現場実装・伴走支援</h3>
-        <p>分析結果の読み合わせから、現場の意思決定への定着まで定例で伴走。「レポートを渡して終わり」にはしません。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 4. 分析例の広がり ═══════════ -->
-<section id="analyses">
-  <div class="wrap">
-    <div class="center" style="max-width:780px;margin:0 auto">
-      <span class="eyebrow">Analyses</span>
-      <h2 class="section-title"><span class="np">課題に合わせて、</span><span class="np">分析を設計する。</span></h2>
-      <p class="section-lead center">
-        <span class="np">複雑系アプローチを軸に、</span><span class="np">現場のニーズに合わせて</span><span class="np">適切な手法を選びます。</span>
-        <span class="np">ピッチの判断から、</span><span class="np">強化・経営の意思決定まで。</span>
-      </p>
-    </div>
-    <div class="feat-grid">
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-chart"/></svg></div>
-        <h3>パフォーマンス予測</h3>
-        <p>コンディション・負荷・出場データからパフォーマンスの波を予測。連戦時のローテーションや起用の判断材料に。</p>
-      </div>
-      <div class="feat proven reveal">
-        <span class="pv-badge">実績あり</span>
-        <div class="ficon"><svg class="ic"><use href="#i-gauge"/></svg></div>
-        <h3>傷害リスク予測</h3>
-        <p>要因の「重なり」からリスクを先読み。負荷を落とす・一声かけるタイミングを逃さない。</p>
-        <a class="more" href="#risk">実証結果を見る <svg class="ic"><use href="#i-arrow"/></svg></a>
-      </div>
-      <div class="feat proven reveal">
-        <span class="pv-badge">実績あり</span>
-        <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
-        <h3>ネットワーク分析</h3>
-        <p>指標間の関係性を図として可視化。選手・チームの特性を、対話と育成の材料に。</p>
-        <a class="more" href="#network">分析例を見る <svg class="ic"><use href="#i-arrow"/></svg></a>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-target"/></svg></div>
-        <h3>言語分析による目標設定支援</h3>
-        <p>面談記録・振り返りコメントを言語分析し、選手の状態に合った適切な目標設定を提案します。</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-hub"/></svg></div>
-        <h3>最適な補強戦略</h3>
-        <p>「誰を獲るか」ではなく「誰と組むと機能するか」。チームの文脈込みで補強候補を評価します。</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-signal"/></svg></div>
-        <h3>タレント発掘</h3>
-        <p>育成年代のデータから、伸びる選手の兆しを捉える。指導者の眼とデータの両輪で、スカウティングを支えます。</p>
-      </div>
-    </div>
-    <p class="center" style="margin:48px auto 0;max-width:760px;font-size:clamp(17px,2.2vw,20px);font-weight:800;color:var(--navy)">どの分析も、<span style="color:var(--blue)">必要な要素を統合</span>して「1つの答え」につなげます。</p>
-    <div class="mcv">
-      <div class="mcv-row reveal">
-        <span class="mcv-name">パフォーマンス予測</span>
-        <span class="mcv-chip">コンディション</span><span class="mcv-plus">＋</span>
-        <span class="mcv-chip">GPS負荷</span><span class="mcv-plus">＋</span>
-        <span class="mcv-chip">試合スタッツ</span><span class="mcv-plus">＋</span>
-        <span class="mcv-chip">スケジュール</span>
-        <span class="mcv-arr"><svg class="ic"><use href="#i-arrow"/></svg></span>
-        <span class="mcv-out">パフォーマンスの波を予測</span>
-      </div>
-      <div class="mcv-row reveal">
-        <span class="mcv-name">最適な補強戦略</span>
-        <span class="mcv-chip">試合スタッツ</span><span class="mcv-plus">＋</span>
-        <span class="mcv-chip">既存選手の特性</span><span class="mcv-plus">＋</span>
-        <span class="mcv-chip">プレースタイル</span>
-        <span class="mcv-arr"><svg class="ic"><use href="#i-arrow"/></svg></span>
-        <span class="mcv-out">「誰と組むと機能するか」を評価</span>
-      </div>
-      <div class="mcv-row reveal">
-        <span class="mcv-name">タレント発掘</span>
-        <span class="mcv-chip">成長推移</span><span class="mcv-plus">＋</span>
-        <span class="mcv-chip">コンディション</span><span class="mcv-plus">＋</span>
-        <span class="mcv-chip">面談・言語記録</span>
-        <span class="mcv-arr"><svg class="ic"><use href="#i-arrow"/></svg></span>
-        <span class="mcv-out">伸びる選手の兆しを検出</span>
-      </div>
-    </div>
-    <p class="center section-lead" style="margin:32px auto 0;max-width:720px"><span class="np">ここに挙げたのは代表例です。</span><span class="np">課題に合わせて、</span><span class="np">分析を個別に設計します。</span></p>
-    <div class="callout info" style="max-width:820px;margin:36px auto 0">
-      <svg class="ic cic"><use href="#i-users"/></svg>
-      <div>
-        <h4>クラブの文化を尊重した分析</h4>
-        <p>汎用モデルの当てはめではなく、<b>クラブ自身のデータ</b>で分析・モデル構築を行います。だから、プレースタイル・育成方針・クラブの文化を尊重した示唆になります。</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════ 5. 分析例① 傷害リスク予測 ═══════════ -->
 <section class="section-alt" id="risk">
@@ -551,29 +321,24 @@
     </div>
 
     <div class="acc-fig reveal">
-      <div class="acc-head">傷害予測の的中率 ── 同一データでの比較<sup class="fn"><a href="#risk-notes">※</a></sup></div>
-      <div class="acc-row old">
-        <span class="acc-label">従来 ── 単一指標の監視</span>
-        <div class="acc-bar"><i></i></div>
-        <span class="acc-val">約5%</span>
-      </div>
-      <div class="acc-x"><span>精度 約14倍</span></div>
-      <div class="acc-row new">
-        <span class="acc-label">Odonata ── 複雑系アプローチ</span>
-        <div class="acc-bar"><i></i></div>
-        <span class="acc-val">約70%</span>
-      </div>
-      <p class="acc-note">的中率＝「危険」と予測した日のうち、実際に傷害が発生した割合。発生した傷害のうち事前に「危険」と予測できていた割合（捕捉率）は約20%です<sup class="fn"><a href="#risk-notes">※</a></sup>。</p>
+      <div class="acc-head">同一データでの比較<sup class="fn"><a href="#risk-notes">※</a></sup></div>
+      <table class="tbl" style="margin-top:18px">
+        <tr><th>指標</th><th>従来 ── ACWR（単一指標）</th><th>Odonata</th></tr>
+        <tr><td><b>Precision</b><br><span class="note">「危険」と予測した日のうち、実際に傷害が発生した割合</span></td><td>約5%</td><td><b>約70%</b></td></tr>
+        <tr><td><b>Recall</b><br><span class="note">発生した傷害のうち事前に「危険」と予測できていた割合</span></td><td>約20%</td><td>約20%</td></tr>
+      </table>
+      <p class="note" style="margin-top:14px">Precision は <b>約5%（ACWR）→ 約70%（Odonata）</b>。一方 <b>Recall はいずれも約20%で同等</b>です。すべての傷害を捉えられるわけではありません。</p>
     </div>
 
     <div class="footnotes" id="risk-notes">
-      <p>※ 従来手法は、単一の負荷指標（急性慢性負荷比）による監視です。</p>
+      <p>※ 従来手法は、単一の負荷指標（急性慢性負荷比＝ACWR）による監視です。</p>
       <p>※ 傷害の完全な予防を保証するものではなく、現場の意思決定支援を目的としています。</p>
       <p>※ 予測対象は筋肉系・非接触靭帯系・オーバーユース系の傷害です（接触による打撲・骨折などは対象外）。</p>
-      <p>※ 筑波大学蹴球部での実証結果であり、チーム・データ環境により結果は異なります。</p>
+      <p>※ 筑波大学蹴球部 2022–2025年データでの検証値であり、チーム・データ環境により結果は異なります。</p>
     </div>
   </div>
 </section>
+
 
 <!-- ═══════════ 6. 分析例② ネットワーク分析 ═══════════ -->
 <section id="network">
@@ -652,6 +417,84 @@
   </div>
 </section>
 
+
+<!-- ═══════════ 分析例③ コンディション × 試合スタッツ ═══════════ -->
+<section class="section-alt" id="duel">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <span class="eyebrow">Showcase 03</span>
+      <h2 class="section-title"><span class="np">分析例③ </span><span class="np">コンディション × 試合スタッツ</span></h2>
+      <p class="section-lead center"><span class="np">負荷・疲労の蓄積が、</span><span class="np">試合中のどのプレーに</span><span class="np">出るのかを定量化します。</span></p>
+    </div>
+    <div class="duel-fig reveal">
+      <svg viewBox="0 0 420 200" role="img" aria-label="デュエル勝率が通常の週39%から負荷・疲労が重なった週23%へ低下する棒グラフ">
+        <line x1="46" y1="164" x2="392" y2="164" stroke="#CCE9F6" stroke-width="1.5"/>
+        <rect x="104" y="56" width="72" height="108" rx="6" fill="#00A0E9"/>
+        <rect x="256" y="100" width="72" height="64" rx="6" fill="#C2410C"/>
+        <g font-family="'Manrope',sans-serif" font-size="22" font-weight="800" text-anchor="middle">
+          <text x="140" y="44" fill="#0B2A5B">39%</text>
+          <text x="292" y="88" fill="#C2410C">23%</text>
+        </g>
+        <g font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" font-weight="700" fill="#41616F" text-anchor="middle">
+          <text x="140" y="186">通常の週</text>
+          <text x="292" y="186">負荷・疲労が重なった週</text>
+        </g>
+      </svg>
+      <div>
+        <h3>落ちる選手と、落ちない選手を分けて示す</h3>
+        <p>負荷・疲労が重なった週は、デュエル勝率が平均約16pt低下します。ただし低下の幅は選手によって大きく異なるため、チーム平均ではなく<b>選手個別</b>に推定します。</p>
+        <p>「誰を、どの週に、どれだけ使うか」の判断材料として、起用と負荷設計の両方に使えます。</p>
+        <p class="note" style="margin-top:16px">※ 筑波大学蹴球部 GPS約5.6万日分＋日次コンディションの階層ベイズモデルによる推定値です。チーム・データ環境により結果は異なります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 3. 提供メニュー ═══════════ -->
+<section id="menu">
+  <div class="wrap">
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <span class="eyebrow">Menu</span>
+      <h2 class="section-title">提供メニュー</h2>
+      <p class="section-lead center"><span class="np">単発の分析から</span><span class="np">継続的な伴走まで。</span><span class="np">とる指標の相談・データ整理を含め、</span><span class="np">データ周りは</span><span class="np">まるごとお任せいただけます。</span></p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-clipboard"/></svg></div>
+        <h3>データ活用方針のコンサルティング</h3>
+        <p>現場のニーズを伺い、<strong>適切な分析アプローチの選択</strong>から。取得すべき指標の選定を含め、データ活用の設計図づくりをご一緒します。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-doc"/></svg></div>
+        <h3>データの整理・取得サポート</h3>
+        <p>Excel・GPSソフト・紙に散らばる過去データを整理し、使える形に。足りないデータは<strong>収集機能の追加開発</strong>を含め、取得の仕組みから支援します。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-gauge"/></svg></div>
+        <h3>予測モデルの個別構築</h3>
+        <p>傷害リスクやパフォーマンスの予測モデルを、<strong>チームのデータで個別に構築</strong>。約1ヶ月分のデータ連携で稼働開始できます。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
+        <h3>分析レポート</h3>
+        <p>ネットワーク分析をはじめ、課題に合わせた手法で選手・チームの特性や傾向を定量化してレポートします。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-hub"/></svg></div>
+        <h3>分析モデルを搭載したアプリ提供</h3>
+        <p>構築したモデルをデータプラットフォームに搭載し、日常のワークフローの中で使える形にします。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic"><use href="#i-users"/></svg></div>
+        <h3>現場実装・伴走支援</h3>
+        <p>分析結果の読み合わせから、現場の意思決定への定着まで定例で伴走。「レポートを渡して終わり」にはしません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- ═══════════ 7. データ分析が守る価値 ═══════════ -->
 <section class="section-alt" id="value">
   <div class="wrap">
@@ -672,11 +515,13 @@
       </div>
     </div>
     <div class="footnotes" id="value-notes">
-      <p>※1 傷害による非稼働期間の選手給与相当額を人件費比で概算したものです。</p>
-      <p>※2 選手給与相当額ベースの機会損失の概算であり、チームの人件費規模・傷害発生状況・モデルの予測対象範囲により異なります。詳細な算定条件は商談時にご説明します。</p>
+      <p>※ J1クラブ3シーズンの傷害調査から非稼働率を約10%と仮置きし、トップチーム選手給与相当額5億円 × 10% × Recall 20% × 介入成功率100% で試算した機会損失の概算です。会計上の直接的な利益・費用削減を示すものではありません。</p>
+      <p>※ チームの人件費規模・傷害発生状況・モデルの予測対象範囲により結果は異なります。詳細な算定条件は商談時にご説明します。</p>
+      <p>※ 出典：山本純「プロサッカーチームにおける3年間の傷害調査」Football Science Vol.11, 2013 ／ Howden “Men’s European Football Injury Index 2024/25”</p>
     </div>
   </div>
 </section>
+
 
 <!-- ═══════════ 8. 進め方 ═══════════ -->
 <section id="process">
@@ -728,77 +573,19 @@
   </div>
 </section>
 
-<!-- ═══════════ 9. 費用 ═══════════ -->
-<section class="section-alt" id="pricing">
-  <div class="wrap">
-    <div class="center" style="max-width:760px;margin:0 auto">
-      <span class="eyebrow">Pricing</span>
-      <h2 class="section-title">費用の考え方</h2>
-      <p class="section-lead center"><span class="np">目安は3タイプ。</span><span class="np">データ量・支援範囲に応じて</span><span class="np">個別にお見積りします。</span></p>
-    </div>
-    <div class="price-grid">
-      <div class="price reveal">
-        <h3>単発の分析</h3>
-        <div class="for">まず試したいチームに</div>
-        <div class="amount">数十万円<small>〜</small></div>
-        <ul>
-          <li><svg class="ic"><use href="#i-check"/></svg> データお預かり・整理</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> 分析レポート＋読み合わせ</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> 目安1〜2ヶ月で納品</li>
-        </ul>
-      </div>
-      <div class="price hl2 reveal">
-        <h3>予測モデル構築</h3>
-        <div class="for">チーム個別のAIモデルを持ちたいチームに</div>
-        <div class="amount">個別お見積り</div>
-        <ul>
-          <li><svg class="ic"><use href="#i-check"/></svg> チームのデータでモデルを個別構築</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> 約1ヶ月分のデータ連携で稼働開始</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> アプリ搭載にも対応</li>
-        </ul>
-      </div>
-      <div class="price reveal">
-        <h3>継続伴走</h3>
-        <div class="for">分析を日常にしたいチームに</div>
-        <div class="amount">月額制</div>
-        <ul>
-          <li><svg class="ic"><use href="#i-check"/></svg> 定例の分析・読み合わせ</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> とる指標の相談・現場実装の支援</li>
-          <li><svg class="ic"><use href="#i-check"/></svg> 単発の分析からの移行も可能</li>
-        </ul>
-      </div>
-    </div>
-    <div class="center" style="margin-top:30px">
-      <a class="btn btn-navy" href="contact.html?purpose=analysis"><svg class="ic"><use href="#i-mail"/></svg> 見積もり・相談する</a>
-    </div>
-  </div>
-</section>
 
-<!-- ═══════════ 10. FAQ ═══════════ -->
-<section id="faq">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow" style="display:inline-flex">FAQ</span>
-      <h2 class="section-title">よくある質問</h2>
-    </div>
-    <div class="faq">
-      <details class="qa"><summary>Odonataの分析は、他の分析サービスと何が違いますか？</summary>
-        <div class="ans">最大の違いは<b>複雑系アプローチ</b>です。指標を1つずつ切り出して評価する要素還元的な分析ではなく、<b>複数の指標を統合し、指標どうしの関係性・相互作用ごと</b>読み解きます。単独では「正常」に見える要因の重なりを捉えられるため、予測の精度が上がり（傷害予測では同一データで的中率 約5%→約70%<a href="#risk-notes" style="color:var(--blue);font-weight:700">※注記参照</a>）、「足し算では説明できない」サッカーの本質に沿った解釈ができます。さらに、汎用モデルの当てはめではなく<b>クラブ自身のデータで個別に構築</b>し、レポートで終わらせず<b>プラットフォームへの実装・現場への定着まで伴走</b>する点も特長です。</div></details>
-      <details class="qa"><summary>どんな分析に対応していますか？</summary>
-        <div class="ans">決まったメニューだけではありません。ヒアリングで課題を伺い、掲載していない内容も含めて<b>オーダーメイドで分析を設計</b>します。「そもそも何を分析すべきか分からない」「どの指標を取ればいいか分からない」という段階からのご相談も歓迎です。</div></details>
-      <details class="qa"><summary>どんなデータがあれば分析できますか？</summary>
-        <div class="ans">GPS・主観コンディション・試合記録・メディカル記録のいずれかがあれば開始できます。組み合わせが多いほど分析は深くなりますが、<b>まずは今あるものから</b>で構いません。形式（Excel・CSV・紙のスキャン等）もご相談ください。</div></details>
-      <details class="qa"><summary>GPSがなくても分析は可能ですか？</summary>
-        <div class="ans">可能です。主観コンディション・試合・メディカルのデータからネットワーク分析・傾向分析を開始できます。なお傷害予測モデルはGPS負荷データを入力に使うため、GPS連携のあるチームが対象です。</div></details>
-      <details class="qa"><summary>期間はどれくらいかかりますか？</summary>
-        <div class="ans">データの量・状態によりますが、お預かりから初期レポートまで<b>目安1〜2ヶ月</b>です。傷害予測モデルは約1ヶ月分のデータ連携で稼働を開始し、データが増えるほど精度を改善していきます。</div></details>
-      <details class="qa"><summary>結果はどのような形で納品されますか？</summary>
-        <div class="ans">分析レポート（PDF）と、オンラインでの読み合わせセッションが基本です。ご希望に応じて、分析モデルを搭載したWebアプリとしての提供、定例での継続伴走にも対応します。</div></details>
-      <details class="qa"><summary>データの取り扱いが心配です。</summary>
-        <div class="ans">選手本人の同意を前提とし、医療・心理に関わる生データは原則非公開、目的外利用は行いません。詳細は<a href="service-platform.html#privacy" style="color:var(--blue);font-weight:700">データの取り扱い方針</a>をご覧ください。秘密保持契約の締結にも対応します。</div></details>
+<!-- ═══════════ 費用（料金ページへの導線1本） ═══════════ -->
+<div class="wrap" style="padding-bottom:96px">
+  <div class="callout info" style="max-width:820px;margin:0 auto">
+    <svg class="ic cic"><use href="#i-info"/></svg>
+    <div>
+      <h4>費用について</h4>
+      <p>費用は、分析内容・データ量・支援期間に応じて個別にお見積りします。</p>
+      <p style="margin-top:10px"><a class="tlink" href="pricing.html">料金について <svg class="ic"><use href="#i-arrow"/></svg></a></p>
     </div>
   </div>
-</section>
+</div>
+
 
 <!-- ═══════════ CTA ═══════════ -->
 <section class="cta-band" style="padding-top:64px">
@@ -807,12 +594,12 @@
       <h2><span class="np">まずは、お持ちのデータの</span><span class="np">状況をお聞かせください。</span></h2>
       <p><span class="np">「このデータ、使えますか？」の</span><span class="np">壁打ちからで構いません。</span><span class="np">2営業日以内にご返信します。</span></p>
       <div class="cta-actions">
-        <a class="btn btn-blue" href="contact.html?purpose=analysis"><svg class="ic"><use href="#i-mail"/></svg> データ分析の相談をする</a>
-        <a class="btn btn-line" href="contact.html?purpose=doc">サービス資料をダウンロード</a>
+        <a class="btn btn-blue" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <!-- #partial:footer -->
