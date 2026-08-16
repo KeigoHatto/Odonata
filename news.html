@@ -17,38 +17,77 @@
 </head>
 <body>
 
+<!-- #partial:icons -->
+<!-- 全ページ共通アイコンスプライト（単一ソース：partials/icons.html） -->
+<!-- ダウンロードアイコン（i-download）は改修方針により全ページで廃止 -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <defs>
   <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></symbol>
+  <symbol id="i-network" viewBox="0 0 24 24"><line x1="6.6" y1="6.6" x2="12" y2="12"/><line x1="17.4" y1="5.6" x2="12" y2="12"/><line x1="12" y1="12" x2="7" y2="18"/><line x1="12" y1="12" x2="17.6" y2="17.6"/><circle cx="6.6" cy="6.6" r="2"/><circle cx="17.4" cy="5.6" r="2"/><circle cx="12" cy="12" r="2.4"/><circle cx="7" cy="18" r="2"/><circle cx="17.6" cy="17.6" r="2"/></symbol>
+  <symbol id="i-hub" viewBox="0 0 24 24"><line x1="12" y1="12" x2="5" y2="5"/><line x1="12" y1="12" x2="19" y2="6"/><line x1="12" y1="12" x2="5" y2="19"/><line x1="12" y1="12" x2="19" y2="18"/><circle cx="12" cy="12" r="2.7"/><circle cx="5" cy="5" r="1.8"/><circle cx="19" cy="6" r="1.8"/><circle cx="5" cy="19" r="1.8"/><circle cx="19" cy="18" r="1.8"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><polyline points="2,13 7,13 9.2,6.5 12,17.5 14.6,11 16.6,13 22,13"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M15.5 4.5 a2.1 2.1 0 0 1 3 3 L7.5 18.5 l-4 1 1-4 Z"/><line x1="13.7" y1="6.3" x2="17.7" y2="10.3"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><polyline points="4,4 4,20 20,20"/><polyline points="7.5,15 11,10.5 14,13 19,6.5"/><circle cx="7.5" cy="15" r="1.1" fill="currentColor" stroke="none"/><circle cx="14" cy="13" r="1.1" fill="currentColor" stroke="none"/><circle cx="19" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><circle cx="12" cy="17.5" r="1.5" fill="currentColor" stroke="none"/><path d="M8 13.5 a5.6 5.6 0 0 1 8 0"/><path d="M5.3 10.6 a9.4 9.4 0 0 1 13.4 0"/></symbol>
+  <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polygon points="12,8 15.3,10.4 14,14.3 10,14.3 8.7,10.4"/><line x1="12" y1="8" x2="12" y2="4.5"/><line x1="15.3" y1="10.4" x2="18.5" y2="9.2"/><line x1="14" y1="14.3" x2="16" y2="17.3"/><line x1="10" y1="14.3" x2="8" y2="17.3"/><line x1="8.7" y1="10.4" x2="5.5" y2="9.2"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="2.1" fill="#fff"/><circle cx="15" cy="12" r="2.1" fill="#fff"/><circle cx="8" cy="17" r="2.1" fill="#fff"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><polyline points="12,7 12,12 15.5,14"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 L19 6 V11 C19 16 16 19 12 21 C8 19 5 16 5 11 V6 Z"/><polyline points="9,12 11,14 15,9.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="5,12.5 10,17 19,6.5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3 H14 L18 7 V21 H6.5 Z"/><polyline points="14,3 14,7 18,7"/><line x1="9.2" y1="12" x2="15.3" y2="12"/><line x1="9.2" y1="16" x2="13.5" y2="16"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.7 19 a5.3 5.3 0 0 1 10.6 0"/><circle cx="17.2" cy="9" r="2.3"/><path d="M16 19 a4.4 4.4 0 0 1 5.6 -3.8"/></symbol>
+  <symbol id="i-shuffle" viewBox="0 0 24 24"><polyline points="4,8 16,8"/><polyline points="13,5 16,8 13,11"/><polyline points="20,16 8,16"/><polyline points="11,13 8,16 11,19"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5 C10 4.8 7 4.5 4 5.5 V18.5 C7 17.5 10 17.8 12 19.5"/><path d="M12 6.5 C14 4.8 17 4.5 20 5.5 V18.5 C17 17.5 14 17.8 12 19.5"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4 L21 19 H3 Z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="16.6" r=".6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="8" r=".7" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3 L13.6 9.4 L20 11 L13.6 12.6 L12 19 L10.4 12.6 L4 11 L10.4 9.4 Z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18 a8 8 0 0 1 16 0"/><line x1="12" y1="18" x2="15.5" y2="11.5"/><circle cx="12" cy="18" r="1.3" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12 C5 7 9 4.8 12 4.8 C15 4.8 19 7 21.5 12 C19 17 15 19.2 12 19.2 C9 19.2 5 17 2.5 12 Z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 3.5 h4"/><path d="M10.8 3.5 V9 L5.5 18.5 a1.6 1.6 0 0 0 1.4 2.4 h10.2 a1.6 1.6 0 0 0 1.4 -2.4 L13.2 9 V3.5"/><line x1="8.2" y1="14" x2="15.8" y2="14"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.2"/><polyline points="4.5,7.5 12,13 19.5,7.5"/></symbol>
-  <symbol id="i-download" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="15"/><polyline points="7,10.5 12,15.5 17,10.5"/><line x1="5" y1="19.5" x2="19" y2="19.5"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M7 11 V6.5 a1.5 1.5 0 0 1 3 0 V10 M10 10 V5 a1.5 1.5 0 0 1 3 0 V10 M13 10 V6 a1.5 1.5 0 0 1 3 0 V11 M16 11 a1.5 1.5 0 0 1 3 1 c0 3-1 5-2.5 6.5 A6.5 6.5 0 0 1 12 21 c-2.6 0-4.3-1-5.4-2.8 L4.2 14 a1.4 1.4 0 0 1 2.3-1.5 L7.5 14"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 L12 4 L20 11"/><path d="M6 9.8 V20 H18 V9.8"/><line x1="10.2" y1="20" x2="10.2" y2="15"/><line x1="13.8" y1="20" x2="13.8" y2="15"/><line x1="10.2" y1="15" x2="13.8" y2="15"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"/><line x1="4" y1="9.2" x2="20" y2="9.2"/><line x1="8" y1="3" x2="8" y2="6"/><line x1="16" y1="3" x2="16" y2="6"/><circle cx="9" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="13.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16.5" rx="2.2"/><rect x="9" y="2.6" width="6" height="3.6" rx="1.2"/><line x1="8.5" y1="11" x2="15.5" y2="11"/><line x1="8.5" y1="15" x2="13.5" y2="15"/></symbol>
+  <symbol id="i-dumbbell" viewBox="0 0 24 24"><line x1="3" y1="9" x2="3" y2="15"/><line x1="6" y1="7" x2="6" y2="17"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="18" y1="7" x2="18" y2="17"/><line x1="21" y1="9" x2="21" y2="15"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><polygon points="10.2,8.4 16,12 10.2,15.6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.4"/><path d="M8.4 10.5 V7.6 a3.6 3.6 0 0 1 7.2 0 V10.5"/><circle cx="12" cy="15.4" r="1.2" fill="currentColor" stroke="none"/></symbol>
 </defs>
 </svg>
+<!-- /#partial:icons -->
 
 <!-- ═══════════ HEADER ═══════════ -->
+<!-- #partial:header -->
+<!-- 全ページ共通ヘッダー（単一ソース：partials/header.html → tools/build-partials.mjs で全ページへ同期） -->
 <header class="site">
   <div class="wrap nav">
-    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata"></a>
-    <nav class="nav-links" id="navLinks">
-      <a href="approach.html">複雑系アプローチ</a>
+    <a class="nav-logo" href="index.html" aria-label="Odonata ホーム"><img src="assets/odonata-logo.png" alt="Odonata"></a>
+    <nav class="nav-links" id="navLinks" aria-label="グローバルナビゲーション">
       <div class="nav-item">
-        <a tabindex="0">サービス <span class="caret">▼</span></a>
-        <div class="sub-menu">
-          <a href="service-analysis.html">データ分析・伴走支援<small>眠っているデータを、意思決定に</small></a>
-          <a href="service-platform.html">データプラットフォーム<small>集める・整理する・読み解く</small></a>
-          <a href="guide.html">使い方ガイド<small>アプリの全機能を画面に沿って解説</small></a>
+        <button type="button" class="nav-item-btn" aria-expanded="false" aria-controls="navServices">サービス <span class="caret" aria-hidden="true">▼</span></button>
+        <div class="sub-menu" id="navServices">
+          <a href="service-analysis.html">データ分析・伴走支援</a>
+          <a href="service-platform.html">データプラットフォーム</a>
         </div>
       </div>
-      <a href="pricing.html">料金</a>
       <a href="research.html">実績・研究</a>
+      <a href="approach.html">複雑系アプローチ</a>
+      <a href="pricing.html">料金</a>
       <a href="company.html">会社情報</a>
       <a href="news.html">ニュース</a>
-      <a class="nav-login" href="https://app.getodonata.com/login">ログイン</a>
-      <a class="nav-cta" href="contact.html?purpose=doc"><svg class="ic"><use href="#i-download"/></svg> 資料請求</a>
+      <span class="nav-actions">
+        <!-- Phase 3：ここに JP | EN 切替を挿入する（.nav-lang スロット） -->
+        <span class="nav-lang" aria-hidden="true"></span>
+        <a class="nav-login" href="https://app.getodonata.com/login">ログイン</a>
+        <a class="nav-cta" href="demo.html">デモを見る</a>
+        <a class="nav-cta2" href="contact.html">資料請求・お問い合わせ</a>
+      </span>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">☰</button>
   </div>
 </header>
+<!-- /#partial:header -->
 
 <!-- ═══════════ PAGE HERO ═══════════ -->
 <div class="phero">
@@ -143,7 +182,7 @@
       <h2><span class="np">サッカーの複雑さを、</span><span class="np">チームの武器に。</span></h2>
       <p><span class="np">取材のご依頼・掲載に関する</span><span class="np">お問い合わせも、</span><span class="np">こちらから受け付けています。</span></p>
       <div class="cta-actions">
-        <a class="btn btn-blue" href="contact.html?purpose=doc"><svg class="ic"><use href="#i-download"/></svg> サービス資料をダウンロード</a>
+        <a class="btn btn-blue" href="contact.html?purpose=doc">サービス資料をダウンロード</a>
         <a class="btn btn-line" href="contact.html?purpose=media"><svg class="ic"><use href="#i-mail"/></svg> 取材・メディアの方はこちら</a>
       </div>
     </div>
@@ -151,40 +190,43 @@
 </section>
 
 <!-- ═══════════ FOOTER ═══════════ -->
+<!-- #partial:footer -->
+<!-- 全ページ共通フッター（単一ソース：partials/footer.html → tools/build-partials.mjs で全ページへ同期） -->
 <footer class="site">
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
         <img src="assets/odonata-logo.png" alt="Odonata">
-        <p><span class="np">サッカーの複雑な現象を、</span><span class="np">データと科学で読み解く。</span><br><span class="np">複雑系アプローチで、</span><span class="np">現場の意思決定と</span><span class="np">チームの成長を支えます。</span></p>
+        <p><span class="np">サッカーチームのデータを</span><span class="np">ひとつにまとめ、</span><span class="np">分析して、</span><span class="np">現場の意思決定に</span><span class="np">つなげます。</span></p>
       </div>
       <div class="foot-col">
         <h4>Service</h4>
         <a href="service-analysis.html">データ分析・伴走支援</a>
         <a href="service-platform.html">データプラットフォーム</a>
         <a href="pricing.html">料金</a>
-        <a href="guide.html">使い方ガイド</a>
       </div>
       <div class="foot-col">
         <h4>About</h4>
-        <a href="approach.html">複雑系アプローチ</a>
         <a href="research.html">実績・研究</a>
+        <a href="approach.html">複雑系アプローチ</a>
         <a href="company.html">会社情報</a>
         <a href="philosophy.html">Philosophy</a>
       </div>
       <div class="foot-col">
         <h4>Contact</h4>
+        <a href="demo.html">デモを見る</a>
         <a href="news.html">ニュース</a>
-        <a href="contact.html">お問い合わせ・資料請求</a>
+        <a href="contact.html">資料請求・お問い合わせ</a>
         <a href="privacy.html">プライバシーポリシー</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© <span data-year></span> Odonata. All rights reserved.</span>
-      <span>株式会社Odonata（設立準備中）</span>
+      <span>© <span data-year></span> Odonata.</span>
+      <span>Odonata</span>
     </div>
   </div>
 </footer>
+<!-- /#partial:footer -->
 
 <script src="assets/site.js"></script>
 <script>

@@ -35,7 +35,7 @@
 - [x] **T02** `assets/site.css` / `assets/site.js` の共通スタイル・Dropdown挙動
   - 参照章：§6-10 可読性 ／ §3「全ページでヘッダーを共通コンポーネント化する」
   - hover / click / キーボードの3経路、Active状態、SPアコーディオン、ダーク時のコントラスト
-- [ ] **T03** 全ページに `#partial:` マーカーを挿入し、共通パーツを同期
+- [x] **T03** 全ページに `#partial:` マーカーを挿入し、共通パーツを同期
   - 対象：index / approach / service-analysis / service-platform / pricing / research / company / news / contact / privacy
   - 検証：`node tools/build-partials.mjs --check` が通ること
 
