@@ -3,23 +3,67 @@
   // 年号
   document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
-  // モバイルナビ
+  // モバイルナビ（ハンバーガー → 全画面メニュー）
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
   if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    });
     navLinks.querySelectorAll('a').forEach(a => {
-      if (!a.closest('.nav-item') || a.closest('.sub-menu')) {
-        a.addEventListener('click', () => navLinks.classList.remove('open'));
-      }
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
     });
   }
 
-  // 現在ページのナビをハイライト
+  // サービスDropdown：hover（CSS）／click／キーボードフォーカス（CSS :focus-within）の3経路
+  const navItems = [...document.querySelectorAll('.nav-item')];
+  navItems.forEach(item => {
+    const btn = item.querySelector('.nav-item-btn');
+    if (!btn) return;
+    const setOpen = (open) => {
+      item.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const willOpen = !item.classList.contains('open');
+      navItems.forEach(o => { if (o !== item) o.classList.remove('open'); });
+      setOpen(willOpen);
+    });
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault(); setOpen(true);
+        item.querySelector('.sub-menu a')?.focus();
+      } else if (e.key === 'Escape') { setOpen(false); }
+    });
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { setOpen(false); btn.focus(); }
+    });
+    item.addEventListener('focusout', () => {
+      // フォーカスがドロップダウン外へ出たら閉じる（SPのアコーディオンは維持）
+      setTimeout(() => {
+        if (!item.contains(document.activeElement) && !navLinks?.classList.contains('open')) setOpen(false);
+      }, 0);
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-item')) navItems.forEach(o => {
+      o.classList.remove('open');
+      o.querySelector('.nav-item-btn')?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // 現在ページのナビをハイライト（Active状態）
   const path = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a[href]').forEach(a => {
     const href = a.getAttribute('href').split('#')[0];
-    if (href && href === path && !a.classList.contains('nav-cta')) {
+    const isCta = a.classList.contains('nav-cta') || a.classList.contains('nav-cta2') || a.classList.contains('nav-login');
+    if (href && href === path && !isCta) {
       a.classList.add('active');
       const item = a.closest('.nav-item');
       if (item) item.classList.add('active');
