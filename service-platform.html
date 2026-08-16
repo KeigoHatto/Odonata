@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>データプラットフォーム「Odonata」 — 散らばるデータを、ひとつに</title>
-<meta name="description" content="コンディション・GPS・試合・メディカル・育成計画を一元管理し、複雑系アプローチの分析で読み解く。サッカーのためのデータプラットフォーム「Odonata」。AI傷害予測・ネットワーク分析・カスタム分析の実装まで、導入プロセス・データの取り扱い方針を掲載。">
+<meta name="description" content="コンディション・GPS・試合・メディカルを一元管理し、傷害リスク予測とネットワーク分析まで。サッカーチーム向けデータプラットフォーム「Odonata」の画面・機能一覧・データの取り扱い方針を掲載しています。">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -293,17 +293,12 @@
     <div class="p-eyebrow">Data Platform "Odonata"</div>
     <h1><span class="np">散らばるデータを、</span><span class="np">ひとつに。</span><br><span class="np">記録を、チームの</span><span class="np">武器に。</span></h1>
     <p class="lead">
-      <span class="np">コンディション・GPS・試合・</span><span class="np">メディカル・育成計画を</span><span class="np">一元管理。</span>
-      <span class="np">入力すると予測・分析が</span><span class="np">返ってくるから、</span><span class="np">記録が続く。</span>
-      <span class="np">関係性を読み解く</span><span class="np">複雑系アプローチの分析を</span><span class="np">搭載した、</span><span class="np">サッカーのための</span><span class="np">データプラットフォームです。</span>
+      <span class="np">コンディション・GPS・試合・</span><span class="np">メディカルを一元管理し、</span><span class="np">分析結果を現場スタッフが</span><span class="np">毎日使えるWebアプリとして提供します。</span>
+      <span class="np">入力すると予測・分析が返ってくるから、</span><span class="np">記録が続きます。</span>
     </p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="contact.html?purpose=demo"><svg class="ic"><use href="#i-spark"/></svg> デモ・トライアルを相談する</a>
-      <a class="btn btn-ghost" href="contact.html?purpose=doc">資料をダウンロード</a>
-      <a class="btn btn-ghost" href="guide.html"><svg class="ic"><use href="#i-book"/></svg> 使い方ガイド</a>
-    </div>
   </div>
 </div>
+
 
 <!-- ═══════════ SCROLL STORY（データ統合アニメーション） ═══════════ -->
 <section class="scrolly" id="story" aria-label="Odonata のデータ統合ストーリー" style="padding:0">
@@ -357,141 +352,13 @@
   </div>
 </section>
 
-<!-- ═══════════ 2. 現場の3課題 ═══════════ -->
-<section id="problem">
-  <div class="wrap">
-    <div class="center" style="max-width:760px;margin:0 auto">
-      <span class="eyebrow">Problem</span>
-      <h2 class="section-title"><span class="np">データの散在を、</span><span class="np">終わりにする。</span></h2>
-      <p class="section-lead center">
-        トレーニングはExcel、コンディションは別アプリ、GPSは違うソフト……。
-        バラバラだから、つなげて考えられない。Odonataはすべてを1つの場所に集めます。
-      </p>
-    </div>
-
-    <div class="unify-grid">
-      <div class="panel panel-before reveal">
-        <h3><svg class="ic"><use href="#i-shuffle"/></svg> これまで（バラバラ）</h3>
-        <div class="chaos-fig" aria-hidden="true">
-          <span class="chaos-x">つながらない</span>
-          <div class="d-chip" style="left:22%;top:17%;--r:-7deg"><div class="box"><svg class="ic"><use href="#i-pen"/></svg></div><span class="nm">コンディション</span><span class="src">紙・別アプリ</span></div>
-          <div class="d-chip" style="left:76%;top:14%;--r:5deg"><div class="box"><svg class="ic"><use href="#i-signal"/></svg></div><span class="nm">GPS</span><span class="src">GPSソフト</span></div>
-          <div class="d-chip" style="left:14%;top:52%;--r:6deg"><div class="box"><svg class="ic"><use href="#i-dumbbell"/></svg></div><span class="nm">トレーニング</span><span class="src">Excel</span></div>
-          <div class="d-chip" style="left:86%;top:50%;--r:-6deg"><div class="box"><svg class="ic"><use href="#i-ball"/></svg></div><span class="nm">試合</span><span class="src">表計算</span></div>
-          <div class="d-chip" style="left:30%;top:81%;--r:-4deg"><div class="box"><svg class="ic"><use href="#i-pulse"/></svg></div><span class="nm">ケガ・メディカル</span><span class="src">トレーナーの手元</span></div>
-          <div class="d-chip" style="left:71%;top:82%;--r:7deg"><div class="box"><svg class="ic"><use href="#i-target"/></svg></div><span class="nm">目標・面談</span><span class="src">ノート</span></div>
-        </div>
-        <p class="fig-cap">同じ選手のデータなのに、置き場所も形式も別々。<b>横断して見られず、つなげて考えられない。</b></p>
-      </div>
-
-      <div class="arrow-mid reveal"><svg class="ic"><use href="#i-arrow"/></svg></div>
-
-      <div class="panel panel-after reveal">
-        <h3><svg class="ic"><use href="#i-hub"/></svg> Odonata（一元管理）</h3>
-        <div class="hub-fig" aria-hidden="true">
-          <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <g stroke="#7FE3FF" stroke-opacity=".55" stroke-width="1.5">
-              <line x1="50" y1="50" x2="21" y2="16" vector-effect="non-scaling-stroke"/>
-              <line x1="50" y1="50" x2="79" y2="14" vector-effect="non-scaling-stroke"/>
-              <line x1="50" y1="50" x2="13" y2="50" vector-effect="non-scaling-stroke"/>
-              <line x1="50" y1="50" x2="87" y2="50" vector-effect="non-scaling-stroke"/>
-              <line x1="50" y1="50" x2="30" y2="82" vector-effect="non-scaling-stroke"/>
-              <line x1="50" y1="50" x2="71" y2="83" vector-effect="non-scaling-stroke"/>
-            </g>
-          </svg>
-          <div class="d-chip" style="left:21%;top:16%"><div class="box"><svg class="ic"><use href="#i-pen"/></svg></div><span class="nm">コンディション</span></div>
-          <div class="d-chip" style="left:79%;top:14%"><div class="box"><svg class="ic"><use href="#i-signal"/></svg></div><span class="nm">GPS</span></div>
-          <div class="d-chip" style="left:13%;top:50%"><div class="box"><svg class="ic"><use href="#i-dumbbell"/></svg></div><span class="nm">トレーニング</span></div>
-          <div class="d-chip" style="left:87%;top:50%"><div class="box"><svg class="ic"><use href="#i-ball"/></svg></div><span class="nm">試合</span></div>
-          <div class="d-chip" style="left:30%;top:82%"><div class="box"><svg class="ic"><use href="#i-pulse"/></svg></div><span class="nm">ケガ・メディカル</span></div>
-          <div class="d-chip" style="left:71%;top:83%"><div class="box"><svg class="ic"><use href="#i-target"/></svg></div><span class="nm">目標・面談</span></div>
-          <div class="hub-core"><img src="assets/odonata-emblem.png" alt="Odonata"></div>
-        </div>
-        <p class="fig-cap">すべてが<b>同じ選手・同じ時間軸のデータ</b>としてつながり、入力から分析まで1つの場所で完結。</p>
-      </div>
-    </div>
-
-    <p class="center section-lead" style="margin:36px auto 0;max-width:720px">
-      現場で聞く課題は3つ——<strong>①入力・記録の負荷 ②データの散在 ③分析・活用の限界</strong>。
-      Odonataはこの3つに、<strong>「集める・整理する・読み解く」の3つの機能</strong>で答えます。
-    </p>
-  </div>
-</section>
-
-<!-- ═══════════ 3. データは資産 ═══════════ -->
-<section class="asset-band" id="asset">
-  <div class="wrap">
-    <div class="center" style="max-width:820px;margin:0 auto">
-      <span class="eyebrow">Data as Asset</span>
-      <h2 class="section-title"><span class="np">データは、早く集めるほど、</span><br><span class="np">チームと選手の</span><span class="np">財産になる。</span></h2>
-      <p class="section-lead center">
-        <span class="np">記録は、その日限りの</span><span class="np">消耗品ではありません。</span>
-        <span class="np">今日から貯まるデータが、</span><span class="np">1年後・3年後の</span><span class="np"><strong>判断の質の差</strong>になります。</span>
-      </p>
-    </div>
-    <svg class="asset-svg" viewBox="0 0 660 212" aria-hidden="true">
-      <defs>
-        <linearGradient id="agrow" x1="0" y1="1" x2="0" y2="0">
-          <stop offset="0" stop-color="rgba(63,200,240,.3)"/>
-          <stop offset="1" stop-color="#3FC8F0"/>
-        </linearGradient>
-      </defs>
-      <line x1="28" y1="177" x2="632" y2="177" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
-      <g fill="url(#agrow)">
-        <rect x="60" y="143" width="90" height="34" rx="8"/>
-        <rect x="205" y="113" width="90" height="64" rx="8"/>
-        <rect x="350" y="73" width="90" height="104" rx="8"/>
-        <rect x="495" y="27" width="90" height="150" rx="8"/>
-      </g>
-      <g fill="#fff" font-size="12.5" font-weight="800" text-anchor="middle" font-family="'Manrope','Zen Kaku Gothic New',sans-serif">
-        <text x="105" y="164">記録</text>
-        <text x="250" y="134">傾向</text>
-        <text x="395" y="94">分析</text>
-        <text x="540" y="48">予測・知見</text>
-      </g>
-      <path d="M120 118 C 280 82 440 40 604 12" stroke="#7FE3FF" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".9"/>
-      <polygon points="608,11 593,11 599,23" fill="#7FE3FF"/>
-      <text x="265" y="30" fill="#7FE3FF" font-size="12.5" font-weight="800" text-anchor="middle" font-family="'Manrope','Zen Kaku Gothic New',sans-serif">データ資産の積み上がり</text>
-      <g fill="#cfe6f5" font-size="13" font-weight="700" text-anchor="middle" font-family="'Manrope','Zen Kaku Gothic New',sans-serif">
-        <text x="105" y="200">今日</text>
-        <text x="250" y="200">半年後</text>
-        <text x="395" y="200">1年後</text>
-        <text x="540" y="200">3年後</text>
-      </g>
-    </svg>
-    <div class="asset-cards">
-      <div class="asset-card reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-gauge"/></svg></div>
-        <h3>分析の精度が上がる</h3>
-        <p>データが貯まるほど、傷害予測・ネットワーク分析の<strong>精度と解像度が向上</strong>。早く始めたチームほど、深く読めるようになります。</p>
-      </div>
-      <div class="asset-card reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-doc"/></svg></div>
-        <h3>選手の「キャリアの記録」になる</h3>
-        <p>成長の推移・コンディション・ケガと復帰の履歴が、<strong>選手個人の財産</strong>として積み上がる。進路や次のカテゴリーでも活きるデータに。</p>
-      </div>
-      <div class="asset-card reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-book"/></svg></div>
-        <h3>チームの知見として残る</h3>
-        <p>スタッフが入れ替わっても、データと分析は<strong>クラブに残り、引き継がれる</strong>。個人の経験と勘を、チームの資産に変えます。</p>
-      </div>
-    </div>
-    <p class="asset-note">
-      <span class="np">過去のExcel・他アプリのデータを</span><span class="np">取り込んだ状態で始められるので、</span><span class="np"><b>これまでの記録も無駄になりません</b>。</span><br>
-      <span class="np">貯め始めるなら、</span><span class="np">早いほど。</span>
-    </p>
-    <div class="center" style="margin-top:26px">
-      <a class="btn btn-ghost" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 過去データの取り込みを相談する</a>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════ 4. 解決の3機能 ═══════════ -->
-<section id="features" class="section-alt">
+<section id="collect" class="section-alt">
   <div class="wrap">
-    <span class="eyebrow">Features</span>
-    <h2 class="section-title">解決の3機能</h2>
-    <p class="section-lead"><span class="np">散らばっていた情報を</span> <span class="np"><strong>集める → 整理する → 読み解く</strong></span> <span class="np">の流れでひとつに。</span><span class="np">入力はシンプルに、</span><span class="np">分析はパワフルに。</span></p>
+    <span class="eyebrow">Collect &amp; Organize</span>
+    <h2 class="section-title"><span class="np">何が入力でき、</span><span class="np">何がまとめて見られるか。</span></h2>
+    <p class="section-lead"><span class="np">現場の入力はシンプルに。</span><span class="np">選手・チームを横断して</span><span class="np">1画面で確認できます。</span></p>
 
     <!-- ───── 集める ───── -->
     <div class="feat-group">
@@ -585,6 +452,16 @@
     <!-- ───── 読み解く ───── -->
     <div class="feat-group">
       <div class="fg-head">
+  </div>
+</section>
+
+
+<!-- ═══════════ 3. 何が分析できるか ═══════════ -->
+<section id="analyze">
+  <div class="wrap">
+    <span class="eyebrow">Analyze</span>
+    <h2 class="section-title">何が分析できるか。</h2>
+    <p class="section-lead"><span class="np">傷害リスク予測と</span><span class="np">ネットワーク分析を、</span><span class="np">アプリ上でそのまま確認できます。</span></p>
         <span class="fg-step">③ 読み解く</span>
         <h3><span class="np">高度な分析を、</span><span class="np">現場で使える形に</span></h3>
         <p>研究レベルの分析結果を、専門家がいなくても<strong style="color:var(--navy)">毎日使える画面として実装</strong>。「何が何に影響しているか」を読み解き、先回りの意思決定につなげます。</p>
@@ -670,7 +547,7 @@
             <span>ほか、クラブの課題に合わせて</span>
           </div>
         </div>
-        <a class="btn btn-primary" href="service-analysis.html">データ分析・伴走支援を見る <svg class="ic"><use href="#i-arrow"/></svg></a>
+        <a class="tlink" href="service-analysis.html">データ分析・伴走支援を見る <svg class="ic"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
 
@@ -679,6 +556,8 @@
     </div>
   </div>
 </section>
+
+
 
 <!-- ═══════════ 4. 機能一覧 ═══════════ -->
 <section id="function-list">
@@ -703,11 +582,10 @@
         <tr><td><b>収集機能の追加</b></td><td>チーム独自の入力項目・新しいデータ種別の収集機能を、要望に応じて追加開発</td></tr>
       </table>
     </div>
-    <div class="center" style="margin-top:32px">
-      <a class="btn btn-line" href="guide.html"><svg class="ic"><use href="#i-book"/></svg> 全機能の詳しい使い方ガイド</a>
-    </div>
+    <p class="note" style="margin-top:20px">※ 過去データの取り込み（Excel・GPSソフト・紙の記録）は、範囲を決めてご相談いただけます。チーム独自の入力項目の追加にも対応します。</p>
   </div>
 </section>
+
 
 <!-- ═══════════ 5. データの取り扱い ═══════════ -->
 <section class="section-alt" id="privacy">
@@ -745,168 +623,34 @@
   </div>
 </section>
 
-<!-- ═══════════ 8. 導入プロセス ═══════════ -->
-<section id="onboarding">
-  <div class="wrap">
-    <div class="center" style="max-width:760px;margin:0 auto">
-      <span class="eyebrow">Onboarding</span>
-      <h2 class="section-title">導入プロセス</h2>
-      <p class="section-lead center"><span class="np">いきなり本格導入では</span><span class="np">ありません。</span><span class="np">現場と一緒に試し、</span><span class="np">直しながら、</span><span class="np">定着させていきます。</span></p>
-    </div>
-    <div class="flow seq">
-      <div class="flow-step reveal">
-        <span class="stepn">STEP 1</span>
-        <div class="flow-ic"><svg class="ic"><use href="#i-spark"/></svg></div>
-        <h4>試験導入</h4>
-        <p>一部チーム・期間を区切ってスモールスタート。過去データの取込もこの段階で。</p>
-      </div>
-      <div class="flow-step reveal">
-        <span class="stepn">STEP 2</span>
-        <div class="flow-ic"><svg class="ic"><use href="#i-users"/></svg></div>
-        <h4>フィードバック収集</h4>
-        <p>選手・スタッフの使い勝手を確認。入力が続く運用ルールを一緒に設計します。</p>
-      </div>
-      <div class="flow-step reveal">
-        <span class="stepn">STEP 3</span>
-        <div class="flow-ic"><svg class="ic"><use href="#i-sliders"/></svg></div>
-        <h4>改善</h4>
-        <p>現場の声をもとに項目・画面・運用を調整。「現場と一緒に作る」がOdonataの流儀です。</p>
-      </div>
-      <div class="flow-step reveal">
-        <span class="stepn">STEP 4</span>
-        <div class="flow-ic"><svg class="ic"><use href="#i-check"/></svg></div>
-        <h4>本格導入</h4>
-        <p>全体展開へ。分析・予測の活用フェーズに入り、伴走を継続します。</p>
-      </div>
+
+<!-- ═══════════ 使い方ガイド導線 ═══════════ -->
+<div class="wrap" style="padding-bottom:64px">
+  <div class="callout info" style="max-width:820px;margin:0 auto">
+    <svg class="ic cic"><use href="#i-book"/></svg>
+    <div>
+      <h4>導入後は、使い方ガイドがあります</h4>
+      <p>選手向け・コーチ向けの全機能と、ネットワーク分析の読み方を画面に沿って解説しています。</p>
+      <p style="margin-top:10px"><a class="tlink" href="guide.html">使い方ガイドを開く <svg class="ic"><use href="#i-arrow"/></svg></a></p>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ═══════════ 9. 使い方の概要（ガイド統合） ═══════════ -->
-<section id="guide" class="section-alt">
-  <div class="wrap">
-    <span class="eyebrow">Guide</span>
-    <h2 class="section-title">使い方の概要</h2>
-    <p class="section-lead">あなたの立場を選んでください。各機能の詳しい手順は<strong>使い方ガイド</strong>にまとめています。</p>
-
-    <div class="tabs">
-      <button class="tab active" data-tab="player"><svg class="ic"><use href="#i-ball"/></svg> 選手向け</button>
-      <button class="tab" data-tab="coach"><svg class="ic"><use href="#i-clipboard"/></svg> コーチ・スタッフ向け</button>
-    </div>
-
-    <!-- PLAYER -->
-    <div class="tab-panel active" id="tab-player">
-      <p class="center" style="color:var(--sub);font-size:14px;margin:0 auto 26px;max-width:560px">毎日の入力から分析まで、選手はこの4ステップ。</p>
-      <div class="flow seq" style="margin-top:0">
-        <div class="flow-step">
-          <span class="stepn">STEP 1</span>
-          <div class="flow-ic"><svg class="ic"><use href="#i-pen"/></svg></div>
-          <h4>コンディション入力</h4>
-          <p>練習前後にスライダーで。すべての分析の土台。</p>
-        </div>
-        <div class="flow-step">
-          <span class="stepn">STEP 2</span>
-          <div class="flow-ic"><svg class="ic"><use href="#i-home"/></svg></div>
-          <h4>ホームで確認</h4>
-          <p>推移・負荷・戦績とトレーナーのコメントをひと目で。</p>
-        </div>
-        <div class="flow-step">
-          <span class="stepn">STEP 3</span>
-          <div class="flow-ic"><svg class="ic"><use href="#i-calendar"/></svg></div>
-          <h4>予定・練習・試合</h4>
-          <p>スケジュール、当日メニュー、試合スタッツを確認。</p>
-        </div>
-        <div class="flow-step">
-          <span class="stepn">STEP 4</span>
-          <div class="flow-ic"><svg class="ic"><use href="#i-target"/></svg></div>
-          <h4>ケガ・目標・分析</h4>
-          <p>ケガ履歴・IDP、個別のネットワーク分析まで。</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- COACH -->
-    <div class="tab-panel" id="tab-coach">
-      <div class="callout info" style="margin-top:0;margin-bottom:26px">
-        <svg class="ic cic"><use href="#i-shuffle"/></svg>
-        <div>
-          <h4>最初に「表示チーム」を確認</h4>
-          <p>サイドバー上部で <b>表示モード</b> と <b>表示チーム</b> を切り替えられます。分析が思った選手と違うときは、まず表示チームを確認しましょう。</p>
-        </div>
-      </div>
-      <div class="flow" style="margin-top:0">
-        <div class="flow-step">
-          <div class="flow-ic"><svg class="ic"><use href="#i-home"/></svg></div>
-          <h4>見る</h4>
-          <p>チーム概況・選手一覧・コンディション概観。</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-ic"><svg class="ic"><use href="#i-calendar"/></svg></div>
-          <h4>運営する</h4>
-          <p>試合、メニュー作成・配布、スケジュール管理。</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-ic"><svg class="ic"><use href="#i-chart"/></svg></div>
-          <h4>分析する</h4>
-          <p>傷害リスク予測・GPS・ネットワーク分析。</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-ic"><svg class="ic"><use href="#i-sliders"/></svg></div>
-          <h4>管理する</h4>
-          <p>選手招待・項目設定・データ出力・ユーザー管理。</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="center" style="margin-top:34px">
-      <a class="btn btn-navy" href="guide.html"><svg class="ic"><use href="#i-book"/></svg> 詳しい使い方ガイドを開く</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 10. FAQ ═══════════ -->
-<section id="faq">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow" style="display:inline-flex">FAQ</span>
-      <h2 class="section-title">よくある質問</h2>
-    </div>
-    <div class="faq">
-      <details class="qa"><summary>過去データの取り込みは可能ですか？</summary>
-        <div class="ans">可能です。Excel・CSV・他アプリやGPSソフトに散らばった過去の試合・コンディション・GPSデータをお預かりし、<b>取り込んだ状態で運用を開始</b>できます。導入初日から推移・比較・ネットワーク分析が動くため、「データが貯まるまで待つ」必要がありません。</div></details>
-      <details class="qa"><summary>既存のGPS・他社ソフトからの移行はできますか？</summary>
-        <div class="ans">主要なGPSサービスとのAPI連携に対応しています。他社コンディション管理ソフトからの移行も、エクスポートデータがあれば取り込み可能です。個別の環境についてはお問い合わせください。</div></details>
-      <details class="qa"><summary>対応デバイスを教えてください。</summary>
-        <div class="ans">Webアプリのため、スマートフォン・タブレット・PCのブラウザからそのまま利用できます。選手はスマホ、スタッフはPC・タブレットという使い分けが一般的です。アプリのインストールは不要です。</div></details>
-      <details class="qa"><summary>毎日の入力はどれくらい手間ですか？</summary>
-        <div class="ans">スライダー中心で、練習前・練習後の2回。必須項目は数個だけなので、各回1分ほどで完了します。入力すると分析が返ってくる設計にすることで、<b>入力の継続</b>という最大の壁に答えています。</div></details>
-      <details class="qa"><summary>GPSがないチームでも使えますか？</summary>
-        <div class="ans">はい。主観コンディションのデータだけで推移・2期間比較・ネットワーク分析をご利用いただけます。GPS関連の指標は自動的に非表示になります。傷害リスク予測はGPS負荷を入力に使うため、GPS連携チーム限定の機能です。</div></details>
-      <details class="qa"><summary>傷害リスク予測はどこまで信頼できますか？</summary>
-        <div class="ans">モデルは過去の怪我データから構築しており、対象は<b>筋肉系・非接触靭帯系・オーバーユース系の傷害</b>です（接触による打撲・骨折などは対象外）。実証環境での的中率は約70%ですが、<b>モデルは万能ではなく、あくまで意思決定の材料</b>です。最終判断は選手の主観・メディカル所見と合わせて人が行います。</div></details>
-      <details class="qa"><summary>最低利用期間はありますか？</summary>
-        <div class="ans">試験導入期間を経てからの本契約を基本としています。契約条件の詳細はお打ち合わせでご案内します。シーズン途中からの導入もご相談ください。</div></details>
-      <details class="qa"><summary>選手のアカウントに費用はかかりますか？</summary>
-        <div class="ans">かかりません。料金はチーム単位の月額で、選手アカウントの数による追加費用はありません。</div></details>
-      <details class="qa"><summary>導入までどれくらいかかりますか？</summary>
-        <div class="ans">お申し込みからアカウント発行まで最短1週間程度です。過去データの取込やGPS連携を含む場合は、内容に応じて2週間〜1ヶ月程度をいただきます。</div></details>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════ CTA ═══════════ -->
 <section class="cta-band" style="padding-top:0">
   <div class="wrap">
     <div class="cta reveal">
       <h2><span class="np">まずは、現場で</span><span class="np">試してみませんか。</span></h2>
-      <p><span class="np">デモ画面のご案内から、</span><span class="np">試験導入のご相談まで。</span><span class="np">チームの状況に合わせて</span><span class="np">ご提案します。</span></p>
+      <p><span class="np">実際の画面をご覧いただけます。</span><span class="np">試験導入のご相談は、</span><span class="np">チームの状況に合わせてご提案します。</span></p>
       <div class="cta-actions">
-        <a class="btn btn-blue" href="contact.html?purpose=demo"><svg class="ic"><use href="#i-spark"/></svg> デモ・トライアルを相談する</a>
-        <a class="btn btn-line" href="contact.html?purpose=doc">資料をダウンロード</a>
+        <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <!-- #partial:footer -->
