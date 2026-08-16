@@ -136,7 +136,42 @@
   .stat .num{font-size:34px}
   .stat .lbl{font-size:14px}
   .footnotes{font-size:13px}
-  .af-core .two span{font-size:13.5px}
+  /* ───── 03 2つの提供方法：左右非対称（共通コンポーネントを流用しない） ───── */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:48px;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg)}
+  @media(max-width:900px){.split{grid-template-columns:1fr}}
+  .split > *{padding:44px clamp(24px,3.4vw,42px)}
+  /* 左：分析する＝明るい背景＋図表 */
+  .sp-analysis{background:linear-gradient(180deg,#FFFFFF,#F3FAFE);border:1.5px solid var(--border);border-right:none}
+  @media(max-width:900px){.sp-analysis{border-right:1.5px solid var(--border);border-bottom:none}}
+  .sp-analysis .lbl{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.14em;color:var(--blue);background:rgba(0,160,233,.1);border-radius:999px;padding:5px 14px}
+  .sp-analysis h3{font-size:24px;font-weight:800;color:var(--navy);margin:16px 0 10px;line-height:1.5}
+  .sp-analysis p{font-size:15px;color:var(--sub);line-height:1.9}
+  .sp-analysis ul{list-style:none;margin:20px 0 0}
+  .sp-analysis li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;font-weight:700;color:var(--navy);padding:10px 0;border-top:1px dashed var(--border)}
+  .sp-analysis li svg.ic{color:var(--blue);font-size:18px;margin-top:3px}
+  /* 分析アウトプットのコラージュ（レポート紙面のように重ねる） */
+  .collage{position:relative;height:212px;margin-bottom:26px}
+  .collage figure{position:absolute;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 30px rgba(11,42,91,.13);padding:10px}
+  .collage svg{display:block;width:100%;height:auto}
+  .collage .c1{left:0;top:16px;width:47%;transform:rotate(-3deg)}
+  .collage .c2{right:2%;top:0;width:44%;transform:rotate(2.5deg)}
+  .collage .c3{left:26%;bottom:0;width:50%;z-index:2}
+  /* 右：現場で使う＝暗い背景＋UIスクリーン */
+  .sp-platform{background:linear-gradient(160deg,#071A3A 0%,#0B2A5B 55%,#0E4A87 100%);color:#fff}
+  .sp-platform .lbl{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.14em;color:#9fe2ff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:5px 14px}
+  .sp-platform h3{font-size:24px;font-weight:800;color:#fff;margin:16px 0 10px;line-height:1.5}
+  .sp-platform p{font-size:15px;color:#D6E6F2;line-height:1.9}
+  .sp-platform ul{list-style:none;margin:20px 0 0}
+  .sp-platform li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;font-weight:700;color:#fff;padding:10px 0;border-top:1px solid rgba(255,255,255,.18)}
+  .sp-platform li svg.ic{color:#7FE3FF;font-size:18px;margin-top:3px}
+  .sp-platform li small{display:block;font-size:12.5px;font-weight:600;color:#BBD3E6;margin-top:2px}
+  .screens{position:relative;height:212px;margin-bottom:26px}
+  .screens .s{position:absolute;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.25);box-shadow:0 14px 34px rgba(0,0,0,.4)}
+  .screens .s img{width:100%;display:block}
+  .screens .s1{left:0;top:0;width:72%;z-index:3}
+  .screens .s2{right:0;top:26px;width:38%;z-index:2}
+  .screens .s3{right:8%;bottom:0;width:34%;z-index:4}
+  @media(max-width:560px){.collage,.screens{height:170px}}
   .flow-step h4{font-size:17px}
   .flow-step p{font-size:13.5px}
   .member p{font-size:13.5px}
@@ -484,25 +519,52 @@
 <section class="section-alt" id="services">
   <div class="wrap">
     <div class="center" style="max-width:760px;margin:0 auto">
-      <span class="eyebrow">Services</span>
-      <h2 class="section-title">2つのサービス</h2>
-      <p class="section-lead center"><span class="np">分析からでも、</span><span class="np">記録からでも。</span><span class="np"><strong>どちらからでも始められます</strong>。</span></p>
+      <span class="eyebrow">Two ways to start</span>
+      <h2 class="section-title"><span class="np">分析から始めるか、</span><span class="np">プラットフォームから</span><span class="np">始めるか。</span></h2>
+      <p class="section-lead center"><span class="np">どちらからでも</span><span class="np">始められます。</span></p>
     </div>
-    <div class="feat-grid cols2">
-      <a class="feat hl reveal" href="service-analysis.html">
-        <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
-        <h3>データ分析・伴走支援</h3>
-        <p><strong style="color:#fff">眠っているデータを、意思決定に変える。</strong><br>
-        保有データを複雑系アプローチで分析。とる指標の相談からデータ整理・現場実装まで、データ周りはまるごとお任せ。</p>
-        <span class="more">詳しく見る <svg class="ic"><use href="#i-arrow"/></svg></span>
-      </a>
-      <a class="feat hl reveal" href="service-platform.html">
-        <div class="ficon"><svg class="ic"><use href="#i-hub"/></svg></div>
-        <h3>データプラットフォーム</h3>
-        <p><strong style="color:#fff">散らばるデータを、ひとつに。</strong><br>
-        コンディション・GPS・試合・メディカルを一元管理。入力すると分析が返ってくるから、記録が続く。</p>
-        <span class="more">詳しく見る <svg class="ic"><use href="#i-arrow"/></svg></span>
-      </a>
+    <div class="split reveal">
+      <!-- 左：分析する（明るい背景＋分析アウトプットの図表コラージュ） -->
+      <div class="sp-analysis">
+        <div class="collage" aria-hidden="true">
+          <figure class="c1">
+            <svg viewBox="0 0 200 120"><g stroke="#3FC8F0" stroke-width="1.6" fill="none"><line x1="100" y1="60" x2="42" y2="30"/><line x1="100" y1="60" x2="160" y2="28"/><line x1="100" y1="60" x2="38" y2="94"/><line x1="100" y1="60" x2="164" y2="92"/></g><g fill="#00A0E9"><circle cx="42" cy="30" r="7"/><circle cx="160" cy="28" r="7"/><circle cx="38" cy="94" r="7"/><circle cx="164" cy="92" r="7"/></g><circle cx="100" cy="60" r="11" fill="#0B2A5B"/></svg>
+          </figure>
+          <figure class="c2">
+            <svg viewBox="0 0 200 110"><line x1="16" y1="92" x2="188" y2="92" stroke="#CCE9F6" stroke-width="1.5"/><rect x="46" y="34" width="40" height="58" rx="4" fill="#00A0E9"/><rect x="116" y="56" width="40" height="36" rx="4" fill="#C2410C"/></svg>
+          </figure>
+          <figure class="c3">
+            <svg viewBox="0 0 220 96"><path d="M12 74 C50 74 58 26 96 26 C134 26 146 62 208 44" fill="none" stroke="#00A0E9" stroke-width="2.6"/><path d="M12 80 C50 80 62 56 96 56 C130 56 150 72 208 66" fill="none" stroke="#9AC7DE" stroke-width="2" stroke-dasharray="5 4"/><circle cx="96" cy="26" r="4.5" fill="#0B2A5B"/></svg>
+          </figure>
+        </div>
+        <span class="lbl">データ分析・伴走支援</span>
+        <h3><span class="np">分析から</span><span class="np">始める。</span></h3>
+        <p>クラブがすでに持っているデータを分析し、チーム・選手固有のモデルと示唆をつくります。</p>
+        <ul>
+          <li><svg class="ic"><use href="#i-target"/></svg> 傷害発生予測モデルの個別構築</li>
+          <li><svg class="ic"><use href="#i-network"/></svg> ネットワーク分析レポート</li>
+          <li><svg class="ic"><use href="#i-doc"/></svg> 保有データの整理・分析</li>
+        </ul>
+        <p style="margin-top:24px"><a class="tlink" href="service-analysis.html">データ分析・伴走支援を見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+      </div>
+
+      <!-- 右：現場で使う（暗い背景＋実際のアプリ画面） -->
+      <div class="sp-platform">
+        <div class="screens" aria-hidden="true">
+          <div class="s s1"><img src="assets/app-dashboard.png" alt=""></div>
+          <div class="s s2"><img src="assets/app-input-pre.png" alt=""></div>
+          <div class="s s3"><img src="assets/app-network-graph.png" alt=""></div>
+        </div>
+        <span class="lbl">データプラットフォーム</span>
+        <h3><span class="np">プラットフォームから</span><span class="np">始める。</span></h3>
+        <p>日々のデータを収集・統合し、分析結果を現場スタッフが毎日使えるWebアプリとして提供します。</p>
+        <ul>
+          <li><svg class="ic"><use href="#i-pen"/></svg> <span>集める<small>コンディション・GPS・試合・メディカルの入力</small></span></li>
+          <li><svg class="ic"><use href="#i-hub"/></svg> <span>整理する<small>選手・チームを横断できる一元管理</small></span></li>
+          <li><svg class="ic"><use href="#i-eye"/></svg> <span>読み解く<small>傷害予測・ネットワーク分析</small></span></li>
+        </ul>
+        <p style="margin-top:24px"><a class="tlink" href="service-platform.html">データプラットフォームを見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+      </div>
     </div>
   </div>
 </section>
