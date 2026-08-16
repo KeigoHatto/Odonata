@@ -103,6 +103,18 @@
   .uc-3 .delta{font-family:'Manrope',sans-serif;font-size:34px;font-weight:800;color:#C2410C;line-height:1}
   .uc-3 .delta span{font-size:14px;font-weight:700;color:var(--sub);margin-left:8px;font-family:'Zen Kaku Gothic New',sans-serif}
 
+  /* ───── 03 Odonataがつなぐもの ───── */
+  .sources{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:44px;max-width:900px;margin-left:auto;margin-right:auto}
+  .source{display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);
+    border-radius:999px;padding:12px 22px;box-shadow:var(--shadow);transition:.25s}
+  .source:hover{border-color:var(--cyan);transform:translateY(-2px)}
+  .source svg.ic{color:var(--blue);font-size:19px}
+  .source b{font-size:15px;font-weight:800;color:var(--navy)}
+  .source small{font-size:12.5px;color:var(--sub);font-weight:600}
+  .sources-note{margin-top:28px;text-align:center;font-size:15px;color:var(--sub);line-height:1.95;
+    max-width:var(--readw);margin-left:auto;margin-right:auto}
+  .sources-note b{color:var(--navy)}
+
   /* メンバー簡易表示（トップ用） */
   .member .avatar.kanji{font-size:22px;letter-spacing:.05em;font-family:'Zen Kaku Gothic New',sans-serif}
 
@@ -381,7 +393,26 @@
 </section>
 
 
-<!-- ═══════════ 02 Odonataでできること ═══════════ -->
+<!-- ═══════════ 03 Odonataがつなぐもの ═══════════ -->
+<section class="section-alt" id="sources">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <h2 class="section-title">Odonataがつなぐもの</h2>
+      <p class="section-lead center"><span class="np">別々の場所に置かれていた記録を、</span><span class="np">同じ選手・同じ時間軸で</span><span class="np">並べ直します。</span></p>
+    </div>
+    <div class="sources">
+      <span class="source"><svg class="ic"><use href="#i-pen"/></svg><b>コンディション</b><small>睡眠・疲労・痛み</small></span>
+      <span class="source"><svg class="ic"><use href="#i-signal"/></svg><b>GPS</b><small>走行距離・スプリント</small></span>
+      <span class="source"><svg class="ic"><use href="#i-dumbbell"/></svg><b>トレーニング</b><small>負荷・内容・出欠</small></span>
+      <span class="source"><svg class="ic"><use href="#i-ball"/></svg><b>試合</b><small>出場時間・スタッツ</small></span>
+      <span class="source"><svg class="ic"><use href="#i-shield"/></svg><b>メディカル</b><small>受傷・復帰・既往歴</small></span>
+      <span class="source"><svg class="ic"><use href="#i-target"/></svg><b>選手育成（IDP）</b><small>目標・面談・評価</small></span>
+    </div>
+    <p class="sources-note">紙やExcel、GPSソフト、担当者の手元にとどまっていた記録も対象です。<b>すでにあるデータから始められます。</b></p>
+  </div>
+</section>
+
+<!-- ═══════════ 04 Odonataで読み解けること ═══════════ -->
 <section id="usecases">
   <div class="wrap">
     <div class="center" style="max-width:760px;margin:0 auto">

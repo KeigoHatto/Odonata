@@ -117,7 +117,7 @@ v1 で構築した構造の上に、ブランド表現を「サッカー向けSa
   - 参照章：v2 §8・§9・§10・§11。`height:auto` / `object-fit:contain` でアスペクト比を維持。ピッチラインは削除
 - [x] **U03** 「なぜ複数のデータを横断して見るのか」を Hero 直後へ移動し、重要セクション化
   - 参照章：v2 §12・§13
-- [ ] **U04** 「Odonataがつなぐもの」を新設（Condition / GPS / Training / Match / Medical / IDP）
+- [x] **U04** 「Odonataがつなぐもの」を新設（Condition / GPS / Training / Match / Medical / IDP）
   - 参照章：v2 §29-03
 - [ ] **U05** 「Odonataで読み解けること」を3つに整理（傷害リスク予測／ネットワーク分析／統合分析）
   - 参照章：v2 §14・§15・§16・§17
