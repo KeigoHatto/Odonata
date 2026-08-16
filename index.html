@@ -90,6 +90,11 @@
   .riskbar.mid .fill{background:linear-gradient(90deg,#7FE3FF,#FFD08A)}
   .riskbar.low .fill{background:linear-gradient(90deg,#7FE3FF,#6FE3B0)}
   .riskbar .v{text-align:right;font-family:'Manrope',sans-serif}
+  /* 数字は「何の数字か」を必ず隣に置く */
+  .uc-1 .metric{display:flex;align-items:center;gap:16px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.22)}
+  .uc-1 .metric .bignum{font-size:clamp(38px,5vw,48px);flex:none}
+  .uc-1 .metric .mk{font-size:12.5px;line-height:1.6;color:#CFE3F3;font-weight:700;flex:1}
+  .uc-1 .note{border-top:none;padding-top:8px;margin-top:0}
   /* カード2：ネットワーク図（白・枠線） */
   .uc-2{background:var(--card);border:1.5px solid var(--border);box-shadow:var(--shadow)}
   .uc-2:hover{border-color:var(--cyan);box-shadow:var(--shadow-lg)}
@@ -416,23 +421,25 @@
 <section id="usecases">
   <div class="wrap">
     <div class="center" style="max-width:760px;margin:0 auto">
-      <span class="eyebrow">What you can see</span>
-      <h2 class="section-title"><span class="np">Odonataで、</span><span class="np">何が分かるのか。</span></h2>
-      <p class="section-lead center"><span class="np">チームがすでに持っているデータから、</span><span class="np">単一の指標では見えない状態を</span><span class="np">読み解きます。</span></p>
+      <h2 class="section-title">Odonataで読み解けること</h2>
+      <p class="section-lead center"><span class="np">単一の指標では見えない状態を、</span><span class="np">選手ごとに読み解きます。</span></p>
     </div>
 
     <div class="uc-grid">
       <!-- カード1：大数字＋リスクバーUI -->
       <article class="uc uc-1 reveal">
-        <div class="bignum">約70<small>%</small></div>
+        <h3>傷害リスク予測</h3>
+        <p>選手ごとに傷害の発生リスクを予測し、誰に注意すべきか・何がリスクに寄与しているか・練習負荷をどう調整するかまでを示します。</p>
         <div class="riskbars" aria-hidden="true">
           <div class="riskbar"><span>高リスク</span><span class="track"><span class="fill" style="width:86%"></span></span><span class="v">86</span></div>
           <div class="riskbar mid"><span>要観察</span><span class="track"><span class="fill" style="width:54%"></span></span><span class="v">54</span></div>
           <div class="riskbar low"><span>低リスク</span><span class="track"><span class="fill" style="width:21%"></span></span><span class="v">21</span></div>
         </div>
-        <h3>傷害リスクを、事前に捉える</h3>
-        <p>高リスクと判定した選手の約70%で、実際に傷害が発生。リスクの要因候補と、練習負荷の調整案までWebアプリ上に出します。</p>
-        <p class="note">※筑波大学蹴球部 2022–2025年データでの検証値（Precision）。筋肉系・非接触靱帯系・オーバーユース系に限る。従来指標ACWRは約5%。Recallは両者とも約20%で同等。チーム・データ環境により結果は異なります。</p>
+        <div class="metric">
+          <div class="bignum">約70<small>%</small></div>
+          <p class="mk">高リスクと判定した選手のうち、<br>実際に傷害が発生した割合</p>
+        </div>
+        <p class="note">※筑波大学蹴球部 2022–2025年データでの検証値。対象は筋肉系・非接触靱帯系・オーバーユース系。すべての傷害を捉えられるわけではなく、発生した傷害のうち事前に捉えられたのは約20%です。チーム・データ環境により結果は異なります。</p>
       </article>
 
       <!-- カード2：ネットワーク図 -->
@@ -461,8 +468,8 @@
             <text x="150" y="172" text-anchor="middle" fill="#0B2A5B" font-size="11.5">中心にある指標を特定する</text>
           </g>
         </svg>
-        <h3><span class="np">選手・チーム固有の</span><span class="np">“つながり”を捉える</span></h3>
-        <p>コンディション・GPS・試合・メディカルを横断し、どの指標がその選手の状態の中心にあるかを可視化します。</p>
+        <h3>ネットワーク分析</h3>
+        <p>指標どうしの関係・向き・強さ・時間差を可視化し、単一のグラフでは見えなかった構造を読み解きます。その選手の状態の中心にある指標が分かります。</p>
       </article>
 
       <!-- カード3：棒グラフ -->
@@ -481,9 +488,9 @@
             <text x="215" y="142">負荷・疲労が重なった週</text>
           </g>
         </svg>
-        <h3><span class="np">疲労が、試合のどこに</span><span class="np">出るかを捉える</span></h3>
-        <p>負荷・疲労が重なった週は、デュエル勝率が平均約16pt低下。落ちやすい選手とそうでない選手を個別に分けて示します。</p>
-        <p class="note">※筑波大学蹴球部 GPS約5.6万日分＋日次コンディションの階層ベイズモデルによる推定値。</p>
+        <h3>複数データの統合分析</h3>
+        <p>コンディション・GPS・トレーニング・試合・IDPを横断し、「なぜこの選手はこの期間よかったのか」を問い直せます。例えば負荷と疲労が重なった週は、試合中の球際の勝率が平均約16pt低下しました。</p>
+        <p class="note">※筑波大学蹴球部 GPS約5.6万日分＋日次コンディションの階層ベイズモデルによる推定値。低下の幅は選手により異なります。</p>
       </article>
     </div>
 
