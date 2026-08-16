@@ -85,7 +85,7 @@
 
 - [x] **T19** `news.html` / `privacy.html` / `philosophy.html` / `guide.html` の表記統一
   - 参照章：§7 表記ルール（CLAUDE.md）
-- [ ] **T20** 全ページ横断チェック
+- [x] **T20** 全ページ横断チェック
   - 「株式会社Odonata」「約14倍」「ダウンロード」「澤田」「使い方ガイド（ナビ・Footer）」が0件であること
   - `node tools/build-partials.mjs --check` が通ること
   - 全リンク先ファイルが実在すること
