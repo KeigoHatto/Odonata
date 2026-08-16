@@ -46,21 +46,27 @@
   .hero-offer b{display:block;font-size:14.5px;font-weight:800;color:var(--navy);line-height:1.5}
   .hero-offer small{display:block;font-size:12.5px;color:var(--sub);line-height:1.6;margin-top:2px}
 
-  /* ───── Heroビジュアル：奥＝関係性の図／手前＝現場での使用シーン ───── */
-  .hero-vis{position:relative;isolation:isolate;padding:8% 0 10%}
-  .hero-vis .net{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.9}
-  .hero-vis .net .e{stroke:#9CD0EC;stroke-width:1.4;fill:none;opacity:.5}
-  .hero-vis .net .e.hot{stroke:#FF9933;opacity:.7;stroke-width:1.8}
-  .hero-vis .net .n{fill:#fff;stroke:#5CA6D6;stroke-width:1.8}
-  .hero-vis .net .n.hot{fill:#FF9933;stroke:#E07B1E}
-  .hero-vis .net .n.core{fill:#0B2A5B;stroke:#0B2A5B}
-  .hero-vis .net .ring{fill:none;stroke:#00A0E9;opacity:.2}
+  /* ───── Heroビジュアル：現場の写真＋分析の写真を2枚重ねる ───── */
+  .hero-vis{position:relative;padding-bottom:22%}
   /* 写真はアスペクト比を維持（height指定をしない） */
-  .hero-photo{position:relative;z-index:2;border-radius:16px;overflow:hidden;
-    box-shadow:0 30px 70px rgba(11,42,91,.26);border:1px solid rgba(255,255,255,.7)}
+  .hero-photo{border-radius:16px;overflow:hidden;background:#fff;
+    box-shadow:0 30px 70px rgba(11,42,91,.24);border:3px solid #fff}
   .hero-photo img{width:100%;height:auto;display:block;object-fit:contain}
-  @media(max-width:860px){.hero-vis{padding:6% 0 8%;max-width:640px;margin:0 auto}}
-  @media(max-width:560px){.hero{padding:64px 0 80px}.hero-vis{padding:4% 0 6%}}
+  .hero-photo.main{position:relative;z-index:2;width:88%;margin-left:auto}
+  .hero-photo.sub{position:absolute;left:0;bottom:0;width:56%;z-index:3;
+    box-shadow:0 24px 56px rgba(11,42,91,.28)}
+  /* 2枚を結ぶ線（点と点が関係している、というモチーフ） */
+  .hero-link{position:absolute;left:8%;right:14%;top:32%;bottom:12%;z-index:1;width:auto;height:auto}
+  .hero-link path{fill:none;stroke:#00A0E9;stroke-width:1.6;stroke-dasharray:6 6;opacity:.5;
+    vector-effect:non-scaling-stroke}
+  .hero-link circle{fill:#FF9933;opacity:.9}
+  @media(max-width:860px){.hero-vis{max-width:660px;margin:0 auto;padding-bottom:20%}}
+  @media(max-width:560px){
+    .hero{padding:64px 0 80px}
+    .hero-vis{padding-bottom:26%}
+    .hero-photo.main{width:92%}
+    .hero-photo.sub{width:62%}
+  }
 
   /* ───── 02 Odonataでできること：ユースケース3枚（カードごとに主役ビジュアルを変える） ───── */
   .uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;align-items:stretch}
@@ -318,29 +324,22 @@
         </div>
       </div>
       <!-- ▲▲ HERO COPY ここまで ▲▲ -->
+      <!-- 現場（上）と分析（下）の2枚を重ね、間に関係性のノードを走らせる -->
       <div class="hero-vis">
-        <!-- 奥：データ同士の関係性（ノードとエッジ） -->
-        <svg class="net" viewBox="0 0 640 420" aria-hidden="true">
-          <g class="e">
-            <path d="M78 82 L300 200"/><path d="M300 200 L562 76"/><path d="M74 320 L300 200"/>
-            <path d="M300 200 L556 336"/><path d="M300 200 L316 40"/><path d="M78 82 L74 320"/>
-            <path d="M562 76 L556 336"/><path d="M316 40 L562 76"/><path d="M74 320 L556 336"/>
-          </g>
-          <g class="e hot"><path d="M78 82 L300 200"/><path d="M300 200 L556 336"/></g>
-          <circle class="ring" cx="300" cy="200" r="66" stroke-width="1.4"/>
-          <circle class="ring" cx="300" cy="200" r="98" stroke-width="1.1"/>
-          <g class="n">
-            <circle cx="562" cy="76" r="11"/><circle cx="74" cy="320" r="11"/><circle cx="316" cy="40" r="9"/>
-          </g>
-          <g class="n hot"><circle cx="78" cy="82" r="13"/><circle cx="556" cy="336" r="13"/></g>
-          <circle class="n core" cx="300" cy="200" r="17"/>
-        </svg>
-        <!-- 手前：現場で実際に使われている様子 -->
-        <figure class="hero-photo">
+        <figure class="hero-photo main">
           <img src="assets/photo-hero-tablet.png"
                alt="練習中のピッチサイドで、スタッフがタブレットに表示されたチームのデータを確認している様子"
                width="1664" height="944" fetchpriority="high">
         </figure>
+        <figure class="hero-photo sub">
+          <img src="assets/photo-analysis-desk.png"
+               alt="スタッフがノートPCで、ネットワーク図やコンディション推移などの分析画面を確認している様子"
+               width="1664" height="944" loading="lazy">
+        </figure>
+        <svg class="hero-link" viewBox="0 0 200 200" aria-hidden="true" preserveAspectRatio="none">
+          <path d="M18 26 C70 74 128 108 188 172"/>
+          <circle cx="18" cy="26" r="5"/><circle cx="188" cy="172" r="5"/>
+        </svg>
       </div>
     </div>
   </div>
