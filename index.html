@@ -132,9 +132,9 @@
   /* 左：分析する＝明るい背景＋図表 */
   .sp-analysis{background:linear-gradient(180deg,#FFFFFF,#F3FAFE);border:1.5px solid var(--border);border-right:none}
   @media(max-width:900px){.sp-analysis{border-right:1.5px solid var(--border);border-bottom:none}}
-  .sp-analysis .lbl{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.14em;color:var(--blue);background:rgba(0,160,233,.1);border-radius:999px;padding:5px 14px}
+  .sp-analysis .lbl{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.1em;color:#0A5E93;background:rgba(0,160,233,.14);border-radius:999px;padding:6px 15px}
   .sp-analysis h3{font-size:24px;font-weight:800;color:var(--navy);margin:16px 0 10px;line-height:1.5}
-  .sp-analysis p{font-size:15px;color:var(--sub);line-height:1.9}
+  .sp-analysis p{font-size:15px;color:#3A5A6B;line-height:1.95}
   .sp-analysis ul{list-style:none;margin:20px 0 0}
   .sp-analysis li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;font-weight:700;color:var(--navy);padding:10px 0;border-top:1px dashed var(--border)}
   .sp-analysis li svg.ic{color:var(--blue);font-size:18px;margin-top:3px}
@@ -144,20 +144,17 @@
   .report svg{display:block;width:100%;height:auto}
 undefined  /* 右：現場で使う＝暗い背景＋UIスクリーン */
   .sp-platform{background:linear-gradient(160deg,#071A3A 0%,#0B2A5B 55%,#0E4A87 100%);color:#fff}
-  .sp-platform .lbl{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.14em;color:#9fe2ff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:5px 14px}
+  .sp-platform .lbl{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.1em;color:#BDECFF;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);border-radius:999px;padding:6px 15px}
   .sp-platform h3{font-size:24px;font-weight:800;color:#fff;margin:16px 0 10px;line-height:1.5}
-  .sp-platform p{font-size:15px;color:#D6E6F2;line-height:1.9}
+  .sp-platform p{font-size:15px;color:#E4EFF8;line-height:1.95}
   .sp-platform ul{list-style:none;margin:20px 0 0}
   .sp-platform li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;font-weight:700;color:#fff;padding:10px 0;border-top:1px solid rgba(255,255,255,.18)}
   .sp-platform li svg.ic{color:#7FE3FF;font-size:18px;margin-top:3px}
-  .sp-platform li small{display:block;font-size:12.5px;font-weight:600;color:#BBD3E6;margin-top:2px}
-  .screens{position:relative;height:212px;margin-bottom:26px}
-  .screens .s{position:absolute;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.25);box-shadow:0 14px 34px rgba(0,0,0,.4)}
-  .screens .s img{width:100%;display:block}
-  .screens .s1{left:0;top:0;width:72%;z-index:3}
-  .screens .s2{right:0;top:26px;width:38%;z-index:2}
-  .screens .s3{right:8%;bottom:0;width:34%;z-index:4}
-  @media(max-width:560px){.screens{height:170px}}
+  .sp-platform li small{display:block;font-size:13px;font-weight:600;color:#D2E3F1;margin-top:3px;line-height:1.65}
+  /* 右：実機で使われている写真（アスペクト比を維持） */
+  .pf-photo{border-radius:14px;overflow:hidden;margin-bottom:26px;
+    border:1px solid rgba(255,255,255,.28);box-shadow:0 18px 44px rgba(0,0,0,.38)}
+  .pf-photo img{width:100%;height:auto;display:block;object-fit:contain}
 
   /* ───── 06 サイクル：文字はSVGのtext要素で保持（英語化時に作り直さない） ───── */
   .cycle{max-width:980px;margin:48px auto 0}
@@ -567,11 +564,9 @@ undefined  /* 右：現場で使う＝暗い背景＋UIスクリーン */
 
       <!-- 右：現場で使う（暗い背景＋実際のアプリ画面） -->
       <div class="sp-platform">
-        <div class="screens" aria-hidden="true">
-          <div class="s s1"><img src="assets/app-dashboard.png" alt=""></div>
-          <div class="s s2"><img src="assets/app-input-pre.png" alt=""></div>
-          <div class="s s3"><img src="assets/app-network-graph.png" alt=""></div>
-        </div>
+        <figure class="pf-photo">
+          <img src="assets/photo-devices.png" alt="ノートPC・タブレット・スマートフォンにOdonataの画面が表示されている様子" loading="lazy">
+        </figure>
         <span class="lbl">データプラットフォーム</span>
         <h3>プラットフォームから始める</h3>
         <p>日々の入力から蓄積・一元管理・推移の確認・分析までを、ひとつの環境で行います。現場スタッフが毎日使うWebアプリです。</p>
