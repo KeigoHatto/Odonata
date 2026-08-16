@@ -23,6 +23,7 @@
       radial-gradient(760px 460px at 4% 92%,rgba(11,42,91,.07),transparent 58%),
       linear-gradient(180deg,#FFFFFF 0%,#F5FBFE 62%,#EDF7FC 100%);
   }
+  .hero canvas.netbg{opacity:.85}
   .hero .wrap{position:relative;z-index:2}
   .hero-grid{display:grid;grid-template-columns:45fr 55fr;gap:clamp(32px,4.4vw,64px);align-items:center}
   @media(max-width:1024px){.hero-grid{grid-template-columns:47fr 53fr;gap:32px}}
@@ -290,6 +291,7 @@
 
 <!-- ═══════════ 01 HERO ═══════════ -->
 <section class="hero" id="top">
+  <canvas class="netbg" data-density="22" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero-grid">
       <!-- ▼▼ HERO COPY：Vision確定後は h1 1行と p.lead 2行のみ差し替える ▼▼ -->
@@ -346,7 +348,8 @@
 
 
 <!-- ═══════════ 02 Odonataがつなぐもの ═══════════ -->
-<section class="section-alt" id="sources">
+<section class="section-alt has-net" id="sources">
+  <canvas class="netbg" data-density="34" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
       <h2 class="section-title">Odonataがつなぐもの</h2>
@@ -448,7 +451,8 @@
 </section>
 
 <!-- ═══════════ 04 なぜ、複数のデータを横断して見るのか ═══════════ -->
-<section class="section-alt" id="why">
+<section class="section-alt has-net" id="why">
+  <canvas class="netbg" data-density="34" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
       <h2 class="section-title"><span class="np">なぜ、複数のデータを</span><span class="np">横断して見るのか。</span></h2>
@@ -844,5 +848,6 @@
 <!-- /#partial:footer -->
 
 <script src="assets/site.js"></script>
+<script src="assets/netbg.js"></script>
 </body>
 </html>
