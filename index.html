@@ -107,6 +107,17 @@
   .uc-3 .delta{font-family:'Manrope',sans-serif;font-size:34px;font-weight:800;color:#C2410C;line-height:1}
   .uc-3 .delta span{font-size:14px;font-weight:700;color:var(--sub);margin-left:8px;font-family:'Zen Kaku Gothic New',sans-serif}
 
+  /* ───── 02 Odonataについて ───── */
+  .sec-en{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:.28em;
+    color:var(--blue);text-transform:uppercase;margin-bottom:10px}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.6vw,68px);align-items:center}
+  @media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:32px}}
+  .about-txt p{font-size:15.5px;color:var(--sub);line-height:2.05;max-width:var(--readw)}
+  .about-txt p + p{margin-top:16px}
+  .about-photo{border-radius:16px;overflow:hidden;border:3px solid #fff;background:#fff;
+    box-shadow:0 26px 60px rgba(11,42,91,.2)}
+  .about-photo img{width:100%;height:auto;display:block;object-fit:contain}
+
   /* ───── 03 Odonataがつなぐもの ───── */
   .sources{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:44px;max-width:900px;margin-left:auto;margin-right:auto}
   .source{display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);
@@ -346,7 +357,26 @@
 </section>
 
 
-<!-- ═══════════ 02 Odonataがつなぐもの ═══════════ -->
+<!-- ═══════════ 02 Odonataについて ═══════════ -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-txt">
+        <p class="sec-en">About</p>
+        <h2 class="section-title"><span class="np">Odonataについて</span></h2>
+        <p><span class="np">Odonataは、</span><span class="np">筑波大学の研究者と</span><span class="np">サッカーの現場経験者が集まって</span><span class="np">立ち上げたチームです。</span></p>
+        <p><span class="np">スポーツの現場には、</span><span class="np">コンディション・GPS・試合・メディカル・育成計画といった</span><span class="np">記録が日々生まれています。</span><span class="np">けれどそれらは別々の場所に置かれ、</span><span class="np">つながらないまま</span><span class="np">積み上がっていくことがほとんどです。</span></p>
+        <p><span class="np">私たちは、</span><span class="np">その記録をつなぎ直して分析し、</span><span class="np">現場スタッフが毎日使えるWebアプリとして届けています。</span><span class="np">研究から実装までを、</span><span class="np">同じチームの中で行っています。</span></p>
+        <p style="margin-top:26px"><a class="tlink" href="company.html">会社情報を見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+      </div>
+      <figure class="about-photo">
+        <img src="assets/photo-staff-screens.png" alt="スタッフが複数の分析画面を並べて、チームと選手のデータを確認している様子" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 03 Odonataがつなぐもの ═══════════ -->
 <section class="section-alt has-net" id="sources">
   <canvas class="netbg" data-density="34" aria-hidden="true"></canvas>
   <div class="wrap">
