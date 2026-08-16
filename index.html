@@ -172,6 +172,20 @@
   .screens .s2{right:0;top:26px;width:38%;z-index:2}
   .screens .s3{right:8%;bottom:0;width:34%;z-index:4}
   @media(max-width:560px){.collage,.screens{height:170px}}
+
+  /* ───── 04 循環図：文字はSVGのtext要素で保持（英語化時に作り直さない） ───── */
+  .cycle{max-width:900px;margin:52px auto 0}
+  .cycle svg{width:100%;height:auto;display:block}
+  .cycle .arc{fill:none;stroke:#00A0E9;stroke-width:3;opacity:.65}
+  .cycle .arc.back{stroke-width:6;opacity:1;stroke:#0B2A5B}
+  .cycle .node{fill:#fff;stroke:#00A0E9;stroke-width:2.5}
+  .cycle .node.back{fill:#0B2A5B;stroke:#0B2A5B}
+  .cycle .num{fill:#0B2A5B;font-family:'Manrope',sans-serif;font-size:26px;font-weight:800;text-anchor:middle}
+  .cycle .num.on{fill:#fff}
+  .cycle .lab{fill:#15233B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:16px;font-weight:700}
+  .cycle .core{fill:#F0FAFE;stroke:#00A0E9;stroke-width:1.6;stroke-dasharray:6 5}
+  .cycle .coretx{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:19px;font-weight:800;text-anchor:middle}
+  @media(max-width:640px){.cycle .lab{font-size:19px}.cycle .coretx{font-size:22px}}
   .flow-step h4{font-size:17px}
   .flow-step p{font-size:13.5px}
   .member p{font-size:13.5px}
@@ -565,6 +579,59 @@
         </ul>
         <p style="margin-top:24px"><a class="tlink" href="service-platform.html">データプラットフォームを見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 04 循環図：使うほど、精度が上がる ═══════════ -->
+<section id="cycle">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <span class="eyebrow">The loop</span>
+      <h2 class="section-title"><span class="np">分析は、</span><span class="np">プラットフォームに載る。</span><span class="np">データは、</span><span class="np">分析に返る。</span></h2>
+      <p class="section-lead center"><span class="np">使い続けるほど、</span><span class="np">チーム固有のモデルの精度が</span><span class="np">上がっていきます。</span></p>
+    </div>
+    <div class="cycle reveal">
+      <svg viewBox="0 0 900 520" role="img" aria-label="クラブのデータを分析する → チーム・選手固有のモデルをつくる → プラットフォームに実装する → 現場が毎日使う → 新しいデータが蓄積する → 分析へ戻る、という5ステップの循環図">
+        <defs>
+          <marker id="ah" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M1 1 L10 6 L1 11 z" fill="#00A0E9"/>
+          </marker>
+          <marker id="ahb" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M1 1 L10 6 L1 11 z" fill="#0B2A5B"/>
+          </marker>
+        </defs>
+
+        <!-- 時計回りの矢印。5→1（戻り）だけ線を太くする -->
+        <path class="arc" d="M504.1 93.1 A185 185 0 0 1 601.6 163.9" marker-end="url(#ah)"/>
+        <path class="arc" d="M635.0 266.8 A185 185 0 0 1 597.7 381.3" marker-end="url(#ah)"/>
+        <path class="arc" d="M510.2 444.9 A185 185 0 0 1 389.8 444.9" marker-end="url(#ah)"/>
+        <path class="arc" d="M302.3 381.3 A185 185 0 0 1 265.0 266.8" marker-end="url(#ah)"/>
+        <path class="arc back" d="M298.4 163.9 A185 185 0 0 1 395.9 93.1" marker-end="url(#ahb)"/>
+
+        <!-- 中央ラベル -->
+        <circle class="core" cx="450" cy="270" r="104"/>
+        <text class="coretx" x="450" y="262">データが増えるほど、</text>
+        <text class="coretx" x="450" y="290">精度が上がる</text>
+
+        <!-- ノード -->
+        <circle class="node" cx="450" cy="85" r="30"/><text class="num" x="450" y="94">1</text>
+        <text class="lab" x="450" y="38" text-anchor="middle">クラブのデータを分析する</text>
+
+        <circle class="node" cx="626" cy="213" r="30"/><text class="num" x="626" y="222">2</text>
+        <text class="lab" x="672" y="207">チーム・選手固有の</text>
+        <text class="lab" x="672" y="229">モデルをつくる</text>
+
+        <circle class="node" cx="559" cy="420" r="30"/><text class="num" x="559" y="429">3</text>
+        <text class="lab" x="559" y="481" text-anchor="middle">プラットフォームに実装する</text>
+
+        <circle class="node" cx="341" cy="420" r="30"/><text class="num" x="341" y="429">4</text>
+        <text class="lab" x="341" y="481" text-anchor="middle">現場が毎日使う</text>
+
+        <circle class="node back" cx="274" cy="213" r="30"/><text class="num on" x="274" y="222">5</text>
+        <text class="lab" x="228" y="207" text-anchor="end">新しいデータが</text>
+        <text class="lab" x="228" y="229" text-anchor="end">蓄積する</text>
+      </svg>
     </div>
   </div>
 </section>
