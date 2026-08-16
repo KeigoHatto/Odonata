@@ -27,7 +27,7 @@
 
 ### 共通基盤
 
-- [ ] **T01** 共通パーツの単一ソース化（`partials/header.html` / `footer.html` / `icons.html` と `tools/build-partials.mjs`）
+- [x] **T01** 共通パーツの単一ソース化（`partials/header.html` / `footer.html` / `icons.html` と `tools/build-partials.mjs`）
   - 参照章：§3 Global Navigation ／ §3 Footer
   - ナビ順＝サービス▾／実績・研究／複雑系アプローチ／料金／会社情報／ニュース
   - 右端＝ログイン（テキスト）／デモを見る（塗り）／資料請求・お問い合わせ（線）
