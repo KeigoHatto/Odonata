@@ -186,6 +186,21 @@
   .cycle .core{fill:#F0FAFE;stroke:#00A0E9;stroke-width:1.6;stroke-dasharray:6 5}
   .cycle .coretx{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:19px;font-weight:800;text-anchor:middle}
   @media(max-width:640px){.cycle .lab{font-size:19px}.cycle .coretx{font-size:22px}}
+
+  /* ───── 05 実証：成果 → 何を実証したか → 経緯 の順で見せる ───── */
+  .proof{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;margin-top:48px}
+  @media(max-width:900px){.proof{grid-template-columns:1fr;gap:36px}}
+  .proof-out{display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap;
+    background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 30px}
+  .proof-out .main .k,.proof-out .sub .k{font-size:13px;font-weight:700;color:var(--sub);margin-top:8px;line-height:1.6}
+  .proof-out .sub{padding-left:26px;border-left:1px solid var(--border)}
+  .proof-out .sub .v{font-family:'Manrope',sans-serif;font-size:26px;font-weight:800;color:var(--navy);line-height:1}
+  .proof-out .sub .k{font-size:12px}
+  @media(max-width:560px){.proof-out .sub{padding-left:0;border-left:none;border-top:1px solid var(--border);padding-top:16px;width:100%}}
+  .proof-blk{margin-top:26px}
+  .proof-blk h3{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+  .proof-blk .badge{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--blue);border-radius:999px;padding:4px 12px}
+  .proof-blk p{font-size:15px;color:var(--sub);line-height:1.9;max-width:640px}
   .flow-step h4{font-size:17px}
   .flow-step p{font-size:13.5px}
   .member p{font-size:13.5px}
@@ -632,6 +647,49 @@
         <text class="lab" x="228" y="207" text-anchor="end">新しいデータが</text>
         <text class="lab" x="228" y="229" text-anchor="end">蓄積する</text>
       </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 05 実証：筑波大学蹴球部 ═══════════ -->
+<section class="section-alt" id="proof">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <span class="eyebrow">Evidence</span>
+      <h2 class="section-title"><span class="np">筑波大学蹴球部で、</span><span class="np">実証しています。</span></h2>
+    </div>
+    <div class="proof">
+      <div>
+        <!-- ① 成果（約5%は自社成果ではないため大数字にしない） -->
+        <div class="proof-out reveal">
+          <div class="main">
+            <div class="bignum">約70<small>%</small></div>
+            <div class="k">高リスクと判定した選手で<br>傷害が発生した割合（Precision）</div>
+          </div>
+          <div class="sub">
+            <div class="v">約20<small>%</small></div>
+            <div class="k">傷害全体のうち事前に<br>予兆を捉えた割合（Recall）</div>
+          </div>
+        </div>
+        <!-- ② 何を実証したか -->
+        <div class="proof-blk">
+          <h3>何を実証したか</h3>
+          <p>2022〜2025年の主観コンディション・GPS・スケジュール・傷害履歴を統合し、200以上の観点から特徴量を生成。傷害発生時との類似性を学習させた個別傷害リスク予測モデルを開発しました。</p>
+        </div>
+        <!-- ③ どうやったか／経緯 -->
+        <div class="proof-blk">
+          <h3><span class="badge">2026年6月〜</span> どうやったか</h3>
+          <p>大学トップレベルの競技環境で、GPS・コンディション・メディカル記録が別々に保存され横断して読み解けなかった状態から着手。分析を研究室に閉じず、選手・スタッフが毎日使えるWebアプリとして現場に実装しました。</p>
+        </div>
+        <p class="note" style="margin-top:20px">※分析結果・モデル精度はデータ量・データ品質・対象チームの環境により異なります。</p>
+        <p style="margin-top:22px"><a class="tlink" href="research.html">実証の詳細を見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+      </div>
+      <figure class="reveal">
+        <div class="browser light">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="u"></span></div>
+          <img src="assets/app-plan.png" alt="練習負荷の設計画面。負荷を変えたときの翌日コンディションの見込みが選手ごとに表示される" loading="lazy">
+        </div>
+      </figure>
     </div>
   </div>
 </section>
