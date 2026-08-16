@@ -41,23 +41,39 @@
   @media(max-width:960px){.hero-shot .back{display:none}.hero-shot figcaption{text-align:left}}
   @media(max-width:560px){.hero{padding:64px 0 76px}}
 
-  /* ───── Odonataとは：1枚の図 ───── */
-  .about-fig{display:grid;grid-template-columns:1fr auto 1.15fr auto 1fr;gap:18px;align-items:stretch;margin-top:50px}
-  @media(max-width:900px){.about-fig{grid-template-columns:1fr}}
-  .af-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;box-shadow:var(--shadow)}
-  .af-box h3{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:9px}
-  .af-box h3 svg.ic{color:var(--blue);font-size:20px}
-  .af-box ul{list-style:none}
-  .af-box li{font-size:13px;color:var(--sub);padding:5px 0;border-bottom:1px solid var(--bg);display:flex;gap:8px;align-items:baseline}
-  .af-box li:last-child{border-bottom:none}
-  .af-box li::before{content:"・";color:var(--blue);font-weight:800}
-  .af-core{background:var(--grad-hero);color:#fff;border:none;text-align:center;display:flex;flex-direction:column;justify-content:center}
-  .af-core img{width:64px;margin:0 auto 12px;background:rgba(255,255,255,.95);border-radius:16px;padding:8px}
-  .af-core h3{color:#fff;justify-content:center;font-size:16px}
-  .af-core .two{display:grid;gap:8px;margin-top:14px}
-  .af-core .two span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:8px 10px;font-size:12.5px;font-weight:700}
-  .af-arrow{display:grid;place-items:center;color:var(--blue);font-size:26px}
-  @media(max-width:900px){.af-arrow{transform:rotate(90deg);padding:2px 0}}
+  /* ───── 02 Odonataでできること：ユースケース3枚（カードごとに主役ビジュアルを変える） ───── */
+  .uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;align-items:stretch}
+  @media(max-width:960px){.uc-grid{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}}
+  .uc{border-radius:var(--radius);padding:30px 26px 26px;display:flex;flex-direction:column;transition:.25s}
+  .uc:hover{transform:translateY(-4px)}
+  .uc h3{font-size:19px;font-weight:800;line-height:1.5;margin:20px 0 10px}
+  .uc p{font-size:14.5px;line-height:1.85;flex:1}
+  .uc .note{margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
+  /* カード1：大数字＋リスクバーUI（ダーク） */
+  .uc-1{background:linear-gradient(150deg,#0B2A5B 0%,#123A72 60%,#14508C 100%);color:#fff;border:none;box-shadow:var(--shadow-lg)}
+  .uc-1 h3{color:#fff}
+  .uc-1 p{color:#D6E6F2}
+  .uc-1 .bignum{color:#7FE3FF}
+  .uc-1 .note{color:#C9D9E8;border-top-color:rgba(255,255,255,.22)}
+  .riskbars{margin-top:16px;display:grid;gap:7px}
+  .riskbar{display:grid;grid-template-columns:64px 1fr 42px;align-items:center;gap:9px;font-size:11.5px;font-weight:700;color:#CFE3F3}
+  .riskbar .track{height:7px;border-radius:999px;background:rgba(255,255,255,.16);overflow:hidden}
+  .riskbar .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#7FE3FF,#FF8A7A)}
+  .riskbar.mid .fill{background:linear-gradient(90deg,#7FE3FF,#FFD08A)}
+  .riskbar.low .fill{background:linear-gradient(90deg,#7FE3FF,#6FE3B0)}
+  .riskbar .v{text-align:right;font-family:'Manrope',sans-serif}
+  /* カード2：ネットワーク図（白・枠線） */
+  .uc-2{background:var(--card);border:1.5px solid var(--border);box-shadow:var(--shadow)}
+  .uc-2:hover{border-color:var(--cyan);box-shadow:var(--shadow-lg)}
+  .uc-2 h3{color:var(--navy)}
+  .uc-2 p{color:var(--sub)}
+  .uc-fig{width:100%;height:auto;display:block}
+  /* カード3：棒グラフ（淡色地） */
+  .uc-3{background:linear-gradient(180deg,#F4FBFE,#E7F5FC);border:1.5px solid var(--border)}
+  .uc-3 h3{color:var(--navy)}
+  .uc-3 p{color:var(--sub)}
+  .uc-3 .delta{font-family:'Manrope',sans-serif;font-size:34px;font-weight:800;color:#C2410C;line-height:1}
+  .uc-3 .delta span{font-size:14px;font-weight:700;color:var(--sub);margin-left:8px;font-family:'Zen Kaku Gothic New',sans-serif}
 
   /* メンバー簡易表示（トップ用） */
   .member .avatar.kanji{font-size:22px;letter-spacing:.05em;font-family:'Zen Kaku Gothic New',sans-serif}
@@ -75,29 +91,6 @@
   .vs-ex .lv{display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;color:var(--sub);margin-bottom:4px}
   .vs-col.now .vs-ex .lv{color:var(--blue)}
   .vs-ex b{color:var(--navy)}
-
-  /* ───── 課題⇒解決策セット ───── */
-  .ps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;align-items:stretch}
-  @media(max-width:900px){.ps-grid{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}}
-  .ps-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
-  .ps-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--cyan)}
-  .ps-problem{padding:26px 26px 18px;flex:1}
-  .ps-label{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800;letter-spacing:.12em;background:#FEF2F2;color:#C0392B;border:1px solid #FECACA;border-radius:999px;padding:4px 13px;margin-bottom:16px}
-  .ps-label svg.ic{font-size:13px}
-  .ps-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
-  .ps-head .ficon{margin-bottom:0;width:50px;height:50px;font-size:25px;flex:none}
-  .ps-head h3{font-size:19px;font-weight:800;color:var(--navy);line-height:1.4}
-  .ps-problem p{font-size:14.5px;color:var(--sub);line-height:1.8}
-  .ps-problem p strong{color:var(--navy)}
-  .ps-arrow{position:relative;height:42px;display:grid;place-items:center}
-  .ps-arrow::before{content:"";position:absolute;left:26px;right:26px;top:50%;border-top:2px dashed var(--border)}
-  .ps-arrow span{position:relative;display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.1em;padding:5px 18px;border-radius:999px;box-shadow:0 6px 16px rgba(0,160,233,.35)}
-  .ps-arrow span svg.ic{transform:rotate(90deg);font-size:13px}
-  .ps-solution{background:linear-gradient(135deg,#0B2A5B 0%,#0E5F9E 70%,#1273B4 100%);color:#fff;padding:22px 26px 26px;display:flex;gap:15px;align-items:flex-start}
-  .ps-sic{flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:24px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);color:#9fe2ff}
-  .ps-solution h4{font-size:17px;font-weight:800;margin-bottom:6px;line-height:1.45}
-  .ps-solution p{font-size:13.5px;color:#cfe6f5;line-height:1.75}
-  .ps-solution p strong{color:#fff}
 
   /* ───── パラダイムシフト図 ───── */
   .para-fig{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;margin-top:48px}
@@ -143,8 +136,6 @@
   .stat .num{font-size:34px}
   .stat .lbl{font-size:14px}
   .footnotes{font-size:13px}
-  .af-box h3{font-size:16px}
-  .af-box li{font-size:14px}
   .af-core .two span{font-size:13.5px}
   .flow-step h4{font-size:17px}
   .flow-step p{font-size:13.5px}
@@ -276,115 +267,83 @@
   </div>
 </section>
 
-<!-- ═══════════ 課題 ⇒ 解決策 ═══════════ -->
-<section id="problem">
+<!-- ═══════════ 02 Odonataでできること ═══════════ -->
+<section id="usecases">
   <div class="wrap">
-    <div class="center" style="max-width:800px;margin:0 auto">
-      <span class="eyebrow">Problem &amp; Solution</span>
-      <h2 class="section-title"><span class="np">データはある。</span><span class="np">でも、意思決定に</span><span class="np">届かない。</span></h2>
-      <p class="section-lead center">
-        <span class="np">現場の課題は、</span><span class="np">大きく3つ。</span><span class="np">Odonataは、</span><span class="np"><strong>3つすべてに解決策をセット</strong>で</span><span class="np">用意しています。</span>
-      </p>
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <span class="eyebrow">What you can see</span>
+      <h2 class="section-title"><span class="np">Odonataで、</span><span class="np">何が分かるのか。</span></h2>
+      <p class="section-lead center"><span class="np">チームがすでに持っているデータから、</span><span class="np">単一の指標では見えない状態を</span><span class="np">読み解きます。</span></p>
     </div>
-    <div class="ps-grid">
-      <div class="ps-item reveal">
-        <div class="ps-problem">
-          <span class="ps-label"><svg class="ic"><use href="#i-warn"/></svg> 課題 1</span>
-          <div class="ps-head">
-            <div class="ficon"><svg class="ic"><use href="#i-pen"/></svg></div>
-            <h3>入力・記録の負荷</h3>
-          </div>
-          <p>紙・Excel・LINEに散らばる記録作業。<strong>手作業の入力を続けること</strong>が、最大の壁に。</p>
-        </div>
-        <div class="ps-arrow"><span>解決 <svg class="ic"><use href="#i-arrow"/></svg></span></div>
-        <div class="ps-solution">
-          <div class="ps-sic"><svg class="ic"><use href="#i-signal"/></svg></div>
-          <div>
-            <h4>デジタル化で、省力化</h4>
-            <p>入力はスマホで数十秒。<strong>手作業の負荷を大幅に削減</strong>し、記録が続く仕組みに。</p>
-          </div>
-        </div>
-      </div>
-      <div class="ps-item reveal">
-        <div class="ps-problem">
-          <span class="ps-label"><svg class="ic"><use href="#i-warn"/></svg> 課題 2</span>
-          <div class="ps-head">
-            <div class="ficon"><svg class="ic"><use href="#i-shuffle"/></svg></div>
-            <h3>データの散在</h3>
-          </div>
-          <p>GPS・コンディション・メディカルが別々の場所に散在。<strong>同じ選手を横断して見られない</strong>。</p>
-        </div>
-        <div class="ps-arrow"><span>解決 <svg class="ic"><use href="#i-arrow"/></svg></span></div>
-        <div class="ps-solution">
-          <div class="ps-sic"><svg class="ic"><use href="#i-hub"/></svg></div>
-          <div>
-            <h4>データを、一元管理</h4>
-            <p>散らばるデータをプラットフォームでひとつに。<strong>選手・チームを横断して見える</strong>状態へ。</p>
-          </div>
-        </div>
-      </div>
-      <div class="ps-item reveal">
-        <div class="ps-problem">
-          <span class="ps-label"><svg class="ic"><use href="#i-warn"/></svg> 課題 3</span>
-          <div class="ps-head">
-            <div class="ficon"><svg class="ic"><use href="#i-chart"/></svg></div>
-            <h3>分析・活用の限界</h3>
-          </div>
-          <p>グラフを眺めて終わり。指標を<strong>1つずつ見る要素還元的な分析</strong>では、意思決定につながらない。</p>
-        </div>
-        <div class="ps-arrow"><span>解決 <svg class="ic"><use href="#i-arrow"/></svg></span></div>
-        <div class="ps-solution">
-          <div class="ps-sic"><svg class="ic"><use href="#i-network"/></svg></div>
-          <div>
-            <h4>複雑系アプローチで、分析</h4>
-            <p>データの<strong>関係性まで読み解き</strong>、グラフの先の<strong>意思決定まで届ける</strong>。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══════════ Odonataとは ═══════════ -->
-<section class="section-alt" id="about">
-  <div class="wrap">
-    <div class="center" style="max-width:780px;margin:0 auto">
-      <span class="eyebrow">What is Odonata</span>
-      <h2 class="section-title"><span class="np">散らばるデータを、</span><span class="np">意思決定に変える。</span></h2>
-      <p class="section-lead center">
-        Odonataは、<strong>データの関係性を読み解く「分析」</strong>と、<strong>現場で使える「データプラットフォーム」</strong>の2つを提供します。
-      </p>
-    </div>
-    <div class="about-fig">
-      <div class="af-box reveal">
-        <h3><svg class="ic"><use href="#i-doc"/></svg> 現場に散らばるデータ</h3>
-        <ul>
-          <li>主観コンディション</li>
-          <li>GPS・運動負荷</li>
-          <li>試合・トレーニング記録</li>
-          <li>メディカル・ケガ記録</li>
-          <li>目標設定・面談</li>
-        </ul>
-      </div>
-      <div class="af-arrow reveal"><svg class="ic"><use href="#i-arrow"/></svg></div>
-      <div class="af-box af-core reveal">
-        <img src="assets/odonata-emblem.png" alt="Odonata">
-        <h3>複雑系アプローチで読み解く</h3>
-        <div class="two">
-          <span>データ分析・伴走支援</span>
-          <span>データプラットフォーム</span>
+    <div class="uc-grid">
+      <!-- カード1：大数字＋リスクバーUI -->
+      <article class="uc uc-1 reveal">
+        <div class="bignum">約70<small>%</small></div>
+        <div class="riskbars" aria-hidden="true">
+          <div class="riskbar"><span>高リスク</span><span class="track"><span class="fill" style="width:86%"></span></span><span class="v">86</span></div>
+          <div class="riskbar mid"><span>要観察</span><span class="track"><span class="fill" style="width:54%"></span></span><span class="v">54</span></div>
+          <div class="riskbar low"><span>低リスク</span><span class="track"><span class="fill" style="width:21%"></span></span><span class="v">21</span></div>
         </div>
-      </div>
-      <div class="af-arrow reveal"><svg class="ic"><use href="#i-arrow"/></svg></div>
-      <div class="af-box reveal">
-        <h3><svg class="ic"><use href="#i-target"/></svg> 現場の意思決定へ</h3>
-        <ul>
-          <li>起用・コンディションの判断材料</li>
-          <li>傷害リスクの先読みと負荷調整</li>
-          <li>選手との対話・目標設定・育成計画</li>
-          <li>補強・編成・強化の方針</li>
-        </ul>
-      </div>
+        <h3>傷害リスクを、事前に捉える</h3>
+        <p>高リスクと判定した選手の約70%で、実際に傷害が発生。リスクの要因候補と、練習負荷の調整案までWebアプリ上に出します。</p>
+        <p class="note">※筑波大学蹴球部 2022–2025年データでの検証値（Precision）。筋肉系・非接触靱帯系・オーバーユース系に限る。従来指標ACWRは約5%。Recallは両者とも約20%で同等。チーム・データ環境により結果は異なります。</p>
+      </article>
+
+      <!-- カード2：ネットワーク図 -->
+      <article class="uc uc-2 reveal">
+        <svg class="uc-fig" viewBox="0 0 300 176" role="img" aria-label="コンディション・GPS・試合・メディカルの指標が線でつながるネットワーク図">
+          <g stroke="#3FC8F0" stroke-width="1.8" fill="none">
+            <line x1="150" y1="88" x2="58" y2="42"/><line x1="150" y1="88" x2="242" y2="38"/>
+            <line x1="150" y1="88" x2="46" y2="132"/><line x1="150" y1="88" x2="250" y2="136"/>
+            <line x1="150" y1="88" x2="150" y2="18"/>
+            <g opacity=".45">
+              <line x1="58" y1="42" x2="242" y2="38"/><line x1="46" y1="132" x2="250" y2="136"/>
+              <line x1="58" y1="42" x2="46" y2="132"/><line x1="242" y1="38" x2="250" y2="136"/>
+            </g>
+          </g>
+          <g fill="#00A0E9">
+            <circle cx="58" cy="42" r="9"/><circle cx="242" cy="38" r="9"/>
+            <circle cx="46" cy="132" r="9"/><circle cx="250" cy="136" r="9"/><circle cx="150" cy="18" r="9"/>
+          </g>
+          <circle cx="150" cy="88" r="26" fill="none" stroke="#00A0E9" stroke-width="1.4" opacity=".35"/>
+          <circle cx="150" cy="88" r="14" fill="#0B2A5B"/>
+          <g font-family="'Zen Kaku Gothic New',sans-serif" font-size="11" font-weight="700" fill="#41616F">
+            <text x="58" y="24" text-anchor="middle">睡眠</text>
+            <text x="242" y="20" text-anchor="middle">走行距離</text>
+            <text x="40" y="156" text-anchor="middle">疲労感</text>
+            <text x="256" y="160" text-anchor="middle">筋痛</text>
+            <text x="150" y="172" text-anchor="middle" fill="#0B2A5B" font-size="11.5">中心にある指標を特定する</text>
+          </g>
+        </svg>
+        <h3><span class="np">選手・チーム固有の</span><span class="np">“つながり”を捉える</span></h3>
+        <p>コンディション・GPS・試合・メディカルを横断し、どの指標がその選手の状態の中心にあるかを可視化します。</p>
+      </article>
+
+      <!-- カード3：棒グラフ -->
+      <article class="uc uc-3 reveal">
+        <div class="delta">−16<small>pt</small><span>デュエル勝率</span></div>
+        <svg class="uc-fig" style="margin-top:14px" viewBox="0 0 300 150" role="img" aria-label="デュエル勝率が通常週39%から高負荷week23%へ低下する棒グラフ">
+          <g stroke="#CCE9F6" stroke-width="1"><line x1="34" y1="122" x2="286" y2="122"/></g>
+          <rect x="72" y="44" width="58" height="78" rx="5" fill="#00A0E9"/>
+          <rect x="186" y="76" width="58" height="46" rx="5" fill="#C2410C"/>
+          <g font-family="'Manrope',sans-serif" font-size="17" font-weight="800" text-anchor="middle">
+            <text x="101" y="34" fill="#0B2A5B">39%</text>
+            <text x="215" y="66" fill="#C2410C">23%</text>
+          </g>
+          <g font-family="'Zen Kaku Gothic New',sans-serif" font-size="11.5" font-weight="700" fill="#41616F" text-anchor="middle">
+            <text x="101" y="142">通常の週</text>
+            <text x="215" y="142">負荷・疲労が重なった週</text>
+          </g>
+        </svg>
+        <h3><span class="np">疲労が、試合のどこに</span><span class="np">出るかを捉える</span></h3>
+        <p>負荷・疲労が重なった週は、デュエル勝率が平均約16pt低下。落ちやすい選手とそうでない選手を個別に分けて示します。</p>
+        <p class="note">※筑波大学蹴球部 GPS約5.6万日分＋日次コンディションの階層ベイズモデルによる推定値。</p>
+      </article>
+    </div>
+
+    <div class="center" style="margin-top:40px">
+      <a class="tlink" href="service-analysis.html">分析の詳細を見る <svg class="ic"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
