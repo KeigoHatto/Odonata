@@ -15,17 +15,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  /* 実証成果：約70%（Precision）が主、約20%（Recall）が従。約5%は注記のみ */
-  .outcome{display:grid;grid-template-columns:1.3fr 1fr;gap:0;max-width:860px;margin:44px auto 0;
-    background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-  @media(max-width:700px){.outcome{grid-template-columns:1fr}}
-  .outcome .main{padding:34px 32px}
-  .outcome .side{padding:34px 32px;background:#F7FCFE;border-left:1px solid var(--border);display:flex;flex-direction:column;justify-content:center}
-  @media(max-width:700px){.outcome .side{border-left:none;border-top:1px solid var(--border)}}
-  .outcome .side .v{font-family:'Manrope',sans-serif;font-size:32px;font-weight:800;color:var(--navy);line-height:1}
-  .outcome .k{font-size:14px;font-weight:700;color:var(--navy);margin-top:14px;line-height:1.7}
-  .outcome .side .k{font-size:13px}
-  .outcome .m{font-family:'Manrope',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--sub);margin-top:6px}
   /* 方法：横並びカード（縦タイムラインUIを廃止） */
   .rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
   @media(max-width:900px){.rgrid{grid-template-columns:1fr 1fr}}
@@ -141,30 +130,72 @@
 </div>
 
 <!-- ═══════════ 1. 実証成果 ═══════════ -->
-<section id="numbers">
+<section id="numbers" aria-labelledby="numbers-heading">
   <div class="wrap">
-    <div class="center" style="max-width:780px;margin:0 auto">
-      <h2 class="section-title">実証成果</h2>
+    <div class="center" style="max-width:820px;margin:0 auto">
+      <h2 class="section-title" id="numbers-heading">実証成果</h2>
       <p class="section-lead center"><span class="np">数字は盛りません。</span><span class="np">条件と限界も、</span><span class="np">セットでお伝えします。</span></p>
     </div>
-    <div class="outcome reveal">
-      <div class="main">
-        <div class="bignum">約70<small>%</small></div>
-        <div class="k">高リスクと判定した選手で傷害が発生した割合</div>
-        <div class="m">Precision（適合率）</div>
-      </div>
-      <div class="side">
-        <div class="v">約20<small>%</small></div>
-        <div class="k">傷害全体のうち事前に予兆を捉えた割合</div>
-        <div class="m">Recall（再現率）</div>
-      </div>
+
+    <!-- #partial:acwr -->
+<!-- ACWR比較表（単一ソース：partials/acwr.html → TOP と research.html へ同期） -->
+<div class="acwr">
+  <h3>従来指標（ACWR）と、何が変わったのか</h3>
+  <p class="acwr-lead">傷害の予兆を捉える指標として、これまで広く使われてきたのが ACWR（急性:慢性 作業負荷比）です。ACWR は、直近の負荷がこれまでの平均に対してどれだけ急に増えたか、という単一の比率で危険を判定します。</p>
+
+  <div class="acwr-tblwrap">
+    <table class="acwr-tbl">
+      <caption class="sr-only">ACWRとOdonataの、PrecisionおよびRecallの比較</caption>
+      <thead>
+        <tr>
+          <th scope="col">指標</th>
+          <th scope="col">何を表すか</th>
+          <th scope="col">ACWR（従来）</th>
+          <th scope="col">Odonata</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Precision<span>（的中率）</span></th>
+          <td>高リスクと判定した選手のうち、実際に傷害が起きた割合</td>
+          <td data-label="ACWR（従来）">約5%</td>
+          <td data-label="Odonata"><b>約70%</b></td>
+        </tr>
+        <tr>
+          <th scope="row">Recall<span>（捕捉率）</span></th>
+          <td>実際に起きた傷害のうち、事前に予兆を捉えられた割合</td>
+          <td data-label="ACWR（従来）">約20%</td>
+          <td data-label="Odonata">約20%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="acwr-read">見逃しの少なさ（Recall）は従来と同じ水準を保ったまま、的中率（Precision）を約5%から約70%へ引き上げました。</p>
+  <p class="acwr-read">これは、注意すべき選手として挙がった10人のうち、これまで実際に傷害が起きたのは1人以下だったのが、7人になったということです。</p>
+
+  <details class="acwr-details">
+    <summary>この数字は、どう計算されているか</summary>
+    <div class="acwr-details-body">
+      <p class="acwr-mx-h">検証対象100人の内訳</p>
+      <ul class="acwr-mx">
+        <li>高リスクと判定し、実際に傷害が起きた（的中）：7人</li>
+        <li>高リスクと判定したが、傷害は起きなかった（空振り）：3人</li>
+        <li>低リスクと判定したが、傷害が起きた（見逃し）：28人</li>
+        <li>低リスクと判定し、傷害が起きなかった（正しく低リスク）：62人</li>
+      </ul>
+      <p class="acwr-calc">Precision ＝ 7 ÷ (7 + 3) ＝ 約70%<br>Recall ＝ 7 ÷ (7 + 28) ＝ 約20%</p>
     </div>
-    <div class="footnotes" id="num-notes">
-      <p>※ 比較対象とした従来の単一指標手法（急性慢性負荷比＝ACWR）による監視では、同一データで <b>Precision 約5%（ACWR）→ 約70%（Odonata）</b>。一方 <b>Recall はいずれも約20%</b> で同等です。</p>
-      <p>※ 予測対象は筋肉系・非接触靭帯系・オーバーユース系の傷害です（接触による打撲・骨折などは対象外）。</p>
-      <p>※ 筑波大学蹴球部 2022–2025年データでの検証値であり、チーム・データ環境により結果は異なります。</p>
-      <p>※ 傷害の完全な予防を保証するものではなく、現場の意思決定支援を目的としています。</p>
-    </div>
+  </details>
+
+  <ul class="acwr-notes">
+    <li>※ 筑波大学蹴球部の 2022〜2025年のデータを用いた検証結果です。</li>
+    <li>※ 対象は筋肉系・非接触靭帯系・オーバーユース系（疲労骨折など）の傷害に限ります。</li>
+    <li>※ 同一モデルでは、判定基準の調整により Precision と Recall は一般にトレードオフの関係になります。一方を高くすると、もう一方が下がりやすくなります。</li>
+    <li>※ 分析結果・モデル精度は、データ量・データ品質・対象チームの環境により異なります。各クラブのデータで検証・調整を行う前提です。</li>
+  </ul>
+</div>
+<!-- /#partial:acwr -->
   </div>
 </section>
 

@@ -281,21 +281,10 @@
   .ploop .pl-n{fill:#fff;stroke:#00A0E9;stroke-width:2.2}
   .ploop .pl-t{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:800}
   .ploop-note{margin-top:12px;text-align:center;font-size:14px!important;color:#3A5A6B;font-weight:700}
-  /* ───── 05 実証：成果 → 何を実証したか → 経緯 の順で見せる ───── */
-  .proof{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;margin-top:48px}
-  @media(max-width:900px){.proof{grid-template-columns:1fr;gap:36px}}
-  .proof-out{display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap;
-    background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 30px}
-  .proof-out .main .k,.proof-out .sub .k{font-size:13px;font-weight:700;color:var(--sub);margin-top:8px;line-height:1.6}
-  .proof-out .sub{padding-left:26px;border-left:1px solid var(--border)}
-  .proof-out .sub .v{font-family:'Manrope',sans-serif;font-size:26px;font-weight:800;color:var(--navy);line-height:1}
-  .proof-out .sub .k{font-size:12px}
-  @media(max-width:560px){.proof-out .sub{padding-left:0;border-left:none;border-top:1px solid var(--border);padding-top:16px;width:100%}}
-  .proof-blk{margin-top:26px}
-  .proof-blk h3{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:10px}
-  .proof-blk .badge{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--blue);border-radius:999px;padding:4px 12px}
-  .proof-blk p{font-size:15px;color:var(--sub);line-height:1.9;max-width:640px}
-
+  /* ───── 08 Proof：何を実証したか ───── */
+  .proof-what{max-width:var(--readw);margin:40px auto 0}
+  .proof-what h3{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:10px}
+  .proof-what p{font-size:16px;color:#3A5A6B;line-height:1.9}
   /* ───── 06 なぜOdonataにできるのか ───── */
   .why-fig{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;margin-top:48px}
   @media(max-width:900px){.why-fig{grid-template-columns:1fr;gap:30px}}
@@ -768,42 +757,77 @@
 <!-- ═══════════ 08 Proof｜筑波大学蹴球部での導入と実証 ═══════════ -->
 <section id="proof" aria-labelledby="proof-heading">
   <div class="wrap">
-    <div class="center" style="max-width:780px;margin:0 auto">
-      <h2 class="section-title" id="proof-heading"><span class="np">筑波大学蹴球部で、</span><span class="np">実証しています。</span></h2>
+    <div class="center" style="max-width:820px;margin:0 auto">
+      <h2 class="section-title" id="proof-heading"><span class="np">筑波大学蹴球部に導入し、</span><span class="np">実証を続けています。</span></h2>
+      <p class="section-lead center"><span class="np">2026年6月から、</span><span class="np">大学トップレベルの競技環境で</span><span class="np">日常的に使われています。</span><span class="np">同時に、</span><span class="np">モデルの精度検証も続けています。</span></p>
     </div>
-    <div class="proof">
-      <div>
-        <!-- ① 成果（約5%は自社成果ではないため大数字にしない） -->
-        <div class="proof-out reveal">
-          <div class="main">
-            <div class="bignum">約70<small>%</small></div>
-            <div class="k">高リスクと判定した選手のうち、<br>実際に傷害が発生した割合</div>
-          </div>
-          <div class="sub">
-            <div class="v">約20<small>%</small></div>
-            <div class="k">発生した傷害のうち、<br>事前に予兆を捉えられた割合</div>
-          </div>
-        </div>
-        <!-- ② 何を実証したか -->
-        <div class="proof-blk">
-          <h3>何を実証したか</h3>
-          <p>2022〜2025年の主観コンディション・GPS・スケジュール・傷害履歴を統合し、200以上の観点から特徴量を生成。傷害発生時との類似性を学習させた個別傷害リスク予測モデルを開発しました。</p>
-        </div>
-        <!-- ③ どうやったか／経緯 -->
-        <div class="proof-blk">
-          <h3><span class="badge">2026年6月〜</span> どうやったか</h3>
-          <p>大学トップレベルの競技環境で、GPS・コンディション・メディカル記録が別々に保存され横断して読み解けなかった状態から着手。分析を研究室に閉じず、選手・スタッフが毎日使えるWebアプリとして現場に実装しました。</p>
-        </div>
-        <p class="note" style="margin-top:20px">※分析結果・モデル精度はデータ量・データ品質・対象チームの環境により異なります。</p>
-        <p style="margin-top:22px"><a class="tlink" href="research.html">実証の詳細を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
-      </div>
-      <figure class="reveal">
-        <div class="browser light">
-          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="u"></span></div>
-          <img src="assets/app-plan.png" alt="練習負荷の設計画面。負荷を変えたときの翌日コンディションの見込みが選手ごとに表示される" loading="lazy">
-        </div>
-      </figure>
+
+    <div class="proof-what">
+      <h3>何を実証したか</h3>
+      <p>2022〜2025年の主観コンディション・GPS・スケジュール・傷害履歴を統合し、200以上の観点から特徴量を生成。過去に傷害が起きたときの状態との類似性を学習させ、選手ごとの傷害リスクを日次で算出するモデルを開発しました。</p>
     </div>
+
+    <!-- #partial:acwr -->
+<!-- ACWR比較表（単一ソース：partials/acwr.html → TOP と research.html へ同期） -->
+<div class="acwr">
+  <h3>従来指標（ACWR）と、何が変わったのか</h3>
+  <p class="acwr-lead">傷害の予兆を捉える指標として、これまで広く使われてきたのが ACWR（急性:慢性 作業負荷比）です。ACWR は、直近の負荷がこれまでの平均に対してどれだけ急に増えたか、という単一の比率で危険を判定します。</p>
+
+  <div class="acwr-tblwrap">
+    <table class="acwr-tbl">
+      <caption class="sr-only">ACWRとOdonataの、PrecisionおよびRecallの比較</caption>
+      <thead>
+        <tr>
+          <th scope="col">指標</th>
+          <th scope="col">何を表すか</th>
+          <th scope="col">ACWR（従来）</th>
+          <th scope="col">Odonata</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Precision<span>（的中率）</span></th>
+          <td>高リスクと判定した選手のうち、実際に傷害が起きた割合</td>
+          <td data-label="ACWR（従来）">約5%</td>
+          <td data-label="Odonata"><b>約70%</b></td>
+        </tr>
+        <tr>
+          <th scope="row">Recall<span>（捕捉率）</span></th>
+          <td>実際に起きた傷害のうち、事前に予兆を捉えられた割合</td>
+          <td data-label="ACWR（従来）">約20%</td>
+          <td data-label="Odonata">約20%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="acwr-read">見逃しの少なさ（Recall）は従来と同じ水準を保ったまま、的中率（Precision）を約5%から約70%へ引き上げました。</p>
+  <p class="acwr-read">これは、注意すべき選手として挙がった10人のうち、これまで実際に傷害が起きたのは1人以下だったのが、7人になったということです。</p>
+
+  <details class="acwr-details">
+    <summary>この数字は、どう計算されているか</summary>
+    <div class="acwr-details-body">
+      <p class="acwr-mx-h">検証対象100人の内訳</p>
+      <ul class="acwr-mx">
+        <li>高リスクと判定し、実際に傷害が起きた（的中）：7人</li>
+        <li>高リスクと判定したが、傷害は起きなかった（空振り）：3人</li>
+        <li>低リスクと判定したが、傷害が起きた（見逃し）：28人</li>
+        <li>低リスクと判定し、傷害が起きなかった（正しく低リスク）：62人</li>
+      </ul>
+      <p class="acwr-calc">Precision ＝ 7 ÷ (7 + 3) ＝ 約70%<br>Recall ＝ 7 ÷ (7 + 28) ＝ 約20%</p>
+    </div>
+  </details>
+
+  <ul class="acwr-notes">
+    <li>※ 筑波大学蹴球部の 2022〜2025年のデータを用いた検証結果です。</li>
+    <li>※ 対象は筋肉系・非接触靭帯系・オーバーユース系（疲労骨折など）の傷害に限ります。</li>
+    <li>※ 同一モデルでは、判定基準の調整により Precision と Recall は一般にトレードオフの関係になります。一方を高くすると、もう一方が下がりやすくなります。</li>
+    <li>※ 分析結果・モデル精度は、データ量・データ品質・対象チームの環境により異なります。各クラブのデータで検証・調整を行う前提です。</li>
+  </ul>
+</div>
+<!-- /#partial:acwr -->
+
+    <p style="margin-top:32px;text-align:center"><a class="tlink" href="research.html">実証の詳細を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
   </div>
 </section>
 

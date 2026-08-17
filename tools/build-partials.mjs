@@ -22,10 +22,13 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const check = process.argv.includes('--check');
 
 const EXCLUDE = new Set(['guide.html', 'philosophy.html']);
+// 全ページに必須のパーツ
 const PARTIALS = ['header', 'footer', 'icons'];
+// マーカーがあるページにだけ差し込む任意のパーツ
+const OPTIONAL = ['acwr'];
 
 const bodies = Object.fromEntries(
-  PARTIALS.map(name => [name, readFileSync(join(root, 'partials', `${name}.html`), 'utf8').trim()])
+  [...PARTIALS, ...OPTIONAL].map(name => [name, readFileSync(join(root, 'partials', `${name}.html`), 'utf8').trim()])
 );
 
 const pages = readdirSync(root).filter(f => f.endsWith('.html') && !EXCLUDE.has(f));
@@ -38,10 +41,10 @@ for (const page of pages) {
   const before = readFileSync(path, 'utf8');
   let after = before;
 
-  for (const name of PARTIALS) {
+  for (const name of [...PARTIALS, ...OPTIONAL]) {
     const re = new RegExp(`(<!--\\s*#partial:${name}\\s*-->)[\\s\\S]*?(<!--\\s*/#partial:${name}\\s*-->)`);
     if (!re.test(after)) {
-      missing.push(`${page}: #partial:${name}`);
+      if (PARTIALS.includes(name)) missing.push(`${page}: #partial:${name}`);
       continue;
     }
     after = after.replace(re, `$1\n${bodies[name]}\n$2`);

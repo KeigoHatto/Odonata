@@ -1,0 +1,57 @@
+<!-- ACWR比較表（単一ソース：partials/acwr.html → TOP と research.html へ同期） -->
+<div class="acwr">
+  <h3>従来指標（ACWR）と、何が変わったのか</h3>
+  <p class="acwr-lead">傷害の予兆を捉える指標として、これまで広く使われてきたのが ACWR（急性:慢性 作業負荷比）です。ACWR は、直近の負荷がこれまでの平均に対してどれだけ急に増えたか、という単一の比率で危険を判定します。</p>
+
+  <div class="acwr-tblwrap">
+    <table class="acwr-tbl">
+      <caption class="sr-only">ACWRとOdonataの、PrecisionおよびRecallの比較</caption>
+      <thead>
+        <tr>
+          <th scope="col">指標</th>
+          <th scope="col">何を表すか</th>
+          <th scope="col">ACWR（従来）</th>
+          <th scope="col">Odonata</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Precision<span>（的中率）</span></th>
+          <td>高リスクと判定した選手のうち、実際に傷害が起きた割合</td>
+          <td data-label="ACWR（従来）">約5%</td>
+          <td data-label="Odonata"><b>約70%</b></td>
+        </tr>
+        <tr>
+          <th scope="row">Recall<span>（捕捉率）</span></th>
+          <td>実際に起きた傷害のうち、事前に予兆を捉えられた割合</td>
+          <td data-label="ACWR（従来）">約20%</td>
+          <td data-label="Odonata">約20%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="acwr-read">見逃しの少なさ（Recall）は従来と同じ水準を保ったまま、的中率（Precision）を約5%から約70%へ引き上げました。</p>
+  <p class="acwr-read">これは、注意すべき選手として挙がった10人のうち、これまで実際に傷害が起きたのは1人以下だったのが、7人になったということです。</p>
+
+  <details class="acwr-details">
+    <summary>この数字は、どう計算されているか</summary>
+    <div class="acwr-details-body">
+      <p class="acwr-mx-h">検証対象100人の内訳</p>
+      <ul class="acwr-mx">
+        <li>高リスクと判定し、実際に傷害が起きた（的中）：7人</li>
+        <li>高リスクと判定したが、傷害は起きなかった（空振り）：3人</li>
+        <li>低リスクと判定したが、傷害が起きた（見逃し）：28人</li>
+        <li>低リスクと判定し、傷害が起きなかった（正しく低リスク）：62人</li>
+      </ul>
+      <p class="acwr-calc">Precision ＝ 7 ÷ (7 + 3) ＝ 約70%<br>Recall ＝ 7 ÷ (7 + 28) ＝ 約20%</p>
+    </div>
+  </details>
+
+  <ul class="acwr-notes">
+    <li>※ 筑波大学蹴球部の 2022〜2025年のデータを用いた検証結果です。</li>
+    <li>※ 対象は筋肉系・非接触靭帯系・オーバーユース系（疲労骨折など）の傷害に限ります。</li>
+    <li>※ 同一モデルでは、判定基準の調整により Precision と Recall は一般にトレードオフの関係になります。一方を高くすると、もう一方が下がりやすくなります。</li>
+    <li>※ 分析結果・モデル精度は、データ量・データ品質・対象チームの環境により異なります。各クラブのデータで検証・調整を行う前提です。</li>
+  </ul>
+</div>
