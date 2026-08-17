@@ -95,3 +95,18 @@
 - Phase 3：`border-radius` の直角化はページ全体の写真に波及するため、Hero 内に限定して適用する。
 - Phase 5：`約70%` は index.html / research.html / service-analysis.html の3箇所にあるため、表記を揃える必要がある。
 - Phase 7：ページタイトルの区切り文字を `—` から `｜` に統一する際、全13ページを一括で変更する。
+
+---
+
+## 7｜次回対応リスト（Phase 0〜8 で扱わなかったもの）
+
+| # | 項目 | 内容 |
+| --- | --- | --- |
+| 1 | Lighthouse / axe の実測 | 本作業環境にブラウザ実行系がないため、スコアの実測ができていない。**人の手で Chrome DevTools の Lighthouse と axe DevTools を全9ページに実行し、violations を確認する必要がある。** 本作業では代わりに、指示書のチェックリストを静的解析（alt・h1・main・title・skip・focus・タグ整合・リンク・アンカー・コントラスト比の計算）で全ページ検証している |
+| 2 | ブラウザでの表示確認 | 1440 / 1280 / 1024 / 768 / 390px の実表示、200%拡大、キーボードのみの通し操作は未実施。特に Hero の bleed（1025px以上）と循環図のSP切り替え（760px以下）を確認したい |
+| 3 | Hero の案A / 案B の選択 | 案Aを既定として実装済み。`<body class="hero-b">` を付けると案Bに切り替わる。どちらを採用するか要判断 |
+| 4 | 生成画像の誤字 | `assets/photo-dashboard-pitch.png` に「ネントワーク分析」の誤字があり未使用のまま。修正版が用意でき次第、差し替える |
+| 5 | 未使用の画像 | `photo-tablet-clean.png` / `photo-bench-laptop.png` / `app-risk-full.png` が未配置 |
+| 6 | 下層ページのセクション見直し | Phase 1〜6 は TOP のみを対象とした。approach / service-analysis / service-platform の内部構成は v1 時点のまま |
+| 7 | デザイントークンの完全移行 | `--sub` `--blue` などの旧変数はエイリアスとして残している。既存クラスの参照を新トークンへ置き換える作業が残っている |
+| 8 | 個別記事ページ `/news/{slug}.html` | 未着手（v1 の Phase 2 として保留中） |
