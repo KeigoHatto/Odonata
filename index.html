@@ -306,14 +306,14 @@
 </header>
 <!-- /#partial:header -->
 
-<!-- ═══════════ 01 HERO ═══════════ -->
-<section class="hero" id="top">
+<!-- ═══════════ 01 Hero ═══════════ -->
+<section class="hero" id="hero" aria-labelledby="hero-heading">
   <canvas class="netbg" data-density="22" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero-grid">
       <!-- ▼▼ HERO COPY：Vision確定後は h1 1行と p.lead 2行のみ差し替える ▼▼ -->
       <div class="hero-copy" data-hero-copy>
-        <h1><span class="np">スポーツに、</span><span class="np"><span class="grad">もっと多様な正解を。</span></span></h1>
+        <h1 id="hero-heading"><span class="np">スポーツに、</span><span class="np"><span class="grad">もっと多様な正解を。</span></span></h1>
         <p class="lead">
           <span class="np">現場に散らばるデータをつなぎ、</span><span class="np">一人ひとり・チームごとの</span><span class="np">意思決定へ。</span><br>
           <span class="np">日々の記録を、</span><span class="np">現場で活きる判断材料に</span><span class="np">変えていきます。</span>
@@ -357,13 +357,13 @@
 </section>
 
 
-<!-- ═══════════ 02 Odonataについて ═══════════ -->
-<section id="about">
+<!-- ═══════════ 02 About｜Odonataについて ═══════════ -->
+<section id="about" aria-labelledby="about-heading">
   <div class="wrap">
     <div class="about-grid">
       <div class="about-txt">
         <p class="sec-en">About</p>
-        <h2 class="section-title"><span class="np">Odonataについて</span></h2>
+        <h2 class="section-title" id="about-heading"><span class="np">Odonataについて</span></h2>
         <p><span class="np">Odonataは、</span><span class="np">筑波大学の研究者と</span><span class="np">サッカーの現場経験者が集まって</span><span class="np">立ち上げたチームです。</span></p>
         <p><span class="np">スポーツの現場には、</span><span class="np">コンディション・GPS・試合・メディカル・育成計画といった</span><span class="np">記録が日々生まれています。</span><span class="np">けれどそれらは別々の場所に置かれ、</span><span class="np">つながらないまま</span><span class="np">積み上がっていくことがほとんどです。</span></p>
         <p><span class="np">私たちは、</span><span class="np">その記録をつなぎ直して分析し、</span><span class="np">現場スタッフが毎日使えるWebアプリとして届けています。</span><span class="np">研究から実装までを、</span><span class="np">同じチームの中で行っています。</span></p>
@@ -376,31 +376,55 @@
   </div>
 </section>
 
-<!-- ═══════════ 03 Odonataがつなぐもの ═══════════ -->
-<section class="section-alt has-net" id="sources">
-  <canvas class="netbg" data-density="34" aria-hidden="true"></canvas>
+<!-- ═══════════ 03 Service｜2つの事業 ═══════════ -->
+<section class="section-alt" id="service" aria-labelledby="service-heading">
   <div class="wrap">
-    <div class="center" style="max-width:780px;margin:0 auto">
-      <h2 class="section-title">Odonataがつなぐもの</h2>
-      <p class="section-lead center"><span class="np">別々の場所に置かれていた記録を、</span><span class="np">同じ選手・同じ時間軸で</span><span class="np">並べ直します。</span></p>
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <p class="sec-en">Service</p>
+      <h2 class="section-title" id="service-heading">事業内容</h2>
+      <p class="section-lead center"><span class="np">「データ分析・伴走支援」と</span><span class="np">「データプラットフォーム」の</span><span class="np">2つを提供しています。</span></p>
     </div>
-    <div class="sources">
-      <span class="source"><svg class="ic"><use href="#i-pen"/></svg><b>コンディション</b><small>睡眠・疲労・痛み</small></span>
-      <span class="source"><svg class="ic"><use href="#i-signal"/></svg><b>GPS</b><small>走行距離・スプリント</small></span>
-      <span class="source"><svg class="ic"><use href="#i-dumbbell"/></svg><b>トレーニング</b><small>負荷・内容・出欠</small></span>
-      <span class="source"><svg class="ic"><use href="#i-ball"/></svg><b>試合</b><small>出場時間・スタッツ</small></span>
-      <span class="source"><svg class="ic"><use href="#i-shield"/></svg><b>メディカル</b><small>受傷・復帰・既往歴</small></span>
-      <span class="source"><svg class="ic"><use href="#i-target"/></svg><b>選手育成（IDP）</b><small>目標・面談・評価</small></span>
+    <div class="split reveal">
+      <!-- 左：データ分析・伴走支援（分析している場面を主役に） -->
+      <div class="sp-analysis">
+        <figure class="an-photo">
+          <img src="assets/photo-desk-holo.png" alt="スタッフがピッチを見ながら、ネットワーク図やコンディション推移などの分析結果を確認している様子" loading="lazy">
+        </figure>
+        <span class="lbl">事業 01</span>
+        <h3>データ分析・伴走支援</h3>
+        <p>すでにチームが持っている過去データから始めます。Excel・GPS・試合・コンディションの記録をお預かりして分析し、現場で使える示唆として返します。</p>
+        <ul>
+          <li><svg class="ic"><use href="#i-doc"/></svg> 保有データ・過去データの整理と分析</li>
+          <li><svg class="ic"><use href="#i-target"/></svg> 傷害発生予測モデルの個別構築</li>
+          <li><svg class="ic"><use href="#i-network"/></svg> ネットワーク分析レポート</li>
+        </ul>
+        <p style="margin-top:24px"><a class="tlink" href="service-analysis.html">データ分析・伴走支援を見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+      </div>
+
+      <!-- 右：現場で使う（暗い背景＋実際のアプリ画面） -->
+      <div class="sp-platform">
+        <figure class="pf-photo">
+          <img src="assets/photo-devices.png" alt="ノートPC・タブレット・スマートフォンにOdonataの画面が表示されている様子" loading="lazy">
+        </figure>
+        <span class="lbl">事業 02</span>
+        <h3>データプラットフォーム</h3>
+        <p>日々の入力から蓄積・一元管理・推移の確認・分析までを、ひとつの環境で行います。現場スタッフが毎日使うWebアプリです。</p>
+        <ul>
+          <li><svg class="ic"><use href="#i-pen"/></svg> <span>集める<small>コンディション・GPS・試合・メディカルの入力</small></span></li>
+          <li><svg class="ic"><use href="#i-hub"/></svg> <span>整理する<small>選手・チームを横断できる一元管理</small></span></li>
+          <li><svg class="ic"><use href="#i-eye"/></svg> <span>読み解く<small>傷害予測・ネットワーク分析</small></span></li>
+        </ul>
+        <p style="margin-top:24px"><a class="tlink" href="service-platform.html">データプラットフォームを見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+      </div>
     </div>
-    <p class="sources-note">紙やExcel、GPSソフト、担当者の手元にとどまっていた記録も対象です。<b>すでにあるデータから始められます。</b></p>
   </div>
 </section>
 
-<!-- ═══════════ 03 Odonataで読み解けること ═══════════ -->
-<section id="usecases">
+<!-- ═══════════ 04 Analysis｜何を分析できるのか ═══════════ -->
+<section id="analysis" aria-labelledby="analysis-heading">
   <div class="wrap">
     <div class="center" style="max-width:760px;margin:0 auto">
-      <h2 class="section-title">何を分析できるのか</h2>
+      <h2 class="section-title" id="analysis-heading">何を分析できるのか</h2>
       <p class="section-lead center"><span class="np">単一の指標では見えない状態を、</span><span class="np">選手ごとに読み解きます。</span></p>
     </div>
 
@@ -479,12 +503,12 @@
   </div>
 </section>
 
-<!-- ═══════════ 04 なぜ、複数のデータを横断して見るのか ═══════════ -->
-<section class="section-alt has-net" id="why">
+<!-- ═══════════ 05 Approach｜なぜそれが分析できるのか ═══════════ -->
+<section class="section-alt has-net" id="approach" aria-labelledby="approach-heading">
   <canvas class="netbg" data-density="34" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
-      <h2 class="section-title"><span class="np">なぜ、複数のデータを</span><span class="np">横断して見るのか。</span></h2>
+      <h2 class="section-title" id="approach-heading"><span class="np">なぜ、複数のデータを</span><span class="np">横断して見るのか。</span></h2>
     </div>
 
     <div class="why-fig reveal">
@@ -526,55 +550,31 @@
   </div>
 </section>
 
-<!-- ═══════════ サービス2カード ═══════════ -->
-<section id="services">
+<!-- ═══════════ 06 Connect｜Odonataがつなぐもの ═══════════ -->
+<section class="has-net" id="connect" aria-labelledby="connect-heading">
+  <canvas class="netbg" data-density="34" aria-hidden="true"></canvas>
   <div class="wrap">
-    <div class="center" style="max-width:760px;margin:0 auto">
-      <p class="sec-en">Service</p>
-      <h2 class="section-title">事業内容</h2>
-      <p class="section-lead center"><span class="np">「データ分析・伴走支援」と</span><span class="np">「データプラットフォーム」の</span><span class="np">2つを提供しています。</span></p>
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <h2 class="section-title" id="connect-heading">Odonataがつなぐもの</h2>
+      <p class="section-lead center"><span class="np">別々の場所に置かれていた記録を、</span><span class="np">同じ選手・同じ時間軸で</span><span class="np">並べ直します。</span></p>
     </div>
-    <div class="split reveal">
-      <!-- 左：データ分析・伴走支援（分析している場面を主役に） -->
-      <div class="sp-analysis">
-        <figure class="an-photo">
-          <img src="assets/photo-desk-holo.png" alt="スタッフがピッチを見ながら、ネットワーク図やコンディション推移などの分析結果を確認している様子" loading="lazy">
-        </figure>
-        <span class="lbl">事業 01</span>
-        <h3>データ分析・伴走支援</h3>
-        <p>すでにチームが持っている過去データから始めます。Excel・GPS・試合・コンディションの記録をお預かりして分析し、現場で使える示唆として返します。</p>
-        <ul>
-          <li><svg class="ic"><use href="#i-doc"/></svg> 保有データ・過去データの整理と分析</li>
-          <li><svg class="ic"><use href="#i-target"/></svg> 傷害発生予測モデルの個別構築</li>
-          <li><svg class="ic"><use href="#i-network"/></svg> ネットワーク分析レポート</li>
-        </ul>
-        <p style="margin-top:24px"><a class="tlink" href="service-analysis.html">データ分析・伴走支援を見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
-      </div>
-
-      <!-- 右：現場で使う（暗い背景＋実際のアプリ画面） -->
-      <div class="sp-platform">
-        <figure class="pf-photo">
-          <img src="assets/photo-devices.png" alt="ノートPC・タブレット・スマートフォンにOdonataの画面が表示されている様子" loading="lazy">
-        </figure>
-        <span class="lbl">事業 02</span>
-        <h3>データプラットフォーム</h3>
-        <p>日々の入力から蓄積・一元管理・推移の確認・分析までを、ひとつの環境で行います。現場スタッフが毎日使うWebアプリです。</p>
-        <ul>
-          <li><svg class="ic"><use href="#i-pen"/></svg> <span>集める<small>コンディション・GPS・試合・メディカルの入力</small></span></li>
-          <li><svg class="ic"><use href="#i-hub"/></svg> <span>整理する<small>選手・チームを横断できる一元管理</small></span></li>
-          <li><svg class="ic"><use href="#i-eye"/></svg> <span>読み解く<small>傷害予測・ネットワーク分析</small></span></li>
-        </ul>
-        <p style="margin-top:24px"><a class="tlink" href="service-platform.html">データプラットフォームを見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
-      </div>
+    <div class="sources">
+      <span class="source"><svg class="ic"><use href="#i-pen"/></svg><b>コンディション</b><small>睡眠・疲労・痛み</small></span>
+      <span class="source"><svg class="ic"><use href="#i-signal"/></svg><b>GPS</b><small>走行距離・スプリント</small></span>
+      <span class="source"><svg class="ic"><use href="#i-dumbbell"/></svg><b>トレーニング</b><small>負荷・内容・出欠</small></span>
+      <span class="source"><svg class="ic"><use href="#i-ball"/></svg><b>試合</b><small>出場時間・スタッツ</small></span>
+      <span class="source"><svg class="ic"><use href="#i-shield"/></svg><b>メディカル</b><small>受傷・復帰・既往歴</small></span>
+      <span class="source"><svg class="ic"><use href="#i-target"/></svg><b>選手育成（IDP）</b><small>目標・面談・評価</small></span>
     </div>
+    <p class="sources-note">紙やExcel、GPSソフト、担当者の手元にとどまっていた記録も対象です。<b>すでにあるデータから始められます。</b></p>
   </div>
 </section>
 
-<!-- ═══════════ 06 データを意思決定につなげるサイクル ═══════════ -->
-<section id="cycle">
+<!-- ═══════════ 07 Cycle｜なぜデータプラットフォームまで提供しているのか ═══════════ -->
+<section class="section-alt" id="cycle" aria-labelledby="cycle-heading">
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
-      <h2 class="section-title"><span class="np">データを意思決定に</span><span class="np">つなげるサイクル</span></h2>
+      <h2 class="section-title" id="cycle-heading"><span class="np">データを意思決定に</span><span class="np">つなげるサイクル</span></h2>
     </div>
     <div class="cycle reveal">
       <svg viewBox="0 0 900 540" role="img" aria-label="集める → つなぐ → 読み解く → 判断する → 蓄積する。蓄積された経験が次のデータになり、集めるへ戻る循環図">
@@ -629,11 +629,11 @@
   </div>
 </section>
 
-<!-- ═══════════ 05 実証：筑波大学蹴球部 ═══════════ -->
-<section class="section-alt" id="proof">
+<!-- ═══════════ 08 Proof｜筑波大学蹴球部での導入と実証 ═══════════ -->
+<section id="proof" aria-labelledby="proof-heading">
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
-      <h2 class="section-title"><span class="np">筑波大学蹴球部で、</span><span class="np">実証しています。</span></h2>
+      <h2 class="section-title" id="proof-heading"><span class="np">筑波大学蹴球部で、</span><span class="np">実証しています。</span></h2>
     </div>
     <div class="proof">
       <div>
@@ -673,11 +673,11 @@
 
 
 
-<!-- ═══════════ Odonataを支える体制 ═══════════ -->
-<section id="team">
+<!-- ═══════════ 09 Team｜研究・現場・実装 ═══════════ -->
+<section class="section-alt" id="team" aria-labelledby="team-heading">
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
-      <h2 class="section-title"><span class="np">研究と現場と実装が、</span><span class="np">同じチームの中にあります。</span></h2>
+      <h2 class="section-title" id="team-heading"><span class="np">研究と現場と実装が、</span><span class="np">同じチームの中にあります。</span></h2>
     </div>
     <div class="pillars">
       <div class="pillar reveal">
@@ -720,11 +720,11 @@
   </div>
 </section>
 
-<!-- ═══════════ 導入の流れ ═══════════ -->
-<section class="section-alt" id="process">
+<!-- ═══════════ 10 Process｜導入の流れ ═══════════ -->
+<section id="process" aria-labelledby="process-heading">
   <div class="wrap">
     <div class="center" style="max-width:760px;margin:0 auto">
-      <h2 class="section-title"><span class="np">小さく始めて、</span><span class="np">現場と一緒に育てる。</span></h2>
+      <h2 class="section-title" id="process-heading"><span class="np">小さく始めて、</span><span class="np">現場と一緒に育てる。</span></h2>
     </div>
     <div class="flow seq" style="grid-template-columns:repeat(3,1fr);max-width:900px;margin-left:auto;margin-right:auto">
       <div class="flow-step reveal">
@@ -749,11 +749,11 @@
   </div>
 </section>
 
-<!-- ═══════════ ニュース ═══════════ -->
-<section id="news">
+<!-- ═══════════ 11 News ═══════════ -->
+<section class="section-alt" id="news" aria-labelledby="news-heading">
   <div class="wrap">
     <div class="center">
-      <h2 class="section-title">ニュース</h2>
+      <h2 class="section-title" id="news-heading">ニュース</h2>
     </div>
     <div class="news-mini reveal">
       <a href="news.html#n-site">
@@ -778,11 +778,11 @@
   </div>
 </section>
 
-<!-- ═══════════ 共通CTA ═══════════ -->
-<section class="cta-band">
+<!-- ═══════════ 12 CTA ═══════════ -->
+<section class="cta-band" id="cta" aria-labelledby="cta-heading">
   <div class="wrap">
     <div class="cta reveal">
-      <h2><span class="np">まずは、チームの</span><span class="np">データの状況から</span><span class="np">お聞かせください。</span></h2>
+      <h2 id="cta-heading"><span class="np">まずは、チームの</span><span class="np">データの状況から</span><span class="np">お聞かせください。</span></h2>
       <p><span class="np">ヒアリング・お見積りは無料です。</span><span class="np">「データはあるが活かせていない」段階からの</span><span class="np">ご相談も歓迎します。</span></p>
       <div class="cta-actions">
         <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
