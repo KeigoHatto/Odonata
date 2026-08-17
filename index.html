@@ -121,11 +121,13 @@
   .riskbar.mid .fill{background:linear-gradient(90deg,#7FE3FF,#FFD08A)}
   .riskbar.low .fill{background:linear-gradient(90deg,#7FE3FF,#6FE3B0)}
   .riskbar .v{text-align:right;font-family:'Manrope',sans-serif}
-  /* 数字は「何の数字か」を必ず隣に置く */
-  .uc-1 .metric{display:flex;align-items:center;gap:16px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.22)}
-  .uc-1 .metric .bignum{font-size:clamp(38px,5vw,48px);flex:none}
-  .uc-1 .metric .mk{font-size:12.5px;line-height:1.6;color:#CFE3F3;font-weight:700;flex:1}
-  .uc-1 .note{border-top:none;padding-top:8px;margin-top:0}
+  /* カード内のページ内リンク */
+  .uc-link{flex:none;margin-top:18px!important}
+  .uc-link a{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;
+    color:#9FE6FF;text-decoration:underline;text-underline-offset:4px}
+  .uc-link a:hover{color:#fff}
+  .uc-2 .uc-link a,.uc-3 .uc-link a{color:#0A5E93}
+  .uc-2 .uc-link a:hover,.uc-3 .uc-link a:hover{color:var(--navy)}
   /* カード2：ネットワーク図（白・枠線） */
   .uc-2{background:var(--card);border:1.5px solid var(--border);box-shadow:var(--shadow)}
   .uc-2:hover{border-color:var(--cyan);box-shadow:var(--shadow-lg)}
@@ -296,6 +298,11 @@
   .why-fig .wf-core{fill:#FDECEC;stroke:#DC2626;stroke-width:2.4}
   .why-fig .wf-core-t{fill:#B03A2E;font-family:'Zen Kaku Gothic New',sans-serif;font-size:22px;font-weight:800;text-anchor:middle}
   .why-fig .wf-core-s{fill:#B03A2E;font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;font-weight:700;text-anchor:middle}
+  .why-fig{grid-template-areas:"fig txt" "cap txt"}
+  .why-fig svg{grid-area:fig}
+  .why-cap{grid-area:cap;margin-top:12px;font-size:14px;color:#3A5A6B;line-height:1.8;text-align:center}
+  .why-txt{grid-area:txt}
+  @media(max-width:900px){.why-fig{grid-template-areas:"fig" "cap" "txt"}}
   .why-txt p{font-size:16px;color:var(--text);line-height:2;max-width:var(--readw)}
   .why-txt p + p{margin-top:16px}
   .why-txt strong{color:var(--navy);border-bottom:2px solid rgba(0,160,233,.35)}
@@ -479,8 +486,8 @@
   <div class="wrap">
     <div class="center" style="max-width:760px;margin:0 auto">
       <p class="sec-en">Service</p>
-      <h2 class="section-title" id="service-heading">事業内容</h2>
-      <p class="section-lead center"><span class="np">「データ分析・伴走支援」と</span><span class="np">「データプラットフォーム」の</span><span class="np">2つを提供しています。</span></p>
+      <h2 class="section-title" id="service-heading">2つの事業</h2>
+      <p class="section-lead center"><span class="np">分析から始めることも、</span><span class="np">プラットフォームから始めることも</span><span class="np">できます。</span></p>
     </div>
     <div class="split reveal">
       <!-- 左：データ分析・伴走支援（分析している場面を主役に） -->
@@ -522,25 +529,21 @@
 <section id="analysis" aria-labelledby="analysis-heading">
   <div class="wrap">
     <div class="center" style="max-width:760px;margin:0 auto">
-      <h2 class="section-title" id="analysis-heading">何を分析できるのか</h2>
-      <p class="section-lead center"><span class="np">単一の指標では見えない状態を、</span><span class="np">選手ごとに読み解きます。</span></p>
+      <h2 class="section-title" id="analysis-heading"><span class="np">Odonataで、</span><span class="np">何が分析できるのか</span></h2>
+      <p class="section-lead center"><span class="np">チームがすでに持っているデータから、</span><span class="np">ひとつの指標では見えない状態を</span><span class="np">読み解きます。</span></p>
     </div>
 
     <div class="uc-grid">
       <!-- カード1：大数字＋リスクバーUI -->
       <article class="uc uc-1 reveal">
-        <h3>傷害リスク予測</h3>
-        <p>選手ごとに傷害の発生リスクを予測し、誰に注意すべきか・何がリスクに寄与しているか・練習負荷をどう調整するかまでを示します。</p>
+        <h3>傷害リスクを、事前に捉える</h3>
         <div class="riskbars" aria-hidden="true">
           <div class="riskbar"><span>高リスク</span><span class="track"><span class="fill" style="width:86%"></span></span><span class="v">86</span></div>
           <div class="riskbar mid"><span>要観察</span><span class="track"><span class="fill" style="width:54%"></span></span><span class="v">54</span></div>
           <div class="riskbar low"><span>低リスク</span><span class="track"><span class="fill" style="width:21%"></span></span><span class="v">21</span></div>
         </div>
-        <div class="metric">
-          <div class="bignum">約70<small>%</small></div>
-          <p class="mk">高リスクと判定した選手のうち、<br>実際に傷害が発生した割合</p>
-        </div>
-        <p class="note">※筑波大学蹴球部 2022–2025年データでの検証値。対象は筋肉系・非接触靱帯系・オーバーユース系。すべての傷害を捉えられるわけではなく、発生した傷害のうち事前に捉えられたのは約20%です。チーム・データ環境により結果は異なります。</p>
+        <p>高リスクと判定した選手の約70%で、実際に傷害が発生しました（従来指標ACWRは約5%）。リスクの要因候補と、練習負荷の調整案までアプリ上に表示します。</p>
+        <p class="uc-link"><a href="#proof">実証結果の詳細を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </article>
 
       <!-- カード2：ネットワーク図 -->
@@ -569,8 +572,8 @@
             <text x="150" y="172" text-anchor="middle" fill="#0B2A5B" font-size="11.5">中心にある指標を特定する</text>
           </g>
         </svg>
-        <h3>ネットワーク分析</h3>
-        <p>指標どうしの関係・向き・強さ・時間差を可視化し、単一のグラフでは見えなかった構造を読み解きます。その選手の状態の中心にある指標が分かります。</p>
+        <h3><span class="np">選手・チーム固有の</span><span class="np">「つながり」を捉える</span></h3>
+        <p>コンディション・GPS・試合・メディカルを横断し、どの指標がその選手の状態の中心にあるかを可視化します。つながり方は選手ごとに違います。</p>
       </article>
 
       <!-- カード3：棒グラフ -->
@@ -589,9 +592,9 @@
             <text x="215" y="142">負荷・疲労が重なった週</text>
           </g>
         </svg>
-        <h3>複数データの統合分析</h3>
-        <p>コンディション・GPS・トレーニング・試合・IDPを横断し、「なぜこの選手はこの期間よかったのか」を問い直せます。例えば負荷と疲労が重なった週は、試合中の球際の勝率が平均約16pt低下しました。</p>
-        <p class="note">※筑波大学蹴球部 GPS約5.6万日分＋日次コンディションの階層ベイズモデルによる推定値。低下の幅は選手により異なります。</p>
+        <h3><span class="np">疲労が、試合のどこに</span><span class="np">出るかを捉える</span></h3>
+        <p>負荷と疲労が重なった週は、デュエル勝率が平均で約16pt低下していました。落ちやすい選手とそうでない選手を、個別に分けて示します。</p>
+        <p class="note">※ 筑波大学蹴球部のGPS約5.6万日分と日次コンディションを用いた推定値です。低下の幅は選手により異なります。</p>
       </article>
     </div>
 
@@ -606,7 +609,8 @@
   <canvas class="netbg" data-density="34" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
-      <h2 class="section-title" id="approach-heading"><span class="np">なぜ、複数のデータを</span><span class="np">横断して見るのか。</span></h2>
+      <h2 class="section-title" id="approach-heading"><span class="np">なぜ、それが</span><span class="np">分析できるのか</span></h2>
+      <p class="section-lead center">複数のデータを横断して見ているからです。</p>
     </div>
 
     <div class="why-fig reveal">
@@ -638,10 +642,11 @@
         <text class="wf-core-t" x="320" y="185">怪我</text>
         <text class="wf-core-s" x="320" y="209">重なると危険域へ</text>
       </svg>
+      <p class="why-cap">単独では異常のない要因も、重なり方次第で危険域に達する。</p>
       <div class="why-txt">
-        <p>選手の傷害やパフォーマンスは、GPSだけ、疲労だけ、試合スタッツだけでは決まりません。単独では異常のない要因も、重なり方次第で危険域に達します。</p>
-        <p>だからOdonataは、指標を1つずつ見るのではなく、<strong>指標どうしの関係性</strong>を分析の単位に置いています。</p>
-        <p style="margin-top:22px"><a class="tlink" href="approach.html">複雑系アプローチを読む <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        <p>選手の傷害やパフォーマンスは、GPSだけ、疲労だけ、試合スタッツだけでは決まりません。</p>
+        <p>だからOdonataは、指標をひとつずつ見るのではなく、<strong>指標どうしの関係性</strong>そのものを分析の単位に置いています。これを複雑系アプローチと呼んでいます。</p>
+        <p style="margin-top:22px"><a class="tlink" href="approach.html">複雑系アプローチの考え方を読む <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
     </div>
 
