@@ -444,6 +444,9 @@ body.dark .tlink:hover{color:#fff}
 /* 大数字 */
 .bignum{font-family:'Manrope',sans-serif;font-weight:800;line-height:1;color:var(--blue);font-size:clamp(46px,7vw,64px)}
 .bignum small{font-size:.42em;font-weight:800}
+/* フォーカスリング：黄＋黒の2重リング（どの背景色の上でも視認できる） */
+:focus-visible{outline:2px solid #1A1A1C;outline-offset:0;box-shadow:0 0 0 4px #FFDF3F;border-radius:3px}
+.btn:focus-visible,.nav-cta:focus-visible,.nav-cta2:focus-visible{border-radius:999px}
 /* 点と線のネットワーク背景（assets/netbg.js が描画） */
 canvas.netbg{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:0}
 .has-net{position:relative;overflow:hidden}

@@ -56,27 +56,49 @@
   .hero-offer b{display:block;font-size:20px;font-weight:800;color:var(--navy);line-height:1.5}
   .hero-offer small{display:block;font-size:14px;color:var(--sub);line-height:1.75;margin-top:8px}
 
-  /* ───── Heroビジュアル：現場の写真＋分析の写真を2枚重ねる ───── */
-  .hero-vis{position:relative;padding-bottom:22%}
-  /* 写真はアスペクト比を維持（height指定をしない） */
-  .hero-photo{border-radius:16px;overflow:hidden;background:#fff;
-    box-shadow:0 30px 70px rgba(11,42,91,.24);border:3px solid #fff}
+  /* ───── Heroビジュアル：現場の写真＋分析の写真（角丸なし・大きく） ─────
+     案A「大きく右寄せ」を採用。body に class="hero-b" を付けると案Bに切り替わる。 */
+  .hero-vis{position:relative;padding-bottom:20%}
+  /* 写真はアスペクト比を維持（height指定をしない）／角丸なし・装飾は1pxの線のみ */
+  .hero-photo{border-radius:0;overflow:hidden;background:#fff;border:1px solid rgba(11,42,91,.14)}
   .hero-photo img{width:100%;height:auto;display:block;object-fit:contain}
-  .hero-photo.main{position:relative;z-index:2;width:88%;margin-left:auto}
-  .hero-photo.sub{position:absolute;left:0;bottom:0;width:56%;z-index:3;
-    box-shadow:0 24px 56px rgba(11,42,91,.28)}
+  .hero-photo.main{position:relative;z-index:2;width:100%}
+  .hero-photo.sub{position:absolute;left:-8%;bottom:0;width:50%;z-index:3;
+    box-shadow:0 18px 44px rgba(11,42,91,.22)}
+  /* 案A：Heroの右端まで画像を見切らせる（bleed） */
+  .hero-grid{position:relative}
+  @media(min-width:1025px){
+    .hero-vis{margin-right:calc((100vw - min(100vw, var(--maxw))) / -2 - 24px)}
+    .hero-photo.main{width:100%}
+  }
   /* 2枚を結ぶ線（点と点が関係している、というモチーフ） */
-  .hero-link{position:absolute;left:8%;right:14%;top:32%;bottom:12%;z-index:1;width:auto;height:auto}
+  .hero-link{position:absolute;left:4%;right:16%;top:34%;bottom:10%;z-index:1;width:auto;height:auto}
   .hero-link path{fill:none;stroke:#00A0E9;stroke-width:1.6;stroke-dasharray:6 6;opacity:.5;
     vector-effect:non-scaling-stroke}
   .hero-link circle{fill:#FF9933;opacity:.9}
-  @media(max-width:860px){.hero-vis{max-width:660px;margin:0 auto;padding-bottom:20%}}
+  @media(max-width:1024px){.hero-vis{padding-bottom:22%}}
+  @media(max-width:860px){.hero-vis{max-width:680px;margin:0 auto;padding-bottom:20%}}
   @media(max-width:560px){
     .hero{padding:64px 0 80px}
     .hero-vis{padding-bottom:26%}
-    .hero-photo.main{width:92%}
-    .hero-photo.sub{width:62%}
+    .hero-photo.sub{width:58%;left:-4%}
   }
+
+  /* ───── 案B：Hero全面に写真を敷く（body に hero-b を付けると有効） ───── */
+  .hero-bg{display:none}
+  .hero-b .hero{background:#071A3A}
+  .hero-b .hero-bg{display:block;position:absolute;inset:0;z-index:0;overflow:hidden}
+  .hero-b .hero-bg img{width:100%;height:100%;object-fit:cover;display:block}
+  /* コピー周辺を確実に濃くする（4.5:1 を満たすためのオーバーレイ） */
+  .hero-b .hero-bg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(100deg,rgba(4,16,36,.86) 0%,rgba(4,16,36,.74) 44%,rgba(4,16,36,.42) 100%)}
+  .hero-b .hero-grid{grid-template-columns:minmax(0,620px)}
+  .hero-b .hero-vis{display:none}
+  .hero-b .hero h1{color:#fff}
+  .hero-b .hero h1 .grad{background:linear-gradient(96deg,#9FE6FF,#CFF3E2);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-b .hero p.lead{color:#E4EFF8}
+  .hero-b .hero-offer{border-top-color:rgba(255,255,255,.28)}
+  .hero-b .hero-offer a{background:rgba(255,255,255,.96)}
 
   /* ───── 02 Odonataでできること：ユースケース3枚（カードごとに主役ビジュアルを変える） ───── */
   .uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;align-items:stretch}
@@ -341,6 +363,8 @@
 
 <!-- ═══════════ 01 Hero ═══════════ -->
 <section class="hero" id="hero" aria-labelledby="hero-heading">
+  <!-- 案B用の背景写真。body に class="hero-b" を付けたときだけ表示される -->
+  <div class="hero-bg" aria-hidden="true"><img src="assets/photo-hero-tablet.png" alt=""></div>
   <canvas class="netbg" data-density="22" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero-grid">
