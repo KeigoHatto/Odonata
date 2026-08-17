@@ -51,6 +51,10 @@ h2.section-title{
 .section-lead{font-size:16.5px;color:var(--sub);margin-top:14px;max-width:var(--readw);line-height:1.9}
 .center .section-lead,.section-lead.center{margin-left:auto;margin-right:auto}
 
+.skip-link{position:absolute;left:16px;top:-64px;z-index:200;background:#fff;color:var(--navy);
+  font-size:14px;font-weight:800;padding:12px 20px;border-radius:0 0 10px 10px;
+  border:2px solid #1A1A1C;box-shadow:0 0 0 4px #FFDF3F;transition:top .15s}
+.skip-link:focus{top:0}
 /* ───── Header / Global nav ───── */
 header.site{
   position:sticky;top:0;z-index:100;
@@ -67,7 +71,7 @@ header.site{
 }
 .nav-links>a:hover,.nav-links>a.active,.nav-item-btn:hover,.nav-item.active .nav-item-btn{opacity:1;color:var(--blue)}
 .nav-links>a.active,.nav-item.active .nav-item-btn{box-shadow:inset 0 -2px 0 var(--blue)}
-.nav-item-btn:focus-visible,.nav-links a:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.nav-item-btn:focus-visible,.nav-links a:focus-visible{outline-offset:3px;border-radius:4px}
 /* 右端アクション：ログイン（テキスト）→ デモ（塗り）→ 資料請求（線） */
 .nav-actions{display:inline-flex;align-items:center;gap:12px;margin-left:6px}
 .nav-lang{display:inline-block}                 /* Phase 3：JP | EN 切替の挿入余白 */
@@ -341,11 +345,17 @@ sup.fn{font-size:11px;color:var(--blue);font-weight:700}
   width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:11px;font-size:15px;
   font-family:inherit;color:var(--text);background:#FBFEFF;transition:.15s;
 }
-.form-row input:focus,.form-row select:focus,.form-row textarea:focus{outline:none;border-color:var(--blue);background:#fff}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--blue);background:#fff}
 .form-row textarea{min-height:130px;resize:vertical}
 .form-consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--sub);margin:26px 0}
 .form-consent input{width:18px;height:18px;margin-top:3px;accent-color:var(--blue)}
 .form-consent a{color:var(--blue);font-weight:700;border-bottom:1px solid rgba(0,160,233,.35)}
+
+.form-error{background:#FEF2F2;border:2px solid #B42318;border-radius:12px;padding:16px 20px;margin-bottom:24px}
+.form-error strong{display:block;font-size:15px;font-weight:800;color:#8A1B12;margin-bottom:6px}
+.form-error ul{list-style:none;margin:0}
+.form-error li{font-size:14px;color:#8A1B12;line-height:1.8;padding-left:16px;position:relative}
+.form-error li::before{content:\;position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:#B42318}
 
 /* ───── 共通CTA ───── */
 .cta-band{padding:0 0 96px}
@@ -483,6 +493,15 @@ body.dark .tlink:hover{color:#fff}
   .acwr-tbl th,.acwr-tbl td{border-top:none;padding:6px 0}
   .acwr-tbl tbody th{font-size:17px}
   .acwr-tbl td[data-label]::before{content:attr(data-label) "：";font-weight:800;color:var(--navy)}
+}
+
+/* 動きを減らす設定のときは、全てのアニメーション・トランジションを停止する */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important;
+  }
+  html{scroll-behavior:auto}
 }
 
 /* フォーカスリング：黄＋黒の2重リング（どの背景色の上でも視認できる） */

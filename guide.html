@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>使い方ガイド — Odonata</title>
+<title>使い方ガイド｜Odonata</title>
 <meta name="description" content="Odonata コンディショニングツールの詳しい使い方ガイド。選手向け・コーチ向けの全機能と、ネットワーク分析の読み方を解説します。">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -218,6 +218,9 @@
   .btn svg.ic{font-size:18px}
   .btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--blue)}
   .center{text-align:center}
+  .skip-link{position:absolute;left:16px;top:-64px;z-index:200;background:#fff;color:var(--navy);font-size:14px;font-weight:800;padding:12px 20px;border-radius:0 0 10px 10px;border:2px solid #1A1A1C;box-shadow:0 0 0 4px #FFDF3F;transition:top .15s}
+  .skip-link:focus{top:0}
+  :focus-visible{outline:2px solid #1A1A1C;outline-offset:0;box-shadow:0 0 0 4px #FFDF3F}
 </style>
 </head>
 <body>
@@ -257,6 +260,7 @@
 </defs></svg>
 
 <!-- HEADER -->
+<a class="skip-link" href="#main">本文へスキップ</a>
 <header>
   <div class="wrap nav">
     <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata"></a>

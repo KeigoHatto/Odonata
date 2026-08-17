@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Philosophy — Odonata</title>
+<title>Philosophy｜Odonata</title>
 <meta name="description" content="Odonata の思想。複雑な世界を、複眼で読む。サッカーを取り巻く要素は相互に影響し合う複雑系。その関係性のネットワークを多角的に読み解き、現場の意思決定とチームの成長を支えます。サービス名「Odonata」に込めた想いも紹介します。">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -180,6 +180,9 @@
     .zoomstage{height:auto}.zoomsticky{position:static;height:auto;min-height:70vh}
     .zlayer.df,.zlayer.emblem,.zhint{display:none}
     .zlayer.lockup{position:static;opacity:1!important;transform:none!important;padding:80px 0}}
+  .skip-link{position:absolute;left:16px;top:-64px;z-index:200;background:#fff;color:var(--navy);font-size:14px;font-weight:800;padding:12px 20px;border-radius:0 0 10px 10px;border:2px solid #1A1A1C;box-shadow:0 0 0 4px #FFDF3F;transition:top .15s}
+  .skip-link:focus{top:0}
+  :focus-visible{outline:2px solid #1A1A1C;outline-offset:0;box-shadow:0 0 0 4px #FFDF3F}
 </style>
 </head>
 <body>
@@ -196,6 +199,7 @@
 </defs></svg>
 
 <!-- HEADER -->
+<a class="skip-link" href="#main">本文へスキップ</a>
 <header>
   <div class="wrap nav">
     <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata"></a>
@@ -210,6 +214,8 @@
     <button class="nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
   </div>
 </header>
+
+<main id="main">
 
 <!-- HERO : scroll-zoom into the compound eyes → Odonata logo -->
 <div class="zoomstage" id="zoomStage">
@@ -354,6 +360,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap">

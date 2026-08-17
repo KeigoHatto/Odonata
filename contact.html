@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>資料請求・お問い合わせ — Odonata</title>
+<title>資料請求・お問い合わせ｜Odonata</title>
 <meta name="description" content="Odonataへの資料請求・お問い合わせはこちら。導入のご相談から、データ活用の壁打ち、取材・共同研究のご相談まで受け付けています。2営業日以内にご返信します。">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -72,6 +72,7 @@
 <!-- ═══════════ HEADER ═══════════ -->
 <!-- #partial:header -->
 <!-- 全ページ共通ヘッダー（単一ソース：partials/header.html → tools/build-partials.mjs で全ページへ同期） -->
+<a class="skip-link" href="#main">本文へスキップ</a>
 <header class="site">
   <div class="wrap nav">
     <a class="nav-logo" href="index.html" aria-label="Odonata ホーム"><img src="assets/odonata-logo.png" alt="Odonata"></a>
@@ -101,6 +102,8 @@
 </header>
 <!-- /#partial:header -->
 
+<main id="main">
+
 <!-- ═══════════ PAGE HERO ═══════════ -->
 <div class="phero">
   <canvas id="pheroNet"></canvas>
@@ -125,7 +128,9 @@
         現在は暫定として、送信ボタンでメール作成画面（mailto:）を開く方式です。
         送付先アドレスは下の CONTACT_TO を独自ドメインのアドレスに変更してください。
       -->
-      <form id="contactForm">
+      <form id="contactForm" novalidate>
+        <!-- 入力エラーはここにテキストで具体的に表示し、支援技術にも通知する -->
+        <div id="formError" class="form-error" role="alert" aria-live="assertive" hidden></div>
         <div class="form-row">
           <label for="f-purpose">お問い合わせの目的<span class="req">必須</span></label>
           <select id="f-purpose" required>
@@ -227,6 +232,8 @@
 </section>
 
 <!-- ═══════════ FOOTER ═══════════ -->
+</main>
+
 <!-- #partial:footer -->
 <!-- 全ページ共通フッター（単一ソース：partials/footer.html → tools/build-partials.mjs で全ページへ同期） -->
 <footer class="site">
