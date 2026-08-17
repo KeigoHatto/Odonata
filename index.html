@@ -218,22 +218,69 @@
     border:1px solid rgba(255,255,255,.28);box-shadow:0 18px 44px rgba(0,0,0,.38)}
   .pf-photo img{width:100%;height:auto;display:block;object-fit:contain}
 
-  /* ───── 06 サイクル：円環図。文字はSVGのtext要素で保持（英語化時に作り直さない） ───── */
-  .cycle{max-width:880px;margin:48px auto 0}
+  /* ───── 07 Cycle：円環図。文字はSVGのtext要素で保持（英語化時に作り直さない） ───── */
+  .cycle{max-width:920px;margin:48px auto 0}
   .cycle svg{width:100%;height:auto;display:block;overflow:visible}
   .cycle .arc{fill:none;stroke:#00A0E9;stroke-width:3;opacity:.6}
-  .cycle .arc.back{stroke-width:6;opacity:1;stroke:#0B2A5B}
+  /* ⑤→① の戻りだけ太く・濃く。太さだけに頼らずラベルも添える */
+  .cycle .arc.back{stroke-width:7;opacity:1;stroke:#0B2A5B}
+  .cycle .backlab{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:800}
   .cycle .node{fill:#fff;stroke:#00A0E9;stroke-width:2.6}
   .cycle .node.back{fill:#0B2A5B;stroke:#0B2A5B}
-  .cycle .num{fill:#0B2A5B;font-family:'Manrope',sans-serif;font-size:27px;font-weight:800;text-anchor:middle}
+  .cycle .num{fill:#0B2A5B;font-family:'Manrope',sans-serif;font-size:26px;font-weight:800;text-anchor:middle}
   .cycle .num.on{fill:#fff}
-  .cycle .lab{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:21px;font-weight:800}
-  .cycle .sub{fill:#41616F;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:600}
+  .cycle .lab{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;font-weight:800}
+  .cycle .sub{fill:#3A5A6B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:600}
   .cycle .core{fill:#F2FAFE;stroke:#00A0E9;stroke-width:1.6;stroke-dasharray:6 5}
   .cycle .coretx{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;font-weight:800;text-anchor:middle}
-  .cycle-note{margin:34px auto 0;font-size:15.5px;color:var(--sub);line-height:2}
-  .cycle-note b{color:var(--navy)}
-  @media(max-width:640px){.cycle .lab{font-size:26px}.cycle .sub{font-size:17px}.cycle .coretx{font-size:24px}.cycle .num{font-size:32px}}
+  /* SP用の縦一列表示（PCでは非表示） */
+  .cycle-steps,.cycle-core-sp{display:none}
+  @media(max-width:760px){
+    .cycle svg{display:none}
+    .cycle-steps{display:block;list-style:none;margin:0;counter-reset:none}
+    .cycle-steps li{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;
+      grid-template-areas:"n b" ". s";padding:16px 18px;background:var(--card);
+      border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;position:relative}
+    .cycle-steps li:not(:last-child)::after{content:"";position:absolute;left:31px;bottom:-8px;
+      width:2px;height:8px;background:#00A0E9}
+    .cycle-steps .n{grid-area:n;width:34px;height:34px;border-radius:50%;background:#0B2A5B;color:#fff;
+      display:grid;place-items:center;font-family:'Manrope',sans-serif;font-size:16px;font-weight:800}
+    .cycle-steps b{grid-area:b;font-size:18px;font-weight:800;color:var(--navy);align-self:center}
+    .cycle-steps small{grid-area:s;font-size:14px;color:#3A5A6B;line-height:1.75}
+    .cycle-steps li.back{background:#F2FAFE;border-color:var(--blue);border-width:2px}
+    .cycle-steps li.back .n{background:#fff;color:#0B2A5B;border:2px solid #0B2A5B;font-size:18px}
+    .cycle-core-sp{display:block;margin-top:20px;text-align:center;font-size:17px;line-height:1.9;color:#3A5A6B}
+    .cycle-core-sp b{color:var(--navy);font-size:19px}
+  }
+  /* 分析テーマのタグ群 */
+  .cycle-tags{max-width:900px;margin:44px auto 0;text-align:center}
+  .cycle-tags .tags-h{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:16px}
+  .cycle-tags ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0}
+  .cycle-tags li{font-size:14px;font-weight:700;color:#1F4A63;background:#fff;
+    border:1px solid var(--border);border-radius:999px;padding:9px 18px}
+  .cycle-tags .note{margin-top:18px}
+  /* ───── 10 Process：直線3ステップ ＋ STEP2内の小さな循環 ───── */
+  .pflow{list-style:none;display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:0;align-items:stretch;margin:48px auto 0;max-width:1040px}
+  @media(max-width:900px){.pflow{grid-template-columns:1fr;gap:28px}}
+  .pstep{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;position:relative}
+  .pstep + .pstep{margin-left:26px}
+  @media(max-width:900px){.pstep + .pstep{margin-left:0}}
+  /* ステップ間の矢印。SPでは下向きにする */
+  .pstep + .pstep::before{content:;position:absolute;left:-19px;top:50%;width:11px;height:11px;
+    border-top:2.5px solid var(--blue);border-right:2.5px solid var(--blue);transform:translateY(-50%) rotate(45deg)}
+  @media(max-width:900px){.pstep + .pstep::before{left:50%;top:-19px;transform:translateX(-50%) rotate(135deg)}}
+  .pstep .ph{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+  .pstep .pn{font-family:'Manrope',sans-serif;font-size:12.5px;font-weight:800;letter-spacing:.1em;
+    color:#0A5E93;background:rgba(0,160,233,.12);border-radius:999px;padding:4px 12px}
+  .pstep h3{font-size:19px;font-weight:800;color:var(--navy);line-height:1.5}
+  .pstep p{font-size:15px;color:#3A5A6B;line-height:1.8}
+  .pstep.wide{border-color:var(--blue);border-width:2px}
+  .ploop{margin-top:18px;padding-top:16px;border-top:1px dashed var(--border)}
+  .ploop svg{width:100%;max-width:360px;height:auto;display:block;margin:0 auto;overflow:visible}
+  .ploop .pl-arc{fill:none;stroke:#00A0E9;stroke-width:2.4;opacity:.7}
+  .ploop .pl-n{fill:#fff;stroke:#00A0E9;stroke-width:2.2}
+  .ploop .pl-t{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:800}
+  .ploop-note{margin-top:12px;text-align:center;font-size:14px!important;color:#3A5A6B;font-weight:700}
   /* ───── 05 実証：成果 → 何を実証したか → 経緯 の順で見せる ───── */
   .proof{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;margin-top:48px}
   @media(max-width:900px){.proof{grid-template-columns:1fr;gap:36px}}
@@ -325,6 +372,8 @@
   <symbol id="i-versus" viewBox="0 0 24 24"><circle cx="6.6" cy="7.4" r="2.6"/><path d="M2.6 19 a4 4 0 0 1 8 0"/><circle cx="17.4" cy="7.4" r="2.6"/><path d="M13.4 19 a4 4 0 0 1 8 0"/><line x1="12" y1="3.5" x2="12" y2="20.5" stroke-dasharray="2.4 2.6"/></symbol>
   <symbol id="i-mind" viewBox="0 0 24 24"><path d="M15.4 20.4 V17.6 a6.6 6.6 0 1 0 -8.2 -6.4 c0 1.6 .6 2.6 1.4 3.6 .6 .8 .8 1.2 .8 2.2 v3.4"/><path d="M12 13.6 c-1.4 -1.2 -2.4 -2 -2.4 -3.1 a1.5 1.5 0 0 1 2.4 -1.1 a1.5 1.5 0 0 1 2.4 1.1 c0 1.1 -1 1.9 -2.4 3.1 z"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6" stroke-dasharray="3 3"/><line x1="12" y1="8.2" x2="12" y2="15.8"/><line x1="8.2" y1="12" x2="15.8" y2="12"/></symbol>
+  <symbol id="i-stack" viewBox="0 0 24 24"><path d="M12 3.2 L21 7.6 L12 12 L3 7.6 Z"/><polyline points="3,12 12,16.4 21,12"/><polyline points="3,16.4 12,20.8 21,16.4"/></symbol>
+  <symbol id="i-screen" viewBox="0 0 24 24"><rect x="2.8" y="4.2" width="18.4" height="12.6" rx="2.2"/><line x1="8.4" y1="20.4" x2="15.6" y2="20.4"/><line x1="12" y1="16.8" x2="12" y2="20.4"/><polyline points="6.6,12.6 9.4,9.4 11.8,11.6 15,7.6"/></symbol>
 </defs>
 </svg>
 <!-- /#partial:icons -->
@@ -376,8 +425,8 @@
           <span class="np">日々の記録を、</span><span class="np">現場で活きる判断材料に</span><span class="np">変えていきます。</span>
         </p>
         <div class="hero-actions">
-          <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
+          <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-line" href="contact.html"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
         </div>
         <!-- 提供するもの：2つの入口をHero内で明示する -->
         <div class="hero-offer">
@@ -387,7 +436,7 @@
             <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
           </a>
           <a href="service-platform.html">
-            <svg class="ic" aria-hidden="true"><use href="#i-hub"/></svg>
+            <svg class="ic" aria-hidden="true"><use href="#i-screen"/></svg>
             <span><b>データプラットフォーム</b><small>その分析を、現場が毎日使えるWebアプリとして届ける</small></span>
             <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
           </a>
@@ -427,7 +476,7 @@
         <p><span class="np">スポーツの現場では、</span><span class="np">コンディション・GPS・試合・メディカル・育成計画といった</span><span class="np">記録が日々生まれています。</span><span class="np">けれどそれらは別々の場所に置かれ、</span><span class="np">つながらないまま</span><span class="np">積み上がっていくことがほとんどです。</span></p>
         <p><span class="np">私たちは、</span><span class="np">その散らばった記録をつなぎ直し、</span><span class="np">ひとつの指標を見ているだけでは</span><span class="np">分からなかった発見を見出す分析を</span><span class="np">行っています。</span><span class="np">そして、</span><span class="np">その分析結果を</span><span class="np">現場スタッフが日々の判断に使える</span><span class="np">Webアプリとしても提供しています。</span></p>
         <p><span class="np">研究・分析・実装のすべてを、</span><span class="np">同じチームの中で行っています。</span></p>
-        <p style="margin-top:26px"><a class="tlink" href="company.html">会社情報を見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+        <p style="margin-top:26px"><a class="tlink" href="company.html">会社情報を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
       <figure class="about-photo">
         <img src="assets/photo-staff-screens.png" alt="スタッフが複数の分析画面を並べて、チームと選手のデータを確認している様子" loading="lazy">
@@ -454,11 +503,11 @@
         <h3>データ分析・伴走支援</h3>
         <p>すでにチームが持っている過去データから始めます。Excel・GPS・試合・コンディションの記録をお預かりして分析し、現場で使える示唆として返します。</p>
         <ul>
-          <li><svg class="ic"><use href="#i-doc"/></svg> 保有データ・過去データの整理と分析</li>
-          <li><svg class="ic"><use href="#i-target"/></svg> 傷害発生予測モデルの個別構築</li>
-          <li><svg class="ic"><use href="#i-network"/></svg> ネットワーク分析レポート</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg> 保有データ・過去データの整理と分析</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg> 傷害発生予測モデルの個別構築</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-network"/></svg> ネットワーク分析レポート</li>
         </ul>
-        <p style="margin-top:24px"><a class="tlink" href="service-analysis.html">データ分析・伴走支援を見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+        <p style="margin-top:24px"><a class="tlink" href="service-analysis.html">データ分析・伴走支援を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
 
       <!-- 右：現場で使う（暗い背景＋実際のアプリ画面） -->
@@ -470,11 +519,11 @@
         <h3>データプラットフォーム</h3>
         <p>日々の入力から蓄積・一元管理・推移の確認・分析までを、ひとつの環境で行います。現場スタッフが毎日使うWebアプリです。</p>
         <ul>
-          <li><svg class="ic"><use href="#i-pen"/></svg> <span>集める<small>コンディション・GPS・試合・メディカルの入力</small></span></li>
-          <li><svg class="ic"><use href="#i-hub"/></svg> <span>整理する<small>選手・チームを横断できる一元管理</small></span></li>
-          <li><svg class="ic"><use href="#i-eye"/></svg> <span>読み解く<small>傷害予測・ネットワーク分析</small></span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg> <span>集める<small>コンディション・GPS・試合・メディカルの入力</small></span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-stack"/></svg> <span>整理する<small>選手・チームを横断できる一元管理</small></span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg> <span>読み解く<small>傷害予測・ネットワーク分析</small></span></li>
         </ul>
-        <p style="margin-top:24px"><a class="tlink" href="service-platform.html">データプラットフォームを見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+        <p style="margin-top:24px"><a class="tlink" href="service-platform.html">データプラットフォームを見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
     </div>
   </div>
@@ -558,7 +607,7 @@
     </div>
 
     <div class="center" style="margin-top:40px">
-      <a class="tlink" href="service-analysis.html">分析の詳細を見る <svg class="ic"><use href="#i-arrow"/></svg></a>
+      <a class="tlink" href="service-analysis.html">分析の詳細を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -603,7 +652,7 @@
       <div class="why-txt">
         <p>選手の傷害やパフォーマンスは、GPSだけ、疲労だけ、試合スタッツだけでは決まりません。単独では異常のない要因も、重なり方次第で危険域に達します。</p>
         <p>だからOdonataは、指標を1つずつ見るのではなく、<strong>指標どうしの関係性</strong>を分析の単位に置いています。</p>
-        <p style="margin-top:22px"><a class="tlink" href="approach.html">複雑系アプローチを読む <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+        <p style="margin-top:22px"><a class="tlink" href="approach.html">複雑系アプローチを読む <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
     </div>
 
@@ -642,59 +691,77 @@
 <!-- ═══════════ 07 Cycle｜なぜデータプラットフォームまで提供しているのか ═══════════ -->
 <section class="section-alt" id="cycle" aria-labelledby="cycle-heading">
   <div class="wrap">
-    <div class="center" style="max-width:780px;margin:0 auto">
-      <h2 class="section-title" id="cycle-heading"><span class="np">データを意思決定に</span><span class="np">つなげるサイクル</span></h2>
+    <div class="center" style="max-width:820px;margin:0 auto">
+      <h2 class="section-title" id="cycle-heading"><span class="np">なぜ、データプラットフォームまで</span><span class="np">提供しているのか</span></h2>
+      <p class="section-lead center"><span class="np">分析して終わりにせず、</span><span class="np">現場で使われ、</span><span class="np">データが貯まり、</span><span class="np">また新しい発見が生まれる。</span><span class="np">その循環をつくるためです。</span></p>
     </div>
+
     <div class="cycle reveal">
-      <svg viewBox="0 0 900 540" role="img" aria-label="集める → つなぐ → 読み解く → 判断する → 蓄積する。蓄積された経験が次のデータになり、集めるへ戻る循環図">
+      <svg viewBox="0 0 920 560" role="img" aria-labelledby="cycle-svg-t cycle-svg-d">
+        <title id="cycle-svg-t">分析する→発見が生まれる→実装する→現場が使う→データが貯まる→ふたたび分析する、という5段階の循環図</title>
+        <desc id="cycle-svg-d">中央に「使うほど、精度が上がる」「使うほど、発見が増える」と書かれている。データが貯まる段階から分析する段階へ戻る矢印は、蓄積が次の発見をつくることを示すため太く描かれている。</desc>
         <defs>
-          <marker id="ca" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <marker id="cy-a" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
             <path d="M1 1 L10 6 L1 11 z" fill="#00A0E9"/>
           </marker>
-          <marker id="cb" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <marker id="cy-b" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M1 1 L10 6 L1 11 z" fill="#0B2A5B"/>
           </marker>
         </defs>
 
-        <!-- 時計回りの矢印。5→1（戻り）だけ線を太くする -->
-        <path class="arc" d="M504.1 103.1 A185 185 0 0 1 601.6 173.9" marker-end="url(#ca)"/>
-        <path class="arc" d="M635.0 276.8 A185 185 0 0 1 597.7 391.3" marker-end="url(#ca)"/>
-        <path class="arc" d="M510.2 454.9 A185 185 0 0 1 389.8 454.9" marker-end="url(#ca)"/>
-        <path class="arc" d="M302.3 391.3 A185 185 0 0 1 265.0 276.8" marker-end="url(#ca)"/>
-        <path class="arc back" d="M298.4 173.9 A185 185 0 0 1 395.9 103.1" marker-end="url(#cb)"/>
+        <path class="arc" d="M524.1 113.1 A185 185 0 0 1 621.6 183.9" marker-end="url(#cy-a)"/>
+        <path class="arc" d="M655.0 286.8 A185 185 0 0 1 617.7 401.3" marker-end="url(#cy-a)"/>
+        <path class="arc" d="M530.2 464.9 A185 185 0 0 1 409.8 464.9" marker-end="url(#cy-a)"/>
+        <path class="arc" d="M322.3 401.3 A185 185 0 0 1 285.0 286.8" marker-end="url(#cy-a)"/>
+        <path class="arc back" d="M318.4 183.9 A185 185 0 0 1 415.9 113.1" marker-end="url(#cy-b)"/>
+        <text class="backlab" x="330" y="96" text-anchor="middle">蓄積が次の発見をつくる</text>
 
-        <!-- 中央 -->
-        <circle class="core" cx="450" cy="280" r="106"/>
-        <text class="coretx" x="450" y="266">使うほど、</text>
-        <text class="coretx" x="450" y="296">判断の材料が増える</text>
+        <circle class="core" cx="470" cy="290" r="112"/>
+        <text class="coretx" x="470" y="278">使うほど、精度が上がる</text>
+        <text class="coretx" x="470" y="308">使うほど、発見が増える</text>
 
-        <!-- 1 集める -->
-        <circle class="node" cx="450" cy="95" r="34"/><text class="num" x="450" y="105">1</text>
-        <text class="lab" x="450" y="42" text-anchor="middle">集める</text>
-        <text class="sub" x="450" y="63" text-anchor="middle">日々の現場データ</text>
+        <circle class="node" cx="470" cy="105" r="34"/><text class="num" x="470" y="115">1</text>
+        <text class="lab" x="470" y="52" text-anchor="middle">分析する</text>
+        <text class="sub" x="470" y="73" text-anchor="middle">既存データを複雑系アプローチで分析する</text>
 
-        <!-- 2 つなぐ -->
-        <circle class="node" cx="626" cy="223" r="34"/><text class="num" x="626" y="233">2</text>
-        <text class="lab" x="676" y="212">つなぐ</text>
-        <text class="sub" x="676" y="233">同じ選手・同じ時間軸へ</text>
+        <circle class="node" cx="646" cy="233" r="34"/><text class="num" x="646" y="243">2</text>
+        <text class="lab" x="696" y="222">発見が生まれる</text>
+        <text class="sub" x="696" y="243">ひとつの指標では見えなかった関係性を見つける</text>
 
-        <!-- 3 読み解く -->
-        <circle class="node" cx="559" cy="430" r="34"/><text class="num" x="559" y="440">3</text>
-        <text class="lab" x="559" y="492" text-anchor="middle">読み解く</text>
-        <text class="sub" x="559" y="513" text-anchor="middle">関係性と変化を分析</text>
+        <circle class="node" cx="579" cy="440" r="34"/><text class="num" x="579" y="450">3</text>
+        <text class="lab" x="579" y="502" text-anchor="middle">実装する</text>
+        <text class="sub" x="579" y="523" text-anchor="middle">その分析をデータプラットフォームに載せる</text>
 
-        <!-- 4 判断する -->
-        <circle class="node" cx="341" cy="430" r="34"/><text class="num" x="341" y="440">4</text>
-        <text class="lab" x="341" y="492" text-anchor="middle">判断する</text>
-        <text class="sub" x="341" y="513" text-anchor="middle">決めるのは現場</text>
+        <circle class="node" cx="361" cy="440" r="34"/><text class="num" x="361" y="450">4</text>
+        <text class="lab" x="361" y="502" text-anchor="middle">現場が使う</text>
+        <text class="sub" x="361" y="523" text-anchor="middle">スタッフ・選手が日々の判断に使う</text>
 
-        <!-- 5 蓄積する（戻りの起点） -->
-        <circle class="node back" cx="274" cy="223" r="34"/><text class="num on" x="274" y="233">5</text>
-        <text class="lab" x="224" y="212" text-anchor="end">蓄積する</text>
-        <text class="sub" x="224" y="233" text-anchor="end">経験が次のデータになる</text>
+        <circle class="node back" cx="294" cy="233" r="34"/><text class="num on" x="294" y="243">5</text>
+        <text class="lab" x="244" y="222" text-anchor="end">データが貯まる</text>
+        <text class="sub" x="244" y="243" text-anchor="end">使うほど記録が積み上がる</text>
       </svg>
+
+      <!-- SP用：縦一列のステップ表示 -->
+      <ol class="cycle-steps">
+        <li><span class="n">1</span><b>分析する</b><small>既存データを複雑系アプローチで分析する</small></li>
+        <li><span class="n">2</span><b>発見が生まれる</b><small>ひとつの指標では見えなかった関係性を見つける</small></li>
+        <li><span class="n">3</span><b>実装する</b><small>その分析をデータプラットフォームに載せる</small></li>
+        <li><span class="n">4</span><b>現場が使う</b><small>スタッフ・選手が日々の判断に使う</small></li>
+        <li><span class="n">5</span><b>データが貯まる</b><small>使うほど記録が積み上がる</small></li>
+        <li class="back"><span class="n" aria-hidden="true">↑</span><b>1へ戻る</b><small>蓄積が次の発見をつくる</small></li>
+      </ol>
+      <p class="cycle-core-sp"><b>使うほど、精度が上がる。</b><br>使うほど、発見が増える。</p>
     </div>
-    <p class="cycle-note readable center">Odonataは、現場の経験や判断を置き換えるものではありません。データを<b>新しい判断材料として加える</b>ことで、選べる手を増やすための仕組みです。</p>
+
+    <div class="cycle-tags">
+      <h3 class="tags-h">この循環から生まれている分析テーマ</h3>
+      <ul>
+        <li>傷害リスク予測</li><li>ネットワーク分析</li><li>認知的負荷の可視化</li>
+        <li>練習メニューと成長の関係</li><li>対戦相手の分析</li>
+        <li>コンディションとパフォーマンスの関係</li><li>IDPと試合スタッツの関係</li>
+      </ul>
+      <p class="note">データの組み合わせが増えるほど、分析できるテーマも増えていきます。</p>
+    </div>
   </div>
 </section>
 
@@ -728,7 +795,7 @@
           <p>大学トップレベルの競技環境で、GPS・コンディション・メディカル記録が別々に保存され横断して読み解けなかった状態から着手。分析を研究室に閉じず、選手・スタッフが毎日使えるWebアプリとして現場に実装しました。</p>
         </div>
         <p class="note" style="margin-top:20px">※分析結果・モデル精度はデータ量・データ品質・対象チームの環境により異なります。</p>
-        <p style="margin-top:22px"><a class="tlink" href="research.html">実証の詳細を見る <svg class="ic"><use href="#i-arrow"/></svg></a></p>
+        <p style="margin-top:22px"><a class="tlink" href="research.html">実証の詳細を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
       <figure class="reveal">
         <div class="browser light">
@@ -784,7 +851,7 @@
       </div>
     </div>
     <div class="center" style="margin-top:32px">
-      <a class="tlink" href="company.html">メンバーの詳細へ <svg class="ic"><use href="#i-arrow"/></svg></a>
+      <a class="tlink" href="company.html">メンバーの詳細へ <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -795,26 +862,41 @@
     <div class="center" style="max-width:760px;margin:0 auto">
       <h2 class="section-title" id="process-heading"><span class="np">小さく始めて、</span><span class="np">現場と一緒に育てる。</span></h2>
     </div>
-    <div class="flow seq" style="grid-template-columns:repeat(3,1fr);max-width:900px;margin-left:auto;margin-right:auto">
-      <div class="flow-step reveal">
-        <span class="stepn">STEP 1</span>
-        <div class="flow-ic"><svg class="ic"><use href="#i-users"/></svg></div>
-        <h4>ヒアリング</h4>
-        <p>いま現場にあるデータの状況を伺います（GPS・コンディション・試合記録・紙やExcelでも可）。</p>
-      </div>
-      <div class="flow-step reveal">
-        <span class="stepn">STEP 2</span>
-        <div class="flow-ic"><svg class="ic"><use href="#i-sliders"/></svg></div>
-        <h4>試験導入 × 改善</h4>
-        <p>限定範囲で運用し、入力項目・UI・分析モデルを調整します。</p>
-      </div>
-      <div class="flow-step reveal">
-        <span class="stepn">STEP 3</span>
-        <div class="flow-ic"><svg class="ic"><use href="#i-hub"/></svg></div>
-        <h4>本格導入</h4>
-        <p>過去データの取り込みを経て全体展開へ。</p>
-      </div>
-    </div>
+
+    <ol class="pflow">
+      <li class="pstep">
+        <div class="ph"><span class="pn">STEP 1</span><h3>ヒアリング</h3></div>
+        <p>いま現場にあるデータの状況を伺います。GPS・コンディション・試合記録のほか、紙やExcelの記録でも構いません。</p>
+      </li>
+
+      <li class="pstep wide">
+        <div class="ph"><span class="pn">STEP 2</span><h3>試験導入 × 改善</h3></div>
+        <p>限定した範囲で運用し、入力項目・UI・分析モデルを調整します。</p>
+        <!-- STEP2 の中の小さな循環 -->
+        <div class="ploop">
+          <svg viewBox="0 0 420 150" role="img" aria-labelledby="ploop-t">
+            <title id="ploop-t">運用する→現場の声を聞く→直す→ふたたび運用する、という3段階の小さな循環</title>
+            <defs>
+              <marker id="pl-a" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                <path d="M1 1 L10 6 L1 11 z" fill="#00A0E9"/>
+              </marker>
+            </defs>
+            <path class="pl-arc" d="M120 44 A72 72 0 0 1 300 44" marker-end="url(#pl-a)"/>
+            <path class="pl-arc" d="M318 78 A72 72 0 0 1 246 132" marker-end="url(#pl-a)"/>
+            <path class="pl-arc" d="M174 132 A72 72 0 0 1 102 78" marker-end="url(#pl-a)"/>
+            <circle class="pl-n" cx="96" cy="60" r="26"/><text class="pl-t" x="96" y="102" text-anchor="middle">運用</text>
+            <circle class="pl-n" cx="324" cy="60" r="26"/><text class="pl-t" x="324" y="102" text-anchor="middle">現場の声</text>
+            <circle class="pl-n" cx="210" cy="126" r="26"/><text class="pl-t" x="210" y="24" text-anchor="middle">直す</text>
+          </svg>
+          <p class="ploop-note">この往復を、納得できるまで繰り返します。</p>
+        </div>
+      </li>
+
+      <li class="pstep">
+        <div class="ph"><span class="pn">STEP 3</span><h3>本格導入</h3></div>
+        <p>過去データの取り込みを経て、チーム全体の運用へ広げていきます。</p>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -842,7 +924,7 @@
       </a>
     </div>
     <div class="center" style="margin-top:30px">
-      <a class="tlink" href="news.html">ニュース一覧へ <svg class="ic"><use href="#i-arrow"/></svg></a>
+      <a class="tlink" href="news.html">ニュース一覧へ <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -854,8 +936,8 @@
       <h2 id="cta-heading"><span class="np">まずは、チームの</span><span class="np">データの状況から</span><span class="np">お聞かせください。</span></h2>
       <p><span class="np">ヒアリング・お見積りは無料です。</span><span class="np">「データはあるが活かせていない」段階からの</span><span class="np">ご相談も歓迎します。</span></p>
       <div class="cta-actions">
-        <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
+        <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-line" href="contact.html"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
       </div>
     </div>
   </div>
