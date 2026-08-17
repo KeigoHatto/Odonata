@@ -1,0 +1,97 @@
+# 現状棚卸しメモ（Phase 0）
+
+調査日：2026-08-18 ／ 対象：getodonata.com（本リポジトリ）
+
+---
+
+## 1｜リポジトリの構成
+
+| 項目 | 内容 |
+| --- | --- |
+| 形式 | **静的HTML**（フレームワーク・ビルドツールなし） |
+| TOPページ | `index.html` |
+| CSS | 素のCSS。共通は `assets/site.css`、ページ固有は各HTMLの `<style>` 内 |
+| JS | `assets/site.js`（ナビ・Dropdown・reveal）、`assets/netbg.js`（背景ネットワーク）、`assets/scrolly.js`、`assets/hero2d.js` / `hero3d.js`（現在未使用） |
+| 共通コンポーネント | `partials/header.html` / `footer.html` / `icons.html` を単一ソースとし、`tools/build-partials.mjs` が各HTMLの `<!-- #partial:name -->` マーカー間へ同期する |
+| 対象外ページ | `guide.html` / `philosophy.html` は独自CSSの単独ページ。共通ヘッダーの同期対象外 |
+
+**確認コマンド**：`npm` は未使用。ローカル確認は任意の静的サーバで可（例：`npx serve .` または VS Code の Live Server）。
+
+---
+
+## 2｜TOPページのセクション一覧（Phase 0 時点）
+
+| # | 見出しテキスト | 実体（index.html の行） | 役割 |
+| --- | --- | --- | --- |
+| 1 | スポーツに、もっと多様な正解を。（h1） | 310 `<section class="hero" id="top">` | ファーストビュー |
+| 2 | Odonataについて | 361 `id="about"` | 会社紹介・会社情報への導線 |
+| 3 | Odonataがつなぐもの | 380 `id="sources"` | 対象データの提示 |
+| 4 | 何を分析できるのか | 400 `id="usecases"` | 分析ユースケース3枚 |
+| 5 | なぜ、複数のデータを横断して見るのか。 | 483 `id="why"` | 複雑系アプローチ |
+| 6 | 事業内容 | 530 `id="services"` | 2事業（分析／プラットフォーム） |
+| 7 | データを意思決定につなげるサイクル | 574 `id="cycle"` | 循環図 |
+| 8 | 筑波大学蹴球部で、実証しています。 | 633 `id="proof"` | 実証成果 |
+| 9 | 研究と現場と実装が、同じチームの中にあります。 | 677 `id="team"` | 体制・メンバー |
+| 10 | 小さく始めて、現場と一緒に育てる。 | 724 `id="process"` | 導入の流れ |
+| 11 | ニュース | 753 `id="news"` | 最新3件 |
+| 12 | （CTA） | 782 `class="cta-band"` | 資料請求・デモ |
+
+**Phase 1 で必要な並べ替え**：`sources`（つなぐもの）と `services`（事業内容）の位置を入れ替え、
+`Hero → About → Service → Analysis → Approach → Connect → Cycle → Proof → Team → Process → News → CTA` にする。
+
+---
+
+## 3｜指定文字列の所在（grep 結果）
+
+| 文字列 | 所在 |
+| --- | --- |
+| すでにある過去データを分析する | index.html（Heroサービスカード1） |
+| 毎日使うWebアプリとして届ける | index.html（Heroサービスカード2） |
+| Odonataについて | index.html（Aboutセクション h2・本文） |
+| その記録をつなぎ直して分析し | index.html（About本文） |
+| Odonataがつなぐもの | index.html（Connectセクション h2） |
+| 別々の場所に置かれていた記録を、同じ選手・同じ時間軸で並べ直します | index.html（Connectセクション リード） |
+| すでにあるデータから始められます | index.html（Connectセクション 注記） |
+| 研究／現場／実装 | index.html（Teamセクション `.pillar`） |
+| 約70% / 約20% | index.html（Analysisカード1・Proofセクション）、research.html、service-analysis.html |
+| 小さく始めて | index.html（Processセクション h2） |
+| STEP 1 | index.html（Process）、pricing.html、contact.html |
+
+---
+
+## 4｜ファーストビューの実装
+
+- **背景のネットワーク表現**：`assets/netbg.js` による **Canvas** 描画。`<canvas class="netbg">` を持つ要素に適用。
+  `data-density` で粒度を調整。Hero／Connect／Approach の3箇所に設置。
+- **Hero画像**：`assets/photo-hero-tablet.png`（主）と `assets/photo-analysis-desk.png`（副）を重ねて配置。
+- **角丸の指定箇所**：`.hero-photo{border-radius:16px}` — Phase 3 で直角化の対象。
+  他に `.about-photo` `.an-photo` `.pf-photo` も `border-radius` を持つ。
+- **アニメーション**：`netbg.js` は `requestAnimationFrame` で常時描画。
+  `prefers-reduced-motion: reduce` のとき **座標更新を止めて静止描画** にしている（描画ループ自体は停止）。
+  **未対応**：タブ非表示時（`document.visibilityState`）の停止、モバイルでのノード数削減。→ Phase 3 で対応。
+
+---
+
+## 5｜アクセシビリティ 簡易チェック（Phase 0 時点・未修正）
+
+| 項目 | 結果 |
+| --- | --- |
+| `outline: none` の単独使用 | **1件**：`assets/site.css:344` フォーム入力欄の `:focus`。→ Phase 7 で修正 |
+| `alt` 欠落の `img` | なし（全ページ確認済み） |
+| 見出しレベルの飛び | なし。ただし `approach.html` / `philosophy.html` は h1 を後付けで付与済みのため Phase 1・7 で再確認 |
+| `user-scalable=no` / `maximum-scale` | **なし**（問題なし） |
+| 文脈依存リンク（「詳しくはこちら」等） | `news.html:153` の「詳しくは…ページをご覧ください」はリンクテキストが「複雑系アプローチ」で自立しており問題なし。`guide.html:1270` の「詳しくはお問い合わせください」はリンクではないテキスト。→ 実害なし |
+| ページタイトルの形式 | 現在は「ページ名 — Odonata」（em dash）。指示書の「ページ名｜Odonata」形式と不一致。→ Phase 7 で統一 |
+| `service-platform.html` のタイトル | 「データプラットフォーム「Odonata」 — 散らばるデータを、ひとつに」→ 形式から外れている。Phase 7 で修正 |
+| 薄いグレー文字 | `--sub:#41616F`（白背景でコントラスト比 約6.2:1）は基準を満たす。ダーク面の `--sub:#C9D4E5` も可。→ Phase 7 で実測して確認 |
+| フォーカスリング | 現在は `outline:2px solid var(--blue)` のみ。指示書の「黄+黒の2重リング」に未対応。→ Phase 7 で対応 |
+| スキップリンク | **未設置**。→ Phase 7 で追加 |
+
+---
+
+## 6｜次フェーズ以降への申し送り
+
+- Phase 1：`sources` と `services` の入れ替え、全 `<section>` への `aria-labelledby` 付与、`#cycle` の空箱化。
+- Phase 3：`border-radius` の直角化はページ全体の写真に波及するため、Hero 内に限定して適用する。
+- Phase 5：`約70%` は index.html / research.html / service-analysis.html の3箇所にあるため、表記を揃える必要がある。
+- Phase 7：ページタイトルの区切り文字を `—` から `｜` に統一する際、全13ページを一括で変更する。
