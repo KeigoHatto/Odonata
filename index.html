@@ -36,25 +36,27 @@
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
 
   /* ───── 提供するもの：Hero内で2つの入口を明示 ───── */
-  .hero-offer{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px;
-    padding-top:28px;border-top:1px solid var(--border)}
-  @media(max-width:520px){.hero-offer{grid-template-columns:1fr}}
+  /* 提供するもの：Heroの下に全幅で並べる。最小280pxを確保して細い折り返しを防ぐ */
+  .hero-offer{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;
+    margin-top:clamp(36px,5vw,56px);padding-top:clamp(28px,4vw,40px);border-top:1px solid var(--border)}
   .hero-offer a{
-    display:grid;grid-template-columns:auto 1fr auto;align-items:start;gap:13px;
-    min-height:180px;padding:22px 22px 20px;border-radius:14px;align-content:start;
+    display:grid;grid-template-columns:auto 1fr auto;align-items:start;gap:14px;
+    min-height:180px;padding:24px 26px 22px;border-radius:14px;align-content:start;
     background:#fff;border:1.5px solid var(--border);transition:.2s;
   }
   /* 状態は色だけでなく、枠線の太さと下線でも示す */
   .hero-offer a:hover,.hero-offer a:focus-visible{
-    border-color:var(--blue);border-width:2.5px;padding:20.5px 20.5px 18.5px;
-    box-shadow:0 16px 36px rgba(11,42,91,.14);
+    border-width:2.5px;padding:23px 25px 21px;box-shadow:0 16px 36px rgba(11,42,91,.14);
   }
   .hero-offer a:hover b,.hero-offer a:focus-visible b{text-decoration:underline;text-underline-offset:4px}
   .hero-offer a:hover .go,.hero-offer a:focus-visible .go{transform:translateX(4px)}
-  .hero-offer svg.ic{color:var(--blue);font-size:26px;flex:none;margin-top:1px}
+  .hero-offer svg.ic{color:var(--blue);font-size:28px;flex:none;margin-top:1px}
   .hero-offer .go{font-size:19px;color:var(--blue);transition:transform .2s;align-self:center}
-  .hero-offer b{display:block;font-size:20px;font-weight:800;color:var(--navy);line-height:1.5}
-  .hero-offer small{display:block;font-size:14px;color:var(--sub);line-height:1.75;margin-top:8px}
+  /* 日本語の禁則処理を壊さないため break-all は使わない */
+  .hero-offer b{display:block;font-size:clamp(18px,1.5vw,20px);font-weight:800;color:var(--navy);
+    line-height:1.5;word-break:normal;overflow-wrap:break-word;line-break:strict}
+  .hero-offer small{display:block;font-size:15px;color:var(--sub);line-height:1.75;margin-top:10px;
+    word-break:normal;overflow-wrap:break-word;line-break:strict}
 
   /* ───── Heroビジュアル：現場の写真＋分析の写真（角丸なし・大きく） ─────
      案A「大きく右寄せ」を採用。body に class="hero-b" を付けると案Bに切り替わる。 */
@@ -427,19 +429,6 @@
           <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="btn btn-line" href="contact.html"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
         </div>
-        <!-- 提供するもの：2つの入口をHero内で明示する -->
-        <div class="hero-offer">
-          <a href="service-analysis.html">
-            <svg class="ic" aria-hidden="true"><use href="#i-network"/></svg>
-            <span><b>データ分析・伴走支援</b><small>既存データを分析し、これまで見えなかった発見を見出す</small></span>
-            <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-          <a href="service-platform.html">
-            <svg class="ic" aria-hidden="true"><use href="#i-screen"/></svg>
-            <span><b>データプラットフォーム</b><small>その分析を、現場が毎日使えるWebアプリとして届ける</small></span>
-            <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-        </div>
       </div>
       <!-- ▲▲ HERO COPY ここまで ▲▲ -->
       <!-- 現場（上）と分析（下）の2枚を重ね、間に関係性のノードを走らせる -->
@@ -459,6 +448,20 @@
           <circle cx="18" cy="26" r="5"/><circle cx="188" cy="172" r="5"/>
         </svg>
       </div>
+    </div>
+
+    <!-- 提供するもの：Heroの下に全幅で配置する（左カラム内だと横幅が足りず文字が細く折り返すため） -->
+    <div class="hero-offer">
+      <a href="service-analysis.html">
+        <svg class="ic" aria-hidden="true"><use href="#i-network"/></svg>
+        <span><b>データ分析・伴走支援</b><small>既存データを分析し、これまで見えなかった発見を見出す</small></span>
+        <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+      <a href="service-platform.html">
+        <svg class="ic" aria-hidden="true"><use href="#i-screen"/></svg>
+        <span><b>データプラットフォーム</b><small>その分析を、現場が毎日使えるWebアプリとして届ける</small></span>
+        <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
     </div>
   </div>
 </section>
