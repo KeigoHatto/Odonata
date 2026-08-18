@@ -542,3 +542,7 @@ body.dark .tlink:hover{color:#fff}
 canvas.netbg{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:0}
 .has-net{position:relative;overflow:hidden}
 .has-net > .wrap{position:relative;z-index:2}
+
+/* ───── 横スクロールの発生源を作らない（overflow-x:hidden で隠さない） ───── */
+.wrap,.hero-grid,.hero-vis,.hero-offer,.split,.about-grid,.why-fig,.proof,.sources{min-width:0}
+.hero-photo img,.about-photo img,.an-photo img,.pf-photo img{max-width:100%}
