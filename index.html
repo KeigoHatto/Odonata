@@ -235,9 +235,12 @@
   .sp-analysis li svg.ic{color:var(--blue);font-size:18px;margin-top:3px}
   .menu-note{margin-top:12px!important;font-size:13.5px!important;color:#3A5A6B!important;line-height:1.75!important}
   /* 分析している場面の写真（アスペクト比を維持） */
-  .an-photo{border-radius:14px;overflow:hidden;margin-bottom:26px;border:1px solid var(--border);
-    box-shadow:0 16px 40px rgba(11,42,91,.14);background:#fff}
-  .an-photo img{width:100%;height:auto;display:block;object-fit:contain}
+  /* 2枚はアスペクト比16:9・高さを揃える。角丸なし */
+  .photo-note{margin-top:14px;text-align:right;font-size:12px;color:var(--color-text-note);line-height:1.7}
+  .an-photo,.pf-photo{border-radius:0;overflow:hidden;margin-bottom:26px}
+  .an-photo picture,.pf-photo picture{display:block}
+  .an-photo img,.pf-photo img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover}
+  .an-photo{border:1px solid var(--color-border-strong)}
   /* 右：現場で使う＝暗い背景＋UIスクリーン */
   .sp-platform{background:linear-gradient(160deg,#071A3A 0%,#0B2A5B 55%,#0E4A87 100%);color:#fff}
   .sp-platform .lbl{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.1em;color:#BDECFF;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);border-radius:999px;padding:6px 15px}
@@ -248,9 +251,8 @@
   .sp-platform li svg.ic{color:#7FE3FF;font-size:18px;margin-top:3px}
   .sp-platform li small{display:block;font-size:13px;font-weight:600;color:#D2E3F1;margin-top:3px;line-height:1.65}
   /* 右：実機で使われている写真（アスペクト比を維持） */
-  .pf-photo{border-radius:14px;overflow:hidden;margin-bottom:26px;
-    border:1px solid rgba(255,255,255,.28);box-shadow:0 18px 44px rgba(0,0,0,.38)}
-  .pf-photo img{width:100%;height:auto;display:block;object-fit:contain}
+  /* 画像自体が濃紺のため、カード背景と同化しないよう下辺に明るい区切り線を入れる */
+  .pf-photo{border:1px solid rgba(255,255,255,.28);border-bottom:2px solid #7FE3FF}
 
   /* ───── 07 Cycle：円環図。文字はSVGのtext要素で保持（英語化時に作り直さない） ───── */
   .cycle{max-width:1000px;margin:48px auto 0;padding:0 clamp(8px,2vw,24px)}
@@ -577,7 +579,11 @@
       <!-- 左：データ分析・伴走支援（分析している場面を主役に） -->
       <div class="sp-analysis">
         <figure class="an-photo">
-          <img src="assets/photo-desk-holo.png" alt="スタッフがピッチを見ながら、ネットワーク図やコンディション推移などの分析結果を確認している様子" loading="lazy">
+          <picture>
+            <source type="image/webp" srcset="assets/photo-report-discussion@828.webp 828w, assets/photo-report-discussion.webp 1672w" sizes="(max-width:900px) 100vw, 50vw">
+            <source type="image/jpeg" srcset="assets/photo-report-discussion@828.jpg 828w, assets/photo-report-discussion.jpg 1672w" sizes="(max-width:900px) 100vw, 50vw">
+            <img src="assets/photo-report-discussion.jpg" alt="机の上に広げた分析レポートを、2人が指しながら確認している" width="1672" height="941" loading="lazy">
+          </picture>
         </figure>
         <span class="lbl">事業 01</span>
         <h3>データ分析・伴走支援</h3>
@@ -595,7 +601,11 @@
       <!-- 右：現場で使う（暗い背景＋実際のアプリ画面） -->
       <div class="sp-platform">
         <figure class="pf-photo">
-          <img src="assets/photo-devices.png" alt="ノートPC・タブレット・スマートフォンにOdonataの画面が表示されている様子" loading="lazy">
+          <picture>
+            <source type="image/webp" srcset="assets/photo-analysis-room@828.webp 828w, assets/photo-analysis-room.webp 1672w" sizes="(max-width:900px) 100vw, 50vw">
+            <source type="image/jpeg" srcset="assets/photo-analysis-room@828.jpg 828w, assets/photo-analysis-room.jpg 1672w" sizes="(max-width:900px) 100vw, 50vw">
+            <img src="assets/photo-analysis-room.jpg" alt="大型モニタにネットワーク図とグラフを表示した分析室。窓の外にナイター照明のピッチが見える" width="1672" height="941" loading="lazy">
+          </picture>
         </figure>
         <span class="lbl">事業 02</span>
         <h3>データプラットフォーム</h3>
@@ -608,6 +618,7 @@
         <p style="margin-top:24px"><a class="tlink" href="service-platform.html">データプラットフォームを見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
     </div>
+    <p class="photo-note">※写真はイメージです。</p>
   </div>
 </section>
 
