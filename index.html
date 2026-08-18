@@ -113,13 +113,15 @@
   .uc-1 p{color:#D6E6F2}
   .uc-1 .bignum{color:#7FE3FF}
   .uc-1 .note{color:#C9D9E8;border-top-color:rgba(255,255,255,.22)}
-  .riskbars{margin-top:16px;display:grid;gap:7px}
-  .riskbar{display:grid;grid-template-columns:64px 1fr 42px;align-items:center;gap:9px;font-size:11.5px;font-weight:700;color:#CFE3F3}
-  .riskbar .track{height:7px;border-radius:999px;background:rgba(255,255,255,.16);overflow:hidden}
-  .riskbar .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#7FE3FF,#FF8A7A)}
-  .riskbar.mid .fill{background:linear-gradient(90deg,#7FE3FF,#FFD08A)}
-  .riskbar.low .fill{background:linear-gradient(90deg,#7FE3FF,#6FE3B0)}
-  .riskbar .v{text-align:right;font-family:'Manrope',sans-serif}
+  /* 大数字ブロック：カード内で最も大きい要素にする */
+  .uc-1 .bigstat{margin:18px 0 16px;padding:18px 0 16px;border-top:1px solid rgba(255,255,255,.22);border-bottom:1px solid rgba(255,255,255,.22)}
+  .uc-1 .bs-main{display:flex;align-items:baseline;gap:12px;flex:none}
+  .uc-1 .bs-num{font-family:'Manrope',sans-serif;font-size:clamp(48px,6vw,60px);font-weight:800;
+    line-height:1;color:#7FE3FF;letter-spacing:-.02em}
+  .uc-1 .bs-unit{font-size:.5em;font-weight:800}
+  .uc-1 .bs-lab{font-size:13px;font-weight:800;color:#E4EFF8;line-height:1.45}
+  /* 従来値は数字の真下に、左端を揃えて並べる */
+  .uc-1 .bs-sub{margin-top:10px;font-size:16px;color:#C9D9E8;font-weight:700}
   /* カード内のページ内リンク */
   .uc-link{flex:none;margin-top:18px!important}
   .uc-link a{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;
@@ -530,13 +532,13 @@
     <div class="uc-grid">
       <!-- カード1：大数字＋リスクバーUI -->
       <article class="uc uc-1 reveal">
-        <h3>傷害リスクを、事前に捉える</h3>
-        <div class="riskbars" aria-hidden="true">
-          <div class="riskbar"><span>高リスク</span><span class="track"><span class="fill" style="width:86%"></span></span><span class="v">86</span></div>
-          <div class="riskbar mid"><span>要観察</span><span class="track"><span class="fill" style="width:54%"></span></span><span class="v">54</span></div>
-          <div class="riskbar low"><span>低リスク</span><span class="track"><span class="fill" style="width:21%"></span></span><span class="v">21</span></div>
+        <h3>傷害リスク予測モデルの構築</h3>
+        <!-- 大数字ブロック：数値とラベルを必ずテキストで併記し、色や矢印だけで差を表さない -->
+        <div class="bigstat">
+          <p class="bs-main"><span class="bs-num">約70<span class="bs-unit">%</span></span><span class="bs-lab">Precision<br>（的中率）</span></p>
+          <p class="bs-sub">従来指標 ACWR：約5%</p>
         </div>
-        <p>高リスクと判定した選手の約70%で、実際に傷害が発生しました（従来指標ACWRは約5%）。リスクの要因候補と、練習負荷の調整案までアプリ上に表示します。</p>
+        <p>高リスクと判定した選手のうち、実際に傷害が起きた割合です。リスクの要因候補と、練習負荷の調整案までアプリ上に表示します。</p>
         <p class="uc-link"><a href="#proof">実証結果の詳細を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </article>
 
