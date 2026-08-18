@@ -44,7 +44,7 @@
   .name-body b{color:var(--navy)}
   .name-body .hl{color:var(--blue);font-weight:700}
   /* メンバー詳細：氏名／ローマ字／役割／専門タグ／経歴 の統一フォーマット */
-  .members.detail{grid-template-columns:repeat(3,1fr)}
+  .members.detail{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
   @media(max-width:900px){.members.detail{grid-template-columns:1fr;max-width:640px;margin-left:auto;margin-right:auto}}
   .members.detail .member{text-align:left;display:grid;grid-template-columns:80px 1fr;gap:20px;align-items:start}
   @media(max-width:440px){.members.detail .member{grid-template-columns:1fr}
@@ -251,26 +251,27 @@
       <div class="member reveal">
         <div class="avatar">横田</div>
         <div>
-          <div class="role">統括／研究開発</div>
+          <div class="role">統括・研究開発</div>
           <h3>横田 陽生<span class="romaji">Haruki Yokota</span></h3>
-          <div class="tags"><span>認知心理学・脳科学</span><span>サッカー現場</span></div>
+          <div class="tags"><span>認知心理学</span><span>神経科学</span><span>サッカー現場</span></div>
           <ul class="career">
-            <li>筑波大学 博士課程在籍</li>
-            <li>スポーツ・学習を認知心理学・脳科学の手法で研究</li>
-            <li>筑波大学蹴球部での選手・指導者経験</li>
+            <li>筑波大学 博士後期課程（心理学）在籍</li>
+            <li>専門は認知心理学・神経科学</li>
+            <li>スポーツ・学習・認知をテーマに研究しています</li>
+            <li>筑波大学蹴球部での選手・指導者経験を持ちます</li>
           </ul>
         </div>
       </div>
       <div class="member reveal">
         <div class="avatar">大内</div>
         <div>
-          <div class="role">エンジニアリング／研究開発</div>
+          <div class="role">エンジニアリング・研究開発</div>
           <h3>大内 和哉<span class="romaji">Kazuya Ohuchi</span></h3>
-          <div class="tags"><span>データ基盤</span><span>脳機能ネットワーク</span><span>理学療法</span></div>
+          <div class="tags"><span>脳情報科学</span><span>認知神経科学</span><span>プロダクト開発</span></div>
           <ul class="career">
-            <li>筑波大学 博士課程在籍</li>
-            <li>脳機能・構造ネットワークおよびリハビリ研究に従事</li>
-            <li>理学療法士</li>
+            <li>筑波大学 博士課程（システム情報工学／知能機能システム）在籍</li>
+            <li>専門は脳情報科学・認知神経科学</li>
+            <li>情報工学のバックグラウンドを持ち、Odonataのプロダクト開発を担当しています</li>
           </ul>
         </div>
       </div>
@@ -279,11 +280,24 @@
         <div>
           <div class="role">研究開発</div>
           <h3>八斗 啓悟<span class="romaji">Keigo Hatto</span></h3>
-          <div class="tags"><span>臨床心理</span><span>心理ネットワーク</span></div>
+          <div class="tags"><span>臨床心理学</span><span>スポーツ心理学</span></div>
           <ul class="career">
-            <li>筑波大学 博士後期課程在籍</li>
-            <li>臨床心理士・公認心理師／日本スポーツ心理学会 所属</li>
-            <li>「心理ネットワークアプローチを用いたアスリートに対する個別最適なコンディショニングサポートの可能性」など7本の論文を執筆</li>
+            <li>筑波大学 博士後期課程（心理学／心理臨床学）在籍</li>
+            <li>専門は臨床心理学・スポーツ心理学</li>
+            <li>臨床心理士・公認心理師</li>
+            <li>心理ネットワークアプローチをアスリートのコンディショニングに応用する研究を行っています</li>
+            <li>「心理ネットワークアプローチを用いたアスリートに対する個別最適なコンディショニングサポートの可能性」（スポーツ心理学研究, 2025）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="member reveal">
+        <div class="avatar">他</div>
+        <div>
+          <div class="role">事業推進</div>
+          <h3>その他メンバー<span class="romaji"></span></h3>
+          <ul class="career">
+            <li>筑波大学 卒業</li>
+            <li>法人向けの広告営業や新規事業開発の経験を持ちます</li>
           </ul>
         </div>
       </div>
