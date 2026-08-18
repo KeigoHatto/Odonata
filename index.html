@@ -222,7 +222,7 @@
   .pf-photo img{width:100%;height:auto;display:block;object-fit:contain}
 
   /* ───── 07 Cycle：円環図。文字はSVGのtext要素で保持（英語化時に作り直さない） ───── */
-  .cycle{max-width:920px;margin:48px auto 0}
+  .cycle{max-width:1000px;margin:48px auto 0;padding:0 clamp(8px,2vw,24px)}
   .cycle svg{width:100%;height:auto;display:block;overflow:visible}
   .cycle .arc{fill:none;stroke:#00A0E9;stroke-width:3;opacity:.6}
   /* ⑤→① の戻りだけ太く・濃く。太さだけに頼らずラベルも添える */
@@ -232,13 +232,15 @@
   .cycle .node.back{fill:#0B2A5B;stroke:#0B2A5B}
   .cycle .num{fill:#0B2A5B;font-family:'Manrope',sans-serif;font-size:26px;font-weight:800;text-anchor:middle}
   .cycle .num.on{fill:#fff}
-  .cycle .lab{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;font-weight:800}
-  .cycle .sub{fill:#3A5A6B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:600}
+  /* ラベルは foreignObject。最大幅を与えて2行に折り返す前提でレイアウトする */
+  .cycle .cy-lab{font-family:'Zen Kaku Gothic New',sans-serif;line-height:1.5}
+  .cycle .cy-lab b{display:block;font-size:19px;font-weight:800;color:#0B2A5B}
+  .cycle .cy-lab span{display:block;margin-top:4px;font-size:13.5px;font-weight:600;color:#3A5A6B;line-height:1.6}
   .cycle .core{fill:#F2FAFE;stroke:#00A0E9;stroke-width:1.6;stroke-dasharray:6 5}
   .cycle .coretx{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;font-weight:800;text-anchor:middle}
   /* SP用の縦一列表示（PCでは非表示） */
   .cycle-steps,.cycle-core-sp{display:none}
-  @media(max-width:760px){
+  @media(max-width:1023px){
     .cycle svg{display:none}
     .cycle-steps{display:block;list-style:none;margin:0;counter-reset:none}
     .cycle-steps li{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;
@@ -687,55 +689,49 @@
     </div>
 
     <div class="cycle reveal">
-      <svg viewBox="0 0 920 560" role="img" aria-labelledby="cycle-svg-t cycle-svg-d">
+      <svg viewBox="0 0 1120 700" role="img" aria-labelledby="cycle-svg-t cycle-svg-d">
         <title id="cycle-svg-t">分析する→発見が生まれる→実装する→現場が使う→データが貯まる→ふたたび分析する、という5段階の循環図</title>
         <desc id="cycle-svg-d">中央に「使うほど、精度が上がる」「使うほど、発見が増える」と書かれている。データが貯まる段階から分析する段階へ戻る矢印は、蓄積が次の発見をつくることを示すため太く描かれている。</desc>
         <defs>
-          <marker id="cy-a" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-            <path d="M1 1 L10 6 L1 11 z" fill="#00A0E9"/>
-          </marker>
-          <marker id="cy-b" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M1 1 L10 6 L1 11 z" fill="#0B2A5B"/>
-          </marker>
+          <marker id="cy-a" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1 L10 6 L1 11 z" fill="#00A0E9"/></marker>
+          <marker id="cy-b" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L10 6 L1 11 z" fill="#0B2A5B"/></marker>
         </defs>
-
-        <path class="arc" d="M524.1 113.1 A185 185 0 0 1 621.6 183.9" marker-end="url(#cy-a)"/>
-        <path class="arc" d="M655.0 286.8 A185 185 0 0 1 617.7 401.3" marker-end="url(#cy-a)"/>
-        <path class="arc" d="M530.2 464.9 A185 185 0 0 1 409.8 464.9" marker-end="url(#cy-a)"/>
-        <path class="arc" d="M322.3 401.3 A185 185 0 0 1 285.0 286.8" marker-end="url(#cy-a)"/>
-        <path class="arc back" d="M318.4 183.9 A185 185 0 0 1 415.9 113.1" marker-end="url(#cy-b)"/>
-        <text class="backlab" x="330" y="96" text-anchor="middle">蓄積が次の発見をつくる</text>
-
-        <circle class="core" cx="470" cy="290" r="112"/>
-        <text class="coretx" x="470" y="278">使うほど、精度が上がる</text>
-        <text class="coretx" x="470" y="308">使うほど、発見が増える</text>
-
-        <circle class="node" cx="470" cy="105" r="34"/><text class="num" x="470" y="115">1</text>
-        <text class="lab" x="470" y="52" text-anchor="middle">分析する</text>
-        <text class="sub" x="470" y="73" text-anchor="middle">既存データを複雑系アプローチで分析する</text>
-
-        <circle class="node" cx="646" cy="233" r="34"/><text class="num" x="646" y="243">2</text>
-        <text class="lab" x="696" y="222">発見が生まれる</text>
-        <text class="sub" x="696" y="243">ひとつの指標では見えなかった関係性を見つける</text>
-
-        <circle class="node" cx="579" cy="440" r="34"/><text class="num" x="579" y="450">3</text>
-        <text class="lab" x="579" y="502" text-anchor="middle">実装する</text>
-        <text class="sub" x="579" y="523" text-anchor="middle">その分析をデータプラットフォームに載せる</text>
-
-        <circle class="node" cx="361" cy="440" r="34"/><text class="num" x="361" y="450">4</text>
-        <text class="lab" x="361" y="502" text-anchor="middle">現場が使う</text>
-        <text class="sub" x="361" y="523" text-anchor="middle">スタッフ・選手が日々の判断に使う</text>
-
-        <circle class="node back" cx="294" cy="233" r="34"/><text class="num on" x="294" y="243">5</text>
-        <text class="lab" x="244" y="222" text-anchor="end">データが貯まる</text>
-        <text class="sub" x="244" y="243" text-anchor="end">使うほど記録が積み上がる</text>
+        <path class="arc" d="M622.0 113.7 A225 225 0 0 1 746.5 204.2" marker-end="url(#cy-a)"/>
+        <path class="arc" d="M784.9 322.1 A225 225 0 0 1 737.3 468.5" marker-end="url(#cy-a)"/>
+        <path class="arc" d="M637.0 541.4 A225 225 0 0 1 483.0 541.4" marker-end="url(#cy-a)"/>
+        <path class="arc" d="M382.7 468.5 A225 225 0 0 1 335.1 322.1" marker-end="url(#cy-a)"/>
+        <path class="arc back" d="M373.5 204.2 A225 225 0 0 1 498.0 113.7" marker-end="url(#cy-b)"/>
+        <text class="backlab" x="370" y="68" text-anchor="middle">蓄積が次の発見をつくる</text>
+        <circle class="core" cx="560" cy="330" r="126"/>
+        <text class="coretx" x="560" y="322">使うほど、精度が上がる</text>
+        <text class="coretx" x="560" y="354">使うほど、発見が増える</text>
+        <circle class="node" cx="560.0" cy="105.0" r="36"/><text class="num" x="560.0" y="116">1</text>
+        <foreignObject x="460" y="-11" width="200" height="110">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="cy-lab" style="text-align:center"><b>分析する</b><span>既存データを複雑系アプローチで分析</span></div>
+        </foreignObject>
+        <circle class="node" cx="774.0" cy="260.5" r="36"/><text class="num" x="774.0" y="271.5">2</text>
+        <foreignObject x="830" y="214.5" width="200" height="110">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="cy-lab" style="text-align:left"><b>発見が生まれる</b><span>ひとつの指標では見えない関係が見つかる</span></div>
+        </foreignObject>
+        <circle class="node" cx="692.3" cy="512.0" r="36"/><text class="num" x="692.3" y="523">3</text>
+        <foreignObject x="700.3" y="562" width="200" height="110">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="cy-lab" style="text-align:center"><b>実装する</b><span>その分析をプラットフォームに載せる</span></div>
+        </foreignObject>
+        <circle class="node" cx="427.7" cy="512.0" r="36"/><text class="num" x="427.7" y="523">4</text>
+        <foreignObject x="219.7" y="562" width="200" height="110">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="cy-lab" style="text-align:center"><b>現場が使う</b><span>スタッフ・選手が日々の判断に使う</span></div>
+        </foreignObject>
+        <circle class="node back" cx="346.0" cy="260.5" r="36"/><text class="num on" x="346.0" y="271.5">5</text>
+        <foreignObject x="90" y="214.5" width="200" height="110">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="cy-lab" style="text-align:right"><b>データが貯まる</b><span>使うほど記録が積み上がる</span></div>
+        </foreignObject>
       </svg>
 
       <!-- SP用：縦一列のステップ表示 -->
       <ol class="cycle-steps">
-        <li><span class="n">1</span><b>分析する</b><small>既存データを複雑系アプローチで分析する</small></li>
-        <li><span class="n">2</span><b>発見が生まれる</b><small>ひとつの指標では見えなかった関係性を見つける</small></li>
-        <li><span class="n">3</span><b>実装する</b><small>その分析をデータプラットフォームに載せる</small></li>
+        <li><span class="n">1</span><b>分析する</b><small>既存データを複雑系アプローチで分析</small></li>
+        <li><span class="n">2</span><b>発見が生まれる</b><small>ひとつの指標では見えない関係が見つかる</small></li>
+        <li><span class="n">3</span><b>実装する</b><small>その分析をプラットフォームに載せる</small></li>
         <li><span class="n">4</span><b>現場が使う</b><small>スタッフ・選手が日々の判断に使う</small></li>
         <li><span class="n">5</span><b>データが貯まる</b><small>使うほど記録が積み上がる</small></li>
         <li class="back"><span class="n" aria-hidden="true">↑</span><b>1へ戻る</b><small>蓄積が次の発見をつくる</small></li>
