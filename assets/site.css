@@ -236,7 +236,7 @@ header.site{
 .flow-step{position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:28px 18px 22px;text-align:center;transition:.25s}
 .flow-step:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--cyan)}
 .flow-ic{width:60px;height:60px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-size:28px;color:var(--blue);background:linear-gradient(135deg,#E0F5FD,#CCE9F6)}
-.flow-step h4{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:7px}
+.flow-step h3{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:7px}
 .flow-step p{font-size:12.5px;color:var(--sub);line-height:1.65}
 .flow-step .stepn{position:absolute;top:12px;left:14px;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--blue);background:#E0F5FD;border-radius:7px;padding:2px 8px}
 /* フロー矢印：塗りつぶし三角（border ハックは使わない） */
@@ -250,11 +250,11 @@ header.site{
   border-radius:var(--radius-sm);padding:22px 24px;margin-top:30px;
 }
 .callout .cic{font-size:26px;flex-shrink:0;color:var(--orange)}
-.callout h4{font-size:16px;font-weight:800;color:#8a5a00;margin-bottom:6px}
+.callout h3{font-size:16px;font-weight:800;color:#8a5a00;margin-bottom:6px}
 .callout p{font-size:14px;color:#6b4e1a;line-height:1.7}
 .callout.info{background:#EAF7FF;border-color:#BFE6FA;border-left-color:var(--blue)}
 .callout.info .cic{color:var(--blue)}
-.callout.info h4{color:var(--navy)}
+.callout.info h3{color:var(--navy)}
 .callout.info p{color:var(--sub)}
 
 /* ───── 数値の注記（脚注） ───── */
@@ -359,7 +359,7 @@ sup.fn{font-size:11px;color:var(--blue);font-weight:700}
 .news-item summary:hover .ttl{color:var(--blue)}
 .news-item .body{padding:4px 24px 26px;font-size:14.5px;color:var(--text);line-height:1.95;border-top:1px solid var(--bg)}
 .news-item .body p{margin:14px 0 0}
-.news-item .body h4{font-size:15.5px;font-weight:800;color:var(--navy);margin:22px 0 0}
+.news-item .body h3{font-size:15.5px;font-weight:800;color:var(--navy);margin:22px 0 0}
 .news-item .body .note{font-size:12.5px;color:var(--sub)}
 /* トップページ用ミニリスト */
 .news-mini{max-width:820px;margin:36px auto 0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
@@ -412,7 +412,7 @@ footer.site{background:var(--navy-deep);color:#9fb8d6;padding:60px 0 40px;font-s
 @media(max-width:520px){.foot-grid{grid-template-columns:1fr}}
 .foot-brand img{height:28px;filter:brightness(0) invert(1);opacity:.92;margin-bottom:16px}
 .foot-brand p{font-size:12.5px;line-height:1.8}
-.foot-col h4{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7FE3FF;margin-bottom:14px}
+.foot-col h3{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7FE3FF;margin-bottom:14px}
 .foot-col a{display:block;padding:5px 0;font-size:13px;color:#cfe6f5;opacity:.85;transition:.15s}
 .foot-col a:hover{opacity:1;color:#7FE3FF}
 .foot-bottom{border-top:1px solid rgba(159,184,214,.2);padding-top:24px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;opacity:.75}
