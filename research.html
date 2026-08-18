@@ -46,7 +46,7 @@
   <symbol id="i-signal" viewBox="0 0 24 24"><circle cx="12" cy="17.5" r="1.5" fill="currentColor" stroke="none"/><path d="M8 13.5 a5.6 5.6 0 0 1 8 0"/><path d="M5.3 10.6 a9.4 9.4 0 0 1 13.4 0"/></symbol>
   <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polygon points="12,8 15.3,10.4 14,14.3 10,14.3 8.7,10.4"/><line x1="12" y1="8" x2="12" y2="4.5"/><line x1="15.3" y1="10.4" x2="18.5" y2="9.2"/><line x1="14" y1="14.3" x2="16" y2="17.3"/><line x1="10" y1="14.3" x2="8" y2="17.3"/><line x1="8.7" y1="10.4" x2="5.5" y2="9.2"/></symbol>
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
-  <symbol id="i-sliders" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="2.1" fill="#fff"/><circle cx="15" cy="12" r="2.1" fill="#fff"/><circle cx="8" cy="17" r="2.1" fill="#fff"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="2.1" fill="none"/><circle cx="15" cy="12" r="2.1" fill="none"/><circle cx="8" cy="17" r="2.1" fill="none"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><polyline points="12,7 12,12 15.5,14"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 L19 6 V11 C19 16 16 19 12 21 C8 19 5 16 5 11 V6 Z"/><polyline points="9,12 11,14 15,9.5"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><polyline points="5,12.5 10,17 19,6.5"/></symbol>
@@ -78,6 +78,8 @@
   <symbol id="i-versus" viewBox="0 0 24 24"><circle cx="6.6" cy="7.4" r="2.6"/><path d="M2.6 19 a4 4 0 0 1 8 0"/><circle cx="17.4" cy="7.4" r="2.6"/><path d="M13.4 19 a4 4 0 0 1 8 0"/><line x1="12" y1="3.5" x2="12" y2="20.5" stroke-dasharray="2.4 2.6"/></symbol>
   <symbol id="i-mind" viewBox="0 0 24 24"><path d="M15.4 20.4 V17.6 a6.6 6.6 0 1 0 -8.2 -6.4 c0 1.6 .6 2.6 1.4 3.6 .6 .8 .8 1.2 .8 2.2 v3.4"/><path d="M12 13.6 c-1.4 -1.2 -2.4 -2 -2.4 -3.1 a1.5 1.5 0 0 1 2.4 -1.1 a1.5 1.5 0 0 1 2.4 1.1 c0 1.1 -1 1.9 -2.4 3.1 z"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6" stroke-dasharray="3 3"/><line x1="12" y1="8.2" x2="12" y2="15.8"/><line x1="8.2" y1="12" x2="15.8" y2="12"/></symbol>
+  <!-- 図解用の矢印：塗りつぶし三角（線の矢印 i-arrow とは用途を分ける） -->
+  <symbol id="i-arrow-solid" viewBox="0 0 24 24"><line x1="3" y1="12" x2="15" y2="12" stroke-width="2"/><path d="M14 6.5 L21 12 L14 17.5 z" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-stack" viewBox="0 0 24 24"><path d="M12 3.2 L21 7.6 L12 12 L3 7.6 Z"/><polyline points="3,12 12,16.4 21,12"/><polyline points="3,16.4 12,20.8 21,16.4"/></symbol>
   <symbol id="i-screen" viewBox="0 0 24 24"><rect x="2.8" y="4.2" width="18.4" height="12.6" rx="2.2"/><line x1="8.4" y1="20.4" x2="15.6" y2="20.4"/><line x1="12" y1="16.8" x2="12" y2="20.4"/><polyline points="6.6,12.6 9.4,9.4 11.8,11.6 15,7.6"/></symbol>
 </defs>
@@ -123,7 +125,7 @@
 <div class="phero">
   <canvas id="pheroNet"></canvas>
   <div class="wrap">
-    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px"><use href="#i-arrow"/></svg> 実績・研究</div>
+    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px" aria-hidden="true"><use href="#i-arrow"/></svg> 実績・研究</div>
     <h1><span class="np">「本当に効くのか？」に、</span><span class="np">数字で答える。</span></h1>
     <p class="lead">
       <span class="np">Odonataの分析・プロダクトは、</span><span class="np">大学トップレベルの競技現場での</span><span class="np">実証と、</span><span class="np">学術研究の上に</span><span class="np">立っています。</span>
@@ -261,23 +263,23 @@
     </div>
     <div class="feat-grid">
       <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-network"/></svg></div>
         <h3>心理ネットワークアプローチ</h3>
         <p>心理状態を症状・要因の相互作用ネットワークとして捉える研究知見を、コンディション分析にそのまま応用しています。</p>
       </div>
       <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-flask"/></svg></div>
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg></div>
         <h3>脳科学・認知科学・スポーツ科学</h3>
         <p>知覚・意思決定・運動制御の研究バックグラウンドが、「現場の判断を支える」というプロダクトの設計思想を支えています。</p>
       </div>
       <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-users"/></svg></div>
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></div>
         <h3>研究を直接、実装する体制</h3>
         <p>研究知見の実装を外注せず、研究者自身が設計・開発。論文からピッチまでの距離が、圧倒的に近いチームです。</p>
       </div>
     </div>
     <div class="center" style="margin-top:36px">
-      <a class="tlink" href="company.html">メンバーの詳細へ <svg class="ic"><use href="#i-arrow"/></svg></a>
+      <a class="tlink" href="company.html">メンバーの詳細へ <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -299,8 +301,8 @@
       <h2><span class="np">まずは、チームの</span><span class="np">データの状況から</span><span class="np">お聞かせください。</span></h2>
       <p><span class="np">実証の詳細・分析事例を含む</span><span class="np">サービス資料をご用意しています。</span></p>
       <div class="cta-actions">
-        <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
+        <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-line" href="contact.html"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
       </div>
     </div>
   </div>

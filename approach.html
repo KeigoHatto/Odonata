@@ -137,7 +137,7 @@
   <symbol id="i-signal" viewBox="0 0 24 24"><circle cx="12" cy="17.5" r="1.5" fill="currentColor" stroke="none"/><path d="M8 13.5 a5.6 5.6 0 0 1 8 0"/><path d="M5.3 10.6 a9.4 9.4 0 0 1 13.4 0"/></symbol>
   <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polygon points="12,8 15.3,10.4 14,14.3 10,14.3 8.7,10.4"/><line x1="12" y1="8" x2="12" y2="4.5"/><line x1="15.3" y1="10.4" x2="18.5" y2="9.2"/><line x1="14" y1="14.3" x2="16" y2="17.3"/><line x1="10" y1="14.3" x2="8" y2="17.3"/><line x1="8.7" y1="10.4" x2="5.5" y2="9.2"/></symbol>
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
-  <symbol id="i-sliders" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="2.1" fill="#fff"/><circle cx="15" cy="12" r="2.1" fill="#fff"/><circle cx="8" cy="17" r="2.1" fill="#fff"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="2.1" fill="none"/><circle cx="15" cy="12" r="2.1" fill="none"/><circle cx="8" cy="17" r="2.1" fill="none"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><polyline points="12,7 12,12 15.5,14"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 L19 6 V11 C19 16 16 19 12 21 C8 19 5 16 5 11 V6 Z"/><polyline points="9,12 11,14 15,9.5"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><polyline points="5,12.5 10,17 19,6.5"/></symbol>
@@ -169,6 +169,8 @@
   <symbol id="i-versus" viewBox="0 0 24 24"><circle cx="6.6" cy="7.4" r="2.6"/><path d="M2.6 19 a4 4 0 0 1 8 0"/><circle cx="17.4" cy="7.4" r="2.6"/><path d="M13.4 19 a4 4 0 0 1 8 0"/><line x1="12" y1="3.5" x2="12" y2="20.5" stroke-dasharray="2.4 2.6"/></symbol>
   <symbol id="i-mind" viewBox="0 0 24 24"><path d="M15.4 20.4 V17.6 a6.6 6.6 0 1 0 -8.2 -6.4 c0 1.6 .6 2.6 1.4 3.6 .6 .8 .8 1.2 .8 2.2 v3.4"/><path d="M12 13.6 c-1.4 -1.2 -2.4 -2 -2.4 -3.1 a1.5 1.5 0 0 1 2.4 -1.1 a1.5 1.5 0 0 1 2.4 1.1 c0 1.1 -1 1.9 -2.4 3.1 z"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6" stroke-dasharray="3 3"/><line x1="12" y1="8.2" x2="12" y2="15.8"/><line x1="8.2" y1="12" x2="15.8" y2="12"/></symbol>
+  <!-- 図解用の矢印：塗りつぶし三角（線の矢印 i-arrow とは用途を分ける） -->
+  <symbol id="i-arrow-solid" viewBox="0 0 24 24"><line x1="3" y1="12" x2="15" y2="12" stroke-width="2"/><path d="M14 6.5 L21 12 L14 17.5 z" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-stack" viewBox="0 0 24 24"><path d="M12 3.2 L21 7.6 L12 12 L3 7.6 Z"/><polyline points="3,12 12,16.4 21,12"/><polyline points="3,16.4 12,20.8 21,16.4"/></symbol>
   <symbol id="i-screen" viewBox="0 0 24 24"><rect x="2.8" y="4.2" width="18.4" height="12.6" rx="2.2"/><line x1="8.4" y1="20.4" x2="15.6" y2="20.4"/><line x1="12" y1="16.8" x2="12" y2="20.4"/><polyline points="6.6,12.6 9.4,9.4 11.8,11.6 15,7.6"/></symbol>
 </defs>
@@ -213,7 +215,7 @@
 <!-- ═══════════ 1. リード：セイルーロの言葉 ═══════════ -->
 <section class="quote-hero" style="padding-bottom:70px">
   <div class="wrap">
-    <div class="crumb" style="justify-content:center"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px"><use href="#i-arrow"/></svg> 複雑系アプローチ</div>
+    <div class="crumb" style="justify-content:center"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px" aria-hidden="true"><use href="#i-arrow"/></svg> 複雑系アプローチ</div>
     <h1 class="q reveal" style="font-family:'Zen Kaku Gothic New','Manrope',sans-serif;font-size:clamp(24px,4.6vw,52px);line-height:1.6"><span class="np">複雑性を避けていては、</span><br><span class="np">何も向上することはできない。</span></h1>
     <div class="attr reveal">— フランシスコ・セイルーロ（元FCバルセロナ フィジカルコーチ）</div>
     <p class="body reveal">
@@ -314,19 +316,19 @@
     <p class="sec-sub"><span class="np">現場の主要な4つの領域すべてで、</span><span class="np">「足し算」は成り立ちません。</span></p>
     <div class="domain-grid">
       <div class="domain reveal">
-        <h3><svg class="ic"><use href="#i-ball"/></svg> パフォーマンス</h3>
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-ball"/></svg> パフォーマンス</h3>
         <p>ボール支配率で上回っても、勝てない試合がある。<b>誰と誰が、どうつながるか</b>——個の能力値の合計ではなく、選手間の相互作用がチームの強さを決めます。</p>
       </div>
       <div class="domain reveal">
-        <h3><svg class="ic"><use href="#i-pulse"/></svg> 怪我</h3>
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-pulse"/></svg> 怪我</h3>
         <p>負荷・疲労・睡眠・日程・心理。<b>単独では正常な要因の「重なり」</b>がリスクを生む。だから単一指標の監視では、怪我は読めません。</p>
       </div>
       <div class="domain reveal">
-        <h3><svg class="ic"><use href="#i-target"/></svg> 育成</h3>
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg> 育成</h3>
         <p>同じトレーニングが、同じ効果を生むとは限らない。選手の状態・環境・タイミングとの<b>組み合わせで、効果は非線形に変わります</b>。</p>
       </div>
       <div class="domain reveal">
-        <h3><svg class="ic"><use href="#i-users"/></svg> 補強・編成</h3>
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> 補強・編成</h3>
         <p>個として測った能力が、チームの文脈で同じように発揮されるとは限らない。<b>「どのチームで、誰と組むか」</b>で価値は変わります。</p>
       </div>
     </div>
@@ -336,17 +338,17 @@
     <p class="sec-sub"><span class="np">サッカーを複雑系として捉える見方は、</span><span class="np">スポーツ科学の研究と</span><span class="np">トップレベルの現場の、</span><span class="np">世界的な潮流です。</span></p>
     <div class="feat-grid">
       <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-eye"/></svg></div>
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></div>
         <h3>Ecological Dynamics</h3>
         <p>選手を環境から切り離さず、<strong>選手と環境の相互作用</strong>を単位としてスキル獲得や戦術行動を捉える理論的枠組み。トレーニング設計の国際的な潮流になっています。<sup class="fn">※1</sup></p>
       </div>
       <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-hub"/></svg></div>
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-hub"/></svg></div>
         <h3>創発的パターン形成の研究</h3>
         <p>チームを<strong>「超個体」</strong>として捉え、選手間の同期・協調から生まれる集団構造をネットワークや力学系の手法で定量化する研究が進んでいます。<sup class="fn">※2</sup></p>
       </div>
       <div class="feat reveal">
-        <div class="ficon"><svg class="ic"><use href="#i-ball"/></svg></div>
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-ball"/></svg></div>
         <h3>ポジショナルプレー</h3>
         <p>現代戦術の焦点は「個の配置」から<strong>「関係性の設計」</strong>へ。位置的優位も数的優位も、選手どうし・相手との関係の中でしか生まれません。</p>
       </div>
@@ -391,7 +393,7 @@
       </div>
     </div>
     <div class="center" style="margin-top:36px">
-      <a class="tlink" href="service-platform.html">プラットフォームの詳細へ <svg class="ic"><use href="#i-arrow"/></svg></a>
+      <a class="tlink" href="service-platform.html">プラットフォームの詳細へ <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -402,16 +404,16 @@
     <h2 class="sec-h"><span class="np">このアプローチを、</span><span class="np">あなたの現場で。</span></h2>
     <div class="feat-grid cols2" style="max-width:880px;margin-left:auto;margin-right:auto">
       <a class="feat reveal" href="service-analysis.html">
-        <div class="ficon"><svg class="ic"><use href="#i-network"/></svg></div>
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-network"/></svg></div>
         <h3>データ分析・伴走支援</h3>
         <p>すでにデータをお持ちのチームへ。保有データを複雑系アプローチで分析し、示唆までお届けします。</p>
-        <span class="more" style="color:var(--cyan)">詳しく見る <svg class="ic"><use href="#i-arrow"/></svg></span>
+        <span class="more" style="color:var(--cyan)">詳しく見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
       <a class="feat reveal" href="service-platform.html">
-        <div class="ficon"><svg class="ic"><use href="#i-hub"/></svg></div>
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-hub"/></svg></div>
         <h3>データプラットフォーム</h3>
         <p>記録・管理から始めたいチームへ。散らばるデータをひとつにし、分析までを日常にします。</p>
-        <span class="more" style="color:var(--cyan)">詳しく見る <svg class="ic"><use href="#i-arrow"/></svg></span>
+        <span class="more" style="color:var(--cyan)">詳しく見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
     </div>
   </div>
@@ -424,8 +426,8 @@
       <h2><span class="np">まずは、チームの</span><span class="np">データの状況から</span><span class="np">お聞かせください。</span></h2>
       <p><span class="np">複雑系アプローチの詳細と</span><span class="np">分析事例をまとめた資料を</span><span class="np">ご用意しています。</span></p>
       <div class="cta-actions">
-        <a class="btn btn-navy" href="demo.html">デモを見る <svg class="ic"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn-line" href="contact.html"><svg class="ic"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
+        <a class="btn btn-navy" href="demo.html">デモを見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-line" href="contact.html"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
       </div>
     </div>
   </div>
