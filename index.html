@@ -270,6 +270,16 @@
   .cycle-tags ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0}
   .cycle-tags li{font-size:14px;font-weight:700;color:#1F4A63;background:#fff;
     border:1px solid var(--border);border-radius:999px;padding:9px 18px}
+  .cycle-tags .tags-lead{margin:0 auto 18px;max-width:var(--readw);font-size:14.5px;color:#3A5A6B;line-height:1.85}
+  /* 提供中：濃色＋矢印＋下線（色だけで区別しない）／今後：淡色・リンクにしない */
+  .cycle-tags .t-live{padding:0}
+  .cycle-tags .t-live a{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:800;
+    color:#fff;background:#0B2A5B;border:1px solid #0B2A5B;border-radius:999px;padding:9px 18px;
+    text-decoration:underline;text-underline-offset:3px}
+  .cycle-tags .t-live a:hover,.cycle-tags .t-live a:focus-visible{background:#123A72;border-color:#123A72}
+  .cycle-tags .t-live svg.ic{font-size:15px}
+  .cycle-tags .t-next{color:#3A5A6B;background:#F7FBFD;border-style:dashed;border-color:#9BB8C8}
+  .cycle-tags .t-etc{color:#3A5A6B;background:none;border:none;padding:9px 4px;font-weight:700}
   .cycle-tags .note{margin-top:18px}
   /* ───── 10 Process：直線3ステップ ＋ STEP2内の小さな循環 ───── */
   .pflow{list-style:none;display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:0;align-items:stretch;margin:48px auto 0;max-width:1040px}
@@ -748,11 +758,17 @@
     </div>
 
     <div class="cycle-tags">
-      <h3 class="tags-h">この循環から生まれている分析テーマ</h3>
+      <h3 class="tags-h">この循環から生まれる分析テーマ</h3>
+      <p class="tags-lead">濃い色は、すでに提供しているものです。それ以外は、これから生まれていくテーマの例です。</p>
       <ul>
-        <li>傷害リスク予測</li><li>ネットワーク分析</li><li>認知的負荷の可視化</li>
-        <li>練習メニューと成長の関係</li><li>対戦相手の分析</li>
-        <li>コンディションとパフォーマンスの関係</li><li>IDPと試合スタッツの関係</li>
+        <li class="t-live"><a href="service-analysis.html#injury">傷害リスク予測 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li class="t-live"><a href="service-analysis.html#network">ネットワーク分析 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li class="t-next">認知的負荷の可視化</li>
+        <li class="t-next">練習メニューと成長の関係</li>
+        <li class="t-next">対戦相手の分析</li>
+        <li class="t-next">コンディションとパフォーマンスの関係</li>
+        <li class="t-next">IDPと試合スタッツの関係</li>
+        <li class="t-etc">…など</li>
       </ul>
       <p class="note">データの組み合わせが増えるほど、分析できるテーマも増えていきます。</p>
     </div>
