@@ -360,6 +360,10 @@
     .ploop-back-sp{margin-top:6px;font-size:13px;font-weight:800;color:#0B2A5B}
   }
   /* ───── 08 Proof：何を実証したか ───── */
+  .proof-photo{max-width:900px;margin:44px auto 0;border-radius:0;overflow:hidden}
+  .proof-photo picture{display:block}
+  .proof-photo img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover}
+  .proof-photo .photo-note{margin-top:10px}
   .proof-what{max-width:var(--readw);margin:40px auto 0}
   .proof-what h3{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:10px}
   .proof-what p{font-size:16px;color:#3A5A6B;line-height:1.9}
@@ -857,6 +861,15 @@
       <h2 class="section-title" id="proof-heading"><span class="np">筑波大学蹴球部に導入し、</span><span class="np">実証を続けています。</span></h2>
       <p class="section-lead center"><span class="np">2026年6月から、</span><span class="np">大学トップレベルの競技環境で</span><span class="np">日常的に使われています。</span><span class="np">同時に、</span><span class="np">モデルの精度検証も続けています。</span></p>
     </div>
+
+    <figure class="proof-photo">
+      <picture>
+        <source type="image/webp" srcset="assets/photo-training-session@828.webp 828w, assets/photo-training-session.webp 1672w" sizes="(max-width:1023px) 100vw, 900px">
+        <source type="image/jpeg" srcset="assets/photo-training-session@828.jpg 828w, assets/photo-training-session.jpg 1672w" sizes="(max-width:1023px) 100vw, 900px">
+        <img src="assets/photo-training-session.jpg" alt="グラウンドでパス練習をする選手たちと、手前でタブレットを見るスタッフ" width="1672" height="941" loading="lazy">
+      </picture>
+      <figcaption class="photo-note">※写真はイメージです。</figcaption>
+    </figure>
 
     <div class="proof-what">
       <h3>何を実証したか</h3>
