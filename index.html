@@ -56,6 +56,20 @@
   .hero-offer b{display:block;font-size:clamp(18px,1.5vw,20px);font-weight:800;color:var(--navy);
     line-height:1.5;word-break:normal;overflow-wrap:break-word;line-break:strict}
   .hero-offer small{display:block;font-size:15px;color:var(--sub);line-height:1.75;margin-top:10px;
+  /* 2枚を色で分ける。色だけに頼らずアイコンの形も変える（分析＝ネットワーク／基盤＝画面） */
+  .hero-offer a{position:relative;overflow:hidden}
+  .hero-offer a::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+  /* 01 データ分析・伴走支援：白地＋ブランドブルー */
+  .offer-analysis::before{background:var(--blue)}
+  .offer-analysis svg.ic{color:var(--color-primary-strong)}
+  .offer-analysis:hover,.offer-analysis:focus-visible{background:#F2FAFE}
+  /* 02 データプラットフォーム：濃紺地＋シアン */
+  .offer-platform{background:#0B2A5B;border-color:#0B2A5B}
+  .offer-platform::before{background:#7FE3FF}
+  .offer-platform b{color:#FFFFFF}
+  .offer-platform small{color:#D2E3F1}
+  .offer-platform svg.ic,.offer-platform .go{color:#7FE3FF}
+  .offer-platform:hover,.offer-platform:focus-visible{background:#123A72;border-color:#123A72}
     word-break:normal;overflow-wrap:break-word;line-break:strict}
 
   /* ───── Heroビジュアル：現場の写真1枚（角丸なし） ───── */
@@ -426,12 +440,12 @@
 
     <!-- 提供するもの：Heroの下に全幅で配置する（左カラム内だと横幅が足りず文字が細く折り返すため） -->
     <div class="hero-offer">
-      <a href="service-analysis.html">
+      <a class="offer-analysis" href="service-analysis.html">
         <svg class="ic" aria-hidden="true"><use href="#i-network"/></svg>
         <span><b>データ分析・伴走支援</b><small>既存データを分析し、これまで見えなかった発見を見出す</small></span>
         <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
       </a>
-      <a href="service-platform.html">
+      <a class="offer-platform" href="service-platform.html">
         <svg class="ic" aria-hidden="true"><use href="#i-screen"/></svg>
         <span><b>データプラットフォーム</b><small>その分析を、現場が毎日使えるWebアプリとして届ける</small></span>
         <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
