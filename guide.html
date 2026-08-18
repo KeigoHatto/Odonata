@@ -18,7 +18,7 @@
     --bg:#E0F5FD; --card:#FFFFFF; --text:#15233B; --sub:#5A7A8A;
     --border:#CCE9F6; --blue:#00A0E9; --navy:#0B2A5B; --navy-deep:#071A3A;
     --cyan:#3FC8F0; --teal:#1B8FB3; --red:#DC2626; --green:#16A34A;
-    --orange:#FF9933; --radius:18px; --radius-sm:12px;
+    --orange:#FF9933; --color-primary-strong:#0A5E93; --radius:18px; --radius-sm:12px;
     --shadow:0 10px 30px rgba(11,42,91,.08); --shadow-lg:0 24px 60px rgba(11,42,91,.16);
     --grad-hero:linear-gradient(135deg,#071A3A 0%,#0B2A5B 38%,#0E5F9E 72%,#00A0E9 100%);
   }
@@ -43,7 +43,7 @@
   .nav-logo img{height:30px}
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{font-size:14px;font-weight:600;color:var(--navy);opacity:.8;transition:.2s}
-  .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--blue)}
+  .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--color-primary-strong)}
   .nav-cta{background:var(--navy);color:#fff!important;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:700;opacity:1!important;display:inline-flex;align-items:center;gap:7px}
   .nav-cta:hover{background:var(--blue)}
   .nav-login{color:var(--navy)!important;padding:8px 18px;border-radius:999px;border:1.5px solid var(--navy);font-size:13px;font-weight:700;opacity:1!important;display:inline-flex;align-items:center;gap:7px}
@@ -66,7 +66,7 @@
   .toc{position:sticky;top:90px}
   @media(max-width:920px){.toc{position:static}}
   .toc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;box-shadow:var(--shadow)}
-  .toc-card .toc-h{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin:14px 8px 8px}
+  .toc-card .toc-h{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary-strong);margin:14px 8px 8px}
   .toc-card .toc-h:first-child{margin-top:4px}
   .toc-card a{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:9px;font-size:13.5px;color:var(--navy);font-weight:600;transition:.15s}
   .toc-card a:hover{background:var(--bg);color:var(--blue)}
@@ -87,7 +87,7 @@
   .doc ul,.doc ol{margin:6px 0 16px 4px;padding-left:22px}
   .doc li{font-size:14.5px;margin-bottom:7px}
   .doc b,.doc strong{color:var(--navy)}
-  .doc a.inl{color:var(--blue);font-weight:700;border-bottom:1px solid rgba(0,160,233,.35)}
+  .doc a.inl{color:var(--color-primary-strong);font-weight:700;border-bottom:1px solid rgba(0,160,233,.35)}
 
   /* step list */
   .steps{list-style:none;counter-reset:s;margin:8px 0 18px;padding:0}
@@ -129,10 +129,10 @@
   .gflow{display:flex;align-items:stretch;gap:7px;margin:18px 0}
   .gflow .gf{flex:1;min-width:0;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 14px 11px}
   .gflow .gf .gfn{display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;font-size:12px;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;margin-bottom:6px}
-  .gflow .gf .who{display:block;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--blue);margin-bottom:2px}
+  .gflow .gf .who{display:block;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--color-primary-strong);margin-bottom:2px}
   .gflow .gf h3{font-size:14px;font-weight:800;color:var(--navy);margin:0;line-height:1.45}
   .gflow .gf p{font-size:12px;color:var(--sub);margin:4px 0 0;line-height:1.65}
-  .gflow .ga{display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:800;font-size:17px;flex:none;padding:0 1px}
+  .gflow .ga{display:flex;align-items:center;justify-content:center;color:var(--color-primary-strong);font-weight:800;font-size:17px;flex:none;padding:0 1px}
   .gflow.compact .gf{padding:11px 12px 10px;text-align:center}
   .gflow.compact .gf h3{font-size:13px}
   .gflow.compact .gf .gfn{margin:0 auto 6px}
@@ -150,7 +150,7 @@
   .tl{position:relative;padding-bottom:18px}
   .tl:last-child{padding-bottom:2px}
   .tl::before{content:'';position:absolute;left:-30px;top:4px;width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
-  .tl .tl-time{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--blue)}
+  .tl .tl-time{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--color-primary-strong)}
   .tl .tl-body{font-size:13.5px;line-height:1.8;margin-top:2px}
   .tl .tl-body b{color:var(--navy)}
 
@@ -178,10 +178,10 @@
   .vs-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:22px;flex:none}
   .vs-temporal .vs-icon{background:#E0F5FD;color:var(--blue)} .vs-contemp .vs-icon{background:#FFF1E6;color:var(--orange)}
   .vs-card h4{font-size:17px;font-weight:800;color:var(--navy);margin:0}
-  .vs-card .subt{font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--blue)}
+  .vs-card .subt{font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--color-primary-strong)}
   .vs-contemp .subt{color:var(--orange)}
   .vs-card .tagline{font-weight:800;font-size:14px;margin-bottom:6px}
-  .vs-temporal .tagline{color:var(--blue)} .vs-contemp .tagline{color:var(--orange)}
+  .vs-temporal .tagline{color:var(--color-primary-strong)} .vs-contemp .tagline{color:var(--orange)}
   .vs-card p{font-size:13.5px;margin-bottom:8px}
   .vs-card code{background:var(--bg);padding:1px 6px;border-radius:5px;font-weight:700;font-family:inherit}
   .vs-card .ex{background:var(--bg);border-radius:9px;padding:11px 13px;font-size:12.5px;line-height:1.85;margin-top:8px}
@@ -443,7 +443,7 @@
     </section>
 
     <!-- ══════════ 選手向け ══════════ -->
-    <h2 id="player" style="font-size:15px;font-weight:800;letter-spacing:.12em;color:var(--blue);margin:8px 4px 14px;text-transform:uppercase">For Players ／ 選手向け</h2>
+    <h2 id="player" style="font-size:15px;font-weight:800;letter-spacing:.12em;color:var(--color-primary-strong);margin:8px 4px 14px;text-transform:uppercase">For Players ／ 選手向け</h2>
 
     <!-- コンディション入力 -->
     <section class="doc" id="p-cond">
@@ -649,7 +649,7 @@
     </section>
 
     <!-- ══════════ コーチ向け ══════════ -->
-    <h2 id="coach" style="font-size:15px;font-weight:800;letter-spacing:.12em;color:var(--blue);margin:30px 4px 14px;text-transform:uppercase">For Coaches ／ コーチ・スタッフ向け</h2>
+    <h2 id="coach" style="font-size:15px;font-weight:800;letter-spacing:.12em;color:var(--color-primary-strong);margin:30px 4px 14px;text-transform:uppercase">For Coaches ／ コーチ・スタッフ向け</h2>
 
     <!-- 切替 -->
     <section class="doc" id="c-switch">

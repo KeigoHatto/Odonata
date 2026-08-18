@@ -42,7 +42,7 @@
   .hero-offer a{
     display:grid;grid-template-columns:auto 1fr auto;align-items:start;gap:14px;
     min-height:180px;padding:24px 26px 22px;border-radius:14px;align-content:start;
-    background:#fff;border:1.5px solid var(--border);transition:.2s;
+    background:#fff;border:1.5px solid var(--color-border-strong);transition:.2s;
   }
   /* 状態は色だけでなく、枠線の太さと下線でも示す */
   .hero-offer a:hover,.hero-offer a:focus-visible{
@@ -51,7 +51,7 @@
   .hero-offer a:hover b,.hero-offer a:focus-visible b{text-decoration:underline;text-underline-offset:4px}
   .hero-offer a:hover .go,.hero-offer a:focus-visible .go{transform:translateX(4px)}
   .hero-offer svg.ic{color:var(--blue);font-size:28px;flex:none;margin-top:1px}
-  .hero-offer .go{font-size:19px;color:var(--blue);transition:transform .2s;align-self:center}
+  .hero-offer .go{font-size:19px;color:var(--color-primary-strong);transition:transform .2s;align-self:center}
   /* 日本語の禁則処理を壊さないため break-all は使わない */
   .hero-offer b{display:block;font-size:clamp(18px,1.5vw,20px);font-weight:800;color:var(--navy);
     line-height:1.5;word-break:normal;overflow-wrap:break-word;line-break:strict}
@@ -150,7 +150,7 @@
 
   /* ───── 02 Odonataについて ───── */
   .sec-en{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:.28em;
-    color:var(--blue);text-transform:uppercase;margin-bottom:10px}
+    color:var(--color-primary-strong);text-transform:uppercase;margin-bottom:10px}
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.6vw,68px);align-items:center}
   @media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:32px}}
   .about-txt p{font-size:16px;color:var(--sub);line-height:1.95;max-width:var(--readw)}
