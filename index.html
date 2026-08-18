@@ -77,7 +77,8 @@
   .hero-vis{position:relative;min-width:0}
   /* 写真はアスペクト比を維持（height指定をしない）／角丸なし・装飾は1pxの線のみ */
   .hero-photo{border-radius:0;overflow:hidden;background:#fff;border:1px solid rgba(11,42,91,.14)}
-  .hero-photo img{width:100%;height:auto;display:block;object-fit:contain}
+  .hero-photo picture{display:block}
+  .hero-photo img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover;object-position:70% 50%}
   .hero-photo.main{width:100%}
   /* 〜1023px：コピー → 写真 の縦積み */
   @media(max-width:1023px){.hero-vis{max-width:720px;margin:0 auto}}
@@ -493,9 +494,13 @@
       <!-- 現場（上）と分析（下）の2枚を重ね、間に関係性のノードを走らせる -->
       <div class="hero-vis">
         <figure class="hero-photo main">
-          <img src="assets/photo-hero-tablet.png"
-               alt="練習中のピッチサイドで、スタッフがタブレットに表示されたチームのデータを確認している様子"
-               width="1664" height="944" fetchpriority="high">
+          <picture>
+            <source type="image/webp" srcset="assets/photo-coach-tablet@828.webp 828w, assets/photo-coach-tablet.webp 1672w" sizes="(max-width:1023px) 100vw, 55vw">
+            <source type="image/jpeg" srcset="assets/photo-coach-tablet@828.jpg 828w, assets/photo-coach-tablet.jpg 1672w" sizes="(max-width:1023px) 100vw, 55vw">
+            <img src="assets/photo-coach-tablet.jpg"
+                 alt="ピッチのそばでタブレットのダッシュボードを確認するコーチ。奥では選手が練習している"
+                 width="1672" height="941" fetchpriority="high">
+          </picture>
         </figure>
       </div>
     </div>
