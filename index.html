@@ -308,6 +308,11 @@
   .why-fig .wf-core{fill:#FDECEC;stroke:#DC2626;stroke-width:2.4}
   .why-fig .wf-core-t{fill:#B03A2E;font-family:'Zen Kaku Gothic New',sans-serif;font-size:22px;font-weight:800;text-anchor:middle}
   .why-fig .wf-core-s{fill:#B03A2E;font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;font-weight:700;text-anchor:middle}
+  /* 「複雑系アプローチ」を読まなくても分かるよう特大で打ち出す */
+  .approach-name{margin:18px 0 10px;font-size:clamp(40px,5.4vw,56px);font-weight:800;
+    line-height:1.25;color:var(--color-primary-strong);letter-spacing:-.01em}
+  .approach-en{display:block;margin-top:8px;font-family:'Manrope',sans-serif;
+    font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--sub)}
   .why-fig{grid-template-areas:"fig txt" "cap txt"}
   .why-fig svg{grid-area:fig}
   .why-cap{grid-area:cap;margin-top:12px;font-size:14px;color:#3A5A6B;line-height:1.8;text-align:center}
@@ -611,7 +616,8 @@
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
       <h2 class="section-title" id="approach-heading"><span class="np">なぜ、それが</span><span class="np">分析できるのか</span></h2>
-      <p class="section-lead center">複数のデータを横断して見ているからです。</p>
+      <p class="approach-name">複雑系アプローチ<span class="approach-en">Complex Systems Approach</span></p>
+      <p class="section-lead center">指標をひとつずつ見るのではなく、指標どうしの関係性そのものを分析の単位に置いています。</p>
     </div>
 
     <div class="why-fig reveal">
@@ -645,8 +651,7 @@
       </svg>
       <p class="why-cap">単独では異常のない要因も、重なり方次第で危険域に達する。</p>
       <div class="why-txt">
-        <p>選手の傷害やパフォーマンスは、GPSだけ、疲労だけ、試合スタッツだけでは決まりません。</p>
-        <p>だからOdonataは、指標をひとつずつ見るのではなく、<strong>指標どうしの関係性</strong>そのものを分析の単位に置いています。これを複雑系アプローチと呼んでいます。</p>
+        <p>選手の傷害やパフォーマンスは、GPSだけ、疲労だけ、試合スタッツだけでは決まらないからです。</p>
         <p style="margin-top:22px"><a class="tlink" href="approach.html">複雑系アプローチの考え方を読む <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
     </div>
