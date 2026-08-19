@@ -133,7 +133,7 @@
       <a href="pricing.html">料金</a>
       <a href="company.html">会社情報</a>
       <a href="news.html">ニュース</a>
-      <span class="nav-actions">
+      <span class="nav-actions" data-ga-location="header">
         <!-- Phase 3：ここに JP | EN 切替を挿入する（.nav-lang スロット） -->
         <span class="nav-lang" aria-hidden="true"></span>
         <a class="nav-login" href="https://app.getodonata.com/login">ログイン</a>
@@ -300,7 +300,7 @@
         <a href="company.html">会社情報</a>
         <a href="philosophy.html">Philosophy</a>
       </div>
-      <div class="foot-col">
+      <div class="foot-col" data-ga-location="footer">
         <h3>Contact</h3>
         <a href="demo.html">デモを見る</a>
         <a href="news.html">ニュース</a>
@@ -341,8 +341,31 @@
   consent.addEventListener('change', () => { submitBtn.disabled = !consent.checked; });
 
   // 送信 → メール作成画面（フォームツール導入までの暫定）
+  const errBox = document.getElementById('formError');
+  const REQUIRED = [['f-purpose','お問い合わせの目的'],['f-org','所属チーム・組織名'],
+                    ['f-cat','カテゴリ'],['f-name','氏名'],['f-email','メールアドレス']];
+
   document.getElementById('contactForm').addEventListener('submit', (e) => {
     e.preventDefault();
+    // どの項目で何が起きたかをテキストで具体的に示す
+    const missing = REQUIRED.filter(([id]) => !document.getElementById(id).value.trim());
+    const mail = document.getElementById('f-email').value.trim();
+    const errs = missing.map(([, label]) => label + 'が入力されていません。');
+    if (mail && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)) {
+      errs.push('メールアドレスの形式が正しくありません。');
+    }
+    if (errs.length) {
+      errBox.innerHTML = '<strong>入力内容をご確認ください</strong><ul>' +
+        errs.map(t => '<li>' + t + '</li>').join('') + '</ul>';
+      errBox.hidden = false;
+      errBox.setAttribute('tabindex', '-1');
+      errBox.focus();
+      if (missing.length) document.getElementById(missing[0][0]).focus();
+      return;
+    }
+    errBox.hidden = true;
+    // 送信完了をアクセス解析へ通知（計測は partials/analytics.html 側で受ける）
+    document.dispatchEvent(new Event('odonata:lead'));
     const v = id => document.getElementById(id).value.trim();
     const purpose = v('f-purpose');
     const subject = `【${purpose}】${v('f-org')} ${v('f-name')}様より`;
