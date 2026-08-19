@@ -310,6 +310,7 @@
   .cycle-tags .note{margin-top:18px}
   /* ───── 10 Process：直線3ステップ ＋ STEP2内の小さな循環 ───── */
   .pflow{list-style:none;display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:0;align-items:stretch;margin:48px auto 0;max-width:1100px}
+  .pstep{height:100%;display:flex;flex-direction:column}
   @media(max-width:900px){.pflow{grid-template-columns:1fr;gap:28px}}
   .pstep{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;position:relative}
   .pstep + .pstep{margin-left:26px}
@@ -332,11 +333,9 @@
   .ploop .s2 rect{fill:#BFE3F7}
   .ploop .s3 rect{fill:#0B2A5B;stroke:#0B2A5B}
   .ploop .pl-num{fill:#0A5E93;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;letter-spacing:.1em;text-anchor:middle}
-  .ploop .pl-lab{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:17px;font-weight:800;text-anchor:middle}
-  .ploop .pl-sub{fill:#3A5A6B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11.5px;font-weight:600;text-anchor:middle}
+  .ploop .pl-lab{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:800;text-anchor:middle;white-space:nowrap}
   .ploop .pl-num.on{fill:#9FE6FF}
   .ploop .pl-lab.on{fill:#FFFFFF}
-  .ploop .pl-sub.on{fill:#D2E3F1}
   /* 矢印は marker で描く（border ハックは使わない） */
   .ploop .pl-arrow{fill:none;stroke:#00A0E9;stroke-width:2}
   .ploop .pl-back{fill:none;stroke:#0B2A5B;stroke-width:4}
@@ -355,7 +354,6 @@
     .ploop-sp li.s3{background:#0B2A5B;border-color:#0B2A5B}
     .ploop-sp .n{display:block;font-family:'Manrope',sans-serif;font-size:12.5px;font-weight:800;letter-spacing:.1em;color:#0A5E93}
     .ploop-sp b{display:block;font-size:16px;font-weight:800;color:#0B2A5B;line-height:1.5;margin-top:2px}
-    .ploop-sp span{display:block;font-size:13px;color:#3A5A6B;line-height:1.7;margin-top:2px}
     .ploop-sp li.s3 .n{color:#9FE6FF}.ploop-sp li.s3 b{color:#fff}.ploop-sp li.s3 span{color:#D2E3F1}
     .ploop-back-sp{margin-top:6px;font-size:13px;font-weight:800;color:#0B2A5B}
   }
@@ -1012,8 +1010,8 @@
         <p>限定した範囲で運用し、入力項目・UI・分析モデルを調整します。</p>
         <!-- STEP2 の中の小さな循環 -->
         <div class="ploop">
-          <svg viewBox="0 0 560 210" role="img" aria-labelledby="ploop-t">
-            <title id="ploop-t">運用 → フィードバック収集 → 改善 → ふたたび運用、という3段階の繰り返しを表した図。納得できるまでこの往復を繰り返すことを示している。</title>
+          <svg viewBox="0 0 600 210" role="img" aria-labelledby="ploop-t">
+            <title id="ploop-t">運用 → フィードバック → 改善 → ふたたび運用、という3段階の流れを表した図。現場に合うまで調整を重ねることを示している。</title>
             <defs>
               <marker id="pl-a" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                 <path d="M0 0.5 L11 6 L0 11.5 z" fill="#00A0E9"/>
@@ -1023,32 +1021,30 @@
               </marker>
             </defs>
 
-            <g class="pl-box s1"><rect x="8" y="16" width="160" height="86" rx="12"/></g>
-            <text class="pl-num" x="88" y="46">01</text>
-            <text class="pl-lab" x="88" y="72">運用</text>
-            <text class="pl-sub" x="88" y="92">限定した範囲で試験導入</text>
+            <g class="pl-box s1"><rect x="8" y="14" width="168" height="92" rx="12"/></g>
+            <text class="pl-num" x="92" y="52">01</text>
+            <text class="pl-lab" x="92" y="82">運用</text>
 
-            <g class="pl-box s2"><rect x="200" y="16" width="160" height="86" rx="12"/></g>
-            <text class="pl-num" x="280" y="46">02</text>
-            <text class="pl-lab" x="280" y="72">フィードバック収集</text>
-            <text class="pl-sub" x="280" y="92">使用感・課題・要望を集める</text>
+            <g class="pl-box s2"><rect x="216" y="14" width="168" height="92" rx="12"/></g>
+            <text class="pl-num" x="300" y="52">02</text>
+            <text class="pl-lab" x="300" y="82">フィードバック</text>
 
-            <g class="pl-box s3"><rect x="392" y="16" width="160" height="86" rx="12"/></g>
-            <text class="pl-num on" x="472" y="46">03</text>
-            <text class="pl-lab on" x="472" y="72">改善</text>
-            <text class="pl-sub on" x="472" y="92">入力項目・UI・分析モデルを調整</text>
+            <g class="pl-box s3"><rect x="424" y="14" width="168" height="92" rx="12"/></g>
+            <text class="pl-num on" x="508" y="52">03</text>
+            <text class="pl-lab on" x="508" y="82">改善</text>
 
-            <path class="pl-arrow" d="M168 59 L196 59" marker-end="url(#pl-a)"/>
-            <path class="pl-arrow" d="M360 59 L388 59" marker-end="url(#pl-a)"/>
-            <path class="pl-back" d="M472 102 L472 152 Q472 168 456 168 L104 168 Q88 168 88 152 L88 106" marker-end="url(#pl-b)"/>
-            <text class="pl-backlab" x="280" y="192">納得できるまで繰り返す</text>
+            <path class="pl-arrow" d="M176 60 L212 60" marker-end="url(#pl-a)"/>
+            <path class="pl-arrow" d="M384 60 L420 60" marker-end="url(#pl-a)"/>
+            <path class="pl-back" d="M508 106 L508 152 Q508 168 492 168 L108 168 Q92 168 92 152 L92 110" marker-end="url(#pl-b)"/>
+            <text class="pl-backlab" x="300" y="196">現場に合うまで調整</text>
           </svg>
+
           <ol class="ploop-sp">
-            <li class="s1"><span class="n">01</span><b>運用</b><span>限定した範囲で試験導入</span></li>
-            <li class="s2"><span class="n">02</span><b>フィードバック収集</b><span>使用感・課題・要望を集める</span></li>
-            <li class="s3"><span class="n">03</span><b>改善</b><span>入力項目・UI・分析モデルを調整</span></li>
+            <li class="s1"><span class="n">01</span><b>運用</b></li>
+            <li class="s2"><span class="n">02</span><b>フィードバック</b></li>
+            <li class="s3"><span class="n">03</span><b>改善</b></li>
           </ol>
-          <p class="ploop-back-sp">↑ 納得できるまで 01 へ戻って繰り返す</p>
+          <p class="ploop-back-sp">↑ 現場に合うまで 01 へ戻って調整</p>
         </div>
       </li>
 
