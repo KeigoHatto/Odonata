@@ -483,10 +483,14 @@ body.dark .btn-line{background:rgba(255,255,255,.08);color:#fff;border-color:rgb
 /* 数値の直下に置く注記：11〜12px・#4B5563以上の濃さ */
 .note{font-size:12px;line-height:1.75;color:var(--note)}
 body.dark .note{color:#BCCBDD}
-/* テキストリンク（ボタンにしないCTA） */
-.tlink{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--color-primary-strong);transition:.2s}
-.tlink:hover{gap:12px;color:var(--navy)}
-.tlink svg.ic{font-size:17px}
+/* テキストリンク（ボタンにしないCTA）：矢印は使わず、常時下線でリンクと分かるようにする */
+.tlink{display:inline-flex;align-items:baseline;gap:4px;font-size:15px;font-weight:700;
+  color:var(--color-primary-strong);text-decoration:underline;text-decoration-thickness:1px;
+  text-underline-offset:4px;transition:.2s}
+.tlink:hover,.tlink:focus-visible{text-decoration-thickness:2.5px;color:var(--navy)}
+.chev{font-size:.8em;line-height:1}
+/* ボタン内の矢印は装飾。リンクテキストは常時下線でリンクと分かるようにする */
+.btn .chev{font-size:.9em}
 body.dark .tlink{color:var(--cyan)}
 body.dark .tlink:hover{color:#fff}
 /* ブラウザフレーム付きのプロダクト画面 */

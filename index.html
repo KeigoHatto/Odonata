@@ -123,9 +123,9 @@
   .uc-1 .bs-sub{margin-top:10px;font-size:16px;color:#C9D9E8;font-weight:700}
   /* カード内のページ内リンク */
   .uc-link{margin-top:18px!important;align-self:end}
-  .uc-link a{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;
-    color:#9FE6FF;text-decoration:underline;text-underline-offset:4px}
-  .uc-link a:hover{color:#fff}
+  .uc-link a{display:inline-flex;align-items:baseline;gap:4px;font-size:14px;font-weight:700;
+    color:#9FE6FF;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+  .uc-link a:hover,.uc-link a:focus-visible{color:#fff;text-decoration-thickness:2.5px}
   .uc-2 .uc-link a,.uc-more .uc-link a{color:#0A5E93}
   .uc-2 .uc-link a:hover,.uc-more .uc-link a:hover{color:var(--navy)}
   /* カード2：ネットワーク図（白・枠線） */
@@ -299,7 +299,7 @@
   .cycle-tags .t-live{padding:0}
   .cycle-tags .t-live a{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:800;
     color:#fff;background:#0B2A5B;border:1px solid #0B2A5B;border-radius:999px;padding:9px 18px;
-    text-decoration:underline;text-underline-offset:3px}
+    text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
   .cycle-tags .t-live a:hover,.cycle-tags .t-live a:focus-visible{background:#123A72;border-color:#123A72}
   .cycle-tags .t-live svg.ic{font-size:15px}
   .cycle-tags .t-next{color:#3A5A6B;background:#F7FBFD;border-style:dashed;border-color:#9BB8C8}
@@ -507,7 +507,7 @@
           <span class="np">日々の記録を、</span><span class="np">現場で活きる判断材料に</span><span class="np">変えていきます。</span>
         </p>
         <div class="hero-actions">
-          <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-blue" href="demo.html">デモを見る<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="btn btn-line" href="contact.html"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
         </div>
       </div>
@@ -554,7 +554,7 @@
         <p><span class="np">スポーツの現場では、</span><span class="np">コンディション・GPS・試合・メディカル・育成計画といった</span><span class="np">記録が日々生まれています。</span><span class="np">けれどそれらは別々の場所に置かれ、</span><span class="np">つながらないまま</span><span class="np">積み上がっていくことがほとんどです。</span></p>
         <p><span class="np">私たちは、</span><span class="np">その散らばった記録をつなぎ直し、</span><span class="np">ひとつの指標を見ているだけでは</span><span class="np">分からなかった発見を見出す分析を</span><span class="np">行っています。</span><span class="np">そして、</span><span class="np">その分析結果を</span><span class="np">現場スタッフが日々の判断に使える</span><span class="np">Webアプリとしても提供しています。</span></p>
         <p><span class="np">研究・分析・実装のすべてを、</span><span class="np">同じチームの中で行っています。</span></p>
-        <p style="margin-top:26px"><a class="tlink" href="company.html">会社情報を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        <p style="margin-top:26px"><a class="tlink" href="company.html">会社情報を見る<span class="chev" aria-hidden="true">›</span></a></p>
       </div>
       <figure class="about-photo">
         <img src="assets/photo-staff-screens.png" alt="スタッフが複数の分析画面を並べて、チームと選手のデータを確認している様子" loading="lazy">
@@ -591,7 +591,7 @@
           <li><svg class="ic" aria-hidden="true"><use href="#i-spark"/></svg> クラブ固有の課題に合わせた、新しい分析テーマの設計・開発</li>
         </ul>
         <p class="menu-note">まだ分析例のないテーマでも、課題と保有データを伺ったうえで設計から行います。</p>
-        <p style="margin-top:24px"><a class="tlink" href="service-analysis.html">データ分析・伴走支援を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        <p style="margin-top:24px"><a class="tlink" href="service-analysis.html">データ分析・伴走支援を見る<span class="chev" aria-hidden="true">›</span></a></p>
       </div>
 
       <!-- 右：現場で使う（暗い背景＋実際のアプリ画面） -->
@@ -611,7 +611,7 @@
           <li><svg class="ic" aria-hidden="true"><use href="#i-stack"/></svg> <span>整理する<small>選手・チームを横断できる一元管理</small></span></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg> <span>読み解く<small>傷害予測・ネットワーク分析</small></span></li>
         </ul>
-        <p style="margin-top:24px"><a class="tlink" href="service-platform.html">データプラットフォームを見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        <p style="margin-top:24px"><a class="tlink" href="service-platform.html">データプラットフォームを見る<span class="chev" aria-hidden="true">›</span></a></p>
       </div>
     </div>
     <p class="photo-note">※写真はイメージです。</p>
@@ -636,7 +636,7 @@
           <p class="bs-sub">従来指標 ACWR：約5%</p>
         </div>
         <p>高リスクと判定した選手の約70%で、実際に傷害が発生しました。リスクの要因候補と、練習負荷の調整案までアプリ上に表示します。</p>
-        <p class="uc-link"><a href="#proof">実証結果の詳細を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        <p class="uc-link"><a href="#proof">実証結果の詳細を見る<span class="chev" aria-hidden="true">›</span></a></p>
         <p class="note">※筑波大学蹴球部の2022〜2025年のデータを用いた検証結果です。対象は筋肉系・非接触靱帯系・オーバーユース系の傷害に限ります。</p>
       </article>
 
@@ -668,7 +668,7 @@
         </svg>
         <h3>ネットワーク分析</h3>
         <p>コンディション・GPS・試合・メディカルを横断し、どの指標がその選手の状態の中心にあるかを可視化します。つながり方は選手ごとに違います。</p>
-        <p class="uc-link"><a href="service-analysis.html#network">ネットワーク分析の詳細を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        <p class="uc-link"><a href="service-analysis.html#network">ネットワーク分析の詳細を見る<span class="chev" aria-hidden="true">›</span></a></p>
       </article>
 
       <!-- カード3：リスト型（これから増えていくテーマ） -->
@@ -690,7 +690,7 @@
     </div>
 
     <div class="center" style="margin-top:40px">
-      <a class="tlink" href="service-analysis.html">分析の詳細を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="tlink" href="service-analysis.html">分析の詳細を見る<span class="chev" aria-hidden="true">›</span></a>
     </div>
   </div>
 </section>
@@ -737,7 +737,7 @@
       <p class="why-cap">単独では異常のない要因も、重なり方次第で危険域に達する。</p>
       <div class="why-txt">
         <p>選手の傷害やパフォーマンスは、GPSだけ、疲労だけ、試合スタッツだけでは決まらないからです。</p>
-        <p style="margin-top:22px"><a class="tlink" href="approach.html">複雑系アプローチの考え方を読む <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        <p style="margin-top:22px"><a class="tlink" href="approach.html">複雑系アプローチの考え方を読む<span class="chev" aria-hidden="true">›</span></a></p>
       </div>
     </div>
 
@@ -836,8 +836,8 @@
       <h3 class="tags-h">この循環から生まれる分析テーマ</h3>
       <p class="tags-lead">濃い色は、すでに提供しているものです。それ以外は、これから生まれていくテーマの例です。</p>
       <ul>
-        <li class="t-live"><a href="service-analysis.html#injury">傷害リスク予測 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-        <li class="t-live"><a href="service-analysis.html#network">ネットワーク分析 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li class="t-live"><a href="service-analysis.html#injury">傷害リスク予測<span class="chev" aria-hidden="true">›</span></a></li>
+        <li class="t-live"><a href="service-analysis.html#network">ネットワーク分析<span class="chev" aria-hidden="true">›</span></a></li>
         <li class="t-next">認知的負荷の可視化</li>
         <li class="t-next">練習メニューと成長の関係</li>
         <li class="t-next">対戦相手の分析</li>
@@ -932,7 +932,7 @@
 </div>
 <!-- /#partial:acwr -->
 
-    <p style="margin-top:32px;text-align:center"><a class="tlink" href="research.html">実証の詳細を見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    <p style="margin-top:32px;text-align:center"><a class="tlink" href="research.html">実証の詳細を見る<span class="chev" aria-hidden="true">›</span></a></p>
   </div>
 </section>
 
@@ -987,7 +987,7 @@
       </div>
     </div>
     <div class="center" style="margin-top:32px">
-      <a class="tlink" href="company.html">メンバーの詳細へ <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="tlink" href="company.html">メンバーの詳細へ<span class="chev" aria-hidden="true">›</span></a>
     </div>
   </div>
 </section>
@@ -1082,7 +1082,7 @@
       </a>
     </div>
     <div class="center" style="margin-top:30px">
-      <a class="tlink" href="news.html">ニュース一覧へ <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="tlink" href="news.html">ニュース一覧へ<span class="chev" aria-hidden="true">›</span></a>
     </div>
   </div>
 </section>
@@ -1094,7 +1094,7 @@
       <h2 id="cta-heading"><span class="np">まずは、チームの</span><span class="np">データの状況から</span><span class="np">お聞かせください。</span></h2>
       <p><span class="np">ヒアリング・お見積りは無料です。</span><span class="np">「データはあるが活かせていない」</span><span class="np">「紙やExcelでの入力・管理に困っている」といった</span><span class="np">段階からのご相談も歓迎します。</span></p>
       <div class="cta-actions">
-        <a class="btn btn-blue" href="demo.html">デモを見る <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-blue" href="demo.html">デモを見る<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="btn btn-line" href="contact.html"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg> 資料請求・お問い合わせ</a>
       </div>
     </div>
