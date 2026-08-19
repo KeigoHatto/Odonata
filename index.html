@@ -24,16 +24,16 @@
       linear-gradient(180deg,#FFFFFF 0%,#F5FBFE 62%,#EDF7FC 100%);
   }
   .hero canvas.netbg{opacity:.28;z-index:0}
-  .hero .wrap{position:relative;z-index:2}
+  .hero .wrap{position:relative;z-index:2;max-width:1280px}
   /* 左:右 = 5:6。コンテナ内に収め、bleed はしない */
+  /* PC（1024px〜）：左コピー／右写真の 5:6。1023px以下は縦積み */
   .hero-grid{display:grid;grid-template-columns:5fr 6fr;gap:clamp(32px,4vw,56px);align-items:center}
-  @media(max-width:1023px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+  @media(max-width:1023px){.hero-grid{grid-template-columns:1fr;gap:36px}}
   .hero h1{font-size:clamp(30px,4.2vw,46px);font-weight:800;line-height:1.34;letter-spacing:-.02em;
     margin-bottom:22px;color:var(--navy)}
   .hero h1 .grad{background:linear-gradient(96deg,#0E5F9E,#00A0E9 60%,#1B8FB3);
     -webkit-background-clip:text;background-clip:text;color:transparent}
   .hero p.lead{font-size:17px;color:var(--sub);line-height:1.95;max-width:34em;margin:0 0 34px}
-  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
 
   /* ───── 提供するもの：Hero内で2つの入口を明示 ───── */
   /* 提供するもの：Heroの下に全幅で並べる。最小280pxを確保して細い折り返しを防ぐ */
@@ -74,26 +74,11 @@
 
   /* ───── Heroビジュアル：現場の写真1枚（角丸なし） ───── */
   .hero-grid{position:relative}
-  /* 案①：左カラム（コピー＋CTA）の背後にのみ背景画像を敷く。
-     元画像は右側にネットワークが寄っているため左右反転して左に寄せる。 */
-  .hero-copy{position:relative;isolation:isolate;padding:clamp(28px,3.6vw,44px);min-width:0}
-  .hero-copy-bg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#091A33}
-  .hero-copy-bg::before{content:"";position:absolute;inset:0;
-    background:image-set(url("assets/bg-network-navy.webp") type("image/webp"),
-      url("assets/bg-network-navy.jpg") type("image/jpeg")) center/cover no-repeat;
-    transform:scaleX(-1)}
-  /* 白文字とのコントラストを確保するための濃紺オーバーレイ */
-  .hero-copy-bg::after{content:"";position:absolute;inset:0;background:rgba(9,26,51,.88)}
-  .hero-copy-inner{position:relative;z-index:1}
-  /* 背景が暗くなるため、左カラム内の文字を反転色にする */
-  .hero-copy h1{color:#fff}
-  .hero-copy h1 .grad{background:linear-gradient(96deg,#9FE6FF,#CFF3E2);
-    -webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero-copy p.lead{color:#E4EFF8}
-  .hero-copy .hero-offer{border-top-color:rgba(255,255,255,.3)}
-  .hero-copy .btn-line{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.55)}
-  .hero-copy .btn-line:hover{background:rgba(255,255,255,.2);border-color:#fff}
-  @media(max-width:1023px){.hero-copy{padding:clamp(24px,5vw,36px)}}
+  /* 左カラム：淡い背景の上に濃紺の文字（Heroの背景は netbg のアニメーションのみ） */
+  .hero-copy{min-width:0}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  @media(max-width:767px){.hero-actions{flex-direction:column;align-items:stretch}
+    .hero-actions .btn{justify-content:center}}
   .hero-vis{position:relative;min-width:0}
   /* 写真はアスペクト比を維持（height指定をしない）／角丸なし・装飾は1pxの線のみ */
   .hero-photo{border-radius:0;overflow:hidden;background:#fff;border:1px solid rgba(11,42,91,.14)}
@@ -490,8 +475,6 @@
     <div class="hero-grid">
       <!-- ▼▼ HERO COPY：Vision確定後は h1 1行と p.lead 2行のみ差し替える ▼▼ -->
       <div class="hero-copy" data-hero-copy>
-        <div class="hero-copy-bg" aria-hidden="true"></div>
-        <div class="hero-copy-inner">
         <h1 id="hero-heading"><span class="np">スポーツに、</span><span class="np"><span class="grad">もっと多様な正解を。</span></span></h1>
         <p class="lead">
           <span class="np">現場に散らばるデータをつなぎ、</span><span class="np">一人ひとり・チームごとの</span><span class="np">意思決定へ。</span><br>
@@ -515,7 +498,6 @@
           </picture>
         </figure>
       </div>
-        </div>
       </div>
 
     <!-- 提供するもの：Heroの下に全幅で配置する（左カラム内だと横幅が足りず文字が細く折り返すため） -->
