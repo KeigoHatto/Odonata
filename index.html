@@ -23,7 +23,7 @@
       radial-gradient(760px 460px at 4% 92%,rgba(11,42,91,.07),transparent 58%),
       linear-gradient(180deg,#FFFFFF 0%,#F5FBFE 62%,#EDF7FC 100%);
   }
-  .hero canvas.netbg{opacity:.28;z-index:0}
+  .hero canvas.netbg{opacity:.72;z-index:0}
   .hero .wrap{position:relative;z-index:2;max-width:1280px}
   /* 左:右 = 5:6。コンテナ内に収め、bleed はしない */
   /* PC（1024px〜）：左コピー／右写真の 5:6。1023px以下は縦積み */
@@ -207,6 +207,16 @@
   /* 分析している場面の写真（アスペクト比を維持） */
   /* 2枚はアスペクト比16:9・高さを揃える。角丸なし */
   .photo-note{margin-top:14px;text-align:right;font-size:12px;color:var(--color-text-note);line-height:1.7}
+  /* 最終CTA：bg-network-navy を背景に敷き、濃紺オーバーレイで白文字のコントラストを確保 */
+  .cta-navy{position:relative;isolation:isolate;background:#0B2A5B;border:none;overflow:hidden}
+  .cta-navy::before{content:"";position:absolute;inset:0;z-index:-2;
+    background:image-set(url("assets/bg-network-navy.webp") type("image/webp"),
+      url("assets/bg-network-navy.jpg") type("image/jpeg")) center/cover no-repeat}
+  .cta-navy::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(9,26,51,.86)}
+  .cta-navy h2{color:#fff}
+  .cta-navy p{color:#E4EFF8}
+  .cta-navy .btn-line{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.6)}
+  .cta-navy .btn-line:hover{background:rgba(255,255,255,.2);border-color:#fff}
   .photo-note-global{padding:0 0 40px;text-align:center;font-size:12px;color:var(--color-text-note);line-height:1.7}
   .an-photo,.pf-photo{border-radius:0;overflow:hidden;margin-bottom:26px}
   .an-photo picture,.pf-photo picture{display:block}
@@ -1060,7 +1070,7 @@
 <!-- ═══════════ 12 CTA ═══════════ -->
 <section class="cta-band" id="cta" aria-labelledby="cta-heading">
   <div class="wrap">
-    <div class="cta reveal">
+    <div class="cta cta-navy reveal">
       <h2 id="cta-heading"><span class="np">まずは、チームの</span><span class="np">データの状況から</span><span class="np">お聞かせください。</span></h2>
       <p><span class="np">ヒアリング・お見積りは無料です。</span><span class="np">「データはあるが活かせていない」</span><span class="np">「紙やExcelでの入力・管理に困っている」といった</span><span class="np">段階からのご相談も歓迎します。</span></p>
       <div class="cta-actions">
