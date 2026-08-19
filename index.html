@@ -234,7 +234,8 @@
   .sp-platform li small{display:block;font-size:13px;font-weight:600;color:#D2E3F1;margin-top:3px;line-height:1.65}
   /* 右：実機で使われている写真（アスペクト比を維持） */
   /* 画像自体が濃紺のため、カード背景と同化しないよう下辺に明るい区切り線を入れる */
-  .pf-photo{border:1px solid rgba(255,255,255,.28);border-bottom:2px solid #7FE3FF}
+  /* 画像とカード背景の境界は線ではなく余白で表現する */
+  .pf-photo{border:1px solid rgba(255,255,255,.28);padding-bottom:0;margin-bottom:42px}
 
   /* ───── 07 Cycle：円環図。文字はSVGのtext要素で保持（英語化時に作り直さない） ───── */
   .cycle{max-width:1000px;margin:48px auto 0;padding:0 clamp(8px,2vw,24px)}
