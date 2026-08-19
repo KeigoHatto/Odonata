@@ -107,20 +107,20 @@ header.site{
 /* 右端アクション：ログイン（テキスト）→ デモ（塗り）→ 資料請求（線） */
 .nav-actions{display:inline-flex;align-items:center;gap:12px;margin-left:6px}
 .nav-lang{display:inline-block}                 /* Phase 3：JP | EN 切替の挿入余白 */
-/* 3段階の序列：ログイン（薄い枠線）＜ 資料請求・お問い合わせ（枠線）＜ デモを見る（塗り）
-   高さ38px・角丸999px は3つとも揃える */
+/* 3段階の序列：ログイン（淡いブルー・枠線なし）＜ 資料請求（白＋濃紺枠）＜ デモを見る（塗り）
+   高さ38px・角丸999px・左右パディングは3つとも揃える */
 .nav-login,.nav-cta,.nav-cta2{
   height:38px;padding:0 18px;border-radius:999px;font-size:13px;font-weight:700;
   display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;
-  border:1px solid transparent;transition:border-color .2s,border-width .2s,background .2s,color .2s;
+  border:1.5px solid transparent;transition:border-color .2s,border-width .2s,background .2s,color .2s;
 }
 /* ホバー・フォーカスでは色だけでなく枠線の太さも変える */
-.nav-login{background:#fff;color:var(--navy)!important;border-color:var(--color-border-strong)}
-.nav-login:hover,.nav-login:focus-visible{border-color:var(--navy);border-width:2px;padding:0 17px}
+.nav-login{background:#E8F2FB;color:var(--navy)!important;border-color:transparent}
+.nav-login:hover,.nav-login:focus-visible{background:#D6E8F7;border-color:var(--navy);border-width:2.5px;padding:0 16.5px}
 .nav-cta{background:var(--color-primary-strong);color:#fff!important;border-color:var(--color-primary-strong)}
-.nav-cta:hover,.nav-cta:focus-visible{background:var(--navy);border-color:var(--navy);border-width:2px;padding:0 17px}
-.nav-cta2{background:#fff;color:var(--navy)!important;border-color:#3E6E8E}
-.nav-cta2:hover,.nav-cta2:focus-visible{border-color:var(--blue);color:var(--blue)!important;border-width:2px;padding:0 17px}
+.nav-cta:hover,.nav-cta:focus-visible{background:var(--navy);border-color:var(--navy);border-width:2.5px;padding:0 16.5px}
+.nav-cta2{background:#fff;color:var(--navy)!important;border-color:var(--navy)}
+.nav-cta2:hover,.nav-cta2:focus-visible{background:#F4F9FD;border-color:var(--navy);border-width:2.5px;padding:0 16.5px}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;font-size:24px;color:var(--navy);line-height:1}
 /* dropdown（サービス）：hover / click / キーボードフォーカスの3経路で開く */
 .nav-item{position:relative}
