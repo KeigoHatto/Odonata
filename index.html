@@ -190,10 +190,11 @@
   /* メンバー簡易表示（トップ用）：中央揃え・高さを揃える */
   .member .avatar.kanji{font-size:22px;letter-spacing:.05em;font-family:'Zen Kaku Gothic New',sans-serif}
   #team .members{max-width:900px;margin-left:auto;margin-right:auto;align-items:stretch}
-  #team .member{text-align:center;display:flex;flex-direction:column}
+  #team .member{text-align:center;height:100%;display:grid;
+    grid-template-rows:auto auto auto 1fr;align-content:start}
   #team .member .avatar{margin-left:auto;margin-right:auto}
   #team .member p{text-align:center;font-size:15px;line-height:1.8;color:var(--sub);flex:1}
-  #team .members{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));max-width:1000px}
+  #team .members{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));max-width:1000px;align-items:stretch}
   #team .member h3 .romaji{display:block;font-family:'Manrope',sans-serif;font-size:11.5px;
     font-weight:700;letter-spacing:.08em;color:var(--sub);margin-top:3px}
 
@@ -983,7 +984,7 @@
       <div class="member reveal">
         <div class="avatar kanji">他</div>
         <div class="role">事業推進</div>
-        <h3>その他メンバー</h3>
+        <h3>その他メンバー<span class="romaji" aria-hidden="true">&nbsp;</span></h3>
         <p>筑波大学 卒業。法人向けの広告営業や新規事業開発の経験を持ちます。</p>
       </div>
     </div>
