@@ -167,12 +167,14 @@
   .about-photo img{width:100%;height:auto;display:block;object-fit:contain}
 
   /* ───── 03 Odonataがつなぐもの ───── */
-  .sources{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:44px auto 0;max-width:1040px}
-  @media(max-width:1000px){.sources{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:720px){.sources{grid-template-columns:repeat(2,1fr)}}
-  .source{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"i n" ". s";gap:4px 11px;
-    background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
-    padding:18px 18px 16px;box-shadow:var(--shadow)}
+  /* PC4列 / タブレット3列 / SP2列。行の高さを揃える */
+  .sources{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    grid-auto-rows:1fr;gap:16px;margin:44px auto 0;max-width:1040px}
+  @media(max-width:1023px){.sources{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:767px){.sources{grid-template-columns:repeat(2,1fr)}}
+  .source{height:100%;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"i n" ". s";
+    gap:4px 11px;align-content:start;background:var(--card);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:18px 18px 16px;box-shadow:var(--shadow)}
   .source svg.ic{grid-area:i;color:var(--blue);font-size:22px;margin-top:1px}
   .source b{grid-area:n;font-size:15.5px;font-weight:800;color:var(--navy);line-height:1.5;align-self:center}
   .source small{grid-area:s;font-size:13px;color:var(--sub);line-height:1.7}
@@ -761,9 +763,9 @@
       <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-growth"/></svg><b>選手育成（IDP）</b><small>目標・面談・評価</small></li>
       <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-ruler"/></svg><b>フィジカルテスト</b><small>測定値・推移</small></li>
       <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-height"/></svg><b>身体の発育</b><small>身長・体重・成熟度</small></li>
-      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-versus"/></svg><b>対戦相手</b><small>スカウティング・対戦履歴</small></li>
-      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-mind"/></svg><b>心理指標</b><small>モチベーション・不安・気分</small></li>
-      <li class="source other"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg><b>その他</b><small>チームが記録しているものは、形式を問わずご相談ください</small></li>
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-versus"/></svg><b>対戦相手</b><small>スカウティング・履歴</small></li>
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-mind"/></svg><b>心理指標</b><small>モチベーション・気分</small></li>
+      <li class="source other"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg><b>その他</b><small>形式を問わずご相談ください</small></li>
     </ul>
 
     <div class="start-now">
