@@ -81,7 +81,8 @@
     .hero-actions .btn{justify-content:center}}
   .hero-vis{position:relative;min-width:0}
   /* 写真はアスペクト比を維持（height指定をしない）／角丸なし・装飾は1pxの線のみ */
-  .hero-photo{border-radius:0;overflow:hidden;background:#fff;border:1px solid rgba(11,42,91,.14)}
+  /* 白い枠・余白・影は付けない。枠線は淡いグレー1pxのみ */
+  .hero-photo{border-radius:0;overflow:hidden;background:none;border:1px solid #DDE5EA;margin:0}
   .hero-photo picture{display:block}
   .hero-photo img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover;object-position:70% 50%}
   .hero-photo.main{width:100%}
