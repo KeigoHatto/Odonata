@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>プライバシーポリシー｜Odonata</title>
 <!-- #partial:analytics -->
-<!-- アクセス解析（単一ソース：partials/analytics.html → tools/build-partials.mjs で全ページの <head> へ同期）
+<!-- アクセス解析（単一ソース：partials/analytics.html → tools/build-partials.mjs で全ページのヘッド内へ同期）
      測定IDを変更するときは、このファイルの2箇所だけを書き換えて同期を実行する。 -->
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X3FK9YCZG5"></script>
@@ -64,6 +64,10 @@
   .policy p,.policy li{font-size:14.5px;color:var(--text);line-height:1.95}
   .policy ul{margin:8px 0 0;padding-left:22px}
   .policy .date{margin-top:36px;text-align:right;font-size:13px;color:var(--sub)}
+  .ext-links{list-style:none;margin:12px 0 16px}
+  .ext-links li{position:relative;padding:5px 0 5px 15px;font-size:15px;line-height:1.85}
+  .ext-links li::before{content:"";position:absolute;left:0;top:15px;width:5px;height:5px;border-radius:50%;background:var(--color-primary-strong)}
+  .ext-note{font-size:12.5px;color:var(--color-text-note);margin-left:6px}
 </style>
 </head>
 <body>
@@ -199,7 +203,17 @@
       <p>利用目的の達成に必要な範囲で、個人情報の取り扱いを外部（フォーム送信ツール・メール配信サービス等）に委託する場合があります。その際は、適切な管理を行う委託先を選定し、必要な監督を行います。</p>
 
       <h2>5. Cookie・アクセス解析</h2>
-      <p>本サイトでは、利用状況の把握のためにアクセス解析ツール（Google Analytics 等）を利用する場合があります。これらのツールはCookieを使用して閲覧情報を収集しますが、個人を特定する情報は含まれません。ブラウザの設定によりCookieを無効にすることができます。</p>
+      <h3>アクセス解析ツールの利用について</h3>
+      <p>当サイトでは、サービスの改善およびご利用状況の把握のため、Google LLC が提供するアクセス解析ツール「Google アナリティクス」を利用しています。</p>
+      <p>Google アナリティクスは、Cookie を使用して当サイトのご利用状況（閲覧されたページ、滞在時間、参照元、ご利用の端末やブラウザの種類など）に関する情報を収集します。これらの情報は匿名で収集されており、個人を特定するものではありません。</p>
+      <p>収集された情報は、Google 社のプライバシーポリシーに基づいて管理されます。詳細は以下の各ページ（いずれも Google の外部サイト）をご確認ください。</p>
+      <ul class="ext-links">
+        <li><a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener" style="color:var(--color-primary-strong);font-weight:700">Google プライバシーポリシー</a><span class="ext-note">（外部サイト・新しいタブで開きます）</span></li>
+        <li><a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank" rel="noopener" style="color:var(--color-primary-strong);font-weight:700">Google アナリティクス利用規約</a><span class="ext-note">（外部サイト・新しいタブで開きます）</span></li>
+        <li><a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener" style="color:var(--color-primary-strong);font-weight:700">Google によるデータの使用方法</a><span class="ext-note">（外部サイト・新しいタブで開きます）</span></li>
+      </ul>
+      <p>Google アナリティクスによるデータ収集を無効にされたい場合は、Google が提供する<a href="https://tools.google.com/dlpage/gaoptout?hl=ja" target="_blank" rel="noopener" style="color:var(--color-primary-strong);font-weight:700">Google アナリティクス オプトアウト アドオン</a><span class="ext-note">（外部サイト・新しいタブで開きます）</span>をご利用いただけます。</p>
+      <p>また、ブラウザの設定から Cookie を無効にすることでも、収集を拒否することができます。</p>
 
       <h2>6. 安全管理</h2>
       <p>当方は、個人情報の漏えい・滅失・毀損の防止のため、必要かつ適切な安全管理措置を講じます。</p>
@@ -213,7 +227,7 @@
       <h2>9. お問い合わせ窓口</h2>
       <p>本ポリシーに関するお問い合わせは、<a href="contact.html" style="color:var(--color-primary-strong);font-weight:700">お問い合わせフォーム</a>よりご連絡ください。</p>
 
-      <p class="date">制定日：2026年7月25日<br>Odonata（運営責任者：横田 陽生）</p>
+      <p class="date">制定日：2026年7月25日<br>最終改定日：2026年8月18日<br>Odonata（運営責任者：横田 陽生）</p>
     </div>
   </div>
 </section>
