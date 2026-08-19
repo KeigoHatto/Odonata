@@ -25,13 +25,13 @@ const EXCLUDE = new Set(['guide.html', 'philosophy.html']);
 // 全ページに必須のパーツ
 const PARTIALS = ['header', 'footer', 'icons'];
 // マーカーがあるページにだけ差し込む任意のパーツ
-const OPTIONAL = ['acwr'];
+const OPTIONAL = ['acwr', 'analytics'];
 
 const bodies = Object.fromEntries(
   [...PARTIALS, ...OPTIONAL].map(name => [name, readFileSync(join(root, 'partials', `${name}.html`), 'utf8').trim()])
 );
 
-const pages = readdirSync(root).filter(f => f.endsWith('.html') && !EXCLUDE.has(f));
+const pages = readdirSync(root).filter(f => f.endsWith('.html'));
 
 let changed = [];
 let missing = [];
@@ -42,6 +42,8 @@ for (const page of pages) {
   let after = before;
 
   for (const name of [...PARTIALS, ...OPTIONAL]) {
+    // guide / philosophy は独自スタイルの単独ページ。必須パーツ（ヘッダー等）は同期しない
+    if (EXCLUDE.has(page) && PARTIALS.includes(name)) continue;
     const re = new RegExp(`(<!--\\s*#partial:${name}\\s*-->)[\\s\\S]*?(<!--\\s*/#partial:${name}\\s*-->)`);
     if (!re.test(after)) {
       if (PARTIALS.includes(name)) missing.push(`${page}: #partial:${name}`);

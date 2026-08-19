@@ -4,6 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ニュース｜Odonata</title>
+<!-- #partial:analytics -->
+<!-- アクセス解析（単一ソース：partials/analytics.html → tools/build-partials.mjs で全ページの <head> へ同期）
+     測定IDを変更するときは、このファイルの2箇所だけを書き換えて同期を実行する。 -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X3FK9YCZG5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X3FK9YCZG5');
+</script>
+<script>
+  /* 主要なクリックの計測。onclick 属性は使わず addEventListener でまとめて拾う。
+     gtag が無い環境（広告ブロッカー等）でもエラーにならないようガードする。 */
+  (function () {
+    var send = function (name, params) {
+      if (typeof gtag === 'function') { gtag('event', name, params || {}); }
+    };
+    /* 押された場所を特定する。data-ga-location → ヘッダー/フッター → セクションid → ページ名 の順 */
+    var whereFrom = function (el) {
+      var tagged = el.closest('[data-ga-location]');
+      if (tagged) { return tagged.getAttribute('data-ga-location'); }
+      if (el.closest('header.site, header')) { return 'header'; }
+      if (el.closest('footer.site, footer')) { return 'footer'; }
+      var sec = el.closest('section[id]');
+      if (sec) { return sec.id; }
+      var page = (location.pathname.split('/').pop() || 'index.html').replace('.html', '');
+      return page + '_page';
+    };
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href]');
+      if (!a) { return; }
+      var href = a.getAttribute('href') || '';
+      /* 遷移は妨げない。イベントを送るだけ */
+      if (/(^|\/)demo\.html(\?|#|$)/.test(href)) { send('click_demo', { location: whereFrom(a) }); }
+      else if (/(^|\/)contact\.html(\?|#|$)/.test(href)) { send('click_contact', { location: whereFrom(a) }); }
+    });
+    /* お問い合わせフォームの送信完了 */
+    document.addEventListener('odonata:lead', function () { send('generate_lead'); });
+  })();
+</script>
+<!-- /#partial:analytics -->
 <meta name="description" content="Odonataのお知らせ・プレスリリース・コラム。筑波大学蹴球部での実証導入、複雑系アプローチのコラムなど。">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
