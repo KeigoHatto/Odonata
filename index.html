@@ -56,20 +56,24 @@
   .hero-offer b{display:block;font-size:clamp(18px,1.5vw,20px);font-weight:800;color:var(--navy);
     line-height:1.5;word-break:normal;overflow-wrap:break-word;line-break:strict}
   .hero-offer small{display:block;font-size:15px;color:var(--sub);line-height:1.75;margin-top:10px;
-  /* 2枚を色で分ける。色だけに頼らずアイコンの形も変える（分析＝ネットワーク／基盤＝画面） */
-  .hero-offer a{position:relative;overflow:hidden}
+  /* 2枚を色で分ける。色だけに頼らずアイコンの形も変える（分析＝ネットワーク／基盤＝画面）
+     配色は Service セクションと同じ CSS変数を参照して食い違いを防ぐ */
+  .hero-offer{align-items:stretch}
+  .hero-offer a{position:relative;overflow:hidden;height:100%}
   .hero-offer a::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
-  /* 01 データ分析・伴走支援：白地＋ブランドブルー */
-  .offer-analysis::before{background:var(--blue)}
-  .offer-analysis svg.ic{color:var(--color-primary-strong)}
-  .offer-analysis:hover,.offer-analysis:focus-visible{background:#F2FAFE}
-  /* 02 データプラットフォーム：濃紺地＋シアン */
-  .offer-platform{background:#0B2A5B;border-color:#0B2A5B}
-  .offer-platform::before{background:#7FE3FF}
-  .offer-platform b{color:#FFFFFF}
-  .offer-platform small{color:#D2E3F1}
-  .offer-platform svg.ic,.offer-platform .go{color:#7FE3FF}
-  .offer-platform:hover,.offer-platform:focus-visible{background:#123A72;border-color:#123A72}
+  /* 01 データ分析・伴走支援 */
+  .offer-analysis{background:var(--card-analysis-bg);border-color:var(--color-border-strong)}
+  .offer-analysis::before{background:var(--card-analysis-accent)}
+  .offer-analysis svg.ic,.offer-analysis .go{color:var(--card-analysis-icon)}
+  .offer-analysis b{color:var(--card-analysis-text)}
+  .offer-analysis:hover,.offer-analysis:focus-visible{background:var(--card-analysis-hover)}
+  /* 02 データプラットフォーム */
+  .offer-platform{background:var(--card-platform-bg);border-color:var(--card-platform-bg)}
+  .offer-platform::before{background:var(--card-platform-accent)}
+  .offer-platform b{color:var(--card-platform-text)}
+  .offer-platform small{color:var(--card-platform-sub)}
+  .offer-platform svg.ic,.offer-platform .go{color:var(--card-platform-icon)}
+  .offer-platform:hover,.offer-platform:focus-visible{background:var(--card-platform-hover);border-color:var(--card-platform-hover)}
     word-break:normal;overflow-wrap:break-word;line-break:strict}
 
   /* ───── Heroビジュアル：現場の写真1枚（角丸なし） ───── */
@@ -196,7 +200,7 @@
   @media(max-width:900px){.split{grid-template-columns:1fr}}
   .split > *{padding:44px clamp(24px,3.4vw,42px)}
   /* 左：分析する＝明るい背景＋図表 */
-  .sp-analysis{background:linear-gradient(180deg,#FFFFFF,#F3FAFE);border:1.5px solid var(--border);border-right:none}
+  .sp-analysis{background:var(--card-analysis-bg);border:1.5px solid var(--border);border-right:none}
   @media(max-width:900px){.sp-analysis{border-right:1.5px solid var(--border);border-bottom:none}}
   .sp-analysis .lbl{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.1em;color:#0A5E93;background:rgba(0,160,233,.14);border-radius:999px;padding:6px 15px}
   .sp-analysis h3{font-size:24px;font-weight:800;color:var(--navy);margin:16px 0 10px;line-height:1.5}
@@ -224,14 +228,14 @@
   .an-photo img,.pf-photo img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover}
   .an-photo{border:1px solid var(--color-border-strong)}
   /* 右：現場で使う＝暗い背景＋UIスクリーン */
-  .sp-platform{background:linear-gradient(160deg,#071A3A 0%,#0B2A5B 55%,#0E4A87 100%);color:#fff}
+  .sp-platform{background:var(--card-platform-bg);color:var(--card-platform-text)}
   .sp-platform .lbl{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.1em;color:#BDECFF;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);border-radius:999px;padding:6px 15px}
   .sp-platform h3{font-size:24px;font-weight:800;color:#fff;margin:16px 0 10px;line-height:1.5}
   .sp-platform p{font-size:15px;color:#E4EFF8;line-height:1.95}
   .sp-platform ul{list-style:none;margin:20px 0 0}
   .sp-platform li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;font-weight:700;color:#fff;padding:10px 0;border-top:1px solid rgba(255,255,255,.18)}
-  .sp-platform li svg.ic{color:#7FE3FF;font-size:18px;margin-top:3px}
-  .sp-platform li small{display:block;font-size:13px;font-weight:600;color:#D2E3F1;margin-top:3px;line-height:1.65}
+  .sp-platform li svg.ic{color:var(--card-platform-icon);font-size:18px;margin-top:3px}
+  .sp-platform li small{display:block;font-size:13px;font-weight:600;color:var(--card-platform-sub);margin-top:3px;line-height:1.65}
   /* 右：実機で使われている写真（アスペクト比を維持） */
   /* 画像自体が濃紺のため、カード背景と同化しないよう下辺に明るい区切り線を入れる */
   /* 画像とカード背景の境界は線ではなく余白で表現する */

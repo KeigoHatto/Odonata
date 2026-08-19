@@ -18,6 +18,18 @@
   --color-accent:#FF9933;
   --color-border:#CCE9F6;          /* 面の区切り線（非情報。3:1 の対象外） */
   --color-border-strong:#6A9AB8;   /* ボタン枠など、意味を持つ境界（白地で 3.03:1） */
+  /* 2事業のカード配色（Hero のカードと Service セクションで共有する） */
+  --card-analysis-bg:#FFFFFF;
+  --card-analysis-accent:#00A0E9;
+  --card-analysis-icon:#0A5E93;
+  --card-analysis-text:#0B2A5B;
+  --card-analysis-hover:#F2FAFE;
+  --card-platform-bg:#0B2A5B;
+  --card-platform-accent:#7FE3FF;
+  --card-platform-icon:#7FE3FF;
+  --card-platform-text:#FFFFFF;
+  --card-platform-sub:#D2E3F1;
+  --card-platform-hover:#123A72;
   --color-focus-ring:#FFDF3F;    /* フォーカスリングの黄 */
   --color-focus-outline:#1A1A1C; /* フォーカスリングの黒 */
   /* ── タイポ ── */
