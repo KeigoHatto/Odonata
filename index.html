@@ -297,6 +297,11 @@
   .sp-platform li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;font-weight:700;color:#fff;padding:10px 0;border-top:1px solid rgba(255,255,255,.18)}
   .sp-platform li svg.ic{color:var(--card-platform-icon);font-size:18px;margin-top:3px}
   .sp-platform li small{display:block;font-size:13px;font-weight:600;color:var(--card-platform-sub);margin-top:3px;line-height:1.65}
+  /* 背景ごとにリンク色を変える。どちらも下線を付け、色だけでリンクと分からせない */
+  .sp-analysis .tlink{color:#0B2545;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+  .sp-analysis .tlink:hover,.sp-analysis .tlink:focus-visible{color:var(--color-primary-strong);text-decoration-thickness:2.5px}
+  .sp-platform .tlink{color:#5CC8F5;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+  .sp-platform .tlink:hover,.sp-platform .tlink:focus-visible{color:#fff;text-decoration-thickness:2.5px}
   /* 右：実機で使われている写真（アスペクト比を維持） */
   /* 画像自体が濃紺のため、カード背景と同化しないよう下辺に明るい区切り線を入れる */
   /* 画像とカード背景の境界は線ではなく余白で表現する */
