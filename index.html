@@ -42,6 +42,8 @@
       /* 遷移は妨げない。イベントを送るだけ */
       if (/(^|\/)demo\.html(\?|#|$)/.test(href)) { send('click_demo', { location: whereFrom(a) }); }
       else if (/(^|\/)contact\.html(\?|#|$)/.test(href)) { send('click_contact', { location: whereFrom(a) }); }
+      /* ログイン（別サブドメインへの遷移）。gtag は sendBeacon を使うため遷移中でも送信される */
+      else if (/^https?:\/\/app\.getodonata\.com/.test(href)) { send('click_login', { location: whereFrom(a) }); }
     });
     /* お問い合わせフォームの送信完了 */
     document.addEventListener('odonata:lead', function () { send('generate_lead'); });
@@ -188,7 +190,9 @@
   .uc-more h3{color:var(--navy);margin-top:0}
   .uc-more > p{color:var(--sub);flex:none}
   .uc-more-head{min-height:176px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:10px;border-bottom:1px solid #DCE9F1;color:#0A5E93}
+    gap:10px;color:#0A5E93;position:relative;padding-bottom:40px;margin-bottom:40px}
+  /* 区切り線は1pxの淡いグレー。上下のマージンを対称に40pxずつ取る */
+  .uc-more-head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:#DDE5EA}
   .uc-more-head svg.ic{font-size:34px}
   .uc-more-head span{font-size:13px;font-weight:800;letter-spacing:.04em}
   /* リストは ラベル（太字・濃紺）と 説明（グレー）を必ず改行して2行に分ける */
@@ -379,7 +383,8 @@
   .pstep p{font-size:15px;color:#3A5A6B;line-height:1.8}
   .pstep.wide{border-color:var(--blue);border-width:2px}
   /* STEP2内のPDCA図：01が最も淡く03が最も濃い。濃さだけでなく番号とラベルを併記する */
-  .ploop{margin-top:18px;padding-top:18px;border-top:1px dashed var(--border)}
+  /* 区切り線は1pxの淡いグレー。上下のマージンを対称に40pxずつ取る */
+  .ploop{margin-top:40px;padding-top:40px;border-top:1px solid #DDE5EA}
   .ploop svg{width:100%;height:auto;display:block;overflow:visible}
   .ploop .pl-box rect{stroke:#00A0E9;stroke-width:1.6}
   .ploop .s1 rect{fill:#EAF6FD}
@@ -1090,7 +1095,7 @@
         <!-- STEP2 の中の小さな循環 -->
         <div class="ploop">
           <svg viewBox="0 0 600 210" role="img" aria-labelledby="ploop-t">
-            <title id="ploop-t">運用 → フィードバック → 改善 → ふたたび運用、という3段階の流れを表した図。現場に合うまで調整を重ねることを示している。</title>
+            <title id="ploop-t">運用 → フィードバック → 改善 → ふたたび運用、という3段階の流れを表した図。いただいたフィードバックに応じて調整を重ねることを示している。</title>
             <defs>
               <marker id="pl-a" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                 <path d="M0 0.5 L11 6 L0 11.5 z" fill="#00A0E9"/>
@@ -1115,7 +1120,7 @@
             <path class="pl-arrow" d="M176 60 L212 60" marker-end="url(#pl-a)"/>
             <path class="pl-arrow" d="M384 60 L420 60" marker-end="url(#pl-a)"/>
             <path class="pl-back" d="M508 106 L508 152 Q508 168 492 168 L108 168 Q92 168 92 152 L92 110" marker-end="url(#pl-b)"/>
-            <text class="pl-backlab" x="300" y="196">現場に合うまで調整</text>
+            <text class="pl-backlab" x="300" y="196">フィードバックに応じて調整</text>
           </svg>
 
           <ol class="ploop-sp">
@@ -1123,7 +1128,7 @@
             <li class="s2"><span class="n">02</span><b>フィードバック</b></li>
             <li class="s3"><span class="n">03</span><b>改善</b></li>
           </ol>
-          <p class="ploop-back-sp">↑ 現場に合うまで 01 へ戻って調整</p>
+          <p class="ploop-back-sp">↑ フィードバックに応じて 01 へ戻って調整</p>
         </div>
       </li>
 

@@ -33,6 +33,8 @@
       /* 遷移は妨げない。イベントを送るだけ */
       if (/(^|\/)demo\.html(\?|#|$)/.test(href)) { send('click_demo', { location: whereFrom(a) }); }
       else if (/(^|\/)contact\.html(\?|#|$)/.test(href)) { send('click_contact', { location: whereFrom(a) }); }
+      /* ログイン（別サブドメインへの遷移）。gtag は sendBeacon を使うため遷移中でも送信される */
+      else if (/^https?:\/\/app\.getodonata\.com/.test(href)) { send('click_login', { location: whereFrom(a) }); }
     });
     /* お問い合わせフォームの送信完了 */
     document.addEventListener('odonata:lead', function () { send('generate_lead'); });
