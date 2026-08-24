@@ -28,8 +28,10 @@ const PARTIALS = ['header', 'footer', 'icons'];
 // マーカーがあるページにだけ差し込む任意のパーツ
 const OPTIONAL = ['acwr', 'analytics'];
 
+// 比較・置換は LF に正規化して行う（Windows の core.autocrlf=true 環境では
+// 作業コピーが CRLF になり、そのまま比較すると全ページが「未同期」と誤検出されるため）
 const bodies = Object.fromEntries(
-  [...PARTIALS, ...OPTIONAL].map(name => [name, readFileSync(join(root, 'partials', `${name}.html`), 'utf8').trim()])
+  [...PARTIALS, ...OPTIONAL].map(name => [name, readFileSync(join(root, 'partials', `${name}.html`), 'utf8').replace(/\r\n/g, '\n').trim()])
 );
 
 const pages = readdirSync(root).filter(f => f.endsWith('.html'));
@@ -39,7 +41,9 @@ let missing = [];
 
 for (const page of pages) {
   const path = join(root, page);
-  const before = readFileSync(path, 'utf8');
+  const raw = readFileSync(path, 'utf8');
+  const crlf = raw.includes('\r\n');
+  const before = raw.replace(/\r\n/g, '\n');
   let after = before;
 
   for (const name of [...PARTIALS, ...OPTIONAL]) {
@@ -55,7 +59,8 @@ for (const page of pages) {
 
   if (after !== before) {
     changed.push(page);
-    if (!check) writeFileSync(path, after);
+    // 書き戻し時は元ファイルの改行コードを維持する
+    if (!check) writeFileSync(path, crlf ? after.replace(/\n/g, '\r\n') : after);
   }
 }
 
