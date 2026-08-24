@@ -601,7 +601,11 @@
         <p style="margin-top:26px"><a class="tlink" href="company.html">会社情報を見る<span class="chev" aria-hidden="true">›</span></a></p>
       </div>
       <figure class="about-photo">
-        <img src="assets/photo-staff-screens.png" alt="スタッフが複数の分析画面を並べて、チームと選手のデータを確認している様子" loading="lazy">
+        <picture>
+          <source type="image/webp" srcset="assets/photo-staff-screens@828.webp 828w, assets/photo-staff-screens.webp 1672w" sizes="(max-width:900px) 100vw, 50vw">
+          <source type="image/jpeg" srcset="assets/photo-staff-screens@828.jpg 828w, assets/photo-staff-screens.jpg 1672w" sizes="(max-width:900px) 100vw, 50vw">
+          <img src="assets/photo-staff-screens.jpg" alt="スタッフが複数の分析画面を並べて、チームと選手のデータを確認している様子" width="1672" height="941" loading="lazy">
+        </picture>
       </figure>
     </div>
   </div>
