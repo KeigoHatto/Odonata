@@ -21,7 +21,8 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const check = process.argv.includes('--check');
 
-const EXCLUDE = new Set(['guide.html', 'philosophy.html']);
+// kessan.html は非公開の決算公告ページ（どこからもリンクしない・簡易ヘッダー）のため対象外
+const EXCLUDE = new Set(['guide.html', 'philosophy.html', 'kessan.html']);
 // 全ページに必須のパーツ
 const PARTIALS = ['header', 'footer', 'icons'];
 // マーカーがあるページにだけ差し込む任意のパーツ

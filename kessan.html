@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>決算公告 — Odonata</title>
+<meta name="description" content="株式会社Odonata 決算公告">
+<!-- 非公開ページ: サイト内のどこからもリンクしないこと。検索エンジンにも載せない -->
+<meta name="robots" content="noindex,nofollow,noarchive">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#071A3A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .koukoku{max-width:820px;margin:48px auto 0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(28px,4vw,52px)}
+  .koukoku h2{font-size:19px;font-weight:800;color:var(--navy);margin:34px 0 12px;padding-bottom:8px;border-bottom:1.5px solid var(--border)}
+  .koukoku h2:first-child{margin-top:0}
+  .koukoku p{font-size:14.5px;color:var(--text);line-height:1.95}
+  .koukoku .empty{margin:8px 0 0;padding:22px 24px;background:var(--bg,#f6f8fb);border:1px dashed var(--border);border-radius:10px;font-size:14px;color:var(--sub)}
+  .bs-title{text-align:center;font-weight:800;color:var(--navy);font-size:16.5px;margin:18px 0 2px}
+  .bs-sub{text-align:center;font-size:13px;color:var(--sub);margin:0 0 14px}
+  .bs-unit{text-align:right;font-size:12.5px;color:var(--sub);margin:0 0 6px}
+  table.bs{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.bs th,table.bs td{border:1px solid var(--border);padding:8px 12px;line-height:1.6}
+  table.bs th{background:rgba(7,26,58,.05);color:var(--navy);font-weight:700;text-align:left}
+  table.bs td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  table.bs tr.total th,table.bs tr.total td{font-weight:800;background:rgba(7,26,58,.04)}
+  .koukoku .sign{margin-top:28px;text-align:right;font-size:13.5px;line-height:2}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></symbol>
+</defs>
+</svg>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata"></a>
+  </div>
+</header>
+
+<!-- ═══════════ PAGE HERO ═══════════ -->
+<div class="phero" style="padding:56px 0 60px">
+  <div class="wrap">
+    <h1 style="font-size:clamp(24px,3.6vw,36px)">決算公告</h1>
+  </div>
+</div>
+
+<section style="padding-top:56px">
+  <div class="wrap">
+    <div class="koukoku">
+      <p>会社法第440条に基づき、株式会社Odonataの決算公告を本ページに掲載します。</p>
+
+      <h2>掲載中の公告</h2>
+      <p class="empty">現在、掲載すべき決算公告はありません。最初の事業年度の決算確定後に掲載します。</p>
+
+      <!-- ═══════════ 決算公告テンプレート ═══════════
+           決算確定後、上の .empty の段落を削除してこのコメントを外し、●●● を実数に差し替える。
+           ・単位は千円(必要に応じて百万円に変更)
+           ・中小会社(会計監査人非設置)の電子公告は「貸借対照表の要旨」ではなく
+             貸借対照表の「全文」掲載が必要な点に注意(会社法440条1項・939条)
+           ・過年度分は下に追記して残していく(電子公告は定時株主総会後5年間の継続掲載義務あり)
+
+      <h2>第●期 決算公告</h2>
+      <p style="text-align:center;font-size:13px;color:var(--sub)">●●●●年●●月●●日<br>公告掲載日</p>
+
+      <p class="bs-title">貸借対照表</p>
+      <p class="bs-sub">(●●●●年●●月●●日現在)</p>
+      <p class="bs-unit">(単位:千円)</p>
+      <table class="bs">
+        <tr><th style="width:50%">科目</th><th style="text-align:right">金額</th></tr>
+        <tr><th colspan="2">【資産の部】</th></tr>
+        <tr><td>流動資産</td><td class="num">●●●</td></tr>
+        <tr><td>固定資産</td><td class="num">●●●</td></tr>
+        <tr class="total"><td>資産合計</td><td class="num">●●●</td></tr>
+        <tr><th colspan="2">【負債の部】</th></tr>
+        <tr><td>流動負債</td><td class="num">●●●</td></tr>
+        <tr><td>固定負債</td><td class="num">●●●</td></tr>
+        <tr class="total"><td>負債合計</td><td class="num">●●●</td></tr>
+        <tr><th colspan="2">【純資産の部】</th></tr>
+        <tr><td>資本金</td><td class="num">●●●</td></tr>
+        <tr><td>利益剰余金</td><td class="num">●●●</td></tr>
+        <tr class="total"><td>純資産合計</td><td class="num">●●●</td></tr>
+        <tr class="total"><td>負債・純資産合計</td><td class="num">●●●</td></tr>
+      </table>
+
+      <p class="sign">
+        ●●●●年●●月●●日<br>
+        株式会社Odonata<br>
+        代表取締役 ●● ●●
+      </p>
+      ═══════════ テンプレートここまで ═══════════ -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site" style="margin-top:40px">
+  <div class="wrap">
+    <div class="foot-bottom" style="border-top:none">
+      <span>© <span data-year></span> Odonata. All rights reserved.</span>
+      <span>株式会社Odonata（設立準備中）</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
