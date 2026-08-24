@@ -110,3 +110,22 @@
 | 6 | 下層ページのセクション見直し | Phase 1〜6 は TOP のみを対象とした。approach / service-analysis / service-platform の内部構成は v1 時点のまま |
 | 7 | デザイントークンの完全移行 | `--sub` `--blue` などの旧変数はエイリアスとして残している。既存クラスの参照を新トークンへ置き換える作業が残っている |
 | 8 | 個別記事ページ `/news/{slug}.html` | 未着手（v1 の Phase 2 として保留中） |
+
+---
+
+## 8｜サイトマップの運用（Phase 16 で追加）
+
+**ページを増やしたら sitemap.xml も更新する。**
+
+静的HTML構成のため手動更新でも成立するが、更新漏れが起きやすいので生成スクリプトを用意した。
+
+```bash
+node tools/build-sitemap.mjs          # sitemap.xml を生成
+node tools/build-sitemap.mjs --check  # 最新でなければ exit 1（CI用）
+```
+
+- ページを追加したら `tools/build-sitemap.mjs` の `PAGES` に1行足して実行する
+- `lastmod` は git の最終コミット日から自動取得される
+- `<meta name="robots" content="noindex">` を持つページは自動的に除外される
+- `news/` 配下の個別記事ページは、存在すれば自動で追加される
+- `index.html` は `/` と重複するため、`/` として1件だけ出力される
