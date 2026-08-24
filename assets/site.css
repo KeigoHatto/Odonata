@@ -108,6 +108,7 @@ header.site{
 .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;height:68px}
 .nav-logo img{height:30px}
 .nav-links{display:flex;gap:20px;align-items:center}
+.nav-links>a,.nav-item{flex-shrink:0}
 .nav-links>a,.nav-item-btn{
   font-size:14px;font-weight:600;color:var(--navy);opacity:.9;transition:.2s;
   display:inline-flex;align-items:center;gap:5px;white-space:nowrap;
@@ -117,22 +118,27 @@ header.site{
 .nav-links>a.active,.nav-item.active .nav-item-btn{box-shadow:inset 0 -2px 0 var(--blue)}
 .nav-item-btn:focus-visible,.nav-links a:focus-visible{outline-offset:3px;border-radius:4px}
 /* 右端アクション：ログイン（テキスト）→ デモ（塗り）→ 資料請求（線） */
-.nav-actions{display:inline-flex;align-items:center;gap:12px;margin-left:6px}
+.nav-actions{display:inline-flex;align-items:center;gap:12px;margin-left:6px;flex-shrink:0}
 .nav-lang{display:inline-block}                 /* Phase 3：JP | EN 切替の挿入余白 */
-/* 3段階の序列：ログイン（淡いブルー・枠線なし）＜ 資料請求（白＋濃紺枠）＜ デモを見る（塗り）
-   高さ38px・角丸999px・左右パディングは3つとも揃える */
+/* 3段階の序列：ログイン（淡いブルー）＜ 資料請求（白＋濃紺枠）＜ デモを見る（塗り）
+   高さ38px・角丸999px・左右パディングは3つとも揃える。
+   ホバーでレイアウトが動かないよう、枠線は常に 1.5px を持たせて色だけ変え、
+   padding / font-weight / font-size / letter-spacing は一切変えない。
+   動きは transform のみで表現する（レイアウトに影響しない）。 */
 .nav-login,.nav-cta,.nav-cta2{
   height:38px;padding:0 18px;border-radius:999px;font-size:13px;font-weight:700;
   display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;
-  border:1.5px solid transparent;transition:border-color .2s,border-width .2s,background .2s,color .2s;
+  flex-shrink:0;border:1.5px solid transparent;
+  transition:transform .15s ease,background-color .15s ease,border-color .15s ease,color .15s ease;
 }
-/* ホバー・フォーカスでは色だけでなく枠線の太さも変える */
-.nav-login{background:#E8F2FB;color:var(--navy)!important;border-color:transparent}
-.nav-login:hover,.nav-login:focus-visible{background:#D6E8F7;border-color:var(--navy);border-width:2.5px;padding:0 16.5px}
+.nav-login:hover,.nav-cta:hover,.nav-cta2:hover,
+.nav-login:focus-visible,.nav-cta:focus-visible,.nav-cta2:focus-visible{transform:translateY(-1px)}
+.nav-login{background:#E8F2FB;color:var(--navy)!important;border-color:#E8F2FB}
+.nav-login:hover,.nav-login:focus-visible{background:#D6E8F7;border-color:var(--navy)}
 .nav-cta{background:var(--color-primary-strong);color:#fff!important;border-color:var(--color-primary-strong)}
-.nav-cta:hover,.nav-cta:focus-visible{background:var(--navy);border-color:var(--navy);border-width:2.5px;padding:0 16.5px}
+.nav-cta:hover,.nav-cta:focus-visible{background:var(--navy);border-color:var(--navy)}
 .nav-cta2{background:#fff;color:var(--navy)!important;border-color:var(--navy)}
-.nav-cta2:hover,.nav-cta2:focus-visible{background:#F4F9FD;border-color:var(--navy);border-width:2.5px;padding:0 16.5px}
+.nav-cta2:hover,.nav-cta2:focus-visible{background:#F4F9FD;border-color:var(--navy)}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;font-size:24px;color:var(--navy);line-height:1}
 /* dropdown（サービス）：hover / click / キーボードフォーカスの3経路で開く */
 .nav-item{position:relative}
