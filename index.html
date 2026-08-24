@@ -146,7 +146,7 @@
 
 
   /* ───── 02 Odonataでできること：ユースケース3枚（カードごとに主役ビジュアルを変える） ───── */
-  .uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;align-items:stretch}
+  .uc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:48px;align-items:stretch}
   @media(max-width:960px){.uc-grid{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}}
   /* 3枚とも タイトル → ビジュアル → 本文 → リンク の4行に固定して高さを揃える */
   .uc-grid{align-items:stretch}
@@ -176,35 +176,47 @@
   .uc-link a{display:inline-flex;align-items:baseline;gap:4px;font-size:14px;font-weight:700;
     color:#9FE6FF;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
   .uc-link a:hover,.uc-link a:focus-visible{color:#fff;text-decoration-thickness:2.5px}
-  .uc-2 .uc-link a,.uc-more .uc-link a{color:#0A5E93}
-  .uc-2 .uc-link a:hover,.uc-more .uc-link a:hover{color:var(--navy)}
+  .uc-2 .uc-link a{color:#0A5E93}
+  .uc-2 .uc-link a:hover{color:var(--navy)}
   /* カード2：ネットワーク図（白・枠線） */
   .uc-2{background:var(--card);border:1.5px solid var(--border);box-shadow:var(--shadow)}
   .uc-2:hover{border-color:var(--cyan);box-shadow:var(--shadow-lg)}
   .uc-2 h3{color:var(--navy)}
   .uc-2 p{color:var(--sub)}
   .uc-fig{width:100%;height:auto;display:block;min-height:176px}
-  /* カード3：リスト型の軽いカード（1・2が主力、3はこれから増えるものという関係を示す） */
-  .uc-more{background:#F7FBFD;border:1px dashed #9BB8C8;box-shadow:none}
-  .uc-more:hover{transform:none;border-color:var(--blue)}
-  .uc-more h3{color:var(--navy);margin-top:0}
-  .uc-more > p{color:var(--sub);flex:none}
-  .uc-more-head{min-height:176px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:10px;color:#0A5E93;position:relative;padding-bottom:40px;margin-bottom:40px}
-  /* 区切り線は1pxの淡いグレー。上下のマージンを対称に40pxずつ取る */
-  .uc-more-head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:#DDE5EA}
-  .uc-more-head svg.ic{font-size:34px}
-  .uc-more-head span{font-size:13px;font-weight:800;letter-spacing:.04em}
-  /* リストは ラベル（太字・濃紺）と 説明（グレー）を必ず改行して2行に分ける */
-  .more-list{list-style:none;margin:14px 0 0;align-self:start}
-  .more-list li{position:relative;padding:0 0 0 14px;margin-bottom:16px}
-  .more-list li:last-child{margin-bottom:0}
-  .more-list li::before{content:"";position:absolute;left:0;top:7px;width:4px;height:calc(100% - 10px);
-    border-radius:2px;background:#9CC6DD}
+  /* 「その他の分析例」は内容量が他2枚の倍以上あるため、列から出して3カードの下に全幅で置く。
+     カード1・2はグリッドに残し、タイトル行・ビジュアル行の高さ揃え（17-5）を維持する。 */
+  .uc-wide{margin-top:22px;background:#F7FBFD;border:1px dashed #9BB8C8;border-radius:var(--radius);
+    padding:30px 26px 26px}
+  .uc-wide-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;
+    padding-bottom:18px;border-bottom:1px solid #DDE5EA}
+  .uc-wide-head h3{font-size:19px;font-weight:800;color:var(--navy);line-height:1.5;margin:0}
+  .uc-wide-badge{display:inline-flex;align-items:center;gap:7px;
+    font-size:13px;font-weight:800;letter-spacing:.04em;color:#0A5E93}
+  .uc-wide-badge svg.ic{font-size:19px}
+  .uc-wide-lead{font-size:14.5px;line-height:1.85;color:var(--sub);margin:16px 0 0}
+  /* 3項目。左の縦線で区切り、項目どうしは24px以上あける */
+  .more-list{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:24px 0 0;padding:0}
+  .more-list > li{padding:0 0 0 16px;border-left:3px solid #9CC6DD}
   .more-list b{display:block;font-size:15px;font-weight:800;color:var(--navy);line-height:1.55}
-  .more-list span{display:block;margin-top:3px;font-size:14px;font-weight:400;color:#3A5A6B;line-height:1.7}
-  .more-list .note{display:block;margin-top:5px}
-  .more-tail{margin-top:16px!important;font-size:13.5px;color:#3A5A6B;font-weight:700}
+  .more-list > li > span{display:block;margin-top:6px;font-size:14px;font-weight:400;color:#3A5A6B;line-height:1.7}
+  /* 分かったこと（箇条書き）。行間は1.7以上 */
+  .more-find{list-style:none;margin:12px 0 0;padding:0}
+  .more-find li{position:relative;padding:0 0 0 15px;margin:0 0 10px;
+    font-size:14px;line-height:1.75;color:#3A5A6B}
+  .more-find li:last-child{margin-bottom:0}
+  .more-find li::before{content:"・";position:absolute;left:0;top:0;color:#0A5E93;font-weight:800}
+  .more-wip{display:inline-block;margin-top:12px;padding:3px 10px;border-radius:999px;
+    background:#E4EEF4;color:#0B2545;font-size:12px;font-weight:800;letter-spacing:.02em}
+  .uc-wide-foot{margin-top:24px;padding-top:16px;border-top:1px solid #DDE5EA}
+  /* 注釈は薄いグレーにしない（#3A5A6B は #F7FBFD 上で 7.07:1） */
+  .uc-wide-foot .note{font-size:12px;line-height:1.8;color:#3A5A6B}
+  .more-tail{margin:10px 0 0!important;font-size:13.5px;color:#3A5A6B;font-weight:700}
+  /* SPは1列。1行あたりが長くなりすぎないよう全角26文字相当で折り返す */
+  @media(max-width:960px){
+    .more-list{grid-template-columns:1fr;gap:24px}
+    .more-list > li{max-width:26em}
+  }
 
   /* ───── 02 Odonataについて ───── */
   .sec-en{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:.28em;
@@ -756,23 +768,50 @@
         <p class="uc-link"><a href="service-analysis.html#network">ネットワーク分析の詳細を見る<span class="chev" aria-hidden="true">›</span></a></p>
       </article>
 
-      <!-- カード3：リスト型（これから増えていくテーマ） -->
-      <article class="uc uc-more reveal">
-        <h3>その他の分析例</h3>
-        <div class="uc-more-head" aria-hidden="true">
-          <svg class="ic" viewBox="0 0 24 24"><use href="#i-spark"/></svg>
-          <span>これから増えていくテーマ</span>
-        </div>
-        <p>上記以外にも、データの組み合わせに応じた分析を行っています。</p>
-        <ul class="more-list">
-          <li><b>コンディション × 試合スタッツ</b><span>疲労が溜まった週は、デュエル勝率が平均で約16pt低下</span>
-            <small class="note">※筑波大学蹴球部のGPS約5.6万日分と日次コンディションを用いた推定値です。</small></li>
-          <li><b>コンディション × GPSデータ</b><span>同じ練習でも、疲労の出方は選手ごとに大きく異なる</span></li>
-          <li><b>IDP × 試合スタッツ</b><span>設定した目標が、試合での変化につながったかを検証</span></li>
-        </ul>
-        <p class="more-tail">…など。分析テーマは、クラブごとに設計します。</p>
-      </article>
     </div>
+
+    <!-- その他の分析例：内容量が上の2枚より多いため、全幅の1ブロックとして下に置く -->
+    <section class="uc-wide reveal" aria-labelledby="more-heading">
+      <div class="uc-wide-head">
+        <h3 id="more-heading">その他の分析例</h3>
+        <p class="uc-wide-badge">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-spark"/></svg>
+          <span>これから増えていくテーマ</span>
+        </p>
+      </div>
+      <p class="uc-wide-lead">上記以外にも、データの組み合わせに応じた分析を行っています。</p>
+      <ul class="more-list">
+        <li>
+          <b>コンディション × 試合スタッツ</b>
+          <span>日々のコンディション記録とGPSの負荷データを、試合スタッツと接続して分析しました。</span>
+          <ul class="more-find">
+            <li>効くのは「直前」ではなく「蓄積」。8〜14日間の走行負荷が、球際の勝率を下げる</li>
+            <li>負荷でデュエル勝率が下がりやすい選手と、そうでない選手がいる。選手ごとに調整を最適化できる</li>
+            <li>主観的な疲労は、GPSの負荷を考慮してもなお独立して効く。毎日のアンケートには、それ自体に価値がある</li>
+            <li>負荷と疲労が重なった週は、デュエル勝率が平均で約16pt低下（39% → 23%）</li>
+          </ul>
+        </li>
+        <li>
+          <b>コンディション × GPSデータ</b>
+          <span>練習の負荷が、翌日の選手の状態にどう表れるかを分析しました。</span>
+          <ul class="more-find">
+            <li>練習負荷は、翌日の身体的な疲労を押し上げる</li>
+            <li>その反応の大きさは選手ごとに大きく違う。同じ練習でも、強く反応する選手と、ほとんど反応しない選手がいる</li>
+            <li>心理的なコンディションは大きく乱れにくく、身体的なコンディションは大きく動きやすい</li>
+            <li>心理的なコンディションが良い日は、翌日の身体的なコンディションも良い</li>
+          </ul>
+        </li>
+        <li>
+          <b>IDP × 試合スタッツ</b>
+          <span>選手ごとに設定した目標が、試合での変化につながったかを検証します。</span>
+          <p class="more-wip">検証中</p>
+        </li>
+      </ul>
+      <div class="uc-wide-foot">
+        <p class="note">※上記のうち「コンディション × 試合スタッツ」「コンディション × GPSデータ」は、いずれも筑波大学蹴球部のデータを用いた推定値です。チーム・データ環境により結果は異なります。</p>
+        <p class="more-tail">…など。分析テーマは、クラブごとに設計します。</p>
+      </div>
+    </section>
 
     <div class="center" style="margin-top:40px">
       <a class="tlink" href="service-analysis.html">分析の詳細を見る<span class="chev" aria-hidden="true">›</span></a>
