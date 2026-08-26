@@ -306,6 +306,12 @@
   .cta-navy::before{content:"";position:absolute;inset:0;z-index:-2;
     background:image-set(url("assets/bg-network-navy.webp") type("image/webp"),
       url("assets/bg-network-navy.jpg") type("image/jpeg")) center/cover no-repeat}
+  /* モバイルは828px版に切り替える（109KB → 37KB）。背景は ::before に敷いているのでそちらを上書きする */
+  @media(max-width:768px){
+    .cta-navy::before{
+      background:image-set(url("assets/bg-network-navy@828.webp") type("image/webp"),
+        url("assets/bg-network-navy@828.jpg") type("image/jpeg")) center/cover no-repeat}
+  }
   .cta-navy::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(9,26,51,.86)}
   .cta-navy h2{color:#fff}
   .cta-navy p{color:#E4EFF8}
