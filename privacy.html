@@ -83,6 +83,16 @@
   .ext-links li::before{content:"";position:absolute;left:0;top:15px;width:5px;height:5px;border-radius:50%;background:var(--color-primary-strong)}
   .ext-note{font-size:12.5px;color:var(--color-text-note);margin-left:6px}
 </style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://getodonata.com/"},
+    {"@type":"ListItem","position":2,"name":"プライバシーポリシー","item":"https://getodonata.com/privacy.html"}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -174,11 +184,18 @@
 <!-- /#partial:header -->
 
 <main id="main">
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <div class="wrap">
+    <ol>
+        <li><a href="index.html">ホーム</a></li>
+        <li><span aria-current="page">プライバシーポリシー</span></li>
+    </ol>
+  </div>
+</nav>
 
 <!-- ═══════════ PAGE HERO ═══════════ -->
 <div class="phero" style="padding:56px 0 60px">
   <div class="wrap">
-    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px" aria-hidden="true"><use href="#i-arrow"/></svg> プライバシーポリシー</div>
     <h1 style="font-size:clamp(24px,3.6vw,36px)">プライバシーポリシー</h1>
   </div>
 </div>

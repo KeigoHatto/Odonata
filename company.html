@@ -132,6 +132,16 @@
   .vision p{font-size:clamp(17px,2.4vw,22px);font-weight:800;color:var(--navy);line-height:2}
   .vision p .hl{color:var(--color-primary-strong)}
 </style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://getodonata.com/"},
+    {"@type":"ListItem","position":2,"name":"会社情報","item":"https://getodonata.com/company.html"}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -223,12 +233,19 @@
 <!-- /#partial:header -->
 
 <main id="main">
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <div class="wrap">
+    <ol>
+        <li><a href="index.html">ホーム</a></li>
+        <li><span aria-current="page">会社情報</span></li>
+    </ol>
+  </div>
+</nav>
 
 <!-- ═══════════ PAGE HERO ═══════════ -->
 <div class="phero">
   <canvas id="pheroNet"></canvas>
   <div class="wrap">
-    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px" aria-hidden="true"><use href="#i-arrow"/></svg> 会社情報</div>
 
     <h1><span class="np">誰が、なぜ、</span><span class="np">やっているのか。</span></h1>
     <p class="lead">

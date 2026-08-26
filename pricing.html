@@ -86,6 +86,16 @@
   .pcard li svg.ic{color:var(--blue);flex-shrink:0;font-size:17px;margin-top:4px}
   .pcard li b{color:var(--navy)}
 </style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://getodonata.com/"},
+    {"@type":"ListItem","position":2,"name":"料金","item":"https://getodonata.com/pricing.html"}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -177,12 +187,19 @@
 <!-- /#partial:header -->
 
 <main id="main">
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <div class="wrap">
+    <ol>
+        <li><a href="index.html">ホーム</a></li>
+        <li><span aria-current="page">料金</span></li>
+    </ol>
+  </div>
+</nav>
 
 <!-- ═══════════ HERO ═══════════ -->
 <div class="phero">
   <canvas id="pheroNet"></canvas>
   <div class="wrap">
-    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px" aria-hidden="true"><use href="#i-arrow"/></svg> 料金</div>
     <h1><span class="np">料金は、チームの状況に応じて</span><span class="np">個別にお見積りします。</span></h1>
     <p class="lead"><span class="np">データプラットフォームは</span><span class="np"><strong style="color:#fff">チーム単位の月額制</strong>。</span><span class="np">データ分析・伴走支援は、</span><span class="np">分析内容・データ量・支援期間に応じて</span><span class="np">お見積りします。</span></p>
   </div>

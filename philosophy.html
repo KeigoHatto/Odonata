@@ -118,7 +118,17 @@
 
   /* hero */
   .phero{padding:96px 0 100px;text-align:center;position:relative}
-  .crumb{font-size:13px;color:var(--ice);font-weight:600;margin-bottom:30px;display:flex;align-items:center;justify-content:center;gap:8px;opacity:.85}
+  /* パンくずリスト（§7-9）。このページは site.css を読み込まず --color-* トークンも
+     持たないため実値で書いている。ここだけ地が濃紺（--bg:#071A3A）なので、
+     site.css の暗い文字色は使えない。#9DB6CC は 8.21:1、#EAF4FB は 15.46:1。 */
+  .breadcrumb{margin:24px 0;position:relative;z-index:2}
+  .breadcrumb ol{list-style:none;display:flex;flex-wrap:wrap;gap:4px 0;
+    font-size:13px;line-height:1.7;margin:0;padding:0}
+  .breadcrumb a{color:#9DB6CC;text-decoration:underline;
+    text-decoration-thickness:1px;text-underline-offset:3px}
+  .breadcrumb a:hover{color:#9fe2ff;text-decoration-thickness:2px}
+  .breadcrumb [aria-current="page"]{color:#EAF4FB;text-decoration:none}
+  .breadcrumb li:not(:first-child)::before{content:"/";margin:0 8px;color:#9DB6CC}
   .phero .df{width:128px;margin:0 auto 26px;filter:drop-shadow(0 10px 34px rgba(63,200,240,.5));animation:hover 6s ease-in-out infinite}
   @keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   .phero h1{font-size:clamp(30px,5.4vw,54px);font-weight:800;letter-spacing:.02em;line-height:1.35;margin-bottom:18px}
@@ -243,6 +253,17 @@
   .skip-link:focus{top:0}
   :focus-visible{outline:2px solid #1A1A1C;outline-offset:0;box-shadow:0 0 0 4px #FFDF3F}
 </style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://getodonata.com/"},
+    {"@type":"ListItem","position":2,"name":"会社情報","item":"https://getodonata.com/company.html"},
+    {"@type":"ListItem","position":3,"name":"Philosophy","item":"https://getodonata.com/philosophy.html"}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -275,6 +296,15 @@
 </header>
 
 <main id="main">
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <div class="wrap">
+    <ol>
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="company.html">会社情報</a></li>
+        <li><span aria-current="page">Philosophy</span></li>
+    </ol>
+  </div>
+</nav>
 
 <!-- HERO : scroll-zoom into the compound eyes → Odonata logo -->
 <div class="zoomstage" id="zoomStage">

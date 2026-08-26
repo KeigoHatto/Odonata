@@ -115,7 +115,17 @@
   .ghero{background:var(--grad-hero);color:#fff;padding:64px 0 70px;position:relative;overflow:hidden}
   .ghero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.4}
   .ghero .wrap{position:relative;z-index:2}
-  .crumb{font-size:13px;color:#9fe2ff;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  /* パンくずリスト（§7-9）。このページは site.css を読み込まず --color-* トークンも
+     持たないため、site.css と同じ値を実値で書いている。
+     地は --bg:#E0F5FD。#41616F は 5.89:1、#15233B は 13.96:1 で基準を満たす。 */
+  .breadcrumb{margin:24px 0}
+  .breadcrumb ol{list-style:none;display:flex;flex-wrap:wrap;gap:4px 0;
+    font-size:13px;line-height:1.7;margin:0;padding:0}
+  .breadcrumb a{color:#41616F;text-decoration:underline;
+    text-decoration-thickness:1px;text-underline-offset:3px}
+  .breadcrumb a:hover{color:#0A5E93;text-decoration-thickness:2px}
+  .breadcrumb [aria-current="page"]{color:#15233B;text-decoration:none}
+  .breadcrumb li:not(:first-child)::before{content:"/";margin:0 8px;color:#41616F}
   .ghero h1{font-size:clamp(28px,4.5vw,44px);font-weight:800;letter-spacing:-.01em;margin-bottom:14px}
   .ghero p{font-size:16px;color:#cfe6f5;max-width:680px}
 
@@ -281,6 +291,17 @@
   .skip-link:focus{top:0}
   :focus-visible{outline:2px solid #1A1A1C;outline-offset:0;box-shadow:0 0 0 4px #FFDF3F}
 </style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://getodonata.com/"},
+    {"@type":"ListItem","position":2,"name":"データプラットフォーム","item":"https://getodonata.com/service-platform.html"},
+    {"@type":"ListItem","position":3,"name":"使い方ガイド","item":"https://getodonata.com/guide.html"}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -341,7 +362,6 @@
 <div class="ghero">
   <canvas id="netCanvas"></canvas>
   <div class="wrap">
-    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px" aria-hidden="true"><use href="#i-arrow"/></svg> <a href="service-platform.html">データプラットフォーム</a> <svg class="ic" style="font-size:14px" aria-hidden="true"><use href="#i-arrow"/></svg> 使い方ガイド</div>
     <h1>使い方ガイド</h1>
     <p><span class="np">選手・コーチそれぞれの</span><span class="np">全機能と、</span><span class="np">Odonata の象徴である</span><strong style="color:#fff" class="np">ネットワーク分析の読み方</strong>を、<span class="np">画面に沿って</span><span class="np">くわしく解説します。</span></p>
   </div>
@@ -383,6 +403,15 @@
 
   <!-- ───── CONTENT ───── -->
   <main id="main">
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <div class="wrap">
+    <ol>
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="service-platform.html">データプラットフォーム</a></li>
+        <li><span aria-current="page">使い方ガイド</span></li>
+    </ol>
+  </div>
+</nav>
 
     <!-- このアプリでできること -->
     <section class="doc" id="intro">

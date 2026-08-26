@@ -71,6 +71,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"ホーム","item":"https://getodonata.com/"},
+    {"@type":"ListItem","position":2,"name":"資料請求・お問い合わせ","item":"https://getodonata.com/contact.html"}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -162,12 +172,19 @@
 <!-- /#partial:header -->
 
 <main id="main">
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <div class="wrap">
+    <ol>
+        <li><a href="index.html">ホーム</a></li>
+        <li><span aria-current="page">資料請求・お問い合わせ</span></li>
+    </ol>
+  </div>
+</nav>
 
 <!-- ═══════════ PAGE HERO ═══════════ -->
 <div class="phero">
   <canvas id="pheroNet"></canvas>
   <div class="wrap">
-    <div class="crumb"><a href="index.html">ホーム</a> <svg class="ic" style="font-size:14px" aria-hidden="true"><use href="#i-arrow"/></svg> 資料請求・お問い合わせ</div>
 
     <h1><span class="np">まずは、お気軽に</span><span class="np">ご連絡ください。</span></h1>
     <p class="lead">
