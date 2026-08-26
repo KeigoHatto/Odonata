@@ -129,3 +129,42 @@ node tools/build-sitemap.mjs --check  # 最新でなければ exit 1（CI用）
 - `<meta name="robots" content="noindex">` を持つページは自動的に除外される
 - `news/` 配下の個別記事ページは、存在すれば自動で追加される
 - `index.html` は `/` と重複するため、`/` として1件だけ出力される
+
+---
+
+## 9｜OGP / X Card の設置と、og:image の暫定対応
+
+**設置日：2026-08-27 ／ 対象：`kessan.html` を除く全13ページ**
+
+ガイドライン §13-7 に従い、`canonical` の直後に以下を設置した。`og:title` / `og:description` / `og:url` は、
+そのページの `title` / `description` / `canonical` と機械的に一致させている（スクリプトで抽出して挿入）。
+
+```
+og:type / og:site_name / og:locale / og:title / og:description /
+og:url / og:image / og:image:width / og:image:height / twitter:card
+```
+
+- `kessan.html` は `noindex` かつガイドライン適用対象外（§1-2）のため設置しない。
+
+### 外したルールと、その理由（§1-4 の記録）
+
+| ルール | 本来 | 現状 | 理由 |
+| --- | --- | --- | --- |
+| §13-7 OG画像は 1200 × 630px | `assets/og-default.png`（1200×630） | `assets/bg-network-navy.jpg`（1672×941） | **専用のOG画像が未作成のため。** 存在しないURLを指すと共有時に画像が一切表示されず、OGPを設置した意味が失われる。実在する画像を暫定で指し、`og:image:width` / `height` には実寸をそのまま書いている（1200×630 と偽らない） |
+
+**次の改修で対応すること**：`assets/og-default.png` を 1200 × 630px で作成し、`og:image` と
+`og:image:width` / `og:image:height` の3行を差し替える。ロゴと社名を入れる場合、生成AIは日本語を崩すため
+（§10-3）、文字部分は画像生成に頼らず作図すること。
+
+### 未対応のまま残っている MUST（2026-08-27 時点の静的監査）
+
+| § | 項目 | 件数 |
+| --- | --- | --- |
+| 10-4 / 12-1 | `<img>` の `width` / `height` 欠落 | 68 / 73枚 |
+| 7-9 | パンくずリスト未設置 | 下層12ページ |
+| 6-2 | `color:var(--blue)`（= `--color-primary`、白地 2.91:1）を文字色に使用 | 33箇所（暗い面での使用は適合。個別検証が必要） |
+| 18-9 | 未参照の画像が残存 | 15ファイル・約16MB |
+| 12-1 | 300KB を超える画像 | 10ファイル（最大 1,849KB） |
+| 4-4 | 独自ブレークポイント（SHOULD） | 16種 |
+| 18-4 | `!important`（SHOULD） | 34箇所 |
+| 18-2 | `guide.html` / `philosophy.html` のヘッダー・フッター二重管理（SHOULD） | 2ページ |
