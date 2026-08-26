@@ -88,7 +88,9 @@
   ::selection{background:rgba(63,200,240,.3)}
   body{font-family:'Manrope','Zen Kaku Gothic New',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-break:strict;overflow-wrap:break-word}
   a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
+  /* height:auto は必須。width/height 属性（実寸）を入れたうえで max-width で縮めると、
+     height:auto が無い場合に高さだけ実寸のまま残り、狭い画面で画像が縦に潰れる。 */
+  img{max-width:100%;height:auto;display:block}
   .wrap{max-width:1180px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
   svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.14em}
 
@@ -102,7 +104,7 @@
   /* header */
   header{position:sticky;top:0;z-index:50;background:rgba(7,26,58,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .nav-logo img{height:28px;filter:brightness(0) invert(1)}
+  .nav-logo img{height:28px;width:auto;filter:brightness(0) invert(1)}
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{font-size:14px;font-weight:600;color:#cfe2f2;opacity:.82;transition:.2s}
   .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--cyan)}
@@ -217,7 +219,7 @@
 
   /* footer */
   footer{border-top:1px solid var(--border);text-align:center;padding:50px 24px 44px;position:relative;z-index:2}
-  footer img{height:32px;margin:0 auto 16px;filter:brightness(0) invert(1);opacity:.92}
+  footer img{height:32px;width:auto;margin:0 auto 16px;filter:brightness(0) invert(1);opacity:.92}
   footer p{font-size:13px;color:var(--sub)}
 
   /* reveal */
@@ -259,7 +261,7 @@
 <a class="skip-link" href="#main">本文へスキップ</a>
 <header>
   <div class="wrap nav">
-    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata"></a>
+    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata" width="302" height="90"></a>
     <nav class="nav-links" id="navLinks">
       <a href="index.html">ホーム</a>
       <a href="approach.html">複雑系アプローチ</a>
@@ -277,10 +279,10 @@
 <!-- HERO : scroll-zoom into the compound eyes → Odonata logo -->
 <div class="zoomstage" id="zoomStage">
   <div class="zoomsticky">
-    <div class="zlayer df" id="zDf"><img src="assets/dragonfly.png" alt="Odonata dragonfly"></div>
-    <div class="zlayer emblem" id="zEmblem"><img src="assets/odonata-emblem.png" alt=""></div>
+    <div class="zlayer df" id="zDf"><img src="assets/dragonfly.png" alt="Odonata dragonfly" width="880" height="587"></div>
+    <div class="zlayer emblem" id="zEmblem"><img src="assets/odonata-emblem.png" alt="" width="600" height="600"></div>
     <div class="zlayer lockup" id="zLockup">
-      <span class="emwrap"><img class="em2" src="assets/odonata-emblem.png" alt=""></span>
+      <span class="emwrap"><img class="em2" src="assets/odonata-emblem.png" alt="" width="600" height="600"></span>
       <div class="wm">Odonata</div>
       <h1 class="jp"><span class="np">複雑な世界を、</span><span class="np grad">複眼で読む。</span></h1>
       <p class="en2">Read the complexity. Shape the game.</p>
@@ -385,7 +387,7 @@
     <h2 class="sec-h">なぜ「Odonata」なのか</h2>
     <div class="name-inner reveal">
       <div class="name-fig">
-        <img class="df" src="assets/dragonfly.png" alt="トンボ（Odonata）">
+        <img class="df" src="assets/dragonfly.png" alt="トンボ（Odonata）" width="880" height="587">
         <div class="sci">Odonata<span>— トンボ目の学名</span></div>
       </div>
       <div class="name-body">
@@ -422,7 +424,7 @@
 
 <footer>
   <div class="wrap">
-    <img src="assets/odonata-logo.png" alt="Odonata">
+    <img src="assets/odonata-logo.png" alt="Odonata" width="302" height="90">
     <p><span class="np">サッカーのための</span><span class="np">コンディショニング・</span><span class="np">プラットフォーム</span></p>
     <p style="margin-top:8px;opacity:.7">© <span id="year"></span> Odonata. All rights reserved.</p>
   </div>

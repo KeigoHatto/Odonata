@@ -108,7 +108,9 @@ header.site{
   border-bottom:1px solid var(--border);
 }
 .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;height:68px}
-.nav-logo img{height:30px}
+/* width:auto は必須。height だけ指定すると、width 属性（302px）が
+   presentational hint として効いてロゴが横に伸びる。 */
+.nav-logo img{height:30px;width:auto}
 .nav-links{display:flex;gap:20px;align-items:center}
 .nav-links>a,.nav-item{flex-shrink:0}
 .nav-links>a,.nav-item-btn{
@@ -431,7 +433,7 @@ footer.site{background:var(--navy-deep);color:#9fb8d6;padding:60px 0 40px;font-s
 .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px;margin-bottom:44px}
 @media(max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.foot-grid{grid-template-columns:1fr}}
-.foot-brand img{height:28px;filter:brightness(0) invert(1);opacity:.92;margin-bottom:16px}
+.foot-brand img{height:28px;width:auto;filter:brightness(0) invert(1);opacity:.92;margin-bottom:16px}
 .foot-brand p{font-size:12.5px;line-height:1.8}
 .foot-col h3{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7FE3FF;margin-bottom:14px}
 .foot-col a{display:block;padding:5px 0;font-size:13px;color:#cfe6f5;opacity:.85;transition:.15s}

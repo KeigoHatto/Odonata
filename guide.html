@@ -90,14 +90,16 @@
   ::selection{background:rgba(0,160,233,.22)}
   body{font-family:'Manrope','Zen Kaku Gothic New',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased;line-break:strict;overflow-wrap:break-word}
   a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
+  /* height:auto は必須。width/height 属性（実寸）を入れたうえで max-width で縮めると、
+     height:auto が無い場合に高さだけ実寸のまま残り、狭い画面で画像が縦に潰れる。 */
+  img{max-width:100%;height:auto;display:block}
   .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
   svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.14em}
 
   /* header */
   header{position:sticky;top:0;z-index:50;background:rgba(224,245,253,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .nav-logo img{height:30px}
+  .nav-logo img{height:30px;width:auto}
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{font-size:14px;font-weight:600;color:var(--navy);opacity:.8;transition:.2s}
   .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--color-primary-strong)}
@@ -270,7 +272,7 @@
 
   /* back to top / footer */
   footer{background:var(--navy-deep);color:#9fb8d6;padding:46px 0 38px;text-align:center;font-size:13px}
-  footer img{height:26px;margin:0 auto 14px;filter:brightness(0) invert(1);opacity:.9}
+  footer img{height:26px;width:auto;margin:0 auto 14px;filter:brightness(0) invert(1);opacity:.9}
   .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;border:none;transition:.2s}
   .btn svg.ic{font-size:18px}
   .btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--blue)}
@@ -320,7 +322,7 @@
 <a class="skip-link" href="#main">本文へスキップ</a>
 <header>
   <div class="wrap nav">
-    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata"></a>
+    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata" width="302" height="90"></a>
     <nav class="nav-links" id="navLinks">
       <a href="index.html">ホーム</a>
       <a href="service-platform.html">データプラットフォーム</a>
@@ -506,7 +508,7 @@
     <section class="doc" id="p-cond">
       <div class="doc-h"><div class="dh-ic"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></div><h2>コンディション入力</h2></div>
       <p class="sub">毎日の主役。練習前と練習後の2回に分けて、1〜2分で入力します。</p>
-      <figure class="shot"><img src="assets/app-input-pre.png" alt="練習前コンディション入力画面：睡眠・疲労などのスライダーが並ぶ" loading="lazy"><figcaption><b>練習前入力。</b>スライダー中心で1〜2分で完了します。</figcaption></figure>
+      <figure class="shot"><img src="assets/app-input-pre.png" alt="練習前コンディション入力画面：睡眠・疲労などのスライダーが並ぶ" width="567" height="847" loading="lazy"><figcaption><b>練習前入力。</b>スライダー中心で1〜2分で完了します。</figcaption></figure>
 
       <div class="gflow compact">
         <div class="gf"><span class="who">朝・練習前</span><h3>練習前入力</h3><p>睡眠・疲労・痛み など（1〜2分）</p></div>
@@ -632,7 +634,7 @@
     <section class="doc" id="p-medical">
       <div class="doc-h"><div class="dh-ic"><svg class="ic" aria-hidden="true"><use href="#i-pulse"/></svg></div><h2><span class="np">ケガ履歴</span><span class="np">（メディカル）</span></h2></div>
       <p class="sub">ケガや体調についての情報を入力・確認します。登録内容はコーチ・トレーナーにすぐ共有されます。</p>
-      <figure class="shot"><img src="assets/app-medical.png" alt="ケガ記録画面：登録フォームとリハビリ中・復帰済みのケガカード" loading="lazy"><figcaption><b>ケガ履歴。</b>リハビリ中／復帰済みのカードで自分のケガを管理します。</figcaption></figure>
+      <figure class="shot"><img src="assets/app-medical.png" alt="ケガ記録画面：登録フォームとリハビリ中・復帰済みのケガカード" width="1161" height="514" loading="lazy"><figcaption><b>ケガ履歴。</b>リハビリ中／復帰済みのカードで自分のケガを管理します。</figcaption></figure>
 
       <div class="gflow compact">
         <div class="gf"><span class="gfn">1</span><h3>ケガを登録</h3><p>必須は発生日のみ</p></div>
@@ -660,7 +662,7 @@
     <section class="doc" id="p-idp">
       <div class="doc-h"><div class="dh-ic"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></div><h2><span class="np">IDP</span><span class="np">（個人育成計画）</span></h2></div>
       <p class="sub">自分の成長目標を立てて、週次で自己評価し、面談で振り返ります。</p>
-      <figure class="shot"><img src="assets/app-idp.png" alt="IDP（個人育成計画）画面：目標サマリー・進行中の目標・修了ログ・面談記録" loading="lazy"><figcaption><b>IDP。</b>目標サマリー・進行中の目標・修了ログ・面談記録が並びます。</figcaption></figure>
+      <figure class="shot"><img src="assets/app-idp.png" alt="IDP（個人育成計画）画面：目標サマリー・進行中の目標・修了ログ・面談記録" width="796" height="617" loading="lazy"><figcaption><b>IDP。</b>目標サマリー・進行中の目標・修了ログ・面談記録が並びます。</figcaption></figure>
 
       <div class="gflow compact">
         <div class="gf"><span class="who">設定</span><h3>目標を立てる</h3><p>期間・カテゴリ・アクション</p></div>
@@ -727,7 +729,7 @@
       <div class="doc-h"><div class="dh-ic"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></div><h2>チームを見る</h2></div>
       <p class="sub">チーム全体や個々の選手を見渡す機能です。</p>
       <h3><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg> ダッシュボード</h3>
-      <figure class="shot"><img src="assets/app-dashboard.png" alt="ダッシュボード画面：入力状況・選手ステータス内訳・戦績・コンディション・負荷推移" loading="lazy"><figcaption><b>ダッシュボード。</b>予定 → 要確認 → 入力状況 → ステータス内訳 → 戦績 → チームグラフの順に並びます。</figcaption></figure>
+      <figure class="shot"><img src="assets/app-dashboard.png" alt="ダッシュボード画面：入力状況・選手ステータス内訳・戦績・コンディション・負荷推移" width="1259" height="734" loading="lazy"><figcaption><b>ダッシュボード。</b>予定 → 要確認 → 入力状況 → ステータス内訳 → 戦績 → チームグラフの順に並びます。</figcaption></figure>
       <p>ログイン直後に開く画面。「今日なにがあるか」「誰を気にかけるべきか」を数十秒で確認できるよう、上から順にカードが並びます。</p>
       <table class="tbl">
         <tr><th>カード</th><th>見えるもの・使い方</th></tr>
@@ -787,7 +789,7 @@
       <div class="doc-h"><div class="dh-ic"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></div><h2><span class="np">試合・</span><span class="np">トレーニング・</span><span class="np">予定・</span><span class="np">メディカル・</span><span class="np">IDP</span></h2></div>
       <p class="sub">日々の運営に関わる機能です。</p>
       <h3><svg class="ic" aria-hidden="true"><use href="#i-ball"/></svg> 試合</h3>
-      <figure class="shot"><img src="assets/app-match.png" alt="試合レポート画面：試合情報・スタメンのピッチ図・出場記録テーブル" loading="lazy"><figcaption><b>試合詳細。</b>試合情報／相手分析資料／スタメン・ベンチ（ピッチ図）／得点の詳細／出場記録を1試合ずつ管理。</figcaption></figure>
+      <figure class="shot"><img src="assets/app-match.png" alt="試合レポート画面：試合情報・スタメンのピッチ図・出場記録テーブル" width="1098" height="629" loading="lazy"><figcaption><b>試合詳細。</b>試合情報／相手分析資料／スタメン・ベンチ（ピッチ図）／得点の詳細／出場記録を1試合ずつ管理。</figcaption></figure>
 
       <div class="gflow compact">
         <div class="gf"><span class="gfn">1</span><h3>試合を登録</h3><p>スコア＋得点の詳細（分まで）</p></div>
@@ -1009,8 +1011,8 @@
         <div class="gf"><span class="gfn">4</span><h3>メニューに反映</h3><p>「▼改善」を確認して当日の練習へ</p></div>
       </div>
       <div class="shot-pair">
-        <figure class="shot"><img src="assets/app-risk.png" alt="チーム全体のリスクサマリ：高リスク・中リスク・低リスク・負傷離脱の人数と要注意アラート" loading="lazy"><figcaption><b>リスクサマリー。</b>高・中・低リスク／負傷離脱の人数と警告バナー。</figcaption></figure>
-        <figure class="shot"><img src="assets/app-risk-factor.png" alt="高リスク選手のリスク上昇要因の分解表示" loading="lazy"><figcaption><b>リスクを上げている要因。</b>「なぜそのスコアか」を要因分解で確認。</figcaption></figure>
+        <figure class="shot"><img src="assets/app-risk.png" alt="チーム全体のリスクサマリ：高リスク・中リスク・低リスク・負傷離脱の人数と要注意アラート" width="1119" height="284" loading="lazy"><figcaption><b>リスクサマリー。</b>高・中・低リスク／負傷離脱の人数と警告バナー。</figcaption></figure>
+        <figure class="shot"><img src="assets/app-risk-factor.png" alt="高リスク選手のリスク上昇要因の分解表示" width="1093" height="195" loading="lazy"><figcaption><b>リスクを上げている要因。</b>「なぜそのスコアか」を要因分解で確認。</figcaption></figure>
       </div>
       <ol class="steps">
         <li>「予測を開始する」を押すと、最新データ（GPS＋コンディション）を取得して全選手のリスクを計算します（数十秒。結果は保存され、次回は前回の結果がすぐ表示されます）。</li>
@@ -1057,8 +1059,8 @@
         <li><b>信頼度マーク</b>：学習データにほとんどないパターンの日には ※（中）や !（低）が付きます。そうした日の予測は参考程度に扱ってください。</li>
       </ul>
       <div class="shot-pair">
-        <figure class="shot"><img src="assets/app-plan.png" alt="週間プラン設計画面：曜日ごとに練習強度を選択" loading="lazy"><figcaption><b>1週間プラン。</b>各日に オフ／低／中／高／試合 を割り当てて予測。</figcaption></figure>
-        <figure class="shot"><img src="assets/app-plan-curve.png" alt="計画した1週間の負荷によるリスク推移のシミュレーショングラフ" loading="lazy"><figcaption><b>リスク推移。</b>計画した負荷で7日間のリスクがどう動くかを事前に確認。</figcaption></figure>
+        <figure class="shot"><img src="assets/app-plan.png" alt="週間プラン設計画面：曜日ごとに練習強度を選択" width="1118" height="671" loading="lazy"><figcaption><b>1週間プラン。</b>各日に オフ／低／中／高／試合 を割り当てて予測。</figcaption></figure>
+        <figure class="shot"><img src="assets/app-plan-curve.png" alt="計画した1週間の負荷によるリスク推移のシミュレーショングラフ" width="1115" height="402" loading="lazy"><figcaption><b>リスク推移。</b>計画した負荷で7日間のリスクがどう動くかを事前に確認。</figcaption></figure>
       </div>
     </section>
 
@@ -1094,7 +1096,7 @@
       </ul>
 
       <h3><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg> 2期間の比較タブ</h3>
-      <figure class="shot"><img src="assets/app-compare.png" alt="2期間比較画面：期間①と期間②の平均値・ネットワーク構造を並べて表示" loading="lazy"><figcaption><b>2期間の比較。</b>「ケガの前後」「好調期と不調期」を並べて検証できます。</figcaption></figure>
+      <figure class="shot"><img src="assets/app-compare.png" alt="2期間比較画面：期間①と期間②の平均値・ネットワーク構造を並べて表示" width="1137" height="511" loading="lazy"><figcaption><b>2期間の比較。</b>「ケガの前後」「好調期と不調期」を並べて検証できます。</figcaption></figure>
       <ul>
         <li>期間①（青）と 期間②（橙）を指定。</li>
         <li><b>イベント基準の前後比較</b>：怪我・復帰・IDP・試合・チーム移動などを選び、「前後◯日」（前後1ヶ月〜1年）で2期間を自動設定（当日は除外）。</li>
@@ -1203,8 +1205,8 @@
         </div>
 
         <div class="shot-pair" style="margin-top:18px">
-          <figure class="shot" style="margin:0"><img src="assets/app-network-graph.png" alt="時系列関係（先行関係）のネットワーク図" loading="lazy"><figcaption><b>時系列関係。</b>矢印＝「昨日 → 今日」の先行関係。</figcaption></figure>
-          <figure class="shot" style="margin:0"><img src="assets/app-network-cor.png" alt="同時相関のネットワーク図" loading="lazy"><figcaption><b>同時相関。</b>線＝同じ日に一緒に動く関係。</figcaption></figure>
+          <figure class="shot" style="margin:0"><img src="assets/app-network-graph.png" alt="時系列関係（先行関係）のネットワーク図" width="420" height="332" loading="lazy"><figcaption><b>時系列関係。</b>矢印＝「昨日 → 今日」の先行関係。</figcaption></figure>
+          <figure class="shot" style="margin:0"><img src="assets/app-network-cor.png" alt="同時相関のネットワーク図" width="612" height="475" loading="lazy"><figcaption><b>同時相関。</b>線＝同じ日に一緒に動く関係。</figcaption></figure>
         </div>
 
         <h3 style="margin-top:26px"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg> どう活用する？</h3>
@@ -1350,7 +1352,7 @@
 
 <footer>
   <div class="wrap">
-    <img src="assets/odonata-logo.png" alt="Odonata">
+    <img src="assets/odonata-logo.png" alt="Odonata" width="302" height="90">
     <p><span class="np">サッカーのための</span><span class="np">コンディショニング・</span><span class="np">プラットフォーム</span></p>
     <p style="margin-top:8px;opacity:.7">© <span id="year"></span> Odonata. All rights reserved.</p>
   </div>
