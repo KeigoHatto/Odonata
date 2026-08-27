@@ -13,7 +13,12 @@
   --color-bg-surface:#FFFFFF;
   --color-bg-dark:#071A3A;
   --color-primary:#00A0E9;         /* 塗り・図形専用。文字には使わない（白地 2.91:1） */
-  --color-primary-strong:#0A5E93; /* 白背景で文字に使える濃さ（5.42:1） */
+  /* ───── 青の2トークンは役割を分ける。混ぜると必ずコントラスト不足が再発する ─────
+     --color-primary-strong #0A5E93 … 白文字を載せる面。上に載せてよい文字は #fff のみ
+     --blue / --color-primary #00A0E9 … 濃紺文字を載せる面、または文字を持たない装飾。
+                                        上に載せてよい文字は #04203b のみ。白文字は禁止
+     白 / #00A0E9 は 2.91:1 で 4.5:1 を満たさない。以後 --blue の上に白文字を置く実装は規則違反とする。 */
+  --color-primary-strong:#0A5E93; /* 白地 6.92:1／ページ地 6.14:1。濃紺の上では 2.03:1 で使えない */
   --color-navy:#0B2A5B;
   --color-accent:#FF9933;
   --color-border:#CCE9F6;          /* 面の区切り線（非情報。3:1 の対象外） */
@@ -219,8 +224,12 @@ header.site{
 .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3)}
 .btn-ghost:hover{background:rgba(255,255,255,.2)}
 .btn-navy{background:var(--navy);color:#fff}
-.btn-navy:hover{background:var(--blue);transform:translateY(-2px)}
-.btn-blue{background:var(--blue);color:#fff}
+/* 白文字を載せる面なので --color-primary-strong を使う（--blue では 2.91:1）。
+   ベースの濃紺との明度差が縮まるぶん、ホバーは transform でも知覚できるようにしてある */
+/* 塗りを #0A5E93 にしたことで、ベースの濃紺との明度比が 4.81:1 → 2.03:1 に縮む。
+   状態変化が明度だけでは伝わりにくいため、移動に加えて影でも補う */
+.btn-navy:hover{background:var(--color-primary-strong);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-blue{background:var(--color-primary-strong);color:#fff}
 .btn-blue:hover{background:var(--navy);transform:translateY(-2px)}
 .btn-line{background:#fff;color:var(--navy);border:1.5px solid var(--color-border-strong)}
 /* 白い塗りのボタン。--color-primary では文字 2.91:1・枠線 2.91:1 で
@@ -355,7 +364,7 @@ sup.fn{font-size:11px;color:var(--color-primary-strong);font-weight:700}
 }
 .price:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .price.rec{border-color:var(--blue)}
-.price .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:11.5px;font-weight:800;padding:4px 14px;border-radius:999px;white-space:nowrap}
+.price .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:#04203b;font-size:11.5px;font-weight:800;padding:4px 14px;border-radius:999px;white-space:nowrap}
 .price h3{font-size:17px;font-weight:800;color:var(--navy)}
 .price .for{font-size:12.5px;color:var(--sub);font-weight:600;margin:4px 0 16px}
 .price .amount{font-size:30px;font-weight:800;color:var(--navy);line-height:1.1}

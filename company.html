@@ -95,7 +95,10 @@
   .name-fig .sci{font-style:italic;font-weight:700;color:var(--color-primary-strong);font-size:19px;letter-spacing:.03em;font-family:'Manrope',sans-serif}
   .name-fig .sci span{font-style:normal;color:var(--sub);font-size:13px;display:block;margin-top:3px;font-family:'Zen Kaku Gothic New',sans-serif}
   .name-body h3{font-size:clamp(21px,2.8vw,27px);font-weight:800;color:var(--navy);margin-bottom:18px;line-height:1.6}
-  .name-body h3 .grad{background:linear-gradient(100deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  /* background-clip:text の文字。--blue→--cyan では白地で 2.91:1〜1.96:1 と
+     4.5:1 にも 3:1 にも届かない。グラデは残したまま両端を暗い側へ寄せる。
+     #0A5E93 は 6.92:1、#0E7490 は 5.36:1 で両端とも適合する */
+  .name-body h3 .grad{background:linear-gradient(100deg,#0A5E93,#0E7490);-webkit-background-clip:text;background-clip:text;color:transparent}
   .name-body p{font-size:14.5px;color:var(--text);line-height:2.05;margin-bottom:14px}
   .name-body p:last-child{margin-bottom:0}
   .name-body b{color:var(--navy)}

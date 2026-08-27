@@ -104,7 +104,8 @@
   .nav-links a{font-size:14px;font-weight:600;color:var(--navy);opacity:.8;transition:.2s}
   .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--color-primary-strong)}
   .nav-cta{background:var(--navy);color:#fff!important;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:700;opacity:1!important;display:inline-flex;align-items:center;gap:7px}
-  .nav-cta:hover{background:var(--blue)}
+  /* 白文字を載せる面。--blue では 2.91:1 なので #0A5E93（6.92:1）にする */
+  .nav-cta:hover{background:#0A5E93}
   .nav-login{color:var(--navy)!important;padding:8px 18px;border-radius:999px;border:1.5px solid var(--navy);font-size:13px;font-weight:700;opacity:1!important;display:inline-flex;align-items:center;gap:7px}
   .nav-login:hover{background:var(--navy);color:#fff!important}
   .nav-toggle{display:none;background:none;border:none;cursor:pointer;font-size:24px;color:var(--navy)}
@@ -199,7 +200,7 @@
   /* ===== 図解: 横フロー ===== */
   .gflow{display:flex;align-items:stretch;gap:7px;margin:18px 0}
   .gflow .gf{flex:1;min-width:0;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 14px 11px}
-  .gflow .gf .gfn{display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;font-size:12px;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;margin-bottom:6px}
+  .gflow .gf .gfn{display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#04203b;font-weight:800;font-size:12px;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;margin-bottom:6px}
   .gflow .gf .who{display:block;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--color-primary-strong);margin-bottom:2px}
   .gflow .gf h3{font-size:14px;font-weight:800;color:var(--navy);margin:0;line-height:1.45}
   .gflow .gf p{font-size:12px;color:var(--sub);margin:4px 0 0;line-height:1.65}
@@ -263,7 +264,7 @@
   /* use cases */
   .usecase{background:#fff;color:var(--text);border-radius:var(--radius-sm);padding:20px 22px;margin-bottom:14px;box-shadow:0 6px 18px rgba(7,26,58,.18)}
   .uc-head{font-weight:800;color:var(--navy);font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
-  .uc-num{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:#fff;background:var(--blue);padding:3px 11px;border-radius:999px}
+  .uc-num{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:#04203b;background:var(--blue);padding:3px 11px;border-radius:999px}
   .uc-row{display:grid;grid-template-columns:118px 1fr;gap:13px;align-items:start;padding:10px 0;border-top:1px dashed var(--border);font-size:13.5px;line-height:1.7}
   .uc-row:first-of-type{border-top:none}
   .uc-tag{font-size:11.5px;font-weight:700;padding:4px 8px;border-radius:7px;text-align:center;white-space:nowrap;height:fit-content}
@@ -287,7 +288,11 @@
   footer img{height:26px;width:auto;margin:0 auto 14px;filter:brightness(0) invert(1);opacity:.9}
   .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;border:none;transition:.2s}
   .btn svg.ic{font-size:18px}
-  .btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--blue)}
+  /* ホバーも白文字を載せる面。--blue では 2.91:1 なので #0A5E93（6.92:1）にする */
+  /* ホバーも白文字を載せる面。--blue では 2.91:1 なので #0A5E93（6.92:1）にする。
+     濃紺との明度比が 2.03:1 に縮むため、影でも状態変化を示す */
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:#0A5E93;box-shadow:0 18px 44px rgba(11,42,91,.22)}
   .center{text-align:center}
   .skip-link{position:absolute;left:16px;top:-64px;z-index:200;background:#fff;color:var(--navy);font-size:14px;font-weight:800;padding:12px 20px;border-radius:0 0 10px 10px;border:2px solid #1A1A1C;box-shadow:0 0 0 4px #FFDF3F;transition:top .15s}
   .skip-link:focus{top:0}

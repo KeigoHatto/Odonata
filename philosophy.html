@@ -108,7 +108,9 @@
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{font-size:14px;font-weight:600;color:#cfe2f2;opacity:.82;transition:.2s}
   .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--cyan)}
-  .nav-cta{background:var(--blue);color:#fff!important;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:700;opacity:1!important;display:inline-flex;align-items:center;gap:7px}
+  /* 白文字を載せる面。--blue（#00A0E9）では 2.91:1 なので #0A5E93（6.92:1）にする。
+     このページは --color-* トークンを持たないため実値で書く */
+  .nav-cta{background:#0A5E93;color:#fff!important;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:700;opacity:1!important;display:inline-flex;align-items:center;gap:7px}
   .nav-cta:hover{background:var(--cyan)}
   .nav-login{color:#cfe2f2!important;padding:8px 18px;border-radius:999px;border:1.5px solid rgba(207,226,242,.55);font-size:13px;font-weight:700;opacity:1!important;display:inline-flex;align-items:center;gap:7px}
   /* 塗りを --blue（#00A0E9）にすると白文字が 2.91:1 で読めない。
