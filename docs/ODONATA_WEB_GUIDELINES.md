@@ -392,14 +392,14 @@ body{ line-break: strict; overflow-wrap: break-word; }
 
 | トークン | 値 | 用途 |
 | --- | --- | --- |
-| `--color-primary` | `#00A0E9` | **塗り・図形・アイコン専用。文字に使わない**（白地 2.9:1） |
+| `--color-primary` | `#00A0E9` | **塗り・図形・装飾の線専用。文字に使わない**（白地 2.91:1 / ページ地 2.59:1）。→ §6-2 の背景別の表 |
 | `--color-accent` | `#FF9933` | 図中の強調のみ。文字に使わない |
 | `--color-bg` | `#E0F5FD` | ページ地 |
 | `--color-bg-subtle` | `#F2FBFE` | セクションの交互背景 |
 | `--color-bg-surface` | `#FFFFFF` | カード地 |
 | `--color-bg-dark` | `#071A3A` | 暗い面 |
 | `--color-border` | `#CCE9F6` | 面の区切り線（非情報） |
-| `--color-border-strong` | `#6A9AB8` | 意味を持つ境界（3.0:1） |
+| `--color-border-strong` | `#6A9AB8` | **白い塗りの上の枠線のみ**（白地 3.03:1 / ページ地 2.69:1）。→ §6-2 の背景別の表 |
 
 ### 2事業のカード配色（Hero と Service セクションで共有）
 
@@ -427,7 +427,41 @@ body{ line-break: strict; overflow-wrap: break-word; }
 --color-text-inverse / --color-navy / --color-primary-strong
 ```
 
-**MUST**：`--color-primary`（`#00A0E9`）は白背景でコントラスト比 2.91:1 のため、**文字色に使わない。** 青いリンクや小見出しを作りたい場合は `--color-primary-strong` を使う。
+**MUST**：`--color-primary`（`#00A0E9`）は白背景で 2.91:1、ページ地で 2.59:1 のため、**文字色に使わない。** 青いリンクや小見出しを作りたい場合は `--color-primary-strong` を使う。
+
+### 背景別のコントラスト比（実測）
+
+**MUST：コントラスト比は必ず「実際に隣接する色」に対して計算する。白背景での値をそのまま流用しない。
+ページ地は白ではなく `#E0F5FD` である。**
+
+§6-1 の表に添えた比は白基準の参考値にすぎない。**3:1 未満は太字**。
+
+| 前景 | 白 `#FFFFFF` | `--color-bg` `#E0F5FD` | `--color-bg-subtle` `#F2FBFE` | `--color-navy` `#0B2A5B` | `--color-bg-dark` `#071A3A` |
+| --- | --- | --- | --- | --- | --- |
+| `--color-border-strong` `#6A9AB8` | 3.03 | **2.69** | **2.89** | 4.63 | 5.69 |
+| `--color-primary` `#00A0E9` | **2.91** | **2.59** | **2.78** | 4.81 | 5.92 |
+| `--color-primary-strong` `#0A5E93` | 6.92 | 6.14 | 6.59 | **2.03** | **2.49** |
+| `--card-platform-accent` `#7FE3FF` | **1.47** | **1.30** | **1.40** | 9.58 | 11.77 |
+
+**`--color-border-strong` の使用条件**
+
+| | 用途 |
+| --- | --- |
+| OK | 白い塗りの上に載る枠線（ボタン・カードの縁）。枠線 vs 白 = 3.03:1 |
+| NG | ページ地の上に直接置く線・記号（区切り・罫線・アイコン）。2.69:1 で 3:1 を満たさない |
+
+**`--color-primary` の使用条件**
+
+| | 用途 |
+| --- | --- |
+| OK | 大きな面の塗り、装飾の線、濃紺の面の上（4.81:1 / 5.92:1） |
+| NG | 明るい面の上の文字（2.91:1 / 2.59:1） |
+| NG | 明るい面の上の「意味を持つアイコン」。3:1 未満のため、`--color-primary-strong` を使う |
+
+**`--color-primary-strong` / `--card-platform-accent` の使用条件**
+
+- `--color-primary-strong` は**明るい面専用**。濃紺の上では 2.03:1 で使えない。
+- `--card-platform-accent` は**暗い面専用**。白・ページ地の上では 1.5:1 未満で使えない。
 
 ## 6-3. コントラスト比（WCAG 2.2 AA）
 
