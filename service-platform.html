@@ -149,7 +149,8 @@
   .feat-group{margin-top:54px}
   .feat-group + .feat-group{margin-top:50px}
   .fg-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1.5px solid var(--border)}
-  .fg-step{font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--blue);background:#E0F5FD;border:1px solid #CCE9F6;border-radius:999px;padding:5px 14px;white-space:nowrap}
+  /* 地が #E0F5FD。--color-primary では 2.59:1 なので --color-primary-strong（6.14:1）にする */
+  .fg-step{font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--color-primary-strong);background:#E0F5FD;border:1px solid #CCE9F6;border-radius:999px;padding:5px 14px;white-space:nowrap}
   .fg-head h3{font-size:clamp(20px,2.4vw,26px);font-weight:800;color:var(--navy)}
   .fg-head p{font-size:14px;color:var(--sub);flex:1 1 240px;min-width:200px}
   .feat-group .feat-grid{margin-top:24px}

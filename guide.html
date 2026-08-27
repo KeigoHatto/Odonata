@@ -138,7 +138,9 @@
   .toc-card .toc-h{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary-strong);margin:14px 8px 8px}
   .toc-card .toc-h:first-child{margin-top:4px}
   .toc-card a{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:9px;font-size:13.5px;color:var(--navy);font-weight:600;transition:.15s}
-  .toc-card a:hover{background:var(--bg);color:var(--blue)}
+  /* 地が var(--bg)（#E0F5FD）。--blue（#00A0E9）では 2.59:1 なので #0A5E93（6.14:1）にする。
+     このページは --color-* トークンを持たないため実値で書く */
+  .toc-card a:hover{background:var(--bg);color:#0A5E93}
   .toc-card a svg.ic{font-size:16px;color:var(--blue);opacity:.8}
 
   /* content */

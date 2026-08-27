@@ -112,7 +112,9 @@
     letter-spacing:.08em;color:var(--sub);margin-top:3px}
   .members.detail .role{font-size:11.5px}
   .members.detail .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-  .members.detail .tags span{font-size:11px;font-weight:700;color:var(--blue);background:rgba(0,160,233,.09);
+  /* 地は rgba(0,160,233,.09) を白に重ねた #E8F6FD。
+     --color-primary では 2.64:1 なので --color-primary-strong（6.27:1）にする */
+  .members.detail .tags span{font-size:11px;font-weight:700;color:var(--color-primary-strong);background:rgba(0,160,233,.09);
     border:1px solid var(--border);border-radius:999px;padding:4px 10px}
   .members.detail .career{list-style:none;margin:0}
   .members.detail .career li{position:relative;padding:6px 0 6px 15px;font-size:13px;color:var(--sub);line-height:1.75;
