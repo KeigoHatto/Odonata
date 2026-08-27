@@ -405,7 +405,9 @@ sup.fn{font-size:11px;color:var(--color-primary-strong);font-weight:700}
 .news-item .cat{flex:none;font-size:11px;font-weight:800;padding:3px 12px;border-radius:999px;letter-spacing:.04em}
 .cat.notice{background:#E0F5FD;color:#0073a8}
 .cat.press{background:#0B2A5B;color:#fff}
-.cat.column{background:#FFF1E6;color:#b06400}
+/* 11px の太字は AA の「大きな文字」（太字 18.66px 以上）に当たらないので 4.5:1 が要る。
+   #b06400 は #FFF1E6 の上で 4.06:1 だったため #8A4E00（5.99:1）にする。 */
+.cat.column{background:#FFF1E6;color:#8A4E00}
 .news-item .ttl{font-size:15px;font-weight:700;color:var(--navy);flex:1 1 300px}
 .news-item summary:hover .ttl{color:var(--color-primary-strong)}
 .news-item .body{padding:4px 24px 26px;font-size:14.5px;color:var(--text);line-height:1.95;border-top:1px solid var(--bg)}
@@ -484,8 +486,15 @@ body.dark .nav-links>a:hover,body.dark .nav-links>a.active,body.dark .nav-item-b
 body.dark .nav-links>a.active,body.dark .nav-item.active .nav-item-btn{box-shadow:inset 0 -2px 0 var(--cyan)}
 body.dark .nav-toggle{color:#dbe9f7}
 body.dark .nav-links.open{background:#0B2A5B}
-body.dark .nav-login{color:#c2d6ea!important}
-body.dark .nav-login:hover{color:var(--cyan)!important}
+/* body.dark で .nav-login の文字色だけを明るい色に上書きしていたが、背景は基底の
+   #E8F2FB（明るい水色）のままだったため 1.31:1 になっていた。上書きを消して
+   共通定義（#E8F2FB 地に濃紺文字 = 14.03:1）に戻す。
+   淡いブルーの錠剤はダークヘッダーの上でも成立するので、ここに変種は要らない。 */
+/* パンくずは基底で --color-text-muted（#41616F）を使うが、濃紺地では 2.60:1 になる。
+   暗い面用に明るい色へ差し替える（#C9D4E5 = 11.52:1、現在地 #EAF4FB = 15.46:1）。 */
+body.dark .breadcrumb a,body.dark .breadcrumb li:not(:first-child)::before{color:#C9D4E5}
+body.dark .breadcrumb a:hover{color:var(--cyan)}
+body.dark .breadcrumb [aria-current="page"]{color:#EAF4FB}
 body.dark .nav-cta2{background:rgba(255,255,255,.08);color:#fff!important;border-color:rgba(255,255,255,.38)}
 body.dark .nav-cta2:hover{border-color:var(--cyan);color:var(--cyan)!important}
 /* ダークヘッダーでもDropdownは不透明・高コントラストを保つ */

@@ -72,7 +72,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#E0F5FD; --card:#FFFFFF; --text:#15233B; --sub:#5A7A8A;
+    /* --sub は #5A7A8A だったが、このページで実際に載る3面のうち #E0F5FD で 4.07:1、
+       #F2FBFE で 4.36:1 と 4.5:1 を満たしていなかった（白の上でも 4.58:1 と余裕がない）。
+       site.css の --color-text-muted と同じ #41616F にすると 5.89 / 6.32 / 6.64:1 で3面とも通る。 */
+    --bg:#E0F5FD; --card:#FFFFFF; --text:#15233B; --sub:#41616F;
     --border:#CCE9F6; --blue:#00A0E9; --navy:#0B2A5B; --navy-deep:#071A3A;
     --cyan:#3FC8F0; --teal:#1B8FB3; --red:#DC2626; --green:#16A34A;
     --orange:#FF9933; --color-primary-strong:#0A5E93; --radius:18px; --radius-sm:12px;
@@ -179,7 +182,8 @@
   .pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:999px;vertical-align:middle}
   .pill.top{background:var(--navy);color:#fff}
   .pill.cond{background:#E0F5FD;color:#0073a8}
-  .pill.gps{background:#FFF1E6;color:#b06400}
+  /* #b06400 は #FFF1E6 上で 4.06:1。#8A4E00 で 5.99:1 にする */
+  .pill.gps{background:#FFF1E6;color:#8A4E00}
 
   /* callout */
   .note{display:flex;gap:15px;border-radius:var(--radius-sm);padding:18px 20px;margin:18px 0;font-size:14px;line-height:1.75}
@@ -231,7 +235,8 @@
   .rc.pl{background:#DFF2FD;color:#0369A1;border:1px solid #A5DDF8}
   .rc.co{background:var(--navy);color:#fff;border:1px solid var(--navy)}
   .rc.tr{background:#EFE7FD;color:#6D3FC8;border:1px solid #D8C6F7}
-  .rc.ad{background:#FDEEDC;color:#B45309;border:1px solid #F3CE8A}
+  /* #B45309 は #FDEEDC 上で 4.40:1。#8A4E00 で 5.82:1 にする */
+  .rc.ad{background:#FDEEDC;color:#8A4E00;border:1px solid #F3CE8A}
 
   /* network deep dive (reuse from landing) */
   .na-wrap{background:var(--grad-hero);border-radius:var(--radius);padding:36px 34px;color:#fff;margin-top:8px}
@@ -1222,7 +1227,7 @@
             </div>
             <p style="font-size:12.5px;color:var(--sub);margin-top:10px;margin-bottom:0">
               <b style="color:var(--navy)">自己ループ</b>（自分へ戻る矢印）＝「昨日の状態が今日まで持ち越されやすい」持続性。<br>
-              <b style="color:#b06400">注意：</b>「予測」であって、必ずしも「原因」ではありません。
+              <b style="color:#8A4E00">注意：</b>「予測」であって、必ずしも「原因」ではありません。
             </p>
           </div>
           <div class="vs-card vs-contemp">
