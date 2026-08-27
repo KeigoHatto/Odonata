@@ -280,7 +280,9 @@
   @media(max-width:560px){.uc-row{grid-template-columns:1fr;gap:4px}.uc-tag{justify-self:start}}
   /* use-case mini figure */
   .uc-fig{display:flex;align-items:center;gap:7px;flex-wrap:wrap;background:var(--bg);border-radius:10px;padding:13px 15px;margin:2px 0 12px}
-  .ucnode{font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:999px;color:#fff;white-space:nowrap}
+  /* 塗りの色は図と凡例（青＝コンディション／赤＝GPS負荷）に対応しているため変えられない。
+     白文字だと 2.18:1 / 2.86:1 なので、文字側を濃紺にして 7.90:1 / 6.03:1 にする。 */
+  .ucnode{font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:999px;color:#071A3A;white-space:nowrap}
   .ucnode.cond{background:#4db8ff} .ucnode.gps{background:#ff6666}
   .ucedge{display:flex;flex-direction:column;align-items:center;line-height:1.1}
   .ucedge .lab{font-size:10px;font-weight:700;color:var(--sub);margin-bottom:1px;white-space:nowrap}
