@@ -231,6 +231,92 @@ for (const f of pages) {
       }
     }
   }
+  // background-clip:text のグラデーション文字（§28-6）。
+  // 「その上に載るテキスト」ではなく、文字そのものがグラデーションで描かれている要素。
+  // 要素の矩形ではなくグリフが乗っているピクセルだけを見るため、
+  // 文字を消した状態と消さない状態の2枚を撮って差分の出た画素をグリフとみなす。
+  // background-clip:text のグラデーション文字（§28-6）。
+  // 「その上に載るテキスト」ではなく、文字そのものがグラデーションで描かれている要素。
+  // 要素の矩形ではなくグリフが乗っている画素だけを見るため、その要素だけを
+  // visibility:hidden にした画像と撮り比べ、消えた画素をグリフとみなす。
+  // （全体に color:transparent を注入すると、background-clip が border-box に戻って
+  //   グラデーションが矩形として描かれてしまい、差分がグリフを表さない）
+  R.gradientText = [];
+  for (const w of GRAD_WIDTHS) {
+    await page.setViewport({ width: w, height: 900 });
+    await new Promise(r => setTimeout(r, 150));
+    await page.evaluate(() => window.scrollTo(0, 0));
+    const targets = await page.evaluate(() => {
+      const parse = s => (s.match(/\d+(\.\d+)?/g) || []).slice(0, 4).map(Number);
+      const out = [];
+      let i = 0;
+      for (const el of document.querySelectorAll('*')) {
+        const cs = getComputedStyle(el);
+        const clip = cs.webkitBackgroundClip || cs.backgroundClip;
+        if (clip !== 'text') continue;
+        if (!(el.textContent || '').trim()) continue;
+        const r = el.getBoundingClientRect();
+        if (r.width < 2 || r.height < 2 || r.top < 0 || r.bottom > window.innerHeight) continue;
+        // 背後の背景色（背景を持つ最初の祖先）
+        let n = el.parentElement, bg = [255, 255, 255];
+        while (n && n !== document.documentElement) {
+          const c = parse(getComputedStyle(n).backgroundColor);
+          if (c.length >= 3 && (c[3] === undefined || c[3] > 0.5)) { bg = c.slice(0, 3); break; }
+          n = n.parentElement;
+        }
+        el.setAttribute('data-a11y-grad', String(i));
+        const size = parseFloat(cs.fontSize), bold = +cs.fontWeight >= 700;
+        out.push({ i, sel: el.tagName.toLowerCase() + '.' + String(el.className || '').trim().split(/\s+/)[0],
+          text: el.textContent.trim().slice(0, 24), size, bold, need: NEED_IN_PAGE(size, bold),
+          rect: [Math.floor(r.left), Math.floor(r.top), Math.ceil(r.width), Math.ceil(r.height)], bg });
+        i++;
+      }
+      function NEED_IN_PAGE(size, bold) { return (size >= 24 || (bold && size >= 18.66)) ? 3 : 4.5; }
+      return out;
+    });
+    for (const t of targets) {
+      const clip = { x: t.rect[0], y: t.rect[1], width: t.rect[2], height: t.rect[3] };
+      if (clip.width < 2 || clip.height < 2) continue;
+      let withText, noText;
+      try {
+        withText = await page.screenshot({ encoding: 'base64', clip });
+        await page.evaluate((i) => { document.querySelector('[data-a11y-grad="' + i + '"]').style.visibility = 'hidden'; }, t.i);
+        noText = await page.screenshot({ encoding: 'base64', clip });
+        await page.evaluate((i) => { document.querySelector('[data-a11y-grad="' + i + '"]').style.visibility = ''; }, t.i);
+      } catch { continue; }
+      const r = await page.evaluate(async (a, b, bg) => {
+        const load = async (d) => { const im = new Image(); await new Promise(res => { im.onload = res; im.src = 'data:image/png;base64,' + d; }); return im; };
+        const [ia, ib] = [await load(a), await load(b)];
+        const mk = (img) => { const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+          c.getContext('2d').drawImage(img, 0, 0); return c.getContext('2d').getImageData(0, 0, img.width, img.height).data; };
+        const [da, db] = [mk(ia), mk(ib)];
+        const lum = ([r1, g1, b1]) => { const f = v => (v /= 255) <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; return .2126 * f(r1) + .7152 * f(g1) + .0722 * f(b1); };
+        const ratio = (p, q) => { const x = lum(p), y = lum(q); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
+        let maxDiff = 0;
+        for (let i = 0; i < da.length; i += 4) {
+          const d = Math.abs(da[i] - db[i]) + Math.abs(da[i + 1] - db[i + 1]) + Math.abs(da[i + 2] - db[i + 2]);
+          if (d > maxDiff) maxDiff = d;
+        }
+        if (maxDiff < 30) return null;
+        // アンチエイリアスの縁は差が小さく背景に近い。CJK の細い画線では 65% でも
+        // 半透明の画素が混じるため、最大差の 90% 以上＝ほぼ不透明な芯だけを見る。
+        const th = maxDiff * 0.9;
+        let worst = null, min = 99, n = 0;
+        for (let i = 0; i < da.length; i += 4) {
+          const d = Math.abs(da[i] - db[i]) + Math.abs(da[i + 1] - db[i + 1]) + Math.abs(da[i + 2] - db[i + 2]);
+          if (d < th) continue;
+          n++;
+          const px = [da[i], da[i + 1], da[i + 2]];
+          const rr = ratio(px, bg);
+          if (rr < min) { min = rr; worst = px; }
+        }
+        return worst ? { min: +min.toFixed(2), worst, glyphPixels: n } : null;
+      }, withText, noText, t.bg);
+      if (r) R.gradientText.push({ width: w, sel: t.sel, text: t.text, size: t.size, need: t.need, ...r });
+    }
+    await page.evaluate(() => document.querySelectorAll('[data-a11y-grad]').forEach(el => el.removeAttribute('data-a11y-grad')));
+  }
+
   await page.close();
   if (!QUIET) process.stderr.write('.');
 }
@@ -239,7 +325,7 @@ server.close();
 
 // ───── 集計 ─────
 const hex = a => a ? '#' + a.map(v => v.toString(16).padStart(2, '0')).join('').toUpperCase() : null;
-let vTotal = 0, iTotal = 0, reflowFail = [], gradFail = [], spacingFail = [];
+let vTotal = 0, iTotal = 0, reflowFail = [], gradFail = [], spacingFail = [], gradTextFail = [];
 const incByReason = {};
 for (const [f, R] of Object.entries(report.pages)) {
   for (const [state, r] of Object.entries(R.axe)) {
@@ -253,9 +339,15 @@ for (const [f, R] of Object.entries(report.pages)) {
   if (R.reflow[320] && R.reflow[320].scrollWidth > 321) reflowFail.push(f + ' (320px → ' + R.reflow[320].scrollWidth + 'px: ' + R.reflow[320].over.join(', ') + ')');
   if (R.gradient.length) gradFail.push(f + ' ' + R.gradient.length + '件（最小 ' + Math.min(...R.gradient.map(g => g.min)) + ':1）');
   if (R.spacing && R.spacing.clippedCount > (R.spacing.before || 0)) spacingFail.push(f + ' ' + R.spacing.clippedCount + '要素');
+  for (const g of (R.gradientText || [])) {
+    if (g.min < g.need) gradTextFail.push({ page: f, width: g.width, sel: g.sel, text: g.text,
+      size: Math.round(g.size), need: g.need, ratio: g.min,
+      worst: '#' + g.worst.map(v => v.toString(16).padStart(2, '0')).join('').toUpperCase() });
+  }
 }
 report.summary = { violations: vTotal, incomplete: iTotal, incompleteByReason: incByReason,
-  reflow320Fail: reflowFail, gradientFail: gradFail, spacingClipped: spacingFail };
+  reflow320Fail: reflowFail, gradientFail: gradFail, spacingClipped: spacingFail,
+  gradientTextFail: gradTextFail };
 
 console.log('\n──────── 集計 ────────');
 console.log('対象 ' + pages.length + 'ページ × ' + Object.keys(report.pages[pages[0]].axe).length + '状態');
@@ -266,10 +358,14 @@ for (const [m, n] of Object.entries(incByReason).sort((a, b) => b[1] - a[1]).sli
 console.log('320px 二方向スクロール  : ' + (reflowFail.length ? reflowFail.join(' / ') : 'なし'));
 console.log('グラデ上テキスト不足    : ' + (gradFail.length ? gradFail.join(' / ') : 'なし'));
 console.log('文字間隔(1.4.12)で切れ  : ' + (spacingFail.length ? spacingFail.join(' / ') : 'なし（増加なし）'));
+// background-clip:text のグラデーション文字。グリフの実描画ピクセルで判定する（§28-6）
+console.log('グラデ文字(背景切り抜き)  : ' + (gradTextFail.length
+  ? gradTextFail.length + '件  ' + gradTextFail.slice(0, 4).map(g => g.page + '@' + g.width + 'px ' + g.sel + ' ' + g.ratio + ':1(要' + g.need + ')').join(' / ')
+  : 'なし'));
 
 writeFileSync(join(ROOT, 'docs/a11y-report.json'), JSON.stringify(report, null, 1));
 console.log('\ndocs/a11y-report.json に書き出しました。');
 
-const fail = vTotal > 0 || reflowFail.length > 0 || gradFail.length > 0;
+const fail = vTotal > 0 || reflowFail.length > 0 || gradFail.length > 0 || gradTextFail.length > 0;
 if (fail) console.error('\n検査に失敗しました。');
 process.exit(fail ? 1 : 0);
