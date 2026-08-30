@@ -27,8 +27,15 @@
     if (!btn) return;
     const setOpen = (open) => {
       item.classList.toggle('open', open);
+      if (open) item.classList.remove('collapsed');
       btn.setAttribute('aria-expanded', String(open));
     };
+    // collapsed は「Escape で明示的に閉じた」状態。CSS の :focus-within は Escape 後も
+    // ボタンにフォーカスが残る限り真のままなので、これが無いと
+    // 「aria-expanded=false なのに開いたまま」になる。
+    // フォーカスが外れたら外す（付けたままだとホバーで開かなくなる）。
+    const collapse = () => { setOpen(false); item.classList.add('collapsed'); };
+    item.addEventListener('mouseenter', () => item.classList.remove('collapsed'));
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const willOpen = !item.classList.contains('open');
@@ -39,15 +46,17 @@
       if (e.key === 'ArrowDown') {
         e.preventDefault(); setOpen(true);
         item.querySelector('.sub-menu a')?.focus();
-      } else if (e.key === 'Escape') { setOpen(false); }
+      } else if (e.key === 'Escape') { collapse(); }
     });
     item.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') { setOpen(false); btn.focus(); }
+      if (e.key === 'Escape') { collapse(); btn.focus(); }
     });
     item.addEventListener('focusout', () => {
       // フォーカスがドロップダウン外へ出たら閉じる（SPのアコーディオンは維持）
       setTimeout(() => {
-        if (!item.contains(document.activeElement) && !navLinks?.classList.contains('open')) setOpen(false);
+        if (!item.contains(document.activeElement) && !navLinks?.classList.contains('open')) {
+          setOpen(false); item.classList.remove('collapsed');
+        }
       }, 0);
     });
   });
