@@ -1,0 +1,14 @@
+{
+  "name": "odonata-site",
+  "private": true,
+  "type": "module",
+  "description": "getodonata.com。サイト本体は依存なしの静的HTML。ここにあるのは検査用の開発依存のみ。",
+  "scripts": {
+    "a11y": "node scripts/a11y-check.mjs",
+    "check": "node tools/build-partials.mjs --check && node tools/build-sitemap.mjs --check"
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.2",
+    "puppeteer-core": "^24.0.0"
+  }
+}
