@@ -14,7 +14,7 @@
  *
  * guide.html / philosophy.html は独自スタイルの単独ページのため対象外。
  */
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -27,19 +27,53 @@ const EXCLUDE = new Set(['guide.html', 'philosophy.html', 'kessan.html']);
 const PARTIALS = ['header', 'footer', 'icons'];
 // マーカーがあるページにだけ差し込む任意のパーツ
 const OPTIONAL = ['acwr', 'analytics'];
+// en/ 配下には -en 版を同期する。マーカー名は日本語版と同じままにして、
+// 出力先のパスだけで切り替える（マーカー名を分けると保守が二重になるため）。
+const LOCALIZED = new Set(['header', 'footer']);
+
+// 日本語版 ↔ 英語版の対応表。ここに無いページには言語切替を出さない
+// （存在しないURLへリンクしないため。§14-5 MUST）
+const PAIRS = [
+  ['index.html', 'en/index.html'],
+  ['service-analysis.html', 'en/service-analysis.html'],
+  ['service-platform.html', 'en/service-platform.html'],
+  ['research.html', 'en/research.html'],
+  ['approach.html', 'en/approach.html'],
+  ['company.html', 'en/company.html'],
+  ['contact.html', 'en/contact.html'],
+];
+const href = (p) => p === 'index.html' ? '/' : p === 'en/index.html' ? '/en/' : `/${p}`;
+// 現在の言語はリンクにせず span にして aria-current="true" を付ける
+const langSwitch = (page) => {
+  const pair = PAIRS.find(([ja, en]) => ja === page || en === page);
+  if (!pair) return '';
+  const [ja, en] = pair;
+  const isJa = page === ja;
+  return [
+    isJa ? '<span lang="ja" aria-current="true">日本語</span>'
+         : `<a href="${href(ja)}" lang="ja" hreflang="ja">日本語</a>`,
+    '<span aria-hidden="true">|</span>',
+    isJa ? `<a href="${href(en)}" lang="en" hreflang="en">English</a>`
+         : '<span lang="en" aria-current="true">English</span>',
+  ].join('');
+};
 
 // 比較・置換は LF に正規化して行う（Windows の core.autocrlf=true 環境では
 // 作業コピーが CRLF になり、そのまま比較すると全ページが「未同期」と誤検出されるため）
-const bodies = Object.fromEntries(
-  [...PARTIALS, ...OPTIONAL].map(name => [name, readFileSync(join(root, 'partials', `${name}.html`), 'utf8').replace(/\r\n/g, '\n').trim()])
-);
+const read = (name) => readFileSync(join(root, 'partials', `${name}.html`), 'utf8').replace(/\r\n/g, '\n').trim();
+const bodies = Object.fromEntries([...PARTIALS, ...OPTIONAL].map(name => [name, read(name)]));
+const bodiesEn = Object.fromEntries([...LOCALIZED].map(name => [name, read(`${name}-en`)]));
 
 const pages = readdirSync(root).filter(f => f.endsWith('.html'));
+if (existsSync(join(root, 'en'))) {
+  for (const f of readdirSync(join(root, 'en')).filter(x => x.endsWith('.html'))) pages.push(`en/${f}`);
+}
 
 let changed = [];
 let missing = [];
 
 for (const page of pages) {
+  const isEn = page.startsWith('en/');
   const path = join(root, page);
   const raw = readFileSync(path, 'utf8');
   const crlf = raw.includes('\r\n');
@@ -54,7 +88,11 @@ for (const page of pages) {
       if (PARTIALS.includes(name)) missing.push(`${page}: #partial:${name}`);
       continue;
     }
-    after = after.replace(re, `$1\n${bodies[name]}\n$2`);
+    // en/ 配下には -en 版を入れる。マーカー名は日本語版と同じままにして、
+    // 出力先のパスだけで切り替える
+    const body = (isEn && LOCALIZED.has(name) ? bodiesEn[name] : bodies[name])
+      .replaceAll('{{LANG_SWITCH}}', langSwitch(page));
+    after = after.replace(re, `$1\n${body}\n$2`);
   }
 
   if (after !== before) {

@@ -1,0 +1,28 @@
+<!-- 英語版 共通ヘッダー（単一ソース：partials/header-en.html → tools/build-partials.mjs で en/ 配下へ同期）
+     パスはすべてルート相対。en/ は1階層下なので相対パスだと解決先がずれるため。
+     英語版に無いページ（料金・ニュース・デモ）はナビに出さない（§14-5：存在しないURLへリンクしない）。 -->
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap nav">
+    <a class="nav-logo" href="/en/" aria-label="Odonata home"><img src="/assets/odonata-logo.png" alt="Odonata" width="302" height="90"></a>
+    <nav class="nav-links" id="navLinks" aria-label="Global navigation">
+      <div class="nav-item">
+        <button type="button" class="nav-item-btn" aria-expanded="false" aria-controls="navServices">Services <span class="caret" aria-hidden="true">▼</span></button>
+        <div class="sub-menu" id="navServices">
+          <a href="/en/service-analysis.html">Data Analysis &amp; Advisory</a>
+          <a href="/en/service-platform.html">Data Platform</a>
+        </div>
+      </div>
+      <a href="/en/research.html">Evidence &amp; Research</a>
+      <a href="/en/approach.html">Our Approach</a>
+      <a href="/en/company.html">About</a>
+      <span class="nav-actions" data-ga-location="header">
+        <span class="nav-lang">{{LANG_SWITCH}}</span>
+        <a class="nav-login" href="https://app.getodonata.com/login">Log in</a>
+        <!-- 英語版に demo.html は無いので、第1CTA（塗り）は Contact us にする -->
+        <a class="nav-cta" href="/en/contact.html">Contact us</a>
+      </span>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+  </div>
+</header>

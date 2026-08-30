@@ -185,8 +185,9 @@
       <a href="company.html">会社情報</a>
       <a href="news.html">ニュース</a>
       <span class="nav-actions" data-ga-location="header">
-        <!-- Phase 3：ここに JP | EN 切替を挿入する（.nav-lang スロット） -->
-        <span class="nav-lang" aria-hidden="true"></span>
+        <!-- 言語切替。ページごとに遷移先が違うため、下のプレースホルダを
+             build-partials.mjs がページ単位で差し替える。英語版が無いページは空になる。 -->
+        <span class="nav-lang"></span>
         <a class="nav-login" href="https://app.getodonata.com/login">ログイン</a>
         <a class="nav-cta" href="demo.html">デモを見る</a>
         <a class="nav-cta2" href="contact.html">資料請求・お問い合わせ</a>

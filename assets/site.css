@@ -150,7 +150,15 @@ header.site{
 .nav-item-btn:focus-visible,.nav-links a:focus-visible{outline-offset:3px;border-radius:4px}
 /* 右端アクション：ログイン（テキスト）→ デモ（塗り）→ 資料請求（線） */
 .nav-actions{display:inline-flex;align-items:center;gap:12px;margin-left:6px;flex-shrink:0}
-.nav-lang{display:inline-block}                 /* Phase 3：JP | EN 切替の挿入余白 */
+/* 言語切替。現在の言語はリンクにせず span（aria-current="true"）。
+   区切りの「|」は装飾なので aria-hidden。英語版が無いページでは中身が空になる。 */
+.nav-lang{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;white-space:nowrap}
+.nav-lang:empty{display:none}
+.nav-lang a{color:var(--color-primary-strong);text-decoration:underline;
+  text-decoration-thickness:1px;text-underline-offset:3px}
+.nav-lang a:hover,.nav-lang a:focus-visible{color:var(--navy);text-decoration-thickness:2px}
+.nav-lang [aria-current="true"]{color:var(--navy)}
+.nav-lang [aria-hidden="true"]{color:var(--color-text-muted)}
 /* 3段階の序列：ログイン（淡いブルー）＜ 資料請求（白＋濃紺枠）＜ デモを見る（塗り）
    高さ38px・角丸999px・左右パディングは3つとも揃える。
    ホバーでレイアウトが動かないよう、枠線は常に 1.5px を持たせて色だけ変え、
