@@ -121,7 +121,10 @@ header.site{
 .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;height:68px}
 /* width:auto は必須。height だけ指定すると、width 属性（302px）が
    presentational hint として効いてロゴが横に伸びる。 */
-.nav-logo img{height:30px;width:auto}
+.nav-logo{flex-shrink:0}
+/* max-width:none が要る。グローバルの img{max-width:100%} が効くと、拡大で
+   ヘッダーの使える幅が狭まったときに幅だけ縮み、高さ固定のロゴが縦長になる。 */
+.nav-logo img{height:30px;width:auto;max-width:none}
 .nav-links{display:flex;gap:20px;align-items:center}
 .nav-links>a,.nav-item{flex-shrink:0}
 .nav-links>a,.nav-item-btn{

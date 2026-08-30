@@ -106,7 +106,10 @@
   /* header */
   header{position:sticky;top:0;z-index:50;background:rgba(224,245,253,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .nav-logo img{height:30px;width:auto}
+  .nav-logo{flex-shrink:0}
+  /* max-width:none が要る。グローバルの img{max-width:100%} が効くと、拡大で
+     幅だけ縮んで高さ固定のロゴが縦長になる。 */
+  .nav-logo img{height:30px;width:auto;max-width:none}
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{font-size:14px;font-weight:600;color:var(--navy);opacity:.8;transition:.2s}
   .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--color-primary-strong)}
