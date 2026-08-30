@@ -205,6 +205,8 @@
   .uc-2 h3{color:var(--navy)}
   .uc-2 p{color:var(--sub)}
   .uc-fig{width:100%;height:auto;display:block;min-height:176px}
+  /* 線の太さだけで情報を伝えないための凡例（§6-4）。#3A5A6B は白地で 7.07:1 */
+  .fig-legend{font-size:12.5px!important;color:#3A5A6B;margin-top:6px;text-align:center}
   /* 「その他の分析例」は内容量が他2枚の倍以上あるため、列から出して3カードの下に全幅で置く。
      カード1・2はグリッドに残し、タイトル行・ビジュアル行の高さ揃え（17-5）を維持する。 */
   .uc-wide{margin-top:22px;background:#F7FBFD;border:1px dashed #9BB8C8;border-radius:var(--radius);
@@ -768,31 +770,38 @@
       <!-- カード2：ネットワーク図 -->
       <article class="uc uc-2 reveal">
         <h3>ネットワーク分析</h3>
-        <svg class="uc-fig" viewBox="0 0 300 176" role="img" aria-label="コンディション・GPS・試合・メディカルの各指標が、互いの関係の強さに応じて線でつながっているネットワーク図">
-          <g stroke="#3FC8F0" stroke-width="1.8" fill="none">
-            <line x1="150" y1="88" x2="58" y2="42"/><line x1="150" y1="88" x2="242" y2="38"/>
-            <line x1="150" y1="88" x2="46" y2="132"/><line x1="150" y1="88" x2="250" y2="136"/>
-            <line x1="150" y1="88" x2="150" y2="18"/>
-            <g opacity=".45">
-              <line x1="58" y1="42" x2="242" y2="38"/><line x1="46" y1="132" x2="250" y2="136"/>
-              <line x1="58" y1="42" x2="46" y2="132"/><line x1="242" y1="38" x2="250" y2="136"/>
-            </g>
+        <!-- 中央にノードを置かない。中心を置くと「中心となる指標を特定する手法」に見えてしまい、
+             実際の手法（指標どうしの関係を見える化する）と矛盾する。 -->
+        <svg class="uc-fig" viewBox="0 0 300 176" role="img"
+             aria-labelledby="netfig-t" aria-describedby="netfig-d">
+          <title id="netfig-t">指標どうしの関係を表すネットワーク図</title>
+          <desc id="netfig-d">睡眠・疲労感・筋の張り・走行距離・やる気の5つの指標が、線でつながったネットワーク図。線の太さが関係の強さを表している。</desc>
+          <!-- 線の太さ3段階＝関係の強さ。太さだけに頼らないよう図の下に凡例を置く -->
+          <g stroke="#0A5E93" fill="none" stroke-linecap="round">
+            <line x1="76" y1="70" x2="104" y2="126" stroke-width="3.4"/>
+            <line x1="224" y1="70" x2="196" y2="126" stroke-width="3.4"/>
+            <line x1="104" y1="126" x2="196" y2="126" stroke-width="2.1"/>
+            <line x1="150" y1="34" x2="76" y2="70" stroke-width="2.1"/>
+            <line x1="150" y1="34" x2="224" y2="70" stroke-width="1.1"/>
+            <line x1="76" y1="70" x2="196" y2="126" stroke-width="1.1"/>
+            <line x1="104" y1="126" x2="150" y2="34" stroke-width="1.1"/>
           </g>
-          <g fill="#00A0E9">
-            <circle cx="58" cy="42" r="9"/><circle cx="242" cy="38" r="9"/>
-            <circle cx="46" cy="132" r="9"/><circle cx="250" cy="136" r="9"/><circle cx="150" cy="18" r="9"/>
+          <g fill="#0A5E93">
+            <circle cx="150" cy="34" r="8"/><circle cx="76" cy="70" r="8"/>
+            <circle cx="224" cy="70" r="8"/><circle cx="104" cy="126" r="8"/>
+            <circle cx="196" cy="126" r="8"/>
           </g>
-          <circle cx="150" cy="88" r="26" fill="none" stroke="#00A0E9" stroke-width="1.4" opacity=".35"/>
-          <circle cx="150" cy="88" r="14" fill="#0B2A5B"/>
-          <g font-family="'Zen Kaku Gothic New',sans-serif" font-size="11" font-weight="700" fill="#41616F">
-            <text x="58" y="24" text-anchor="middle">睡眠</text>
-            <text x="242" y="20" text-anchor="middle">走行距離</text>
-            <text x="40" y="156" text-anchor="middle">疲労感</text>
-            <text x="256" y="160" text-anchor="middle">筋痛</text>
-            <text x="150" y="172" text-anchor="middle" fill="#0B2A5B" font-size="11.5">指標どうしの関係を見える化する</text>
+          <g font-family="'Zen Kaku Gothic New',sans-serif" font-size="15" font-weight="700" fill="#15233B">
+            <text x="150" y="18" text-anchor="middle">やる気</text>
+            <text x="54" y="60" text-anchor="middle">睡眠</text>
+            <text x="246" y="60" text-anchor="middle">走行距離</text>
+            <text x="96" y="152" text-anchor="middle">疲労感</text>
+            <text x="204" y="152" text-anchor="middle">筋の張り</text>
+            <text x="150" y="172" text-anchor="middle" fill="#0B2A5B" font-size="13">つながり方は、選手ごとに違う</text>
           </g>
         </svg>
-        <p>コンディション・GPS・試合・メディカルの各指標が、互いにどう関係しているかを見える化します。どの指標とどの指標がつながっているかは、選手ごとに違います。</p>
+        <p class="fig-legend">線の太さは関係の強さ</p>
+        <p>同じ練習をしても、疲労がどこに出るかは選手によって違います。コンディション・GPS・試合・メディカルを横断して指標どうしの関係を可視化し、その選手固有のパターンを捉えます。</p>
         <p class="uc-link"><a href="service-analysis.html#network">ネットワーク分析の詳細を見る<span class="chev" aria-hidden="true">›</span></a></p>
       </article>
 
