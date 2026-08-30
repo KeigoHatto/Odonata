@@ -112,12 +112,21 @@
   .hero-offer a:hover .go,.hero-offer a:focus-visible .go{transform:translateX(4px)}
   /* 左端の4pxアクセントライン */
   .hero-offer a::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
-  .hero-offer svg.ic{grid-area:i;font-size:26px;flex:none;align-self:center}
-  .hero-offer .go{grid-area:g;font-size:18px;transition:transform .15s ease;align-self:center}
-  /* 日本語の禁則処理を壊さないため break-all は使わない */
-  .hero-offer b{grid-area:t;display:block;font-size:19px;font-weight:800;line-height:1.5;
+  /* アイコンと矢印は幅を固定する。可変にすると、テキスト側が広がったときに
+     押し出されて重なる */
+  .hero-offer svg.ic{grid-area:i;font-size:26px;width:26px;height:26px;flex:none;
+    flex-shrink:0;align-self:center}
+  /* 矢印も svg.ic なので、`.hero-offer svg.ic`（0,2,1）が `.hero-offer .go`（0,2,0）に
+     勝ってしまい、矢印が grid-area:i に置かれてアイコンと完全に重なっていた。
+     詳細度を (0,3,1) に上げて、右端の g に確実に置く。 */
+  .hero-offer svg.ic.go{grid-area:g;font-size:18px;width:18px;height:18px;flex-shrink:0;
+    transition:transform .15s ease;align-self:center}
+  /* 日本語の禁則処理を壊さないため break-all は使わない。
+     min-width:0 が無いと、長い語がトラック幅を超えて矢印の領域に食い込む
+     （グリッド項目の既定は min-width:auto = 最小内容幅） */
+  .hero-offer b{grid-area:t;display:block;min-width:0;font-size:19px;font-weight:800;line-height:1.5;
     word-break:normal;overflow-wrap:break-word;line-break:strict}
-  .hero-offer small{grid-area:d;display:block;font-size:14px;line-height:1.7;
+  .hero-offer small{grid-area:d;display:block;min-width:0;font-size:14px;line-height:1.7;
     word-break:normal;overflow-wrap:break-word;line-break:strict}
 
   /* 2枚を色で分ける。色だけに頼らずアイコンの形も変える（分析＝ネットワーク／基盤＝画面）
