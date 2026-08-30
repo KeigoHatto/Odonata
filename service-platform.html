@@ -72,56 +72,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  /* ───── Scroll story（データ統合アニメーション／旧LPから移設） ───── */
-  .scrolly{position:relative;background:var(--grad-hero);color:#fff}
-  .scrolly-track{height:380vh;position:relative}
-  .scrolly-stage{position:sticky;top:0;height:100vh;overflow:hidden}
-  .scrolly-stage>canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.4}
-  .stage-glow{position:absolute;left:50%;top:42%;width:520px;height:520px;transform:translate(-50%,-50%);
-    background:radial-gradient(circle,rgba(63,200,240,.4),rgba(63,200,240,0) 66%);opacity:0;filter:blur(6px);z-index:1;pointer-events:none}
-  .stage-inner{position:absolute;inset:0;z-index:2}
-  .core{position:absolute;left:50%;top:42%;width:150px;height:150px;border-radius:34px;
-    background:rgba(255,255,255,.97);display:grid;place-items:center;opacity:0;
-    transform:translate(-50%,-50%) scale(.6);box-shadow:0 24px 70px rgba(0,0,0,.45);z-index:6;will-change:transform,opacity}
-  .core img{width:106px;height:106px}
-  .core::before{content:"";position:absolute;inset:-12px;border-radius:44px;border:1.5px solid rgba(127,227,255,.6);animation:corePulse 2.6s ease-out infinite}
-  @keyframes corePulse{0%{transform:scale(.92);opacity:.6}100%{transform:scale(1.28);opacity:0}}
-  .snode{position:absolute;left:50%;top:42%;display:flex;flex-direction:column;align-items:center;gap:9px;z-index:5;will-change:transform,opacity}
-  .snode .chip{width:64px;height:64px;border-radius:19px;background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;color:#fff;
-    box-shadow:0 8px 24px rgba(0,0,0,.25);backdrop-filter:blur(5px)}
-  .snode .chip svg.ic{font-size:30px}
-  .snode .lbl{font-size:12px;font-weight:700;color:#dbeefc;white-space:nowrap;letter-spacing:.02em}
-  .rchip{position:absolute;left:50%;top:42%;display:flex;align-items:center;gap:10px;
-    background:rgba(255,255,255,.97);border-radius:14px;padding:12px 16px;opacity:0;z-index:6;
-    box-shadow:0 14px 40px rgba(0,0,0,.32);will-change:transform,opacity;white-space:nowrap}
-  .rchip svg.ic{font-size:24px;color:var(--blue)}
-  .rchip b{font-size:14px;font-weight:800;color:var(--navy);display:block}
-  .rchip span{font-size:11px;color:var(--sub);display:block;font-weight:600}
-  .stage-beam{position:absolute;left:50%;top:42%;height:2px;width:0;transform-origin:left center;z-index:4;opacity:0;
-    background:linear-gradient(90deg,rgba(127,227,255,.85),rgba(127,227,255,0));pointer-events:none}
-  .scrolly-caption{position:absolute;left:0;right:0;bottom:6vh;text-align:center;z-index:8;padding:0 24px;pointer-events:none}
-  .scap{position:absolute;left:0;right:0;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;padding:0 24px;text-shadow:0 2px 16px rgba(7,26,58,.7)}
-  .scap.on{opacity:1;transform:none;position:relative}
-  .scap .step{font-size:12px;font-weight:700;letter-spacing:.18em;color:#9fe2ff;text-transform:uppercase;margin-bottom:8px}
-  .scap h2{font-size:clamp(22px,4vw,40px);font-weight:800;color:#fff;line-height:1.25}
-  .scap p{font-size:14px;color:#cfe6f5;margin-top:8px}
-  .scap .tags{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:11px}
-  .scap .tags span{font-size:10.5px;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#dbeefc;padding:3px 9px;border-radius:999px}
-  .strength{display:inline-flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px}
-  .strength .bar{width:240px;max-width:70vw;height:9px;border-radius:999px;background:rgba(255,255,255,.18);overflow:hidden}
-  .strength .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7FE3FF,#5ee0a0);border-radius:999px;transition:width .15s linear}
-  .scrolly-hint{position:absolute;left:50%;bottom:3vh;transform:translateX(-50%);color:#bfe0f2;font-size:11px;font-weight:600;letter-spacing:.1em;z-index:8;display:flex;flex-direction:column;align-items:center;gap:6px;transition:opacity .4s}
-  .scrolly-hint .mouse{width:20px;height:32px;border:2px solid rgba(191,224,242,.7);border-radius:12px;position:relative}
-  .scrolly-hint .mouse::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:6px;background:#bfe0f2;border-radius:2px;transform:translateX(-50%);animation:scrollWheel 1.6s ease-in-out infinite}
-  @keyframes scrollWheel{0%{opacity:0;top:6px}40%{opacity:1}100%{opacity:0;top:15px}}
-  @media(max-width:640px){
-    .core{width:110px;height:110px}.core img{width:78px;height:78px}
-    .snode .chip{width:50px;height:50px}.snode .chip svg.ic{font-size:23px}.snode .lbl{font-size:10.5px}
-    .rchip{padding:8px 11px;gap:7px}.rchip b{font-size:12px}.rchip span{display:none}.rchip svg.ic{font-size:21px}
-    .scrolly-track{height:340vh}
+  /* ───── 02 散らばる記録を、ひとつに（静止図） ─────
+     スクロール連動の演出をやめ、静止した図1枚に置き換えた。
+     本題に入るまでのスクロール量を減らすため。アニメーションは付けない。 */
+  .flow-fig{display:block;width:100%;max-width:900px;height:auto;margin:32px auto 0}
+  .flow-fig text{font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:700;
+    text-anchor:middle;fill:var(--navy)}
+  .flow-fig .ff-src rect{fill:#fff;stroke:var(--color-border-strong);stroke-width:1}
+  .flow-fig .ff-out rect{fill:#EAF7FF;stroke:var(--color-border-strong);stroke-width:1}
+  .flow-fig .ff-core rect{fill:var(--navy)}
+  .flow-fig .ff-core text{fill:#fff;font-family:'Manrope',sans-serif;font-size:22px;font-weight:800}
+  .flow-fig .ff-arrow line{stroke:#0A5E93;stroke-width:2;fill:none}
+  .flow-cap{margin:18px auto 0;max-width:var(--readw);text-align:center;font-size:16px;
+    line-height:1.8;color:var(--sub)}
+  .flow-stack{display:none;gap:10px;margin:28px auto 0;max-width:420px}
+  .flow-stack .fs-row{display:grid;gap:8px}
+  .flow-stack .fs-lab{font-size:12.5px;font-weight:800;letter-spacing:.06em;color:var(--color-primary-strong)}
+  .flow-stack .fs-item{background:#fff;border:1px solid var(--color-border-strong);border-radius:10px;
+    padding:9px 14px;font-size:14.5px;font-weight:700;color:var(--navy)}
+  .flow-stack .fs-item.out{background:#EAF7FF}
+  .flow-stack .fs-core{background:var(--navy);color:#fff;border-radius:12px;padding:12px 14px;
+    font-family:'Manrope',sans-serif;font-size:18px;font-weight:800;text-align:center}
+  .flow-stack .fs-down{text-align:center;color:#0A5E93;font-size:20px;line-height:1}
+  /* SPは左→中央→右の横並びをやめ、縦積みに切り替える */
+  @media(max-width:767px){
+    .flow-fig{display:none}
+    .flow-stack{display:grid}
   }
-  @media(prefers-reduced-motion:reduce){.core::before,.scrolly-hint .mouse::after{animation:none}}
+
 
   /* ───── Before / After（一元管理） ───── */
   .unify-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:30px;align-items:center;margin-top:52px}
@@ -396,54 +374,72 @@
 
 
 <!-- ═══════════ SCROLL STORY（データ統合アニメーション） ═══════════ -->
-<section class="scrolly" id="story" aria-label="Odonata のデータ統合ストーリー" style="padding:0">
-  <div class="scrolly-track" id="storyTrack">
-    <div class="scrolly-stage">
-      <canvas id="storyCanvas"></canvas>
-      <div class="stage-glow" id="stageGlow"></div>
-
-      <div class="stage-inner" id="stageInner">
-        <div class="snode" data-x="-300" data-y="-150"><div class="chip"><svg class="ic" aria-hidden="true"><use href="#i-signal"/></svg></div><div class="lbl">GPS</div></div>
-        <div class="snode" data-x="300" data-y="-160"><div class="chip"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></div><div class="lbl">コンディション</div></div>
-        <div class="snode" data-x="-360" data-y="55"><div class="chip"><svg class="ic" aria-hidden="true"><use href="#i-dumbbell"/></svg></div><div class="lbl">トレーニング</div></div>
-        <div class="snode" data-x="360" data-y="70"><div class="chip"><svg class="ic" aria-hidden="true"><use href="#i-pulse"/></svg></div><div class="lbl">ケガデータ</div></div>
-        <div class="snode" data-x="-165" data-y="128"><div class="chip"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></div><div class="lbl">目標設定</div></div>
-        <div class="snode" data-x="165" data-y="132"><div class="chip"><svg class="ic" aria-hidden="true"><use href="#i-ball"/></svg></div><div class="lbl">試合データ</div></div>
-
-        <div class="stage-beam" id="beamL"></div>
-        <div class="stage-beam" id="beamR"></div>
-
-        <div class="core" id="storyCore"><img src="assets/odonata-emblem.png" alt="Odonata" width="600" height="600"></div>
-
-        <div class="rchip" id="rchipL" data-x="-265" data-y="62"><svg class="ic" aria-hidden="true"><use href="#i-network"/></svg><div><b>ネットワーク分析</b><span>関係を可視化</span></div></div>
-        <div class="rchip" id="rchipR" data-x="265" data-y="62"><svg class="ic" aria-hidden="true"><use href="#i-gauge"/></svg><div><b>傷害予測</b><span>リスクを先読み</span></div></div>
-      </div>
-
-      <div class="scrolly-caption" id="storyCaption">
-        <div class="scap" data-phase="0">
-          <div class="step">Before</div>
-          <h2><span class="np">データは、</span><span class="np">バラバラに</span><span class="np">眠っていた。</span></h2>
-          <div class="tags"><span>GPS</span><span>コンディション</span><span>トレーニング</span><span>ケガ</span><span>目標</span><span>試合</span></div>
-        </div>
-        <div class="scap" data-phase="1">
-          <div class="step">Unify</div>
-          <h2><span class="np">Odonata が、</span><span class="np">ひとつに</span><span class="np">集約する。</span></h2>
-          <p><span class="np">別々の場所にあった情報が、</span><span class="np">1つのプラットフォームへ。</span></p>
-        </div>
-        <div class="scap" data-phase="2">
-          <div class="step">Analyze</div>
-          <h2><span class="np">集まったデータが、</span><span class="np">洞察に変わる。</span></h2>
-          <p><span class="np">複雑系アプローチの分析が、</span><span class="np">コンディションを</span><span class="np">読み解く。</span></p>
-        </div>
-        <div class="scap" data-phase="3">
-          <div class="step">Result</div>
-          <h2>チームを強くする。</h2>
-          <div class="strength"><div class="bar"><i id="strengthFill"></i></div></div>
-        </div>
-      </div>
-
-      <div class="scrolly-hint" id="storyHint"><div class="mouse"></div><span>SCROLL</span></div>
+<!-- ═══════════ 02 散らばる記録を、ひとつに（静止図） ═══════════ -->
+<section id="story" aria-labelledby="story-heading">
+  <div class="wrap">
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <h2 class="section-title" id="story-heading"><span class="np">散らばる記録を、</span><span class="np">ひとつに</span></h2>
     </div>
+    <svg class="flow-fig" viewBox="0 0 900 340" role="img"
+         aria-labelledby="flowfig-t" aria-describedby="flowfig-d">
+      <title id="flowfig-t">データを統合して現場で使える形にするまでの流れ</title>
+      <desc id="flowfig-d">左に GPS・コンディション・トレーニング・試合・メディカル・目標(IDP) の6種類の記録が離れて置かれ、中央の Odonata に矢印で集まり、右へ一元管理された画面・傷害リスク予測・ネットワーク分析の3つが矢印で出ていく図。</desc>
+      <defs>
+        <marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#0A5E93"/>
+        </marker>
+      </defs>
+      <g class="ff-src">
+        <rect x="8" y="14" width="196" height="42" rx="10"/><text x="106" y="41">GPS</text>
+        <rect x="8" y="70" width="196" height="42" rx="10"/><text x="106" y="97">コンディション</text>
+        <rect x="8" y="126" width="196" height="42" rx="10"/><text x="106" y="153">トレーニング</text>
+        <rect x="8" y="182" width="196" height="42" rx="10"/><text x="106" y="209">試合</text>
+        <rect x="8" y="238" width="196" height="42" rx="10"/><text x="106" y="265">メディカル</text>
+        <rect x="8" y="294" width="196" height="42" rx="10"/><text x="106" y="321">目標（IDP）</text>
+      </g>
+      <g class="ff-arrow">
+        <line x1="212" y1="35" x2="334" y2="150" marker-end="url(#fa)"/>
+        <line x1="212" y1="91" x2="334" y2="160" marker-end="url(#fa)"/>
+        <line x1="212" y1="147" x2="334" y2="168" marker-end="url(#fa)"/>
+        <line x1="212" y1="203" x2="334" y2="176" marker-end="url(#fa)"/>
+        <line x1="212" y1="259" x2="334" y2="184" marker-end="url(#fa)"/>
+        <line x1="212" y1="315" x2="334" y2="194" marker-end="url(#fa)"/>
+      </g>
+      <g class="ff-core">
+        <rect x="342" y="126" width="176" height="88" rx="14"/>
+        <text x="430" y="177">Odonata</text>
+      </g>
+      <g class="ff-arrow">
+        <line x1="526" y1="152" x2="648" y2="91" marker-end="url(#fa)"/>
+        <line x1="526" y1="170" x2="648" y2="170" marker-end="url(#fa)"/>
+        <line x1="526" y1="188" x2="648" y2="249" marker-end="url(#fa)"/>
+      </g>
+      <g class="ff-out">
+        <rect x="656" y="70" width="236" height="42" rx="10"/><text x="774" y="97">一元管理された画面</text>
+        <rect x="656" y="149" width="236" height="42" rx="10"/><text x="774" y="176">傷害リスク予測</text>
+        <rect x="656" y="228" width="236" height="42" rx="10"/><text x="774" y="255">ネットワーク分析</text>
+      </g>
+    </svg>
+    <!-- SP用。横並びの図と同じ内容を縦積みで示す（図は aria-hidden にせず、
+         幅で出し分けるため片方だけが読み上げ対象になる） -->
+    <div class="flow-stack" aria-hidden="true">
+      <div class="fs-row">
+        <span class="fs-lab">集めるもの</span>
+        <span class="fs-item">GPS</span><span class="fs-item">コンディション</span>
+        <span class="fs-item">トレーニング</span><span class="fs-item">試合</span>
+        <span class="fs-item">メディカル</span><span class="fs-item">目標（IDP）</span>
+      </div>
+      <p class="fs-down">↓</p>
+      <p class="fs-core">Odonata</p>
+      <p class="fs-down">↓</p>
+      <div class="fs-row">
+        <span class="fs-lab">返ってくるもの</span>
+        <span class="fs-item out">一元管理された画面</span>
+        <span class="fs-item out">傷害リスク予測</span>
+        <span class="fs-item out">ネットワーク分析</span>
+      </div>
+    </div>
+    <p class="flow-cap">別々の場所にあった記録を、ひとつにまとめ、現場が毎日使える形にします。</p>
   </div>
 </section>
 
@@ -785,7 +781,6 @@
 <!-- /#partial:footer -->
 
 <script src="assets/site.js"></script>
-<script src="assets/scrolly.js"></script>
 <script>
   // 使い方タブ切替
   document.querySelectorAll('.tab').forEach(tab => {
