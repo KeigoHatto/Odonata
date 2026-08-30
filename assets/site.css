@@ -68,13 +68,20 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-/* 日本語の自然な改行：文節単位で折り返し、行頭禁則・ぶら下がりを抑制 */
-:where(h1,h2,h3,h4,h5,h6){text-wrap:balance;word-break:auto-phrase}
-:where(p,li,dd,dt,figcaption,blockquote,th,td){text-wrap:pretty;word-break:auto-phrase}
-body{line-break:strict;overflow-wrap:break-word}
+/* text-wrap は言語を問わず有効。word-break:auto-phrase / palt / line-break:strict は
+   日本語の組版専用で、英語では不要かつ字間が詰まりすぎるため :lang(ja) に限定する（§5-5）。 */
+:where(h1,h2,h3,h4,h5,h6){text-wrap:balance}
+:where(p,li,dd,dt,figcaption,blockquote,th,td){text-wrap:pretty}
+:where(h1,h2,h3,h4,h5,h6):lang(ja){word-break:auto-phrase}
+:where(p,li,dd,dt,figcaption,blockquote,th,td):lang(ja){word-break:auto-phrase}
+body{overflow-wrap:break-word}
+body:lang(ja){line-break:strict}
 /* 文節の折り返し単位。inline-block なので max-width が無いと 320px 幅で親を突き破る */
 .np{display:inline-block;max-width:100%}
-:where(h1,h2,h3,h4){font-feature-settings:"palt" 1}
+:lang(ja) :where(h1,h2,h3,h4){font-feature-settings:"palt" 1}
+/* 英語版：日本語向けの値をほどく。700px は全角40文字、1.8 は日本語の行間 */
+[lang="en"] body{line-height:1.7}
+[lang="en"] .readable{max-width:68ch}
 ::selection{background:rgba(0,160,233,.22)}
 body{
   font-family:'Manrope','Zen Kaku Gothic New',system-ui,-apple-system,sans-serif;
