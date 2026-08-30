@@ -148,11 +148,15 @@
   /* ───── 機能グループ：集める / 整理する / 読み解く ───── */
   .feat-group{margin-top:54px}
   .feat-group + .feat-group{margin-top:50px}
-  .fg-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1.5px solid var(--border)}
-  /* 地が #E0F5FD。--color-primary では 2.59:1 なので --color-primary-strong（6.14:1）にする */
-  .fg-step{font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--color-primary-strong);background:#E0F5FD;border:1px solid #CCE9F6;border-radius:999px;padding:5px 14px;white-space:nowrap}
-  .fg-head h3{font-size:clamp(20px,2.4vw,26px);font-weight:800;color:var(--navy)}
-  .fg-head p{font-size:14px;color:var(--sub);flex:1 1 240px;min-width:200px}
+  /* 番号・見出し・本文を Grid の3行に固定し、3ブロックで縦位置を揃える。
+     flex + baseline だと折り返し方によって行の高さがばらつく。 */
+  .fg-head{display:grid;grid-template-rows:auto auto 1fr;gap:8px;align-items:stretch;
+    padding-bottom:14px;border-bottom:1.5px solid var(--border)}
+  /* 番号は「01」形式で統一。地が #E0F5FD なので --color-primary-strong（6.14:1） */
+  .fg-step{justify-self:start;font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;
+    letter-spacing:.06em;color:var(--color-primary-strong);line-height:1.2}
+  .fg-head h3{font-size:20px;font-weight:800;color:var(--navy);line-height:1.5}
+  .fg-head p{font-size:16px;line-height:1.8;color:var(--sub);max-width:var(--readw)}
   .feat-group .feat-grid{margin-top:24px}
   .feat-grid:hover .feat:not(:hover){filter:opacity(.55) saturate(.7)}
 
@@ -453,9 +457,9 @@
     <!-- ───── 集める ───── -->
     <div class="feat-group">
       <div class="fg-head">
-        <span class="fg-step">① 集める</span>
-        <h3><span class="np">チームの活動を、</span><span class="np">ひとつに記録する</span></h3>
-        <p>入力すると予測・分析が返ってくる設計だから、記録が続く。すべてのデータを一つのWebアプリへ。</p>
+        <span class="fg-step">01</span>
+        <h3><span class="np">集める</span>｜<span class="np">チームの活動を、</span><span class="np">ひとつに記録する</span></h3>
+        <p>入力すると予測と分析が返ってくるから、記録が続きます。</p>
       </div>
       <div class="feat-grid cols2">
         <div class="feat reveal">
@@ -507,9 +511,9 @@
     <!-- ───── 整理する ───── -->
     <div class="feat-group">
       <div class="fg-head">
-        <span class="fg-step">② 整理する</span>
-        <h3><span class="np">探す時間を、</span><span class="np">判断の時間へ</span></h3>
-        <p>選手・チームの2軸で即座に閲覧。推移として可視化し、イベントの前後で並べて比べられます。</p>
+        <span class="fg-step">02</span>
+        <h3><span class="np">整理する</span>｜<span class="np">選手軸・チーム軸で</span><span class="np">横断して見る</span></h3>
+        <p>別々の場所にあった記録を、同じ選手・同じ時間軸で並べ直します。</p>
       </div>
       <div class="feat-stack">
         <div class="feat row reveal">
@@ -539,9 +543,6 @@
       </div>
     </div>
 
-    <!-- ───── 読み解く ───── -->
-    <div class="feat-group">
-      <div class="fg-head">
   </div>
 </section>
 
@@ -551,9 +552,12 @@
   <div class="wrap">
     <h2 class="section-title">何が分析できるか。</h2>
     <p class="section-lead"><span class="np">傷害リスク予測と</span><span class="np">ネットワーク分析を、</span><span class="np">アプリ上でそのまま確認できます。</span></p>
-        <span class="fg-step">③ 読み解く</span>
-        <h3><span class="np">高度な分析を、</span><span class="np">現場で使える形に</span></h3>
-        <p>研究レベルの分析結果を、専門家がいなくても<strong style="color:var(--navy)">毎日使える画面として実装</strong>。「何が何に影響しているか」を読み解き、先回りの意思決定につなげます。</p>
+    <!-- ───── 読み解く ───── -->
+    <div class="feat-group">
+      <div class="fg-head">
+        <span class="fg-step">03</span>
+        <h3><span class="np">読み解く</span>｜<span class="np">傷害リスクと</span><span class="np">指標の関係を捉える</span></h3>
+        <p>日次の傷害リスク予測と、指標どうしのネットワーク分析を表示します。</p>
       </div>
 
       <!-- AI傷害リスク予測 -->
