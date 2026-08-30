@@ -80,10 +80,11 @@
   .phil>*{position:relative;z-index:2}
   .phil .lead{font-size:clamp(21px,3vw,28px);font-weight:800;line-height:1.7;margin-bottom:8px}
   .phil .en{font-size:clamp(12px,1.8vw,15px);font-weight:700;color:#9fe2ff;letter-spacing:.12em;font-family:'Manrope',sans-serif;margin-bottom:28px}
-  .phil p{font-size:clamp(14.5px,1.9vw,16.5px);color:#D6E6F2;line-height:2.2;margin:0}
+  /* 本文は1色だけ。強調は <strong> の太字のみで、色は変えない（§23-3）。
+     地はグラデーションで、最も明るい端 #0E5F9E に対しても 5.72:1 */
+  .phil p{font-size:clamp(14.5px,1.9vw,16.5px);color:var(--color-text-inverse);line-height:2.2;margin:0}
   .phil p + p{margin-top:20px}
-  .phil b{color:#fff}
-  .phil .hl{color:#7FE3FF}
+  .phil strong{color:inherit}
   .phil .close{font-weight:800;font-size:clamp(17px,2.3vw,21px);margin-top:30px;
     background:linear-gradient(100deg,#7FE3FF,#BFF0D6);-webkit-background-clip:text;background-clip:text;color:transparent}
   /* 社名の由来 */
@@ -272,13 +273,13 @@
       <div class="en">READ THE COMPLEXITY. SHAPE THE GAME.</div>
       <p>
         個人、チーム、パフォーマンス、準備、コンディション、環境——
-        こうした要素は<b>相互に影響し合い</b>、その関係性の中で、試合の流れやプレーの可能性は常に変化しています。
+        こうした要素は<strong>相互に影響し合い</strong>、その関係性の中で、試合の流れやプレーの可能性は常に変化しています。
       </p>
       <p>
-        <b class="hl">Odonata</b> は、その複雑な世界を<b>多角的に読み解く</b>ためのツールです。
+        Odonata は、その複雑な世界を<strong>多角的に読み解く</strong>ためのツールです。
       </p>
       <p>
-        目に見える現象にとどまらず、その背後にある<b>構造</b>、<b>変化の兆し</b>、<b>関係性の連鎖</b>を捉えることで、
+        目に見える現象にとどまらず、その背後にある構造、<strong>変化の兆し</strong>、関係性の連鎖を捉えることで、
         現場の意思決定を支え、チームの成長と選手の可能性を最大化します。
       </p>
       <p class="close"><span class="np">複雑な世界を、</span><span class="np">複眼で読む。</span><span class="np">そして、</span><span class="np">ゲームを形づくります。</span></p>
