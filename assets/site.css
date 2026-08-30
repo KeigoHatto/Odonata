@@ -60,7 +60,11 @@
   --orange:var(--color-accent); --radius:18px; --radius-sm:12px;
   --shadow:0 10px 30px rgba(11,42,91,.08); --shadow-lg:0 24px 60px rgba(11,42,91,.16);
   --maxw:1140px; --readw:var(--measure-body);
-  --grad-hero:linear-gradient(135deg,#071A3A 0%,#0B2A5B 38%,#0E5F9E 72%,#00A0E9 100%);
+  /* 100% を #00A0E9 にすると、その上のリード文（#CFE6F5）が 2.26:1、白でも 2.91:1 になる。
+     実描画ピクセルの測定で 320〜1920px の全幅・9ページで基準を割ったため、明るい端を
+     #0E5F9E まで下げた（白 6.67:1／#CFE6F5 5.17:1／#D6E6F2 5.23:1）。
+     72% を #0C4C80 に挟んで、端が平坦にならないようにしている。 */
+  --grad-hero:linear-gradient(135deg,#071A3A 0%,#0B2A5B 38%,#0C4C80 72%,#0E5F9E 100%);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -68,7 +72,8 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 :where(h1,h2,h3,h4,h5,h6){text-wrap:balance;word-break:auto-phrase}
 :where(p,li,dd,dt,figcaption,blockquote,th,td){text-wrap:pretty;word-break:auto-phrase}
 body{line-break:strict;overflow-wrap:break-word}
-.np{display:inline-block}
+/* 文節の折り返し単位。inline-block なので max-width が無いと 320px 幅で親を突き破る */
+.np{display:inline-block;max-width:100%}
 :where(h1,h2,h3,h4){font-feature-settings:"palt" 1}
 ::selection{background:rgba(0,160,233,.22)}
 body{
@@ -285,7 +290,8 @@ header.site{
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
 @media(max-width:760px){.flow{grid-template-columns:1fr 1fr}}
 @media(max-width:440px){.flow{grid-template-columns:1fr}}
-.flow-step{position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:28px 18px 22px;text-align:center;transition:.25s}
+/* グリッド項目は既定が min-width:auto なので、長い語があるとトラック幅を超えて広がる */
+.flow-step{min-width:0;position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:28px 18px 22px;text-align:center;transition:.25s}
 .flow-step:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--cyan)}
 .flow-ic{width:60px;height:60px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-size:28px;color:var(--blue);background:linear-gradient(135deg,#E0F5FD,#CCE9F6)}
 .flow-step h3{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:7px}
@@ -320,6 +326,9 @@ sup.fn{font-size:11px;color:var(--color-primary-strong);font-weight:700}
 .phero + .wrap .footnotes,.section-alt .footnotes{background:#fff}
 
 /* ───── Tables ───── */
+/* 表は 1.4.10 の例外（二次元レイアウトが必要）だが、ページ全体を横スクロールさせるのは不可。
+   狭い幅では表そのものを横スクロールさせる。 */
+@media(max-width:560px){.tbl{display:block;overflow-x:auto}}
 .tbl{width:100%;border-collapse:collapse;margin:34px 0 0;font-size:14px;overflow:hidden;border-radius:12px;border:1px solid var(--border);background:var(--card)}
 .tbl th{background:#EAF7FF;color:var(--navy);font-weight:700;text-align:left;padding:12px 16px;font-size:13px}
 .tbl td{padding:12px 16px;border-top:1px solid var(--border);vertical-align:top}

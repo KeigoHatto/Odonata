@@ -83,7 +83,7 @@
   :where(h1,h2,h3,h4,h5,h6){text-wrap:balance;word-break:auto-phrase}
   :where(p,li,dd,dt,figcaption,blockquote,th,td){text-wrap:pretty;word-break:auto-phrase}
   /* auto-phrase 非対応ブラウザ（iOS Safari / Firefox）向け：文節単位の折り返しユニット */
-  .np{display:inline-block}
+  .np{display:inline-block;max-width:100%}
   :where(h1,h2,h3,h4){font-feature-settings:"palt" 1}
   ::selection{background:rgba(63,200,240,.3)}
   body{font-family:'Manrope','Zen Kaku Gothic New',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-break:strict;overflow-wrap:break-word}

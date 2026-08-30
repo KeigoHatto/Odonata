@@ -80,7 +80,11 @@
     --cyan:#3FC8F0; --teal:#1B8FB3; --red:#DC2626; --green:#16A34A;
     --orange:#FF9933; --color-primary-strong:#0A5E93; --radius:18px; --radius-sm:12px;
     --shadow:0 10px 30px rgba(11,42,91,.08); --shadow-lg:0 24px 60px rgba(11,42,91,.16);
-    --grad-hero:linear-gradient(135deg,#071A3A 0%,#0B2A5B 38%,#0E5F9E 72%,#00A0E9 100%);
+    /* 100% を #00A0E9 にすると、その上のリード文（#CFE6F5）が 2.26:1、白でも 2.91:1 になる。
+     実描画ピクセルの測定で 320〜1920px の全幅・9ページで基準を割ったため、明るい端を
+     #0E5F9E まで下げた（白 6.67:1／#CFE6F5 5.17:1／#D6E6F2 5.23:1）。
+     72% を #0C4C80 に挟んで、端が平坦にならないようにしている。 */
+  --grad-hero:linear-gradient(135deg,#071A3A 0%,#0B2A5B 38%,#0C4C80 72%,#0E5F9E 100%);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -88,7 +92,7 @@
   :where(h1,h2,h3,h4,h5,h6){text-wrap:balance;word-break:auto-phrase}
   :where(p,li,dd,dt,figcaption,blockquote,th,td){text-wrap:pretty;word-break:auto-phrase}
   /* auto-phrase 非対応ブラウザ（iOS Safari / Firefox）向け：文節単位の折り返しユニット */
-  .np{display:inline-block}
+  .np{display:inline-block;max-width:100%}
   :where(h1,h2,h3,h4){font-feature-settings:"palt" 1}
   ::selection{background:rgba(0,160,233,.22)}
   body{font-family:'Manrope','Zen Kaku Gothic New',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased;line-break:strict;overflow-wrap:break-word}
@@ -136,9 +140,9 @@
   /* layout */
   .glayout{display:grid;grid-template-columns:248px 1fr;gap:42px;align-items:start;padding:48px 0 96px}
   @media(max-width:920px){.glayout{grid-template-columns:1fr;gap:24px}}
-  .toc{position:sticky;top:90px}
+  .toc{min-width:0;position:sticky;top:90px}
   @media(max-width:920px){.toc{position:static}}
-  .toc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;box-shadow:var(--shadow)}
+  .toc-card{min-width:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;box-shadow:var(--shadow)}
   .toc-card .toc-h{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary-strong);margin:14px 8px 8px}
   .toc-card .toc-h:first-child{margin-top:4px}
   .toc-card a{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:9px;font-size:13.5px;color:var(--navy);font-weight:600;transition:.15s}
