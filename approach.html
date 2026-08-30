@@ -81,6 +81,57 @@
   main,footer.site,.cta-band,section{position:relative;z-index:2}
   header.site{z-index:100}
 
+  /* ───── 02 単一指標では見えないもの（対比の図） ───── */
+  .cmp-fig{display:block;width:100%;max-width:760px;height:auto;margin:30px auto 0}
+  .cmp-fig text{font-family:'Zen Kaku Gothic New',sans-serif;text-anchor:middle}
+  .cmp-fig .cf-panel rect{fill:var(--card);stroke:var(--color-border-strong);stroke-width:1}
+  .cmp-fig .cf-ttl{font-size:15px;font-weight:800;fill:var(--navy)}
+  .cmp-fig .cf-axis line{stroke:#6A9AB8;stroke-width:1.4}
+  .cmp-fig .cf-base{stroke:#6A9AB8;stroke-width:1.4;stroke-dasharray:6 5}
+  .cmp-fig .cf-note{font-size:12px;font-weight:700;fill:var(--sub)}
+  .cmp-fig .cf-line{fill:none;stroke:#0A5E93;stroke-width:2.6;stroke-linejoin:round}
+  .cmp-fig .cf-edge line{stroke:#0A5E93}
+  .cmp-fig .cf-node circle{fill:#0A5E93}
+  .cmp-fig .cf-lab text{font-size:13px;font-weight:700;fill:var(--text)}
+  .cmp-fig .cf-danger circle{fill:rgba(220,38,38,.10);stroke:#B03A2E;stroke-width:1.6;stroke-dasharray:6 5}
+  .cmp-fig .cf-tag{font-size:14px;font-weight:800}
+  .cmp-fig .cf-tag.ok{fill:var(--sub)}
+  .cmp-fig .cf-tag.ng{fill:#B03A2E}
+  .cmp-cap{margin:18px auto 0;max-width:var(--readw);text-align:center;font-size:16px;line-height:1.9;color:var(--sub)}
+
+  /* ───── 03 なぜサッカーは複雑系なのか ───── */
+  .why3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+  @media(max-width:820px){.why3{grid-template-columns:1fr}}
+
+  /* ───── 04 分析の3ステップ ───── */
+  .step-fig{display:block;width:100%;max-width:900px;height:auto;margin:32px auto 0}
+  .step-fig text{font-family:'Zen Kaku Gothic New',sans-serif;text-anchor:middle}
+  .step-fig .sf-box rect{fill:var(--card);stroke:var(--color-border-strong);stroke-width:1}
+  .step-fig .sf-n text{font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;fill:var(--color-primary-strong);letter-spacing:.1em}
+  .step-fig .sf-t text{font-size:19px;font-weight:800;fill:var(--navy)}
+  .step-fig .sf-d text{font-size:13px;font-weight:700;fill:var(--text)}
+  .step-fig .sf-arrow line{stroke:#0A5E93;stroke-width:2}
+  @media(max-width:700px){
+    .step-fig .sf-d text{font-size:12px}
+  }
+
+  /* ───── 05 もっと詳しく（既定で閉じる） ───── */
+  .more-box{max-width:920px;margin:0 auto;background:var(--card);border:1px solid var(--border);
+    border-radius:var(--radius);box-shadow:var(--shadow)}
+  .more-box > summary{cursor:pointer;list-style:none;padding:22px 26px;font-size:16.5px;font-weight:800;
+    color:var(--navy);display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .more-box > summary::-webkit-details-marker{display:none}
+  .more-box > summary::after{content:"＋";color:var(--color-primary-strong);font-size:20px;flex:none}
+  .more-box[open] > summary::after{content:"−"}
+  .more-box > summary:focus-visible{border-radius:var(--radius)}
+  .more-body{padding:0 26px 28px}
+  .more-body .duo{margin-top:24px}
+  .more-body .sub-h{margin-top:56px}
+
+  /* ───── Hero ───── */
+  .q-en{text-align:center;font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;
+    letter-spacing:.16em;color:var(--color-primary-strong);margin-top:8px}
+
   .sec-tag{font-size:12px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--color-primary-strong);text-align:center;margin-bottom:16px}
   .sec-h{font-size:clamp(24px,3.6vw,38px);font-weight:800;color:var(--navy);text-align:center;letter-spacing:.01em;margin-bottom:18px;line-height:1.5}
   .sec-sub{text-align:center;color:var(--sub);max-width:var(--readw);margin:0 auto;font-size:16px;line-height:2}
@@ -275,190 +326,181 @@
   </div>
 </nav>
 
-<!-- ═══════════ 1. リード：セイルーロの言葉 ═══════════ -->
-<section class="quote-hero" style="padding-bottom:70px">
+<!-- ═══════════ 01 Hero ═══════════ -->
+<section class="quote-hero" style="padding-bottom:56px" aria-labelledby="hero-heading">
   <div class="wrap">
-    <h1 class="q reveal" style="font-family:'Zen Kaku Gothic New','Manrope',sans-serif;font-size:clamp(24px,4.6vw,52px);line-height:1.6"><span class="np">複雑性を避けていては、</span><br><span class="np">何も向上することはできない。</span></h1>
-    <div class="attr reveal">— フランシスコ・セイルーロ（元FCバルセロナ フィジカルコーチ）</div>
-    <p class="body reveal">
-      <span class="np">世界最高峰の育成と強化を</span><span class="np">支えた指導者は、</span><span class="np">複雑さから逃げませんでした。</span><br>
-      <span class="np">サッカーの複雑さは、</span><span class="np">避けるものではなく、</span><span class="np">読み解くもの——</span><span class="np">それがOdonataの出発点です。</span>
-    </p>
+    <h1 id="hero-heading" style="font-size:clamp(22px,3vw,30px);color:var(--navy);text-align:center">複雑系アプローチとは</h1>
+    <p class="q reveal" style="margin-top:14px">複雑系アプローチ</p>
+    <p class="q-en">Complex Systems Approach</p>
+    <p class="body reveal"><span class="np">指標をひとつずつ見るのではなく、</span><span class="np">指標どうしの関係性そのものを</span><span class="np">分析の単位に置く考え方です。</span></p>
   </div>
 </section>
 
-<!-- ═══════════ 2. 従来のデータ活用が行き詰まる理由 ═══════════ -->
-<section id="limits" style="padding-top:60px">
+
+<!-- ═══════════ 02 単一指標では見えないもの ═══════════ -->
+<section id="limits" style="padding-top:20px" aria-labelledby="limits-heading">
   <div class="wrap">
-    <h2 class="sec-h"><span class="np">単一の視点では、</span><span class="np">サッカーの本質を</span><span class="np">見失う。</span></h2>
-    <p class="sec-sub">
-      <span class="np">走行距離、ボール支配率、</span><span class="np">睡眠時間、得点数——</span><span class="np">指標を</span><b>1つずつバラバラに</b><span class="np">監視するのが、</span><span class="np">従来の要素還元アプローチです。</span>
-      <span class="np">しかし、1つの数字だけを</span><span class="np">見ていると——</span>
-    </p>
+    <h2 class="sec-h" id="limits-heading"><span class="np">単一指標では</span><span class="np">見えないもの</span></h2>
+    <svg class="cmp-fig" viewBox="0 0 760 300" role="img" aria-labelledby="cmpfig-t" aria-describedby="cmpfig-d">
+      <title id="cmpfig-t">単一指標を見る場合と、指標どうしの関係を見る場合の対比</title>
+      <desc id="cmpfig-d">左は1本の折れ線だけを見ている状態で、すべて基準の範囲内に収まっている。右は5つの指標が線でつながったネットワーク図で、複数の要因が重なった箇所が危険域として示されている。</desc>
+      <g class="cf-panel"><rect x="4" y="34" width="356" height="252" rx="14"/></g>
+      <g class="cf-panel"><rect x="400" y="34" width="356" height="252" rx="14"/></g>
+      <text class="cf-ttl" x="182" y="22">1本の指標だけを見る</text>
+      <text class="cf-ttl" x="578" y="22">指標どうしの関係を見る</text>
+      <g class="cf-axis">
+        <line x1="44" y1="240" x2="324" y2="240"/><line x1="44" y1="80" x2="44" y2="240"/>
+      </g>
+      <line class="cf-base" x1="44" y1="118" x2="324" y2="118"/>
+      <text class="cf-note" x="324" y="110" text-anchor="end">基準の上限</text>
+      <polyline class="cf-line" points="60,190 100,176 140,196 180,168 220,184 260,160 300,180"/>
+      <text class="cf-tag ok" x="182" y="270">すべて基準内</text>
+      <g class="cf-edge">
+        <line x1="470" y1="106" x2="530" y2="170" stroke-width="4"/>
+        <line x1="686" y1="106" x2="626" y2="170" stroke-width="4"/>
+        <line x1="530" y1="170" x2="626" y2="170" stroke-width="2.4"/>
+        <line x1="578" y1="72" x2="470" y2="106" stroke-width="1.4"/>
+        <line x1="578" y1="72" x2="686" y2="106" stroke-width="1.4"/>
+        <line x1="530" y1="170" x2="578" y2="72" stroke-width="1.4"/>
+      </g>
+      <g class="cf-node">
+        <circle cx="578" cy="72" r="9"/><circle cx="470" cy="106" r="9"/>
+        <circle cx="686" cy="106" r="9"/><circle cx="530" cy="170" r="9"/><circle cx="626" cy="170" r="9"/>
+      </g>
+      <g class="cf-lab">
+        <text x="578" y="58">負荷</text><text x="440" y="100">疲労</text>
+        <text x="716" y="100">睡眠</text><text x="512" y="196">日程</text><text x="644" y="196">既往歴</text>
+      </g>
+      <g class="cf-danger"><circle cx="578" cy="138" r="44"/></g>
+      <text class="cf-tag ng" x="578" y="270">重なると危険域</text>
+    </svg>
+    <p class="cmp-cap">単独では基準内の要因も、重なり方次第で危険域に達します。</p>
+  </div>
+</section>
 
-    <div class="pit-grid">
-      <div class="pit reveal"><div class="pit-k">走行距離<span>だけを見ると</span></div><p>「よく走った選手」を高く評価してしまう。守備に走らされていただけかもしれないのに。</p></div>
-      <div class="pit reveal"><div class="pit-k">ボール支配率<span>だけを見ると</span></div><p>ボールを握りながら負けた試合を、説明できない。支配率と勝利は比例しない。</p></div>
-      <div class="pit reveal"><div class="pit-k">得点数<span>だけを見ると</span></div><p>得点王を並べれば勝てるはず——なのに、機能しないチームができあがる。</p></div>
-    </div>
 
-    <p class="sec-sub" style="margin-top:48px"><span class="np">そして、最も高くつく</span><span class="np">読み違いが</span><b class="np">怪我</b><span class="np">です。</span></p>
-
-    <div class="injury-fig reveal">
-      <svg viewBox="0 0 560 340" role="img" aria-label="単独では異常のない要因が相互作用して怪我につながるネットワーク図">
-        <g fill="none">
-          <line class="edge pulse" x1="110" y1="70"  x2="280" y2="170"/>
-          <line class="edge pulse" x1="450" y1="70"  x2="280" y2="170"/>
-          <line class="edge pulse" x1="110" y1="280" x2="280" y2="170"/>
-          <line class="edge pulse" x1="450" y1="280" x2="280" y2="170"/>
-          <line class="edge" x1="110" y1="70"  x2="450" y2="70"/>
-          <line class="edge" x1="110" y1="70"  x2="110" y2="280"/>
-          <line class="edge" x1="450" y1="70"  x2="450" y2="280"/>
-          <line class="edge" x1="110" y1="280" x2="450" y2="280"/>
-        </g>
-        <g class="fnode"><circle cx="110" cy="70" r="44"/><text x="110" y="66">練習負荷</text><text class="ok" x="110" y="84">単独では異常なし</text></g>
-        <g class="fnode"><circle cx="450" cy="70" r="44"/><text x="450" y="66">コンディション</text><text class="ok" x="450" y="84">単独では異常なし</text></g>
-        <g class="fnode"><circle cx="110" cy="280" r="44"/><text x="110" y="276">過密日程</text><text class="ok" x="110" y="294">単独では異常なし</text></g>
-        <g class="fnode"><circle cx="450" cy="280" r="44"/><text x="450" y="276">既往歴</text><text class="ok" x="450" y="294">単独では異常なし</text></g>
-        <g class="core"><circle cx="280" cy="170" r="52"/><text x="280" y="166">それでも</text><text x="280" y="186">怪我は起きる</text></g>
-      </svg>
-      <p class="injury-cap">
-        <span class="np">負荷・コンディション・日程・既往歴——</span><span class="np">どの数値も</span><b>単独では正常範囲</b>。<br>
-        <span class="np">それでも怪我は起きる。</span><span class="np">原因は要素そのものではなく、</span><b class="np">要素の「重なり方」＝相互作用</b><span class="np">にあるからです。</span>
-      </p>
-    </div>
-
-    <p class="sec-sub" style="margin-top:44px">
-      <b class="np">要素を1つずつ測るだけ</b><span class="np">では、</span><span class="np">ピッチの現象も、</span><span class="np">強化・経営の判断も、</span><span class="np">説明しきれない。</span><br>
-      <span class="np">この限界を、</span><span class="np">物理学者は半世紀前に</span><span class="np">こう言い表しました。</span>
-    </p>
-
-    <div class="sq reveal">
-      <blockquote>More is different.</blockquote>
-      <div class="who">「多いことは、違うことだ」— P. W. Anderson（物理学者・ノーベル賞受賞）、1972年。複雑系科学の出発点となった言葉です</div>
+<!-- ═══════════ 03 なぜサッカーは複雑系なのか ═══════════ -->
+<section id="football" style="padding-top:60px" aria-labelledby="football-heading">
+  <div class="wrap">
+    <h2 class="sec-h" id="football-heading"><span class="np">なぜサッカーは</span><span class="np">複雑系なのか</span></h2>
+    <div class="why3">
+      <div class="domain reveal">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-hub"/></svg> 複数の要因が同時に作用する</h3>
+        <p>選手の状態は、負荷・睡眠・日程・既往歴などが同時に働いて決まります。</p>
+      </div>
+      <div class="domain reveal">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> 同じ入力でも反応が違う</h3>
+        <p>同じ練習をしても、疲労がどこにどれだけ出るかは選手ごとに違います。</p>
+      </div>
+      <div class="domain reveal">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-shuffle"/></svg> 単純な足し算にならない</h3>
+        <p>要因どうしが影響し合うため、個々の数値を足しても全体は説明できません。</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ 3. 複雑系とは何か ═══════════ -->
-<section id="what" style="padding-top:60px">
+
+<!-- ═══════════ 04 Odonataの分析方法 ═══════════ -->
+<section id="method" style="padding-top:60px" aria-labelledby="method-heading">
   <div class="wrap">
-    <h2 class="sec-h">複雑系とは何か</h2>
-    <p class="sec-sub">
-      <span class="np">複雑系とは、</span><b class="np">多数の要素が相互作用することで、</b><b class="np">要素単独にはない性質が</b><b class="np">全体として立ち現れるシステム</b><span class="np">のこと。</span>
-      <span class="np">鍵となる性質が</span><span class="np">「創発」と「非線形性」です。</span>
-    </p>
-    <div class="duo">
-      <div class="duo-card reveal">
-        <div class="tag"><span class="rule">Emergence</span>創発</div>
-        <h3><span class="np">部分にはないものが、</span><span class="np">全体から生まれる</span></h3>
-        <p>ニューロン1つに「意識」はありません。しかし無数のニューロンがつながり合った脳全体からは、意識が生まれます。<b>全体は、部分の性質からは予測できない。</b></p>
-        <div class="ex">
-          <span class="lbl">サッカーでは</span>
-          <span class="np">スター選手を11人集めても、</span><span class="np">最強のチームにはならない。</span><span class="np">チームの強さは選手個々の能力ではなく、</span><span class="np">選手間の</span><strong>つながり方</b><span class="np">から生まれます。</span>
+    <h2 class="sec-h" id="method-heading">Odonataの分析方法</h2>
+    <svg class="step-fig" viewBox="0 0 900 170" role="img" aria-labelledby="stepfig-t" aria-describedby="stepfig-d">
+      <title id="stepfig-t">分析の3ステップ</title>
+      <desc id="stepfig-d">集める、関係を測る、状態を読む、の3つの段階が矢印でつながった図。</desc>
+      <defs>
+        <marker id="sa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#0A5E93"/>
+        </marker>
+      </defs>
+      <g class="sf-box">
+        <rect x="6" y="34" width="256" height="102" rx="14"/>
+        <rect x="322" y="34" width="256" height="102" rx="14"/>
+        <rect x="638" y="34" width="256" height="102" rx="14"/>
+      </g>
+      <g class="sf-n"><text x="134" y="70">01</text><text x="450" y="70">02</text><text x="766" y="70">03</text></g>
+      <g class="sf-t"><text x="134" y="98">集める</text><text x="450" y="98">関係を測る</text><text x="766" y="98">状態を読む</text></g>
+      <g class="sf-d">
+        <text x="134" y="122">複数の指標を横断して集める</text>
+        <text x="450" y="122">指標どうしの関係の強さを推定する</text>
+        <text x="766" y="122">その選手固有のパターンとして解釈する</text>
+      </g>
+      <g class="sf-arrow">
+        <line x1="270" y1="85" x2="314" y2="85" marker-end="url(#sa)"/>
+        <line x1="586" y1="85" x2="630" y2="85" marker-end="url(#sa)"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ═══════════ 05 もっと詳しく（折りたたみ） ═══════════ -->
+<section id="more" style="padding-top:60px" aria-labelledby="more-heading">
+  <div class="wrap">
+    <h2 class="sr-only" id="more-heading">複雑系の考え方について、もう少し詳しく</h2>
+    <details class="more-box">
+      <summary>複雑系の考え方について、もう少し詳しく</summary>
+      <div class="more-body">
+        <p class="sec-sub" style="text-align:left">複雑系とは、<b>多数の要素が相互作用することで、要素単独にはない性質が全体として立ち現れるシステム</b>のこと。鍵となる性質が「創発」と「非線形性」です。</p>
+        <div class="duo">
+          <div class="duo-card">
+            <div class="tag"><span class="rule">Emergence</span>創発</div>
+            <h3><span class="np">部分にはないものが、</span><span class="np">全体から生まれる</span></h3>
+            <p>ニューロン1つに「意識」はありません。しかし無数のニューロンがつながり合った脳全体からは、意識が生まれます。<strong>全体は、部分の性質からは予測できない。</strong></p>
+            <div class="ex">
+              <span class="lbl">サッカーでは</span>
+              スター選手を11人集めても、最強のチームにはならない。チームの強さは選手個々の能力ではなく、選手間の<strong>つながり方</strong>から生まれます。
+            </div>
+          </div>
+          <div class="duo-card">
+            <div class="tag"><span class="rule">Nonlinearity</span>非線形性</div>
+            <h3><span class="np">小さな変化が、</span><span class="np">大きな違いを生む</span></h3>
+            <p>わずかな海水温の変化が、地球規模の気象を一変させることがあります。入力と出力は比例せず、<strong>閾値を超えた瞬間に、系全体が別のふるまいを始める。</strong></p>
+            <div class="ex">
+              <span class="lbl">サッカーでは</span>
+              日々のわずかな疲労の蓄積が、ある日突然<strong>怪我</strong>として現れる。1人の配置の変化が、チーム全体の機能を一変させる。
+            </div>
+          </div>
+        </div>
+
+        <div class="sq">
+          <blockquote>More is different.</blockquote>
+          <div class="who">「多いことは、違うことだ」— P. W. Anderson（物理学者・ノーベル賞受賞）、1972年。複雑系科学の出発点となった言葉です</div>
+        </div>
+        <div class="sq" style="margin-top:32px">
+          <blockquote>複雑性を避けていては、何も向上することはできない。</blockquote>
+          <div class="who">— フランシスコ・セイルーロ（元FCバルセロナ フィジカルコーチ）</div>
+        </div>
+
+        <h3 class="sub-h">この視点は、私たちの発明ではありません。</h3>
+        <p class="sec-sub">サッカーを複雑系として捉える見方は、スポーツ科学の研究とトップレベルの現場の、世界的な潮流です。</p>
+        <div class="feat-grid">
+          <div class="feat">
+            <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></div>
+            <h3>Ecological Dynamics</h3>
+            <p>選手を環境から切り離さず、<strong>選手と環境の相互作用</strong>を単位としてスキル獲得や戦術行動を捉える理論的枠組み。トレーニング設計の国際的な潮流になっています。<sup class="fn">※1</sup></p>
+          </div>
+          <div class="feat">
+            <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-hub"/></svg></div>
+            <h3>創発的パターン形成の研究</h3>
+            <p>チームを<strong>「超個体」</strong>として捉え、選手間の同期・協調から生まれる集団構造をネットワークや力学系の手法で定量化する研究が進んでいます。<sup class="fn">※2</sup></p>
+          </div>
+          <div class="feat">
+            <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-ball"/></svg></div>
+            <h3>ポジショナルプレー</h3>
+            <p>現代戦術の焦点は「個の配置」から<strong>「関係性の設計」</strong>へ。位置的優位も数的優位も、選手どうし・相手との関係の中でしか生まれません。</p>
+          </div>
+        </div>
+        <div class="footnotes">
+          <p>※1 K. Davids、D. Araújo らを中心に発展した運動学習・スキル獲得の理論的枠組み（Ecological Dynamics）。</p>
+          <p>※2 例: Duarte, R. ほか (2012) “Sports teams as superorganisms” など、チームスポーツの集団行動に関する一連の研究。</p>
         </div>
       </div>
-      <div class="duo-card reveal">
-        <div class="tag"><span class="rule">Nonlinearity</span>非線形性</div>
-        <h3><span class="np">小さな変化が、</span><span class="np">大きな違いを生む</span></h3>
-        <p>わずかな海水温の変化が、地球規模の気象を一変させることがあります。入力と出力は比例せず、<b>閾値を超えた瞬間に、系全体が別のふるまいを始める。</b></p>
-        <div class="ex">
-          <span class="lbl">サッカーでは</span>
-          <span class="np">日々のわずかな疲労の蓄積が、</span><span class="np">ある日突然</span><strong>怪我</strong><span class="np">として現れる。</span><span class="np">1人の配置の変化が、</span><span class="np">チーム全体の機能を</span><span class="np">一変させる。</span>
-        </div>
-      </div>
-    </div>
+    </details>
   </div>
 </section>
 
-<!-- ═══════════ 4. サッカーは複雑系である ═══════════ -->
-<section id="football" style="padding-top:60px">
-  <div class="wrap">
-    <h2 class="sec-h">サッカーは、複雑系である。</h2>
-    <p class="sec-sub"><span class="np">現場の主要な4つの領域すべてで、</span><span class="np">「足し算」は成り立ちません。</span></p>
-    <div class="domain-grid">
-      <div class="domain reveal">
-        <h3><svg class="ic" aria-hidden="true"><use href="#i-ball"/></svg> パフォーマンス</h3>
-        <p>ボール支配率で上回っても、勝てない試合がある。<b>誰と誰が、どうつながるか</b>——個の能力値の合計ではなく、選手間の相互作用がチームの強さを決めます。</p>
-      </div>
-      <div class="domain reveal">
-        <h3><svg class="ic" aria-hidden="true"><use href="#i-pulse"/></svg> 怪我</h3>
-        <p>負荷・疲労・睡眠・日程・心理。<b>単独では正常な要因の「重なり」</b>がリスクを生む。だから単一指標の監視では、怪我は読めません。</p>
-      </div>
-      <div class="domain reveal">
-        <h3><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg> 育成</h3>
-        <p>同じトレーニングが、同じ効果を生むとは限らない。選手の状態・環境・タイミングとの<b>組み合わせで、効果は非線形に変わります</b>。</p>
-      </div>
-      <div class="domain reveal">
-        <h3><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> 補強・編成</h3>
-        <p>個として測った能力が、チームの文脈で同じように発揮されるとは限らない。<b>「どのチームで、誰と組むか」</b>で価値は変わります。</p>
-      </div>
-    </div>
 
-    <!-- 旧 GLOBAL TREND を統合 -->
-    <h3 class="sub-h">この視点は、私たちの発明ではありません。</h3>
-    <p class="sec-sub"><span class="np">サッカーを複雑系として捉える見方は、</span><span class="np">スポーツ科学の研究と</span><span class="np">トップレベルの現場の、</span><span class="np">世界的な潮流です。</span></p>
-    <div class="feat-grid">
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></div>
-        <h3>Ecological Dynamics</h3>
-        <p>選手を環境から切り離さず、<strong>選手と環境の相互作用</strong>を単位としてスキル獲得や戦術行動を捉える理論的枠組み。トレーニング設計の国際的な潮流になっています。<sup class="fn">※1</sup></p>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-hub"/></svg></div>
-        <h3>創発的パターン形成の研究</h3>
-        <p>チームを<strong>「超個体」</strong>として捉え、選手間の同期・協調から生まれる集団構造をネットワークや力学系の手法で定量化する研究が進んでいます。<sup class="fn">※2</sup></p>
-      </div>
-      <div class="feat reveal">
-        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-ball"/></svg></div>
-        <h3>ポジショナルプレー</h3>
-        <p>現代戦術の焦点は「個の配置」から<strong>「関係性の設計」</strong>へ。位置的優位も数的優位も、選手どうし・相手との関係の中でしか生まれません。</p>
-      </div>
-    </div>
-    <div class="footnotes">
-      <p>※1 K. Davids、D. Araújo らを中心に発展した運動学習・スキル獲得の理論的枠組み（Ecological Dynamics）。</p>
-      <p>※2 例: Duarte, R. ほか (2012) “Sports teams as superorganisms” など、チームスポーツの集団行動に関する一連の研究。</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 6. Odonataの方法論 ═══════════ -->
-<section id="method" style="padding-top:60px">
-  <div class="wrap">
-    <h2 class="sec-h"><span class="np">「要素」ではなく、</span><span class="np">「関係性」を分析する。</span></h2>
-    <div class="statement reveal">
-      <p>
-        Odonataの分析単位は、個々の指標ではなく<b class="hl">指標間の相互作用</b>です。
-        睡眠が疲労にどう響くのか。負荷がコンディションをどう変えるのか。心理状態はパフォーマンスとどうつながるのか——
-        <b>関係性のネットワーク</b>として現場のデータを読み解くことで、単独の数値監視では見えなかった<b>構造と変化の兆し</b>を捉えます。
-      </p>
-      <p>
-        そしてこの方法論を、研究室の中に閉じ込めず、<b>現場で毎日使えるWebアプリケーション</b>として実装しました。
-        それが、データプラットフォーム「Odonata」の3つの機能です。
-      </p>
-    </div>
-    <div class="method">
-      <div class="m-step reveal">
-        <div class="n">1</div>
-        <h3>集める</h3>
-        <p>コンディション・GPS・試合・メディカル・育成計画を一つの場所に。入力すると分析が返ってくるから、記録が続く。</p>
-      </div>
-      <div class="m-step reveal">
-        <div class="n">2</div>
-        <h3>整理する</h3>
-        <p>選手・チームの2軸で、推移と前後比較を即座に閲覧。探す時間を、判断の時間へ。</p>
-      </div>
-      <div class="m-step reveal">
-        <div class="n">3</div>
-        <h3>読み解く</h3>
-        <p>複雑系アプローチの分析——傷害予測・ネットワーク分析など——で、関係性とリスクを可視化。現場の意思決定の材料に。</p>
-      </div>
-    </div>
-    <div class="center" style="margin-top:36px">
-      <a class="tlink" href="service-platform.html">プラットフォームの詳細へ<span class="chev" aria-hidden="true">›</span></a>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════ 8. CTA ═══════════ -->
 <section id="apply" style="padding-top:60px">
