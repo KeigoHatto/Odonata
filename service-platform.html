@@ -72,6 +72,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
+  /* Hero のアプリ画面。他の画面キャプチャと同じ 720px 上限に揃える */
+  .hero-shot{max-width:720px;width:100%;height:auto;margin:26px auto 0;display:block;
+    border-radius:12px;border:1px solid rgba(255,255,255,.28)}
+
   /* ───── 02 散らばる記録を、ひとつに（静止図） ─────
      スクロール連動の演出をやめ、静止した図1枚に置き換えた。
      本題に入るまでのスクロール量を減らすため。アニメーションは付けない。 */
@@ -130,11 +134,16 @@
      flex + baseline だと折り返し方によって行の高さがばらつく。 */
   .fg-head{display:grid;grid-template-rows:auto auto 1fr;gap:8px;align-items:stretch;
     padding-bottom:14px;border-bottom:1.5px solid var(--border)}
-  /* 番号は「01」形式で統一。地が #E0F5FD なので --color-primary-strong（6.14:1） */
-  .fg-step{justify-self:start;font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;
-    letter-spacing:.06em;color:var(--color-primary-strong);line-height:1.2}
-  .fg-head h3{font-size:20px;font-weight:800;color:var(--navy);line-height:1.5}
+  /* 小見出し（集める／整理する／読み解く）。--color-primary-strong は
+     地 #E0F5FD で 6.14:1、白で 6.92:1 */
+  .fg-step{justify-self:start;font-size:14px;font-weight:800;letter-spacing:.14em;
+    color:var(--color-primary-strong);line-height:1.4}
+  .fg-head .section-title{font-size:clamp(26px,3.4vw,34px)}
   .fg-head p{font-size:16px;line-height:1.8;color:var(--sub);max-width:var(--readw)}
+  /* 入力できるもの6項目 */
+  .in-tags{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0}
+  .in-tags li{font-size:14.5px;font-weight:700;color:var(--navy);background:#fff;
+    border:1px solid var(--color-border-strong);border-radius:999px;padding:7px 16px}
   .feat-group .feat-grid{margin-top:24px}
   .feat-grid:hover .feat:not(:hover){filter:opacity(.55) saturate(.7)}
 
@@ -211,7 +220,7 @@
   .rg-block + .rg-block{margin-top:48px}
   .rg-head{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
   .rg-head .ficon{width:46px;height:46px;font-size:23px;margin-bottom:0;flex:none}
-  .rg-head h4{font-size:clamp(18px,2.3vw,22px);font-weight:800;color:var(--navy)}
+  .rg-head h3{font-size:clamp(18px,2.3vw,22px);font-weight:800;color:var(--navy)}
   .rg-head .tag{margin-top:0}
   .rg-note{font-size:12.5px;color:var(--sub);font-weight:700}
   .rg-head .more{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;color:var(--color-primary-strong);margin-left:auto}
@@ -373,10 +382,8 @@
   <canvas id="pheroNet"></canvas>
   <div class="wrap">
     <h1><span class="np">散らばるデータを、</span><span class="np">ひとつに。</span><br><span class="np">記録を、チームの</span><span class="np">武器に。</span></h1>
-    <p class="lead">
-      <span class="np">コンディション・GPS・試合・</span><span class="np">メディカルを一元管理し、</span><span class="np">分析結果を現場スタッフが</span><span class="np">毎日使えるWebアプリとして提供します。</span>
-      <span class="np">入力すると予測・分析が返ってくるから、</span><span class="np">記録が続きます。</span>
-    </p>
+    <p class="lead"><span class="np">コンディション・GPS・試合・</span><span class="np">メディカルを一元管理し、</span><span class="np">分析結果を毎日使える</span><span class="np">Webアプリとして届けます。</span></p>
+    <img class="hero-shot" src="assets/app-dashboard.png" alt="ダッシュボード画面：入力状況・選手ステータス内訳・戦績・コンディションと負荷の推移" width="1259" height="734" fetchpriority="high">
   </div>
 </div>
 
@@ -453,18 +460,19 @@
 
 
 <!-- ═══════════ 4. 解決の3機能 ═══════════ -->
-<section id="collect" class="section-alt">
+<section id="collect" class="section-alt" aria-labelledby="collect-heading">
   <div class="wrap">
-    <h2 class="section-title"><span class="np">何が入力でき、</span><span class="np">何がまとめて見られるか。</span></h2>
-    <p class="section-lead"><span class="np">現場の入力はシンプルに。</span><span class="np">選手・チームを横断して</span><span class="np">1画面で確認できます。</span></p>
-
-    <!-- ───── 集める ───── -->
     <div class="feat-group">
       <div class="fg-head">
-        <span class="fg-step">01</span>
-        <h3><span class="np">集める</span>｜<span class="np">チームの活動を、</span><span class="np">ひとつに記録する</span></h3>
-        <p>入力すると予測と分析が返ってくるから、記録が続きます。</p>
+        <span class="fg-step">集める</span>
+        <h2 class="section-title" id="collect-heading">何を入力できるのか</h2>
+        <p>チームの活動をひとつに記録します。入力すると予測と分析が返ってきます。</p>
       </div>
+      <!-- 入力できるもの：6項目 -->
+      <ul class="in-tags">
+        <li>コンディション</li><li>GPS</li><li>トレーニング</li>
+        <li>試合</li><li>メディカル</li><li>目標（IDP）</li>
+      </ul>
       <div class="feat-grid cols2">
         <div class="feat reveal">
           <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></div>
@@ -512,11 +520,17 @@
       </div>
     </div>
 
-    <!-- ───── 整理する ───── -->
+  </div>
+</section>
+
+
+<!-- ═══════════ 04 何をまとめて見られるのか ═══════════ -->
+<section id="organize" aria-labelledby="organize-heading">
+  <div class="wrap">
     <div class="feat-group">
       <div class="fg-head">
-        <span class="fg-step">02</span>
-        <h3><span class="np">整理する</span>｜<span class="np">選手軸・チーム軸で</span><span class="np">横断して見る</span></h3>
+        <span class="fg-step">整理する</span>
+        <h2 class="section-title" id="organize-heading">何をまとめて見られるのか</h2>
         <p>別々の場所にあった記録を、同じ選手・同じ時間軸で並べ直します。</p>
       </div>
       <div class="feat-stack">
@@ -552,15 +566,12 @@
 
 
 <!-- ═══════════ 3. 何が分析できるか ═══════════ -->
-<section id="analyze">
+<section id="analyze" class="section-alt" aria-labelledby="analyze-heading">
   <div class="wrap">
-    <h2 class="section-title">何が分析できるか。</h2>
-    <p class="section-lead"><span class="np">傷害リスク予測と</span><span class="np">ネットワーク分析を、</span><span class="np">アプリ上でそのまま確認できます。</span></p>
-    <!-- ───── 読み解く ───── -->
     <div class="feat-group">
       <div class="fg-head">
-        <span class="fg-step">03</span>
-        <h3><span class="np">読み解く</span>｜<span class="np">傷害リスクと</span><span class="np">指標の関係を捉える</span></h3>
+        <span class="fg-step">読み解く</span>
+        <h2 class="section-title" id="analyze-heading">何を分析できるのか</h2>
         <p>日次の傷害リスク予測と、指標どうしのネットワーク分析を表示します。</p>
       </div>
 
@@ -568,7 +579,7 @@
       <div class="rg-block">
         <div class="rg-head">
           <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-gauge"/></svg></div>
-          <h4>AI傷害リスク予測</h4>
+          <h3>AI傷害リスク予測</h3>
           <span class="tag"><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg> GPS連携チームのみ</span>
           <span class="rg-note">的中率 約70%<sup class="fn"><a href="#pf-notes">※</a></sup></span>
         </div>
@@ -604,7 +615,7 @@
       <div class="rg-block">
         <div class="rg-head">
           <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-network"/></svg></div>
-          <h4>ネットワーク分析</h4>
+          <h3>ネットワーク分析</h3>
           <a class="more" href="guide.html#network">読み方ガイドへ<span class="chev" aria-hidden="true">›</span></a>
         </div>
         <div class="feat-stack">
@@ -688,7 +699,7 @@
   <div class="wrap">
     <div class="center" style="max-width:780px;margin:0 auto">
       <h2 class="section-title" id="privacy-heading"><span class="np">データの取り扱い</span></h2>
-      <p class="section-lead center"><span class="np">コンディションやメディカル情報の取り扱いについては、</span><span class="np">プライバシーポリシーに記載しています。</span></p>
+      <p class="section-lead center"><span class="np">コンディションやメディカル情報の扱いは、</span><span class="np">プライバシーポリシーに記載しています。</span></p>
       <p style="margin-top:18px"><a class="tlink" href="privacy.html#player-data">データの取り扱いについて<span class="chev" aria-hidden="true">›</span></a></p>
     </div>
   </div>
