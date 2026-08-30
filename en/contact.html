@@ -13,15 +13,15 @@
 <meta property="og:site_name" content="Odonata">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
-<meta property="og:title" content="Contact us｜Odonata">
-<meta property="og:description" content="Get in touch with Odonata about football data analysis and our data platform. We are happy to hear from clubs at any stage, including those still keeping records on paper or in spreadsheets.">
+<meta property="og:title" content="Contact | Odonata">
+<meta property="og:description" content="Get in touch with Odonata about football data analysis and our data platform. An initial conversation and a quote cost nothing. We reply within two working days.">
 <meta property="og:url" content="https://getodonata.com/en/contact.html">
 <meta property="og:image" content="https://getodonata.com/assets/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Odonata — football data analysis and performance platform">
 <meta name="twitter:card" content="summary_large_image">
-<title>Contact us｜Odonata</title>
+<title>Contact | Odonata</title>
 <!-- #partial:analytics -->
 <!-- アクセス解析（単一ソース：partials/analytics.html → tools/build-partials.mjs で全ページのヘッド内へ同期）
      測定IDを変更するときは、このファイルの2箇所だけを書き換えて同期を実行する。 -->
@@ -66,7 +66,7 @@
   })();
 </script>
 <!-- /#partial:analytics -->
-<meta name="description" content="Get in touch with Odonata about football data analysis and our data platform. We are happy to hear from clubs at any stage, including those still keeping records on paper or in spreadsheets.">
+<meta name="description" content="Get in touch with Odonata about football data analysis and our data platform. An initial conversation and a quote cost nothing. We reply within two working days.">
 <link rel="icon" href="/assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
@@ -176,7 +176,6 @@
 <!-- /#partial:header -->
 
 <main id="main">
-
 <nav class="breadcrumb" aria-label="Breadcrumb">
   <div class="wrap">
     <ol>
@@ -188,37 +187,128 @@
 
 <!-- ═══════════ PAGE HERO ═══════════ -->
 <div class="phero">
+  <canvas id="pheroNet"></canvas>
   <div class="wrap">
-    <h1>Contact us</h1>
-    <p class="lead">Tell us where your club is today. We are happy to hear from you at any stage.</p>
+
+    <h1>Get in touch.</h1>
+    <p class="lead">From a first conversation about getting started, to thinking through how to use your data, to press and research enquiries. We reply within two working days.</p>
   </div>
 </div>
 
-<!-- 本文の英語コピーは次フェーズで入れる。この Phase は構造・共通パーツ・
-     メタデータの受け皿づくりまで（§15：逐語訳せず、再構成として書く） -->
-<section aria-labelledby="wip-heading">
+<!-- ═══════════ フォーム ═══════════ -->
+<section id="form" style="padding-top:64px">
   <div class="wrap">
-    <h2 class="section-title" id="wip-heading">Coming soon</h2>
-    <p class="section-lead">We are preparing the English version of this page. In the meantime, the Japanese page covers the same material.</p>
-    <p style="margin-top:20px"><a class="tlink" href="/contact.html" lang="ja" hreflang="ja">日本語のページを見る<span class="chev" aria-hidden="true">›</span></a></p>
+    <div class="form-card reveal">
+      <!--
+        日本語版と同じ暫定実装。送信ボタンで mailto: のメール作成画面を開く。
+        フォーム送信ツールを導入したら、日本語版と同時に action を差し替えること。
+      -->
+      <form id="contactForm" novalidate>
+        <!-- 入力エラーはここにテキストで具体的に表示し、支援技術にも通知する -->
+        <div id="formError" class="form-error" role="alert" aria-live="assertive" hidden></div>
+        <div class="form-row">
+          <label for="f-purpose">What is this about?<span class="req">Required</span></label>
+          <select id="f-purpose" required>
+            <option value="Request an overview of your services">Request an overview of your services</option>
+            <option value="A question about the services">A question about the services</option>
+            <option value="Implementation or a pilot">Implementation or a pilot</option>
+            <option value="Press or media">Press or media</option>
+            <option value="Research collaboration">Research collaboration</option>
+            <option value="Something else">Something else</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="f-org">Organisation<span class="req">Required</span></label>
+          <input id="f-org" type="text" required autocomplete="organization">
+        </div>
+        <div class="form-row">
+          <label for="f-cat">Type of organisation<span class="req">Required</span></label>
+          <select id="f-cat" required>
+            <option value="">Please choose</option>
+            <option>Professional club</option>
+            <option>University</option>
+            <option>High school</option>
+            <option>Youth academy</option>
+            <option>Media or research institution</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="f-name">Name<span class="req">Required</span></label>
+          <input id="f-name" type="text" required autocomplete="name">
+        </div>
+        <div class="form-row">
+          <label for="f-email">Email<span class="req">Required</span></label>
+          <input id="f-email" type="email" required autocomplete="email">
+        </div>
+        <div class="form-row">
+          <label for="f-role">Role<span class="opt">Optional</span></label>
+          <input id="f-role" type="text">
+        </div>
+        <div class="form-row">
+          <label for="f-msg">Message<span class="opt">Optional</span></label>
+          <textarea id="f-msg"></textarea>
+        </div>
+        <label class="form-consent">
+          <input type="checkbox" id="f-consent">
+          <span>I agree to the <a href="/privacy.html" target="_blank" rel="noopener" lang="ja" hreflang="ja">Privacy Policy (Japanese)</a>. Your details will be used only to respond to this enquiry and to send the material you asked for.</span>
+        </label>
+        <div class="center">
+          <button type="submit" class="btn btn-blue" id="submitBtn" disabled><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg> Send</button>
+          <p style="font-size:12px;color:var(--sub);margin-top:14px">Pressing Send opens your email client with the details filled in.<br>Send that message and we have received it.</p>
+        </div>
+      </form>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════ CTA ═══════════ -->
-<section class="cta-band">
+<!-- ═══════════ 資料請求について ═══════════ -->
+<section class="section-alt" id="doc-info" style="padding-top:72px;padding-bottom:72px">
   <div class="wrap">
-    <div class="cta" data-ga-location="cta_band">
-      <h2>Interested in working with us?</h2>
-      <p>Tell us where your club is today and we will take it from there.</p>
-      <div class="cta-actions">
-        <a class="btn btn-navy" href="/en/contact.html">Contact us<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <div class="callout info" style="max-width:760px;margin:0 auto">
+      <svg class="ic cic"><use href="#i-doc"/></svg>
+      <div>
+        <h2 class="callout-h">Pricing</h2>
+        <p>Pricing is quoted individually, based on the analysis, the volume of data and the length of engagement. Choose &ldquo;Request an overview of your services&rdquo; and we will email you the details, the features and how a rollout works. It is not sent automatically.</p>
+        <p style="margin-top:8px">If you would like to see what the platform produces first, the <a href="/en/research.html" style="color:var(--color-primary-strong);font-weight:700">results from our pilot</a> are a good place to start.</p>
       </div>
     </div>
   </div>
 </section>
-</main>
+
+<!-- ═══════════ 対応の流れ ═══════════ -->
+<section id="flow">
+  <div class="wrap">
+    <div class="center">
+
+      <h2 class="section-title">What to expect</h2>
+    </div>
+    <div class="flow seq" style="max-width:900px;margin-left:auto;margin-right:auto;grid-template-columns:repeat(3,1fr)">
+      <div class="flow-step reveal">
+        <span class="stepn">STEP 1</span>
+        <div class="flow-ic"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></div>
+        <h3>A reply within two working days</h3>
+        <p>We read your message and reply by email.</p>
+      </div>
+      <div class="flow-step reveal">
+        <span class="stepn">STEP 2</span>
+        <div class="flow-ic"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></div>
+        <h3>An online conversation</h3>
+        <p>About 30 minutes on what data you have, how you work, and what you want from it.</p>
+      </div>
+      <div class="flow-step reveal">
+        <span class="stepn">STEP 3</span>
+        <div class="flow-ic"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></div>
+        <h3>A proposal and a quote</h3>
+        <p>A way forward shaped around your club, with a quote.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ═══════════ FOOTER ═══════════ -->
+</main>
+
 <!-- #partial:footer -->
 <!-- 英語版 共通フッター（単一ソース：partials/footer-en.html → tools/build-partials.mjs で en/ 配下へ同期）
      パスはすべてルート相対。プライバシーポリシーは日本語版しか無いため、その旨を明示してリンクする。 -->
@@ -255,5 +345,70 @@
 <!-- /#partial:footer -->
 
 <script src="/assets/site.js"></script>
+<script>
+  // 送付先（独自ドメイン取得後に差し替え）
+  const CONTACT_TO = 'k36yokotah@gmail.com';
+
+  // URLパラメータで目的を事前選択（?purpose=doc|analysis|demo|media|research|other）
+  (function(){
+    const map = {
+      doc: '資料請求', service: 'サービスについて', analysis: 'サービスについて',
+      onboarding: '導入・実証について', media: '取材・メディア',
+      research: '共同研究・連携', other: 'その他'
+    };
+    const p = new URLSearchParams(location.search).get('purpose');
+    if (p && map[p]) {
+      const sel = document.getElementById('f-purpose');
+      [...sel.options].forEach(o => { if (o.value === map[p]) sel.value = o.value; });
+    }
+  })();
+
+  // 同意チェックで送信ボタンを有効化（日本語版と同じ挙動）
+  const consent = document.getElementById('f-consent');
+  const submitBtn = document.getElementById('submitBtn');
+  consent.addEventListener('change', () => { submitBtn.disabled = !consent.checked; });
+
+  // 送信 → メール作成画面（日本語版と同じ暫定実装）
+  const errBox = document.getElementById('formError');
+  const REQUIRED = [['f-purpose','What is this about?'],['f-org','Organisation'],
+                    ['f-cat','Type of organisation'],['f-name','Name'],['f-email','Email']];
+
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    // どの項目で何が起きたかをテキストで具体的に示す
+    const missing = REQUIRED.filter(([id]) => !document.getElementById(id).value.trim());
+    const mail = document.getElementById('f-email').value.trim();
+    const errs = missing.map(([, label]) => 'Please enter your ' + label.toLowerCase() + '.');
+    if (mail && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)) {
+      errs.push('Please enter a valid email address.');
+    }
+    if (errs.length) {
+      errBox.innerHTML = '<strong>Please check the form</strong><ul>' +
+        errs.map(t => '<li>' + t + '</li>').join('') + '</ul>';
+      errBox.hidden = false;
+      errBox.setAttribute('tabindex', '-1');
+      errBox.focus();
+      if (missing.length) document.getElementById(missing[0][0]).focus();
+      return;
+    }
+    errBox.hidden = true;
+    // 送信完了をアクセス解析へ通知（odonata:lead → generate_lead）
+    document.dispatchEvent(new Event('odonata:lead'));
+    const v = id => document.getElementById(id).value.trim();
+    const purpose = v('f-purpose');
+    const subject = `[${purpose}] ${v('f-org')} — ${v('f-name')}`;
+    const body = [
+      'Sent from the Odonata contact form', '',
+      `About: ${purpose}`,
+      `Organisation: ${v('f-org')}`,
+      `Type of organisation: ${v('f-cat')}`,
+      `Name: ${v('f-name')}`,
+      `Email: ${v('f-email')}`,
+      `Role: ${v('f-role') || '(not given)'}`, '',
+      'Message:', v('f-msg') || '(not given)'
+    ].join('\n');
+    location.href = `mailto:${CONTACT_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
 </body>
 </html>
