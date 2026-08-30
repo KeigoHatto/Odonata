@@ -33,6 +33,14 @@ const PAGES = [
   ['philosophy.html', '0.5', 'yearly'],
   ['guide.html', '0.4', 'monthly'],
   ['privacy.html', '0.3', 'yearly'],
+  // 英語版（§14-1：/en/ サブディレクトリ）。en/index.html は /en/ として出力する
+  ['en/index.html', '0.9', 'weekly'],
+  ['en/service-analysis.html', '0.7', 'monthly'],
+  ['en/service-platform.html', '0.7', 'monthly'],
+  ['en/research.html', '0.7', 'monthly'],
+  ['en/approach.html', '0.6', 'monthly'],
+  ['en/company.html', '0.6', 'monthly'],
+  ['en/contact.html', '0.6', 'monthly'],
 ];
 
 const today = new Date().toISOString().slice(0, 10);
@@ -54,7 +62,9 @@ const isNoindex = (file) => {
 const entries = [];
 for (const [file, priority, changefreq] of PAGES) {
   if (isNoindex(file)) { console.warn(`skip (noindex または不存在): ${file}`); continue; }
-  const loc = file === 'index.html' ? `${ORIGIN}/` : `${ORIGIN}/${file}`;
+  const loc = file === 'index.html' ? `${ORIGIN}/`
+    : file === 'en/index.html' ? `${ORIGIN}/en/`
+    : `${ORIGIN}/${file}`;
   entries.push({ loc, lastmod: lastmod(file), changefreq, priority });
 }
 
