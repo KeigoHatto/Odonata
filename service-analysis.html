@@ -193,7 +193,9 @@
   .net-insight b{color:var(--navy)}
   .uc{display:flex;gap:12px;align-items:flex-start;margin-top:14px;background:#F2FBFE;border:1px solid var(--border);border-radius:12px;padding:14px 16px}
   .uc-tag{flex:none;font-size:12.5px;font-weight:800;border-radius:999px;padding:4px 13px;background:var(--blue);color:#04203b;margin-top:3px}
-  .uc-tag.coach{background:var(--navy)}
+  /* 背景を濃紺にする変種。基底の color:#04203b のままだと 1.17:1 で読めないので、
+     色も必ず一緒に変える（片側だけの上書きが今回の原因だった）。白で 14.03:1 */
+  .uc-tag.coach{background:var(--navy);color:#fff}
   .uc p{font-size:15px;color:var(--text);line-height:1.8}
   .uc p b{color:var(--navy)}
 
