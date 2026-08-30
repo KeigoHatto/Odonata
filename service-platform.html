@@ -174,18 +174,26 @@
   .shot-row.cols3{grid-template-columns:repeat(3,1fr)}
   .shot-row.solo{max-width:860px;margin-left:auto;margin-right:auto}
   @media(max-width:860px){.shot-row.cols2,.shot-row.cols3{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}}
-  .shot{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+  /* 枠は 1px の淡いグレー1本まで。影は付けない（§22-3） */
+  .shot{max-width:720px;margin-inline:auto;background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
   .shot .sbar{display:flex;gap:5px;padding:9px 13px;border-bottom:1px solid var(--bg);background:#F7FCFE;flex:none}
   .shot .sbar i{width:8px;height:8px;border-radius:50%;background:var(--border)}
   .shot img{width:100%;display:block}
   .shot.fix img{height:auto;object-fit:contain}
-  /* 機能カード内スクリーンショット */
-  .feat-shot{margin-top:16px;width:100%;height:auto;object-fit:contain;border-radius:10px;border:1px solid var(--border);display:block;background:#fff}
+  /* 機能カード内スクリーンショット。
+     元画像は 420×332 〜 1259×734 と縦横比がばらばらなので、
+     最大幅を 720px に揃えて中央寄せにする。枠は 1px の淡いグレー1本のみ。
+     影と白い枠は付けない（大きさが揃って見えなくなるため）。 */
+  .feat-shot{margin:16px auto 0;width:100%;max-width:720px;height:auto;object-fit:contain;
+    border-radius:10px;border:1px solid var(--border);display:block;background:#fff}
   .feat-shot + .feat-shot{margin-top:10px}
-  
+  /* 縦横比の違う画像を並べる場合は、比を揃えた枠の中に収める */
+  .shot-frame{max-width:720px;margin-inline:auto;aspect-ratio:16/10;display:grid;place-items:center;
+    background:var(--color-bg-surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .shot-frame .feat-shot{max-height:100%;width:auto;margin:0;border:none;border-radius:0}
   .feat-shot.auto{height:auto}
   .feat-shot.capped{height:auto}
-  .feat-shot.nat{width:auto;max-width:100%;margin-left:auto;margin-right:auto}
+  .feat-shot.nat{width:auto;max-width:min(720px,100%)}
 
   /* 大画像レイアウト：テキスト＋大きなスクリーンショットの全幅カード */
   .feat-stack{display:grid;gap:22px;margin-top:24px}
