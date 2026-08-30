@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="RqlRvtDyfTUx2TrBmv2uSwPZkmxa3nDGxSS05wUqBDI">
 <link rel="canonical" href="https://getodonata.com/en/">
 <!-- hreflang は日英の双方に同じ3行を置く。x-default は主要市場である日本語版を指す（§14-4） -->
 <link rel="alternate" hreflang="ja" href="https://getodonata.com/">
@@ -13,15 +14,15 @@
 <meta property="og:site_name" content="Odonata">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
-<meta property="og:title" content="Football Data Analysis and Performance Platform｜Odonata">
-<meta property="og:description" content="Odonata brings a football club’s scattered records together — GPS, daily wellness, match, medical and individual development plans — analyses them, and delivers the results as a web app the coaching staff can use every day.">
+<meta property="og:title" content="Football Data Analysis &amp; Performance Platform | Odonata">
+<meta property="og:description" content="Odonata connects the data scattered across your football club — GPS, wellness, match, medical and player development — and turns it into decisions your staff can act on. Injury risk prediction and network analysis, delivered as a web app used every day. Currently validated with University of Tsukuba Football Club.">
 <meta property="og:url" content="https://getodonata.com/en/">
 <meta property="og:image" content="https://getodonata.com/assets/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Odonata — football data analysis and performance platform">
 <meta name="twitter:card" content="summary_large_image">
-<title>Football Data Analysis and Performance Platform｜Odonata</title>
+<title>Football Data Analysis &amp; Performance Platform | Odonata</title>
 <!-- #partial:analytics -->
 <!-- アクセス解析（単一ソース：partials/analytics.html → tools/build-partials.mjs で全ページのヘッド内へ同期）
      測定IDを変更するときは、このファイルの2箇所だけを書き換えて同期を実行する。 -->
@@ -66,7 +67,7 @@
   })();
 </script>
 <!-- /#partial:analytics -->
-<meta name="description" content="Odonata brings a football club’s scattered records together — GPS, daily wellness, match, medical and individual development plans — analyses them, and delivers the results as a web app the coaching staff can use every day.">
+<meta name="description" content="Odonata connects the data scattered across your football club — GPS, wellness, match, medical and player development — and turns it into decisions your staff can act on. Injury risk prediction and network analysis, delivered as a web app used every day. Currently validated with University of Tsukuba Football Club.">
 <link rel="icon" href="/assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
@@ -76,9 +77,483 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
+<style>
+  /* ───── トップページ専用：ヒーロー ─────
+     背景は白〜淡いブルーの抽象。サッカーフィールドの表現は使わない。 */
+  .hero{position:relative;overflow:hidden;color:var(--text);padding:96px 0 104px;
+    background:
+      radial-gradient(900px 520px at 84% 18%,rgba(0,160,233,.10),transparent 62%),
+      radial-gradient(760px 460px at 4% 92%,rgba(11,42,91,.07),transparent 58%),
+      linear-gradient(180deg,#FFFFFF 0%,#F5FBFE 62%,#EDF7FC 100%);
+  }
+  .hero canvas.netbg{opacity:.72;z-index:0}
+  .hero .wrap{position:relative;z-index:2;max-width:1280px}
+  /* 左:右 = 5:6。コンテナ内に収め、bleed はしない */
+  /* PC（1024px〜）：左コピー／右写真の 5:6。1023px以下は縦積み */
+  .hero-grid{display:grid;grid-template-columns:5fr 6fr;gap:clamp(32px,4vw,56px);align-items:center}
+  @media(max-width:1023px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+  .hero h1{font-size:clamp(30px,4.2vw,46px);font-weight:800;line-height:1.34;letter-spacing:-.02em;
+    margin-bottom:22px;color:var(--navy)}
+  .hero h1 .grad{background:linear-gradient(96deg,#0E5F9E,#00A0E9 60%,#1B8FB3);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{font-size:17px;color:var(--sub);line-height:1.95;max-width:34em;margin:0 0 34px}
+
+  /* ───── 提供するもの：Hero内で2つの入口を明示 ───── */
+  /* 提供するもの：Heroの下に全幅で並べる。最小280pxを確保して細い折り返しを防ぐ */
+  .hero-offer{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:20px;
+    align-items:stretch;margin-top:clamp(32px,4vw,48px);padding-top:clamp(28px,4vw,40px);
+    border-top:1px solid var(--color-border)}
+  /* 高さは中身＋パディングで自然に決まるようにする（固定して余白で埋めない） */
+  .hero-offer a{
+    position:relative;overflow:hidden;height:100%;
+    display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"i t g" "i d d";
+    gap:6px 14px;align-content:center;min-height:120px;padding:24px 26px;border-radius:14px;
+    border:1.5px solid transparent;
+    transition:transform .15s ease,background-color .15s ease,border-color .15s ease,box-shadow .15s ease;
+  }
+  /* ホバーは transform と色のみ。padding / border-width は変えない（レイアウトを動かさない） */
+  .hero-offer a:hover,.hero-offer a:focus-visible{transform:translateY(-2px);box-shadow:0 16px 36px rgba(11,42,91,.14)}
+  .hero-offer a:hover b,.hero-offer a:focus-visible b{text-decoration:underline;text-underline-offset:4px}
+  .hero-offer a:hover .go,.hero-offer a:focus-visible .go{transform:translateX(4px)}
+  /* 左端の4pxアクセントライン */
+  .hero-offer a::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+  /* アイコンと矢印は幅を固定する。可変にすると、テキスト側が広がったときに
+     押し出されて重なる */
+  .hero-offer svg.ic{grid-area:i;font-size:26px;width:26px;height:26px;flex:none;
+    flex-shrink:0;align-self:center}
+  /* 矢印も svg.ic なので、`.hero-offer svg.ic`（0,2,1）が `.hero-offer .go`（0,2,0）に
+     勝ってしまい、矢印が grid-area:i に置かれてアイコンと完全に重なっていた。
+     詳細度を (0,3,1) に上げて、右端の g に確実に置く。 */
+  .hero-offer svg.ic.go{grid-area:g;font-size:18px;width:18px;height:18px;flex-shrink:0;
+    transition:transform .15s ease;align-self:center}
+  /* 日本語の禁則処理を壊さないため break-all は使わない。
+     min-width:0 が無いと、長い語がトラック幅を超えて矢印の領域に食い込む
+     （グリッド項目の既定は min-width:auto = 最小内容幅） */
+  .hero-offer b{grid-area:t;display:block;min-width:0;font-size:19px;font-weight:800;line-height:1.5;
+    word-break:normal;overflow-wrap:break-word;line-break:strict}
+  .hero-offer small{grid-area:d;display:block;min-width:0;font-size:14px;line-height:1.7;
+    word-break:normal;overflow-wrap:break-word;line-break:strict}
+
+  /* 2枚を色で分ける。色だけに頼らずアイコンの形も変える（分析＝ネットワーク／基盤＝画面）
+     配色は Service セクションと同じ CSS変数を参照して食い違いを防ぐ。
+     .hero-offer a より詳細度を上げないと上書きされるため、必ず親クラスを付ける。 */
+  /* 01 データ分析・伴走支援 */
+  .hero-offer .offer-analysis{background:var(--card-analysis-bg);border-color:var(--color-border-strong)}
+  .hero-offer .offer-analysis::before{background:var(--card-analysis-accent)}
+  .hero-offer .offer-analysis b{color:var(--card-analysis-text)}
+  .hero-offer .offer-analysis small{color:var(--sub)}
+  .hero-offer .offer-analysis svg.ic,.hero-offer .offer-analysis .go{color:var(--card-analysis-icon)}
+  .hero-offer .offer-analysis:hover,.hero-offer .offer-analysis:focus-visible{background:var(--card-analysis-hover)}
+  /* 02 データプラットフォーム */
+  .hero-offer .offer-platform{background:var(--card-platform-bg);border-color:var(--card-platform-bg)}
+  .hero-offer .offer-platform::before{background:var(--card-platform-accent)}
+  .hero-offer .offer-platform b{color:var(--card-platform-text)}
+  .hero-offer .offer-platform small{color:var(--card-platform-sub)}
+  .hero-offer .offer-platform svg.ic,.hero-offer .offer-platform .go{color:var(--card-platform-icon)}
+  .hero-offer .offer-platform:hover,.hero-offer .offer-platform:focus-visible{background:var(--card-platform-hover);border-color:var(--card-platform-hover)}
+
+  /* ───── Heroビジュアル：現場の写真1枚（角丸なし） ───── */
+  .hero-grid{position:relative}
+  /* 左カラム：淡い背景の上に濃紺の文字（Heroの背景は netbg のアニメーションのみ） */
+  .hero-copy{min-width:0}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  @media(max-width:767px){.hero-actions{flex-direction:column;align-items:stretch}
+    .hero-actions .btn{justify-content:center}}
+  .hero-vis{position:relative;min-width:0}
+  /* 写真はアスペクト比を維持（height指定をしない）／角丸なし・装飾は1pxの線のみ */
+  /* 白い枠・余白・影は付けない。枠線は淡いグレー1pxのみ */
+  .hero-photo{border-radius:0;overflow:hidden;background:none;border:1px solid #DDE5EA;margin:0}
+  .hero-photo picture{display:block}
+  .hero-photo img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover;object-position:70% 50%}
+  .hero-photo.main{width:100%}
+  /* 〜1023px：コピー → 写真 の縦積み */
+  @media(max-width:1023px){.hero-vis{max-width:720px;margin:0 auto}}
+  @media(max-width:767px){.hero{padding:64px 0 80px}}
+
+
+  /* ───── 02 Odonataでできること：ユースケース3枚（カードごとに主役ビジュアルを変える） ───── */
+  .uc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:48px;align-items:stretch}
+  @media(max-width:960px){.uc-grid{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}}
+  /* 3枚とも タイトル → ビジュアル → 本文 → リンク の4行に固定して高さを揃える */
+  .uc-grid{align-items:stretch}
+  .uc{border-radius:var(--radius);padding:30px 26px 26px;transition:.25s;height:100%;
+    display:grid;grid-template-rows:auto auto 1fr auto;align-content:start}
+  .uc:hover{transform:translateY(-4px)}
+  .uc h3{font-size:19px;font-weight:800;line-height:1.5;margin:0 0 16px;min-height:2.9em;align-self:start}
+  .uc p{font-size:14.5px;line-height:1.85;flex:1}
+  .uc .note{margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
+  /* カード1：大数字＋リスクバーUI（ダーク） */
+  .uc-1{background:linear-gradient(150deg,#0B2A5B 0%,#123A72 60%,#14508C 100%);color:#fff;border:none;box-shadow:var(--shadow-lg)}
+  .uc-1 h3{color:#fff}
+  .uc-1 p{color:#D6E6F2}
+  .uc-1 .bignum{color:#7FE3FF}
+  .uc-1 .note{color:#C9D9E8;border-top-color:rgba(255,255,255,.22)}
+  /* 大数字ブロック：カード内で最も大きい要素にする */
+  .uc-1 .bigstat{margin:0 0 16px;padding:0 0 16px;min-height:176px;display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid rgba(255,255,255,.22)}
+  .uc-1 .bs-main{display:flex;align-items:baseline;gap:12px;flex:none}
+  .uc-1 .bs-num{font-family:'Manrope',sans-serif;font-size:clamp(48px,6vw,60px);font-weight:800;
+    line-height:1;color:#7FE3FF;letter-spacing:-.02em}
+  .uc-1 .bs-unit{font-size:.5em;font-weight:800}
+  .uc-1 .bs-lab{font-size:13px;font-weight:800;color:#E4EFF8;line-height:1.45}
+  /* 従来値は数字の真下に、左端を揃えて並べる */
+  /* Precision だけでは「見逃しの少なさは従来と同水準」という不利な事実が落ちるので、
+     Recall を併記する（§17-3）。数値の差は文字だけで表し、色には持たせない。 */
+  .uc-1 .cmp{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;
+    color:#E4EFF8;text-align:left}
+  .uc-1 .cmp caption{caption-side:top;text-align:left;font-size:12.5px;color:#C9D9E8;
+    padding-bottom:8px}
+  .uc-1 .cmp th,.uc-1 .cmp td{padding:8px 10px;border-top:1px solid rgba(255,255,255,.22)}
+  .uc-1 .cmp thead th{font-size:12.5px;font-weight:700;color:#C9D9E8;border-top:none}
+  .uc-1 .cmp tbody th{font-weight:700;white-space:nowrap}
+  .uc-1 .cmp td{font-variant-numeric:tabular-nums;font-weight:800}
+  .uc-1 .cmp-lead{margin-top:14px;font-size:13.5px;line-height:1.75;color:#D6E6F2}
+  /* SPは横スクロールさせず、行ごとのカードに積み替える（§7-7） */
+  @media(max-width:560px){
+    .uc-1 .cmp,.uc-1 .cmp thead,.uc-1 .cmp tbody,.uc-1 .cmp tr,
+    .uc-1 .cmp th,.uc-1 .cmp td{display:block}
+    .uc-1 .cmp thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    .uc-1 .cmp tbody tr{border-top:1px solid rgba(255,255,255,.22);padding:12px 0}
+    .uc-1 .cmp tbody th{border-top:none;padding:0 0 6px;white-space:normal}
+    .uc-1 .cmp td{border-top:none;padding:2px 0}
+    .uc-1 .cmp td[data-label]::before{content:attr(data-label) "：";font-weight:700;color:#C9D9E8}
+  }
+  /* カード内のページ内リンク */
+  .uc-link{margin-top:18px!important;align-self:end}
+  .uc-link a{display:inline-flex;align-items:baseline;gap:4px;font-size:14px;font-weight:700;
+    color:#9FE6FF;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+  .uc-link a:hover,.uc-link a:focus-visible{color:#fff;text-decoration-thickness:2.5px}
+  .uc-2 .uc-link a{color:#0A5E93}
+  .uc-2 .uc-link a:hover{color:var(--navy)}
+  /* カード2：ネットワーク図（白・枠線） */
+  .uc-2{background:var(--card);border:1.5px solid var(--border);box-shadow:var(--shadow)}
+  .uc-2:hover{border-color:var(--cyan);box-shadow:var(--shadow-lg)}
+  .uc-2 h3{color:var(--navy)}
+  .uc-2 p{color:var(--sub)}
+  .uc-fig{width:100%;height:auto;display:block;min-height:176px}
+  /* 線の太さだけで情報を伝えないための凡例（§6-4）。#3A5A6B は白地で 7.07:1 */
+  .fig-legend{font-size:12.5px!important;color:#3A5A6B;margin-top:6px;text-align:center}
+  /* 「その他の分析例」は内容量が他2枚の倍以上あるため、列から出して3カードの下に全幅で置く。
+     カード1・2はグリッドに残し、タイトル行・ビジュアル行の高さ揃え（17-5）を維持する。 */
+  .uc-wide{margin-top:22px;background:#F7FBFD;border:1px dashed #9BB8C8;border-radius:var(--radius);
+    padding:30px 26px 26px}
+  .uc-wide-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;
+    padding-bottom:18px;border-bottom:1px solid #DDE5EA}
+  .uc-wide-head h3{font-size:19px;font-weight:800;color:var(--navy);line-height:1.5;margin:0}
+  .uc-wide-badge{display:inline-flex;align-items:center;gap:7px;
+    font-size:13px;font-weight:800;letter-spacing:.04em;color:#0A5E93}
+  .uc-wide-badge svg.ic{font-size:19px}
+  .uc-wide-lead{font-size:14.5px;line-height:1.85;color:var(--sub);margin:16px 0 0}
+  /* 3項目。左の縦線で区切り、項目どうしは24px以上あける */
+  .more-list{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:24px 0 0;padding:0}
+  .more-list > li{padding:0 0 0 16px;border-left:3px solid #9CC6DD}
+  .more-list b{display:block;font-size:15px;font-weight:800;color:var(--navy);line-height:1.55}
+  .more-list > li > span{display:block;margin-top:6px;font-size:14px;font-weight:400;color:#3A5A6B;line-height:1.7}
+  /* 分かったこと（箇条書き）。行間は1.7以上 */
+  .more-find{list-style:none;margin:12px 0 0;padding:0}
+  .more-find li{position:relative;padding:0 0 0 15px;margin:0 0 10px;
+    font-size:14px;line-height:1.75;color:#3A5A6B}
+  .more-find li:last-child{margin-bottom:0}
+  .more-find li::before{content:"・";position:absolute;left:0;top:0;color:#0A5E93;font-weight:800}
+  .more-wip{display:inline-block;margin-top:12px;padding:3px 10px;border-radius:999px;
+    background:#E4EEF4;color:#0B2545;font-size:12px;font-weight:800;letter-spacing:.02em}
+  .uc-wide-foot{margin-top:24px;padding-top:16px;border-top:1px solid #DDE5EA}
+  /* 注釈は薄いグレーにしない（#3A5A6B は #F7FBFD 上で 7.07:1） */
+  .uc-wide-foot .note{font-size:12px;line-height:1.8;color:#3A5A6B}
+  .more-tail{margin:10px 0 0!important;font-size:13.5px;color:#3A5A6B;font-weight:700}
+  /* SPは1列。1行あたりが長くなりすぎないよう全角26文字相当で折り返す */
+  @media(max-width:960px){
+    .more-list{grid-template-columns:1fr;gap:24px}
+    .more-list > li{max-width:26em}
+  }
+
+  /* ───── 02 Odonataについて ───── */
+  .sec-en{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:.28em;
+    color:var(--color-primary-strong);text-transform:uppercase;margin-bottom:10px}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.6vw,68px);align-items:center}
+  @media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:32px}}
+  .about-txt p{font-size:16px;color:var(--sub);line-height:1.95;max-width:var(--readw)}
+  /* 段落間の余白は行間の1.5倍以上（16px × 1.95 × 1.5 ≒ 47px） */
+  .about-txt p + p{margin-top:48px}
+  .about-photo{border-radius:16px;overflow:hidden;border:3px solid #fff;background:#fff;
+    box-shadow:0 26px 60px rgba(11,42,91,.2)}
+  .about-photo img{width:100%;height:auto;display:block;object-fit:contain}
+
+  /* ───── 03 Odonataがつなぐもの ───── */
+  /* PC4列 / タブレット3列 / SP2列。行の高さを揃える */
+  .sources{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    grid-auto-rows:1fr;gap:16px;margin:44px auto 0;max-width:1040px}
+  @media(max-width:1023px){.sources{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.sources{grid-template-columns:1fr}}
+  @media(max-width:767px){.sources{grid-template-columns:repeat(2,1fr)}}
+  .source{min-width:0;height:100%;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"i n" ". s";
+    gap:4px 11px;align-content:start;background:var(--card);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:18px 18px 16px;box-shadow:var(--shadow)}
+  .source svg.ic{grid-area:i;color:var(--blue);font-size:22px;margin-top:1px}
+  .source b{grid-area:n;font-size:15.5px;font-weight:800;color:var(--navy);line-height:1.5;align-self:center}
+  .source small{grid-area:s;font-size:13px;color:var(--sub);line-height:1.7}
+  /* 「その他」は色だけでなく枠線の種類でも区別する */
+  .source.other{background:#FBFDFE;border-style:dashed;border-color:#9BB8C8}
+  .source.other svg.ic{color:#4A6575}
+  /* 強調ブロック：囲み・余白・文字サイズの3点で強調する */
+  .start-now{max-width:840px;margin:40px auto 0;background:#F2FAFE;border:2px solid var(--blue);
+    border-radius:var(--radius);padding:32px clamp(22px,4vw,40px);text-align:center}
+  .start-now h3{font-size:clamp(24px,3.2vw,28px);font-weight:800;color:var(--navy);line-height:1.55;margin-bottom:12px}
+  .start-now p{font-size:16px;color:#33566B;line-height:1.85;max-width:var(--readw);margin:0 auto}
+
+  /* メンバー簡易表示（トップ用）：中央揃え・高さを揃える */
+  .member .avatar.kanji{font-size:22px;letter-spacing:.05em;font-family:'Zen Kaku Gothic New',sans-serif}
+  #team .members{max-width:900px;margin-left:auto;margin-right:auto;align-items:stretch}
+  #team .member{text-align:center;height:100%;display:grid;
+    grid-template-rows:auto auto auto 1fr;align-content:start}
+  #team .member .avatar{margin-left:auto;margin-right:auto}
+  #team .member p{text-align:center;font-size:15px;line-height:1.8;color:var(--sub);flex:1}
+  #team .members{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));max-width:1000px;align-items:stretch}
+  #team .member h3 .romaji{display:block;font-family:'Manrope',sans-serif;font-size:11.5px;
+    font-weight:700;letter-spacing:.08em;color:var(--sub);margin-top:3px}
+
+
+  /* ───── トップページ：文字サイズ底上げ ───── */
+  .section-lead{font-size:clamp(17px,2.1vw,19.5px)}
+  .section-lead strong{color:var(--navy)}
+  .feat h3{font-size:20px}
+  .feat p{font-size:15px;line-height:1.85}
+  .feat.hl p{font-size:14.5px}
+  .stat .num{font-size:34px}
+  .stat .lbl{font-size:14px}
+  .footnotes{font-size:13px}
+  /* ───── 03 2つの提供方法：左右非対称（共通コンポーネントを流用しない） ───── */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:48px;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg)}
+  @media(max-width:900px){.split{grid-template-columns:1fr}}
+  .split > *{padding:44px clamp(24px,3.4vw,42px)}
+  /* 左：分析する＝明るい背景＋図表 */
+  .sp-analysis{background:var(--card-analysis-bg);border:1.5px solid var(--border);border-right:none}
+  @media(max-width:900px){.sp-analysis{border-right:1.5px solid var(--border);border-bottom:none}}
+  .sp-analysis .lbl{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.1em;color:#0A5E93;background:rgba(0,160,233,.14);border-radius:999px;padding:6px 15px}
+  .sp-analysis h3{font-size:24px;font-weight:800;color:var(--navy);margin:16px 0 10px;line-height:1.5}
+  .sp-analysis p{font-size:15px;color:#3A5A6B;line-height:1.95}
+  .sp-analysis ul{list-style:none;margin:20px 0 0}
+  .sp-analysis li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;font-weight:700;color:var(--navy);padding:10px 0;border-top:1px dashed var(--border)}
+  .sp-analysis li svg.ic{color:var(--blue);font-size:18px;margin-top:3px}
+  .menu-note{margin-top:12px!important;font-size:13.5px!important;color:#3A5A6B!important;line-height:1.75!important}
+  /* 分析している場面の写真（アスペクト比を維持） */
+  /* 2枚はアスペクト比16:9・高さを揃える。角丸なし */
+  .photo-note{margin-top:14px;text-align:right;font-size:12px;color:var(--color-text-note);line-height:1.7}
+  /* 最終CTA：bg-network-navy を背景に敷き、濃紺オーバーレイで白文字のコントラストを確保 */
+  .cta-navy{position:relative;isolation:isolate;background:#0B2A5B;border:none;overflow:hidden}
+  .cta-navy::before{content:"";position:absolute;inset:0;z-index:-2;
+    background:image-set(url("/assets/bg-network-navy.webp") type("image/webp"),
+      url("/assets/bg-network-navy.jpg") type("image/jpeg")) center/cover no-repeat}
+  /* モバイルは828px版に切り替える（109KB → 37KB）。背景は ::before に敷いているのでそちらを上書きする */
+  @media(max-width:768px){
+    .cta-navy::before{
+      background:image-set(url("/assets/bg-network-navy@828.webp") type("image/webp"),
+        url("/assets/bg-network-navy@828.jpg") type("image/jpeg")) center/cover no-repeat}
+  }
+  .cta-navy::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(9,26,51,.86)}
+  .cta-navy h2{color:#fff}
+  .cta-navy p{color:#E4EFF8}
+  .cta-navy .btn-line{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.6)}
+  .cta-navy .btn-line:hover{background:rgba(255,255,255,.2);border-color:#fff}
+  .photo-note-global{padding:0 0 40px;text-align:center;font-size:12px;color:var(--color-text-note);line-height:1.7}
+  .an-photo,.pf-photo{border-radius:0;overflow:hidden;margin-bottom:26px}
+  .an-photo picture,.pf-photo picture{display:block}
+  .an-photo img,.pf-photo img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover}
+  .an-photo{border:1px solid var(--color-border-strong)}
+  /* 右：現場で使う＝暗い背景＋UIスクリーン */
+  .sp-platform{background:var(--card-platform-bg);color:var(--card-platform-text)}
+  .sp-platform .lbl{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.1em;color:#BDECFF;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);border-radius:999px;padding:6px 15px}
+  .sp-platform h3{font-size:24px;font-weight:800;color:#fff;margin:16px 0 10px;line-height:1.5}
+  .sp-platform p{font-size:15px;color:#E4EFF8;line-height:1.95}
+  .sp-platform ul{list-style:none;margin:20px 0 0}
+  .sp-platform li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;font-weight:700;color:#fff;padding:10px 0;border-top:1px solid rgba(255,255,255,.18)}
+  .sp-platform li svg.ic{color:var(--card-platform-icon);font-size:18px;margin-top:3px}
+  .sp-platform li small{display:block;font-size:13px;font-weight:600;color:var(--card-platform-sub);margin-top:3px;line-height:1.65}
+  /* 背景ごとにリンク色を変える。どちらも下線を付け、色だけでリンクと分からせない */
+  .sp-analysis .tlink{color:#0B2545;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+  .sp-analysis .tlink:hover,.sp-analysis .tlink:focus-visible{color:var(--color-primary-strong);text-decoration-thickness:2.5px}
+  .sp-platform .tlink{color:#5CC8F5;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+  .sp-platform .tlink:hover,.sp-platform .tlink:focus-visible{color:#fff;text-decoration-thickness:2.5px}
+  /* 右：実機で使われている写真（アスペクト比を維持） */
+  /* 画像自体が濃紺のため、カード背景と同化しないよう下辺に明るい区切り線を入れる */
+  /* 画像とカード背景の境界は線ではなく余白で表現する */
+  .pf-photo{border:1px solid rgba(255,255,255,.28);padding-bottom:0;margin-bottom:42px}
+
+  /* ───── 07 Cycle：円環図。文字はSVGのtext要素で保持（英語化時に作り直さない） ───── */
+  .cycle{max-width:1000px;margin:48px auto 0;padding:0 clamp(8px,2vw,24px)}
+  .cycle svg{width:100%;height:auto;display:block;overflow:visible}
+  /* 図解の矢印は 通常2px / 強調4px、色はブランドブルー（強調は濃紺）で統一 */
+  .cycle .arc{fill:none;stroke:#00A0E9;stroke-width:2}
+  /* ⑤→① の戻りだけ太く・濃く。太さだけに頼らずラベルも添える */
+  .cycle .arc.back{stroke-width:4;stroke:#0B2A5B}
+  .cycle .backlab{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:800}
+  .cycle .node{fill:#fff;stroke:#00A0E9;stroke-width:2.6}
+  .cycle .node.back{fill:#0B2A5B;stroke:#0B2A5B}
+  .cycle .num{fill:#0B2A5B;font-family:'Manrope',sans-serif;font-size:26px;font-weight:800;text-anchor:middle}
+  .cycle .num.on{fill:#fff}
+  /* ラベルは foreignObject。最大幅を与えて2行に折り返す前提でレイアウトする */
+  .cycle .cy-lab{font-family:'Zen Kaku Gothic New',sans-serif;line-height:1.5}
+  .cycle .cy-lab b{display:block;font-size:19px;font-weight:800;color:#0B2A5B}
+  .cycle .cy-lab span{display:block;margin-top:4px;font-size:13.5px;font-weight:600;color:#3A5A6B;line-height:1.6}
+  .cycle .core{fill:#F2FAFE;stroke:#00A0E9;stroke-width:1.6;stroke-dasharray:6 5}
+  .cycle .coretx{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;font-weight:800;text-anchor:middle}
+  /* SP用の縦一列表示（PCでは非表示） */
+  .cycle-steps,.cycle-core-sp{display:none}
+  @media(max-width:1023px){
+    .cycle svg{display:none}
+    .cycle-steps{display:block;list-style:none;margin:0;counter-reset:none}
+    .cycle-steps li{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;
+      grid-template-areas:"n b" ". s";padding:16px 18px;background:var(--card);
+      border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;position:relative}
+    .cycle-steps li:not(:last-child)::after{content:"";position:absolute;left:31px;bottom:-8px;
+      width:2px;height:8px;background:#00A0E9}
+    .cycle-steps .n{grid-area:n;width:34px;height:34px;border-radius:50%;background:#0B2A5B;color:#fff;
+      display:grid;place-items:center;font-family:'Manrope',sans-serif;font-size:16px;font-weight:800}
+    .cycle-steps b{grid-area:b;font-size:18px;font-weight:800;color:var(--navy);align-self:center}
+    .cycle-steps small{grid-area:s;font-size:14px;color:#3A5A6B;line-height:1.75}
+    .cycle-steps li.back{background:#F2FAFE;border-color:var(--blue);border-width:2px}
+    .cycle-steps li.back .n{background:#fff;color:#0B2A5B;border:2px solid #0B2A5B;font-size:18px}
+    .cycle-core-sp{display:block;margin-top:20px;text-align:center;font-size:17px;line-height:1.9;color:#3A5A6B}
+    .cycle-core-sp b{color:var(--navy);font-size:19px}
+  }
+  /* 分析テーマのタグ群 */
+  .cycle-tags{max-width:900px;margin:44px auto 0;text-align:center}
+  .cycle-tags .tags-h{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:16px}
+  .cycle-tags ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0}
+  .cycle-tags li{font-size:14px;font-weight:700;color:#1F4A63;background:#fff;
+    border:1px solid var(--border);border-radius:999px;padding:9px 18px}
+  .cycle-tags .tags-lead{margin:0 auto 18px;max-width:var(--readw);font-size:14.5px;color:#3A5A6B;line-height:1.85}
+  /* 提供中：濃色＋矢印＋下線（色だけで区別しない）／今後：淡色・リンクにしない */
+  .cycle-tags .t-live{padding:0}
+  .cycle-tags .t-live a{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:800;
+    color:#fff;background:#0B2A5B;border:1px solid #0B2A5B;border-radius:999px;padding:9px 18px;
+    text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+  .cycle-tags .t-live a:hover,.cycle-tags .t-live a:focus-visible{background:#123A72;border-color:#123A72}
+  .cycle-tags .t-live svg.ic{font-size:15px}
+  .cycle-tags .t-next{color:#3A5A6B;background:#F7FBFD;border-style:dashed;border-color:#9BB8C8}
+  .cycle-tags .t-etc{color:#3A5A6B;background:none;border:none;padding:9px 4px;font-weight:700}
+  .cycle-tags .note{margin-top:18px}
+  /* ───── 10 Process：直線3ステップ ＋ STEP2内の小さな循環 ───── */
+  .pflow{list-style:none;display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:0;align-items:stretch;margin:48px auto 0;max-width:1100px}
+  .pstep{height:100%;display:flex;flex-direction:column}
+  @media(max-width:900px){.pflow{grid-template-columns:1fr;gap:28px}}
+  .pstep{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;position:relative}
+  .pstep + .pstep{margin-left:26px}
+  @media(max-width:900px){.pstep + .pstep{margin-left:0}}
+  /* ステップ間の矢印：塗りつぶし三角。SPでは下向きにする */
+  .pstep + .pstep::before{content:"";position:absolute;left:-20px;top:50%;width:14px;height:14px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M0 0.5 L11 6 L0 11.5 z' fill='%2300A0E9'/%3E%3C/svg%3E") no-repeat center/contain;transform:translateY(-50%)}
+  @media(max-width:900px){.pstep + .pstep::before{left:50%;top:-20px;transform:translateX(-50%) rotate(90deg)}}
+  .pstep .ph{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+  .pstep .pn{font-family:'Manrope',sans-serif;font-size:12.5px;font-weight:800;letter-spacing:.1em;
+    color:#0A5E93;background:rgba(0,160,233,.12);border-radius:999px;padding:4px 12px}
+  .pstep h3{font-size:19px;font-weight:800;color:var(--navy);line-height:1.5}
+  .pstep p{font-size:15px;color:#3A5A6B;line-height:1.8}
+  .pstep.wide{border-color:var(--blue);border-width:2px}
+  /* STEP2内のPDCA図：01が最も淡く03が最も濃い。濃さだけでなく番号とラベルを併記する */
+  /* 区切り線は1pxの淡いグレー。上下のマージンを対称に40pxずつ取る */
+  .ploop{margin-top:40px;padding-top:40px;border-top:1px solid #DDE5EA}
+  .ploop svg{width:100%;height:auto;display:block;overflow:visible}
+  .ploop .pl-box rect{stroke:#00A0E9;stroke-width:1.6}
+  .ploop .s1 rect{fill:#EAF6FD}
+  .ploop .s2 rect{fill:#BFE3F7}
+  .ploop .s3 rect{fill:#0B2A5B;stroke:#0B2A5B}
+  .ploop .pl-num{fill:#0A5E93;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;letter-spacing:.1em;text-anchor:middle}
+  .ploop .pl-lab{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:800;text-anchor:middle;white-space:nowrap}
+  .ploop .pl-num.on{fill:#9FE6FF}
+  .ploop .pl-lab.on{fill:#FFFFFF}
+  /* 矢印は marker で描く（border ハックは使わない） */
+  .ploop .pl-arrow{fill:none;stroke:#00A0E9;stroke-width:2}
+  .ploop .pl-back{fill:none;stroke:#0B2A5B;stroke-width:4}
+  .ploop .pl-backlab{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:800;text-anchor:middle}
+  /* SPでは縦積みのリストに切り替え、戻り矢印は左側を通る縦線にする */
+  .ploop-sp{display:none}
+  @media(max-width:767px){
+    .ploop svg{display:none}
+    .ploop-sp{display:block;list-style:none;margin:0;position:relative;padding-left:26px}
+    .ploop-sp::before{content:"";position:absolute;left:0;top:26px;bottom:34px;width:4px;background:#0B2A5B;border-radius:2px}
+    .ploop-sp::after{content:"";position:absolute;left:-4px;top:20px;width:12px;height:12px;
+      border-left:4px solid #0B2A5B;border-top:4px solid #0B2A5B;transform:rotate(45deg)}
+    .ploop-sp li{border:1.6px solid #00A0E9;border-radius:12px;padding:12px 14px;margin-bottom:10px}
+    .ploop-sp li.s1{background:#EAF6FD}
+    .ploop-sp li.s2{background:#BFE3F7}
+    .ploop-sp li.s3{background:#0B2A5B;border-color:#0B2A5B}
+    .ploop-sp .n{display:block;font-family:'Manrope',sans-serif;font-size:12.5px;font-weight:800;letter-spacing:.1em;color:#0A5E93}
+    .ploop-sp b{display:block;font-size:16px;font-weight:800;color:#0B2A5B;line-height:1.5;margin-top:2px}
+    .ploop-sp li.s3 .n{color:#9FE6FF}.ploop-sp li.s3 b{color:#fff}.ploop-sp li.s3 span{color:#D2E3F1}
+    .ploop-back-sp{margin-top:6px;font-size:13px;font-weight:800;color:#0B2A5B}
+  }
+  /* ───── 08 Proof：何を実証したか ───── */
+  .proof-photo{max-width:900px;margin:44px auto 0;border-radius:0;overflow:hidden}
+  .proof-photo picture{display:block}
+  .proof-photo img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover}
+  .proof-photo .photo-note{margin-top:10px}
+  .proof-what{max-width:var(--readw);margin:40px auto 0}
+  .proof-what h3{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:10px}
+  .proof-what p{font-size:16px;color:#3A5A6B;line-height:1.9}
+  /* ───── 06 なぜOdonataにできるのか ───── */
+  .why-fig{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;margin-top:48px}
+  @media(max-width:900px){.why-fig{grid-template-columns:1fr;gap:30px}}
+  .why-fig svg{width:100%;height:auto;display:block}
+  .why-fig .wf-node circle{fill:#F2FAFE;stroke:#00A0E9;stroke-width:2}
+  .why-fig .wf-t text{fill:#0B2A5B;font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:800;text-anchor:middle}
+  .why-fig .wf-ok text{fill:#41616F;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11.5px;font-weight:600;text-anchor:middle}
+  .why-fig .wf-core-ring{fill:none;stroke:#DC2626;stroke-width:1.4;opacity:.3;stroke-dasharray:6 5}
+  .why-fig .wf-core{fill:#FDECEC;stroke:#DC2626;stroke-width:2.4}
+  .why-fig .wf-core-t{fill:#B03A2E;font-family:'Zen Kaku Gothic New',sans-serif;font-size:22px;font-weight:800;text-anchor:middle}
+  .why-fig .wf-core-s{fill:#B03A2E;font-family:'Zen Kaku Gothic New',sans-serif;font-size:12px;font-weight:700;text-anchor:middle}
+  .why-fig .wf-core-eg{fill:#B03A2E;font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;font-weight:700;text-anchor:middle;opacity:.85}
+  /* 「複雑系アプローチ」を読まなくても分かるよう特大で打ち出す */
+  .approach-name{margin:18px 0 10px;font-size:clamp(40px,5.4vw,56px);font-weight:800;
+    line-height:1.25;color:var(--color-primary-strong);letter-spacing:-.01em}
+  .approach-en{display:block;margin-top:8px;font-family:'Manrope',sans-serif;
+    font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--sub)}
+  .why-fig{grid-template-areas:"fig txt" "cap txt"}
+  .why-fig svg{grid-area:fig}
+  .why-cap{grid-area:cap;margin-top:12px;font-size:14px;color:#3A5A6B;line-height:1.8;text-align:center}
+  .why-txt{grid-area:txt}
+  @media(max-width:900px){.why-fig{grid-template-areas:"fig" "cap" "txt"}}
+  .why-txt p{font-size:16px;color:var(--text);line-height:2;max-width:var(--readw)}
+  .why-txt p + p{margin-top:16px}
+  .why-txt strong{color:var(--navy);border-bottom:2px solid rgba(0,160,233,.35)}
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;align-items:stretch}
+  @media(max-width:760px){.pillars{grid-template-columns:1fr}}
+  .pillar{height:100%;background:var(--card);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:24px 26px}
+  .pillar .pk{display:block;font-size:20px;font-weight:800;letter-spacing:.06em;color:var(--navy);margin-bottom:10px}
+  .pillar p{font-size:16px;color:#3A5A6B;line-height:1.8}
+  .pillar .pk-note{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:14px;color:#3A5A6B;line-height:1.75}
+  @media(max-width:560px){.pillar p{font-size:16px}}
+  .flow-step h4{font-size:17px}
+  .flow-step p{font-size:13.5px}
+  .member p{font-size:13.5px}
+  .news-mini .ttl{font-size:15.5px}
+  .cta p{font-size:16.5px}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Odonata",
+  "alternateName": ["オドナータ", "Odonata（オドナータ）"],
+  "url": "https://getodonata.com/",
+  "logo": "https://getodonata.com/assets/odonata-logo.png",
+  "description": "サッカーチームのデータ分析とデータプラットフォームを提供。GPS・コンディション・試合・メディカル・選手育成のデータをつなぎ、傷害リスク予測やネットワーク分析を現場が使えるWebアプリとして提供します。",
+  "foundingLocation": {
+    "@type": "Place",
+    "name": "茨城県つくば市"
+  },
+  "knowsAbout": [
+    "サッカーのデータ分析",
+    "傷害リスク予測",
+    "ネットワーク分析",
+    "コンディション管理",
+    "スポーツデータプラットフォーム"
+  ]
+}
+</script>
 </head>
 <body>
 
+<!-- ═══════════ SVG ICON SPRITE ═══════════ -->
 <!-- #partial:icons -->
 <!-- 全ページ共通アイコンスプライト（単一ソース：partials/icons.html） -->
 <!-- ダウンロードアイコン（i-download）は改修方針により全ページで廃止 -->
@@ -167,39 +642,635 @@
 
 <main id="main">
 
-<!-- ═══════════ PAGE HERO ═══════════ -->
-<div class="phero">
+<!-- ═══════════ 01 Hero ═══════════ -->
+<section class="hero" id="hero" aria-labelledby="hero-heading">
+  <canvas class="netbg" data-density="22" aria-hidden="true"></canvas>
   <div class="wrap">
-    <h1>Football data analysis and a platform your staff will actually use</h1>
-    <p class="lead">We connect the records a club already keeps, analyse them, and return the results as decisions the coaching staff can act on.</p>
-  </div>
-</div>
+    <div class="hero-grid">
+      <!-- ▼▼ HERO COPY：Vision確定後は h1 1行と p.lead 2行のみ差し替える ▼▼ -->
+      <div class="hero-copy" data-hero-copy>
+        <h1 id="hero-heading">No two players need the <span class="grad">same answer.</span></h1>
+        <p class="lead">We connect the records scattered across your club and turn them into decisions you can act on — for each player, and for the squad.</p>
+        <div class="hero-actions" data-ga-location="hero">
+          <a class="btn btn-blue" href="/en/contact.html">Contact us<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-line" href="/en/research.html"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg> See the evidence</a>
+        </div>
+      </div>
+      <!-- ▲▲ HERO COPY ここまで ▲▲ -->
+      <!-- 現場（上）と分析（下）の2枚を重ね、間に関係性のノードを走らせる -->
+      <div class="hero-vis">
+        <figure class="hero-photo main">
+          <picture>
+            <source type="image/webp" srcset="/assets/photo-coach-tablet@828.webp 828w, /assets/photo-coach-tablet.webp 1672w" sizes="(max-width:1023px) 100vw, 55vw">
+            <source type="image/jpeg" srcset="/assets/photo-coach-tablet@828.jpg 828w, /assets/photo-coach-tablet.jpg 1672w" sizes="(max-width:1023px) 100vw, 55vw">
+            <img src="/assets/photo-coach-tablet.jpg"
+                 alt="A coach checking a dashboard on a tablet beside the pitch, with players training in the background"
+                 width="1672" height="941" fetchpriority="high">
+          </picture>
+        </figure>
+      </div>
+      </div>
 
-<!-- 本文の英語コピーは次フェーズで入れる。この Phase は構造・共通パーツ・
-     メタデータの受け皿づくりまで（§15：逐語訳せず、再構成として書く） -->
-<section aria-labelledby="wip-heading">
-  <div class="wrap">
-    <h2 class="section-title" id="wip-heading">Coming soon</h2>
-    <p class="section-lead">We are preparing the English version of this page. In the meantime, the Japanese page covers the same material.</p>
-    <p style="margin-top:20px"><a class="tlink" href="/" lang="ja" hreflang="ja">日本語のページを見る<span class="chev" aria-hidden="true">›</span></a></p>
+    <!-- 提供するもの：Heroの下に全幅で配置する（左カラム内だと横幅が足りず文字が細く折り返すため） -->
+    <div class="hero-offer" data-ga-location="service_card">
+      <a class="offer-analysis" href="/en/service-analysis.html">
+        <svg class="ic" aria-hidden="true"><use href="#i-network"/></svg>
+        <b>Data Analysis &amp; Advisory</b><small>We analyse the data you already hold, and surface what single metrics miss.</small>
+        <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+      <a class="offer-platform" href="/en/service-platform.html">
+        <svg class="ic" aria-hidden="true"><use href="#i-screen"/></svg>
+        <b>Data Platform</b><small>We deliver that analysis as a web app your staff use every day.</small>
+        <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════ CTA ═══════════ -->
-<section class="cta-band">
+
+<!-- ═══════════ 02 About｜Odonataについて ═══════════ -->
+<section id="about" aria-labelledby="about-heading">
   <div class="wrap">
-    <div class="cta" data-ga-location="cta_band">
-      <h2>Interested in working with us?</h2>
-      <p>Tell us where your club is today and we will take it from there.</p>
-      <div class="cta-actions">
-        <a class="btn btn-navy" href="/en/contact.html">Contact us<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <div class="about-grid">
+      <div class="about-txt">
+        <p class="sec-en">About</p>
+        <h2 class="section-title" id="about-heading">About Odonata</h2>
+        <p>Odonata was founded by researchers in doctoral programmes at the University of Tsukuba, together with people who have worked in football themselves.</p>
+        <p>Football clubs generate records every day — wellness, GPS, match, medical, development plans. In most clubs these sit in separate places and accumulate without ever being connected.</p>
+        <p>We reconnect those records and run analysis that single metrics cannot reach. We then deliver that analysis as a web app your staff can use in daily decisions.</p>
+        <p>Research, analysis and engineering all sit inside the same team.</p>
+        <p style="margin-top:26px"><a class="tlink" href="/en/company.html">More about the team<span class="chev" aria-hidden="true">›</span></a></p>
+      </div>
+      <figure class="about-photo">
+        <picture>
+          <source type="image/webp" srcset="/assets/photo-staff-screens@828.webp 828w, /assets/photo-staff-screens.webp 1672w" sizes="(max-width:900px) 100vw, 50vw">
+          <source type="image/jpeg" srcset="/assets/photo-staff-screens@828.jpg 828w, /assets/photo-staff-screens.jpg 1672w" sizes="(max-width:900px) 100vw, 50vw">
+          <img src="/assets/photo-staff-screens.jpg" alt="Staff reviewing squad and player data across several analysis screens" width="1672" height="941" loading="lazy">
+        </picture>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 03 Service｜2つの事業 ═══════════ -->
+<section class="section-alt" id="service" aria-labelledby="service-heading">
+  <div class="wrap">
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <p class="sec-en">Service</p>
+      <h2 class="section-title" id="service-heading">What we do</h2>
+      <p class="section-lead center">You can start from the analysis, or from the platform.</p>
+    </div>
+    <div class="split reveal">
+      <!-- 左：データ分析・伴走支援（分析している場面を主役に） -->
+      <div class="sp-analysis">
+        <figure class="an-photo">
+          <picture>
+            <source type="image/webp" srcset="/assets/photo-report-discussion@828.webp 828w, /assets/photo-report-discussion.webp 1672w" sizes="(max-width:900px) 100vw, 50vw">
+            <source type="image/jpeg" srcset="/assets/photo-report-discussion@828.jpg 828w, /assets/photo-report-discussion.jpg 1672w" sizes="(max-width:900px) 100vw, 50vw">
+            <img src="/assets/photo-report-discussion.jpg" alt="Two people going through an analysis report spread out on a desk" width="1672" height="941" loading="lazy">
+          </picture>
+        </figure>
+        <span class="lbl">Service 01</span>
+        <h3>Data Analysis &amp; Advisory</h3>
+        <p>We analyse the data your club already holds and build models and findings specific to your players.</p>
+        <ul>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg> Organising and analysing the data you already hold</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg> Injury risk models built for your squad</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-network"/></svg> Network analysis reports</li>
+                  </ul>
+        <p class="menu-note">Where no example exists yet, we design the analysis from your questions and the data you hold.</p>
+        <p style="margin-top:24px"><a class="tlink" href="/en/service-analysis.html">Data Analysis &amp; Advisory<span class="chev" aria-hidden="true">›</span></a></p>
+      </div>
+
+      <!-- 右：現場で使う（暗い背景＋実際のアプリ画面） -->
+      <div class="sp-platform">
+        <figure class="pf-photo">
+          <picture>
+            <source type="image/webp" srcset="/assets/photo-analysis-room@828.webp 828w, /assets/photo-analysis-room.webp 1672w" sizes="(max-width:900px) 100vw, 50vw">
+            <source type="image/jpeg" srcset="/assets/photo-analysis-room@828.jpg 828w, /assets/photo-analysis-room.jpg 1672w" sizes="(max-width:900px) 100vw, 50vw">
+            <img src="/assets/photo-analysis-room.jpg" alt="An analysis room with network diagrams and charts on large monitors, a floodlit pitch visible outside" width="1672" height="941" loading="lazy">
+          </picture>
+        </figure>
+        <span class="lbl">Service 02</span>
+        <h3>Data Platform</h3>
+        <p>We collect and organise daily data, and deliver the analysis as a web app your staff use every day.</p>
+        <ul>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg> <span>Collect<small>wellness, GPS, match, medical, IDP</small></span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-stack"/></svg> <span>Organise<small>one view, per player and per squad</small></span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg> <span>Interpret<small>injury risk prediction and network analysis</small></span></li>
+        </ul>
+        <p style="margin-top:24px"><a class="tlink" href="/en/service-platform.html">Data Platform<span class="chev" aria-hidden="true">›</span></a></p>
+      </div>
+    </div>
+    <p class="photo-note">Photographs are for illustration only.</p>
+  </div>
+</section>
+
+<!-- ═══════════ 04 Analysis｜何を分析できるのか ═══════════ -->
+<section id="analysis" aria-labelledby="analysis-heading">
+  <div class="wrap">
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <h2 class="section-title" id="analysis-heading">What we can find in your data</h2>
+      <p class="section-lead center">These are the outputs we have built so far. What can be analysed grows with the combinations of data available.</p>
+    </div>
+
+    <div class="uc-grid">
+      <!-- カード1：大数字＋リスクバーUI -->
+      <article class="uc uc-1 reveal">
+        <h3>Injury risk prediction</h3>
+        <!-- 大数字ブロック：数値とラベルを必ずテキストで併記し、色や矢印だけで差を表さない -->
+        <div class="bigstat">
+          <p class="bs-main"><span class="bs-num">~70<span class="bs-unit">%</span></span><span class="bs-lab">Precision</span></p>
+          <table class="cmp">
+            <caption>Compared with the conventional ACWR indicator</caption>
+            <thead>
+              <tr><th scope="col">Metric</th><th scope="col">ACWR (conventional)</th><th scope="col">Odonata</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Precision</th>
+                <td data-label="ACWR (conventional)">~5%</td><td data-label="Odonata">~70%</td></tr>
+              <tr><th scope="row">Recall</th>
+                <td data-label="ACWR (conventional)">~20%</td><td data-label="Odonata">~20%</td></tr>
+            </tbody>
+          </table>
+          <p class="cmp-lead">Recall stays at the same level as the conventional metric, while precision rises from ~5% to ~70%.</p>
+        </div>
+        <p>Around 70% of the players we flagged as high risk went on to sustain an injury. The app also shows the contributing factors and a suggested adjustment to training load.</p>
+        <p class="note">Validated on University of Tsukuba Football Club data from 2022–2025. Limited to muscular, non-contact ligament and overuse injuries.</p>
+        <p class="uc-link"><a href="#proof">See the full results<span class="chev" aria-hidden="true">›</span></a></p>
+      </article>
+
+      <!-- カード2：ネットワーク図 -->
+      <article class="uc uc-2 reveal">
+        <h3>Network analysis</h3>
+        <!-- 中央にノードを置かない。中心を置くと「中心となる指標を特定する手法」に見えてしまい、
+             実際の手法（指標どうしの関係を見える化する）と矛盾する。 -->
+        <svg class="uc-fig" viewBox="0 0 300 176" role="img"
+             aria-labelledby="netfig-t" aria-describedby="netfig-d">
+          <title id="netfig-t">Network diagram of the relationships between indicators</title>
+          <desc id="netfig-d">Five indicators — sleep, fatigue, muscle tightness, total distance and motivation — connected by lines. Line thickness shows the strength of the relationship.</desc>
+          <!-- 線の太さ3段階＝関係の強さ。太さだけに頼らないよう図の下に凡例を置く -->
+          <g stroke="#0A5E93" fill="none" stroke-linecap="round">
+            <line x1="76" y1="70" x2="104" y2="126" stroke-width="3.4"/>
+            <line x1="224" y1="70" x2="196" y2="126" stroke-width="3.4"/>
+            <line x1="104" y1="126" x2="196" y2="126" stroke-width="2.1"/>
+            <line x1="150" y1="34" x2="76" y2="70" stroke-width="2.1"/>
+            <line x1="150" y1="34" x2="224" y2="70" stroke-width="1.1"/>
+            <line x1="76" y1="70" x2="196" y2="126" stroke-width="1.1"/>
+            <line x1="104" y1="126" x2="150" y2="34" stroke-width="1.1"/>
+          </g>
+          <g fill="#0A5E93">
+            <circle cx="150" cy="34" r="8"/><circle cx="76" cy="70" r="8"/>
+            <circle cx="224" cy="70" r="8"/><circle cx="104" cy="126" r="8"/>
+            <circle cx="196" cy="126" r="8"/>
+          </g>
+          <g font-family="'Zen Kaku Gothic New',sans-serif" font-size="15" font-weight="700" fill="#15233B">
+            <text x="150" y="18" text-anchor="middle">motivation</text>
+            <text x="54" y="60" text-anchor="middle">sleep</text>
+            <text x="246" y="60" text-anchor="middle">distance</text>
+            <text x="96" y="152" text-anchor="middle">fatigue</text>
+            <text x="204" y="152" text-anchor="middle">tightness</text>
+            <text x="150" y="172" text-anchor="middle" fill="#0B2A5B" font-size="11.5">How indicators connect differs by player</text>
+          </g>
+        </svg>
+        <p class="fig-legend">Line thickness shows the strength of the relationship</p>
+        <p>Two players can do the same session and feel it in different places. We map the relationships between wellness, GPS, match and medical indicators, and read the pattern specific to that player.</p>
+        <p class="uc-link"><a href="/en/service-analysis.html#network">More on network analysis<span class="chev" aria-hidden="true">›</span></a></p>
+      </article>
+
+    </div>
+
+    <!-- その他の分析例：内容量が上の2枚より多いため、全幅の1ブロックとして下に置く -->
+    <section class="uc-wide reveal" aria-labelledby="more-heading">
+      <div class="uc-wide-head">
+        <h3 id="more-heading">Other analyses</h3>
+        <p class="uc-wide-badge">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-spark"/></svg>
+          <span>Themes still to come</span>
+        </p>
+      </div>
+      <p class="uc-wide-lead">We also run analyses shaped by the combination of data available.</p>
+      <ul class="more-list">
+        <li>
+          <b>Wellness × match statistics</b>
+          <span>We connected daily wellness records and GPS load data to match statistics.</span>
+          <ul class="more-find">
+            <li>What matters is <strong>accumulation, not the day before</strong>. Running load over the previous 8–14 days lowers duel win rate</li>
+            <li><strong>Some players drop under load and some do not.</strong> Adjustment can be optimised player by player</li>
+            <li>Perceived fatigue <strong>has an independent effect even after accounting for GPS load</strong>. The daily check-in has value in itself</li>
+            <li>In weeks where load and fatigue overlapped, duel win rate fell by <strong>~16 percentage points</strong> on average (39% → 23%)</li>
+          </ul>
+        </li>
+        <li>
+          <b>Wellness × GPS</b>
+          <span>We looked at how training load shows up in a player&rsquo;s state the following day.</span>
+          <ul class="more-find">
+            <li>Training load <strong>raises physical fatigue the following day</strong></li>
+            <li><strong>The size of that response varies widely between players.</strong> Some react strongly to the same session; others barely at all</li>
+            <li>Psychological wellness <strong>stays relatively stable</strong>, while physical wellness <strong>moves a great deal</strong></li>
+            <li>When psychological wellness is good, <strong>physical wellness the next day is also better</strong></li>
+          </ul>
+        </li>
+        <li>
+          <b>IDP × match statistics</b>
+          <span>Testing whether the goals set for a player translate into change on the pitch.</span>
+          <p class="more-wip">In progress</p>
+        </li>
+      </ul>
+      <div class="uc-wide-foot">
+        <p class="note">All estimates are from University of Tsukuba Football Club data. Results will differ depending on the club and the data available.</p>
+        <p class="more-tail">…and more. We design the analysis around each club.</p>
+      </div>
+    </section>
+
+    <div class="center" style="margin-top:40px">
+      <a class="tlink" href="/en/service-analysis.html">More on our analysis<span class="chev" aria-hidden="true">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 05 Approach｜なぜそれが分析できるのか ═══════════ -->
+<section class="section-alt has-net" id="approach" aria-labelledby="approach-heading">
+  <canvas class="netbg" data-density="34" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <h2 class="section-title" id="approach-heading">Why we can find it</h2>
+      <p class="approach-name">Complex Systems Approach</p>
+      <p class="section-lead center">Rather than reading indicators one at a time, we treat the relationships between them as the unit of analysis.</p>
+      <p class="section-lead center">Take injury as one example. Factors that each sit within normal range can combine into a dangerous one.</p>
+    </div>
+
+    <div class="why-fig reveal">
+      <svg viewBox="0 0 640 380" role="img" aria-label="Network diagram in which training load, wellness indicators, schedule and injury history connect to injury at the centre, showing that factors within normal range on their own can combine into a dangerous state">
+        <g stroke="#00A0E9" stroke-width="2" fill="none" opacity=".55">
+          <line x1="320" y1="190" x2="126" y2="84"/><line x1="320" y1="190" x2="514" y2="84"/>
+          <line x1="320" y1="190" x2="126" y2="296"/><line x1="320" y1="190" x2="514" y2="296"/>
+          <line x1="126" y1="84" x2="514" y2="84" opacity=".4"/>
+          <line x1="126" y1="84" x2="126" y2="296" opacity=".4"/>
+          <line x1="514" y1="84" x2="514" y2="296" opacity=".4"/>
+          <line x1="126" y1="296" x2="514" y2="296" opacity=".4"/>
+        </g>
+        <g class="wf-node">
+          <circle cx="126" cy="84" r="60"/><circle cx="514" cy="84" r="60"/>
+          <circle cx="126" cy="296" r="60"/><circle cx="514" cy="296" r="60"/>
+        </g>
+        <g class="wf-t">
+          <text x="126" y="78">Training</text><text x="126" y="98">load</text>
+          <text x="514" y="78">Wellness</text><text x="514" y="98">indicators</text>
+          <text x="126" y="302">Schedule</text>
+          <text x="514" y="302">Injury history</text>
+        </g>
+        <g class="wf-ok">
+          <text x="126" y="120">within normal range</text><text x="514" y="120">within normal range</text>
+          <text x="126" y="324">within normal range</text><text x="514" y="324">within normal range</text>
+        </g>
+        <circle class="wf-core-ring" cx="320" cy="190" r="82"/>
+        <circle class="wf-core" cx="320" cy="190" r="62"/>
+        <text class="wf-core-t" x="320" y="185">Injury</text>
+        <text class="wf-core-s" x="320" y="209">dangerous when they combine</text>
+        <!-- 怪我は「例」であることを図の中でも示す。この構造はパフォーマンス・育成にも当てはまる -->
+        <text class="wf-core-eg" x="320" y="229">(example)</text>
+      </svg>
+      <p class="why-cap">Factors that show nothing unusual on their own can still combine into a dangerous state.<br>The same structure applies to swings in performance, and to how a player develops.</p>
+      <div class="why-txt">
+        <p>Injury and performance are not decided by GPS alone, by fatigue alone, or by match statistics alone.</p>
+        <p style="margin-top:22px"><a class="tlink" href="/en/approach.html">How the complex systems approach works<span class="chev" aria-hidden="true">›</span></a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ 06 Connect｜Odonataがつなぐもの ═══════════ -->
+<section class="has-net" id="connect" aria-labelledby="connect-heading">
+  <canvas class="netbg" data-density="34" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <h2 class="section-title" id="connect-heading">The data we connect</h2>
+      <p class="section-lead center">There is no fixed set. Any record your club already keeps can be a starting point.</p>
+    </div>
+    <ul class="sources">
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-pulse"/></svg><b>Wellness</b><small>sleep, fatigue, soreness</small></li>
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><b>GPS</b><small>total distance, sprints</small></li>
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-cone"/></svg><b>Training</b><small>load, content, attendance</small></li>
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-ball"/></svg><b>Matches</b><small>minutes, statistics</small></li>
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-cross"/></svg><b>Medical</b><small>injuries, return to play, history</small></li>
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-growth"/></svg><b>Player development</b><small>goals, reviews, assessments</small></li>
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-ruler"/></svg><b>Physical testing</b><small>measurements and trends</small></li>
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-height"/></svg><b>Growth</b><small>height, weight, maturation</small></li>
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-versus"/></svg><b>Opposition</b><small>scouting, previous meetings</small></li>
+      <li class="source"><svg class="ic" aria-hidden="true"><use href="#i-mind"/></svg><b>Psychological</b><small>motivation, anxiety, mood</small></li>
+      <li class="source other"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg><b>Anything else</b><small>whatever your club records — the format does not matter</small></li>
+    </ul>
+
+    <div class="start-now">
+      <h3>You can start with the data you already have.</h3>
+      <p>No new hardware required. Paper and spreadsheets are a fine starting point.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 07 Cycle｜なぜデータプラットフォームまで提供しているのか ═══════════ -->
+<section class="section-alt" id="cycle" aria-labelledby="cycle-heading">
+  <div class="wrap">
+    <div class="center" style="max-width:820px;margin:0 auto">
+      <h2 class="section-title" id="cycle-heading">Why we build the platform too</h2>
+      <p class="section-lead center">So the analysis does not stop at a report. It gets used, data accumulates, and new findings follow.</p>
+    </div>
+
+    <div class="cycle reveal">
+      <svg viewBox="0 0 1120 700" role="img" aria-labelledby="cycle-svg-t cycle-svg-d">
+        <title id="cycle-svg-t">A five-stage cycle: analyse, findings emerge, implement, staff use it, data accumulates, and back to analyse</title>
+        <desc id="cycle-svg-d">The centre reads that the more it is used, the sharper it gets. The arrow returning from the accumulation stage to the analysis stage is drawn thicker, to show that accumulation drives the next finding.</desc>
+        <defs>
+          <marker id="cy-a" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0.5 L11 6 L0 11.5 z" fill="#00A0E9"/></marker>
+          <marker id="cy-b" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0.5 L11 6 L0 11.5 z" fill="#0B2A5B"/></marker>
+        </defs>
+        <path class="arc" d="M622.0 113.7 A225 225 0 0 1 746.5 204.2" marker-end="url(#cy-a)"/>
+        <path class="arc" d="M784.9 322.1 A225 225 0 0 1 737.3 468.5" marker-end="url(#cy-a)"/>
+        <path class="arc" d="M637.0 541.4 A225 225 0 0 1 483.0 541.4" marker-end="url(#cy-a)"/>
+        <path class="arc" d="M382.7 468.5 A225 225 0 0 1 335.1 322.1" marker-end="url(#cy-a)"/>
+        <path class="arc back" d="M373.5 204.2 A225 225 0 0 1 498.0 113.7" marker-end="url(#cy-b)"/>
+        <text class="backlab" x="370" y="68" text-anchor="middle">accumulation drives the next finding</text>
+        <circle class="core" cx="560" cy="330" r="126"/>
+        <text class="coretx" x="560" y="322">The more it is used,</text>
+        <text class="coretx" x="560" y="354">the sharper it gets.</text>
+        <circle class="node" cx="560.0" cy="105.0" r="36"/><text class="num" x="560.0" y="116">1</text>
+        <foreignObject x="460" y="-11" width="200" height="110">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="cy-lab" style="text-align:center"><b>Analyse</b><span>your existing data, with a complex systems approach</span></div>
+        </foreignObject>
+        <circle class="node" cx="774.0" cy="260.5" r="36"/><text class="num" x="774.0" y="271.5">2</text>
+        <foreignObject x="830" y="214.5" width="200" height="110">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="cy-lab" style="text-align:left"><b>Findings emerge</b><span>relationships single metrics cannot show</span></div>
+        </foreignObject>
+        <circle class="node" cx="692.3" cy="512.0" r="36"/><text class="num" x="692.3" y="523">3</text>
+        <foreignObject x="700.3" y="562" width="200" height="110">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="cy-lab" style="text-align:center"><b>Implement</b><span>the analysis goes into the platform</span></div>
+        </foreignObject>
+        <circle class="node" cx="427.7" cy="512.0" r="36"/><text class="num" x="427.7" y="523">4</text>
+        <foreignObject x="219.7" y="562" width="200" height="110">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="cy-lab" style="text-align:center"><b>Staff use it</b><span>in daily decisions</span></div>
+        </foreignObject>
+        <circle class="node back" cx="346.0" cy="260.5" r="36"/><text class="num on" x="346.0" y="271.5">5</text>
+        <foreignObject x="90" y="214.5" width="200" height="110">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="cy-lab" style="text-align:right"><b>Data accumulates</b><span>the more it is used, the more records build up</span></div>
+        </foreignObject>
+      </svg>
+
+      <!-- SP用：縦一列のステップ表示 -->
+      <ol class="cycle-steps">
+        <li><span class="n">1</span><b>Analyse</b><small>your existing data, with a complex systems approach</small></li>
+        <li><span class="n">2</span><b>Findings emerge</b><small>relationships single metrics cannot show</small></li>
+        <li><span class="n">3</span><b>Implement</b><small>the analysis goes into the platform</small></li>
+        <li><span class="n">4</span><b>Staff use it</b><small>in daily decisions</small></li>
+        <li><span class="n">5</span><b>Data accumulates</b><small>the more it is used, the more records build up</small></li>
+        <li class="back"><span class="n" aria-hidden="true">↑</span><b>Back to 1</b><small>accumulation drives the next finding</small></li>
+      </ol>
+      <p class="cycle-core-sp"><b>The more it is used,</b><br>the sharper it gets.</p>
+    </div>
+
+    <div class="cycle-tags">
+      <h3 class="tags-h">What this cycle produces</h3>
+      <p class="tags-lead">The darker colour marks what we already deliver. The rest are themes still to come.</p>
+      <ul>
+        <li class="t-live"><a href="/en/service-analysis.html#injury">Injury risk prediction<span class="chev" aria-hidden="true">›</span></a></li>
+        <li class="t-live"><a href="/en/service-analysis.html#network">Network analysis<span class="chev" aria-hidden="true">›</span></a></li>
+        <li class="t-next">Cognitive load</li>
+        <li class="t-next">Training content and development</li>
+        <li class="t-next">Opposition analysis</li>
+        <li class="t-next">Wellness and performance</li>
+        <li class="t-next">IDP and match statistics</li>
+        <li class="t-etc">…and more</li>
+      </ul>
+      <p class="note">The more combinations of data, the more themes become possible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 08 Proof｜筑波大学蹴球部での導入と実証 ═══════════ -->
+<section id="proof" aria-labelledby="proof-heading">
+  <div class="wrap">
+    <div class="center" style="max-width:820px;margin:0 auto">
+      <h2 class="section-title" id="proof-heading">In use at University of Tsukuba Football Club, where we continue to validate.</h2>
+      <p class="section-lead center">The platform has been in daily use since June 2026 in a top-level university environment. We continue to validate model accuracy alongside it.</p>
+    </div>
+
+    <figure class="proof-photo">
+      <picture>
+        <source type="image/webp" srcset="/assets/photo-training-session@828.webp 828w, /assets/photo-training-session.webp 1672w" sizes="(max-width:1023px) 100vw, 900px">
+        <source type="image/jpeg" srcset="/assets/photo-training-session@828.jpg 828w, /assets/photo-training-session.jpg 1672w" sizes="(max-width:1023px) 100vw, 900px">
+        <img src="/assets/photo-training-session.jpg" alt="Players running a passing drill on the training ground, with a staff member looking at a tablet in the foreground" width="1672" height="941" loading="lazy">
+      </picture>
+      <figcaption class="photo-note">Photographs are for illustration only.</figcaption>
+    </figure>
+
+    <div class="proof-what">
+      <h3>What we validated</h3>
+      <p>We combined self-reported wellness, GPS, schedule and injury history from 2022–2025, generated features across more than 200 views of the data, and trained a model to recognise states resembling those that preceded past injuries. It produces a daily injury risk score for each player.</p>
+    </div>
+
+    <!-- ACWR比較表：英語版は partials/acwr.html の同期対象外。ここで直接管理する -->
+<div class="acwr">
+  <h3>How this compares with ACWR</h3>
+  <p class="acwr-lead">ACWR (acute:chronic workload ratio) has been the conventional way to flag injury risk. It judges risk from a single ratio — how sharply recent load has risen against the longer-term average.</p>
+
+  <div class="acwr-tblwrap">
+    <table class="acwr-tbl">
+      <caption class="sr-only">Precision and recall compared between ACWR and Odonata</caption>
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">What it means</th>
+          <th scope="col">ACWR (conventional)</th>
+          <th scope="col">Odonata</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Precision</th>
+          <td>Of the players flagged as high risk, the share who went on to be injured</td>
+          <td data-label="ACWR (conventional)">~5%</td>
+          <td data-label="Odonata"><b>~70%</b></td>
+        </tr>
+        <tr>
+          <th scope="row">Recall</th>
+          <td>Of the injuries that occurred, the share flagged in advance</td>
+          <td data-label="ACWR (conventional)">~20%</td>
+          <td data-label="Odonata">~20%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="acwr-read">Recall stays at the same level as the conventional metric, while precision rises from ~5% to ~70%.</p>
+  <p class="acwr-read">In practical terms: of ten players flagged for attention, fewer than one used to go on to be injured. Now seven do.</p>
+
+  <details class="acwr-details">
+    <summary>How these numbers are calculated</summary>
+    <div class="acwr-details-body">
+      <p class="acwr-mx-h">Breakdown of the 100 players validated</p>
+      <ul class="acwr-mx">
+        <li>Flagged high risk and injured (true positive): 7</li>
+        <li>Flagged high risk but not injured (false positive): 3</li>
+        <li>Flagged low risk but injured (missed): 28</li>
+        <li>Flagged low risk and not injured (true negative): 62</li>
+      </ul>
+      <p class="acwr-calc">Precision = 7 ÷ (7 + 3) = ~70%<br>Recall = 7 ÷ (7 + 28) = ~20%</p>
+    </div>
+  </details>
+
+  <ul class="acwr-notes">
+    <li>Validated on University of Tsukuba Football Club data from 2022–2025.</li>
+    <li>Limited to muscular, non-contact ligament and overuse injuries (including stress fractures).</li>
+    <li>Within a single model, precision and recall trade off against each other. Raising one tends to lower the other.</li>
+    <li>Results will differ with the volume and quality of data, and with the club. We validate and tune on each club&rsquo;s own data.</li>
+  </ul>
+</div>
+
+    <p style="margin-top:32px;text-align:center"><a class="tlink" href="/en/research.html">See the full results<span class="chev" aria-hidden="true">›</span></a></p>
+  </div>
+</section>
+
+
+
+<!-- ═══════════ 09 Team｜研究・現場・実装 ═══════════ -->
+<section class="section-alt" id="team" aria-labelledby="team-heading">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <h2 class="section-title" id="team-heading">Research, the touchline, and engineering — in one team.</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <span class="pk">Research</span>
+        <p>Doctoral research at the University of Tsukuba, in cognitive psychology, neuroscience and clinical psychology.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pk">Football</span>
+        <p>Playing and coaching experience with University of Tsukuba Football Club.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pk">Engineering</span>
+        <p>Built by a member specialising in information engineering. Requests from your staff can be reflected quickly.</p>
+      </div>
+    </div>
+
+    <div class="members" style="margin-top:36px">
+      <div class="member reveal">
+        <div class="avatar kanji">HY</div>
+        <div class="role">Lead / Research</div>
+        <h3>Haruki Yokota<span class="romaji" aria-hidden="true">&nbsp;</span></h3>
+        <p>Doctoral programme (Psychology), University of Tsukuba. Cognitive psychology and neuroscience. Playing and coaching experience with University of Tsukuba Football Club.</p>
+      </div>
+      <div class="member reveal">
+        <div class="avatar kanji">KO</div>
+        <div class="role">Engineering / Research</div>
+        <h3>Kazuya Ohuchi<span class="romaji" aria-hidden="true">&nbsp;</span></h3>
+        <p>Doctoral programme (Systems and Information Engineering), University of Tsukuba. Brain information science and cognitive neuroscience. Leads product development at Odonata.</p>
+      </div>
+      <div class="member reveal">
+        <div class="avatar kanji">KH</div>
+        <div class="role">Research</div>
+        <h3>Keigo Hatto<span class="romaji" aria-hidden="true">&nbsp;</span></h3>
+        <p>Doctoral programme (Psychology / Clinical Psychology), University of Tsukuba. Clinical and sport psychology. Certified clinical psychologist. Researches the psychological network approach applied to athlete conditioning.</p>
+      </div>
+      <div class="member reveal">
+        <div class="avatar kanji">+</div>
+        <div class="role">Business</div>
+        <h3>Other members<span class="romaji" aria-hidden="true">&nbsp;</span></h3>
+        <p>University of Tsukuba graduate. Background in B2B advertising sales and new business development.</p>
+      </div>
+    </div>
+    <div class="center" style="margin-top:32px">
+      <a class="tlink" href="/en/company.html">More about the team<span class="chev" aria-hidden="true">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 10 Process｜導入の流れ ═══════════ -->
+<section id="process" aria-labelledby="process-heading">
+  <div class="wrap">
+    <div class="center" style="max-width:760px;margin:0 auto">
+      <h2 class="section-title" id="process-heading">Start small. Build it with your staff.</h2>
+    </div>
+
+    <ol class="pflow">
+      <li class="pstep">
+        <div class="ph"><span class="pn">STEP 1</span><h3>Initial conversation</h3></div>
+        <p>We ask what data you already have, and what you want to learn from it. GPS, wellness and match records — but paper and spreadsheets are fine too. We will tell you what looks possible with what you hold.</p>
+      </li>
+
+      <li class="pstep wide">
+        <div class="ph"><span class="pn">STEP 2</span><h3>Pilot and refine</h3></div>
+        <p>We run it with a limited group and adjust the input fields, the interface and the models.</p>
+        <!-- STEP2 の中の小さな循環 -->
+        <div class="ploop">
+          <svg viewBox="0 0 600 210" role="img" aria-labelledby="ploop-t">
+            <title id="ploop-t">A three-stage loop: run, feedback, refine, and back to run. It shows that adjustments are made as feedback comes in.</title>
+            <defs>
+              <marker id="pl-a" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0.5 L11 6 L0 11.5 z" fill="#00A0E9"/>
+              </marker>
+              <marker id="pl-b" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0.5 L11 6 L0 11.5 z" fill="#0B2A5B"/>
+              </marker>
+            </defs>
+
+            <g class="pl-box s1"><rect x="8" y="14" width="168" height="92" rx="12"/></g>
+            <text class="pl-num" x="92" y="52">01</text>
+            <text class="pl-lab" x="92" y="82">Run</text>
+
+            <g class="pl-box s2"><rect x="216" y="14" width="168" height="92" rx="12"/></g>
+            <text class="pl-num" x="300" y="52">02</text>
+            <text class="pl-lab" x="300" y="82">Feedback</text>
+
+            <g class="pl-box s3"><rect x="424" y="14" width="168" height="92" rx="12"/></g>
+            <text class="pl-num on" x="508" y="52">03</text>
+            <text class="pl-lab on" x="508" y="82">Refine</text>
+
+            <path class="pl-arrow" d="M176 60 L212 60" marker-end="url(#pl-a)"/>
+            <path class="pl-arrow" d="M384 60 L420 60" marker-end="url(#pl-a)"/>
+            <path class="pl-back" d="M508 106 L508 152 Q508 168 492 168 L108 168 Q92 168 92 152 L92 110" marker-end="url(#pl-b)"/>
+            <text class="pl-backlab" x="300" y="196">adjusted as feedback comes in</text>
+          </svg>
+
+          <ol class="ploop-sp">
+            <li class="s1"><span class="n">01</span><b>Run</b></li>
+            <li class="s2"><span class="n">02</span><b>Feedback</b></li>
+            <li class="s3"><span class="n">03</span><b>Refine</b></li>
+          </ol>
+          <p class="ploop-back-sp">↑ back to 01, adjusted as feedback comes in</p>
+        </div>
+      </li>
+
+      <li class="pstep">
+        <div class="ph"><span class="pn">STEP 3</span><h3>Full rollout</h3></div>
+        <p>We import your existing and historical data and extend it across the squad.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ 12 CTA ═══════════ -->
+<section class="cta-band" id="cta" aria-labelledby="cta-heading">
+  <div class="wrap">
+    <div class="cta cta-navy reveal">
+      <h2 id="cta-heading">Tell us what data your club already has.</h2>
+      <p>An initial conversation and a quote cost nothing. &ldquo;We have data but we are not using it&rdquo; and &ldquo;we are struggling with paper and spreadsheets&rdquo; are both good places to start.</p>
+      <div class="cta-actions" data-ga-location="footer_cta">
+        <a class="btn btn-blue" href="/en/contact.html">Contact us<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-line" href="/en/research.html"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg> See the evidence</a>
       </div>
     </div>
   </div>
 </section>
-</main>
 
 <!-- ═══════════ FOOTER ═══════════ -->
+<div class="wrap">
+  <p class="photo-note-global">Some photographs on this site are for illustration only.</p>
+</div>
+
+</main>
+
 <!-- #partial:footer -->
 <!-- 英語版 共通フッター（単一ソース：partials/footer-en.html → tools/build-partials.mjs で en/ 配下へ同期）
      パスはすべてルート相対。プライバシーポリシーは日本語版しか無いため、その旨を明示してリンクする。 -->
@@ -236,5 +1307,6 @@
 <!-- /#partial:footer -->
 
 <script src="/assets/site.js"></script>
+<script src="/assets/netbg.js"></script>
 </body>
 </html>
