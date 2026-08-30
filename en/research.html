@@ -13,15 +13,15 @@
 <meta property="og:site_name" content="Odonata">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
-<meta property="og:title" content="Evidence &amp; Research｜Odonata">
-<meta property="og:description" content="Results from our work with the University of Tsukuba football club. Around 70% of players flagged as high risk went on to sustain an injury, against about 5% for the conventional ACWR indicator, with recall at a comparable level.">
+<meta property="og:title" content="Injury Risk Prediction Results | University of Tsukuba FC | Odonata">
+<meta property="og:description" content="Results from our pilot with University of Tsukuba Football Club. Around 70% of players flagged as high risk went on to be injured, against ~5% for the conventional ACWR metric. Method, injury types covered and the limits of the accuracy are all documented.">
 <meta property="og:url" content="https://getodonata.com/en/research.html">
 <meta property="og:image" content="https://getodonata.com/assets/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Odonata — football data analysis and performance platform">
 <meta name="twitter:card" content="summary_large_image">
-<title>Evidence &amp; Research｜Odonata</title>
+<title>Injury Risk Prediction Results | University of Tsukuba FC | Odonata</title>
 <!-- #partial:analytics -->
 <!-- アクセス解析（単一ソース：partials/analytics.html → tools/build-partials.mjs で全ページのヘッド内へ同期）
      測定IDを変更するときは、このファイルの2箇所だけを書き換えて同期を実行する。 -->
@@ -66,7 +66,7 @@
   })();
 </script>
 <!-- /#partial:analytics -->
-<meta name="description" content="Results from our work with the University of Tsukuba football club. Around 70% of players flagged as high risk went on to sustain an injury, against about 5% for the conventional ACWR indicator, with recall at a comparable level.">
+<meta name="description" content="Results from our pilot with University of Tsukuba Football Club. Around 70% of players flagged as high risk went on to be injured, against ~5% for the conventional ACWR metric. Method, injury types covered and the limits of the accuracy are all documented.">
 <link rel="icon" href="/assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
@@ -76,13 +76,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
+<style>
+  /* 方法：横並びカード（縦タイムラインUIを廃止） */
+  .rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+  @media(max-width:900px){.rgrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.rgrid{grid-template-columns:1fr}}
+  .rcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;box-shadow:var(--shadow)}
+  .rcard .rn{font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--color-primary-strong)}
+  .rcard h3{font-size:16.5px;font-weight:800;color:var(--navy);margin:8px 0 8px;line-height:1.5}
+  .rcard p{font-size:13.5px;color:var(--sub);line-height:1.85}
+  /* 背景：2カラム */
+  .bg-2col{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;margin-top:40px}
+  @media(max-width:860px){.bg-2col{grid-template-columns:1fr;gap:28px}}
+  .bg-2col p{font-size:15.5px;color:var(--sub);line-height:2}
+  .bg-2col p b{color:var(--navy)}
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"BreadcrumbList",
   "itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://getodonata.com/en/"},
-    {"@type":"ListItem","position":2,"name":"Evidence & Research","item":"https://getodonata.com/en/research.html"}
+    {"@type":"ListItem","position":2,"name":"Evidence &amp; Research","item":"https://getodonata.com/en/research.html"}
   ]
 }
 </script>
@@ -176,7 +191,6 @@
 <!-- /#partial:header -->
 
 <main id="main">
-
 <nav class="breadcrumb" aria-label="Breadcrumb">
   <div class="wrap">
     <ol>
@@ -188,37 +202,187 @@
 
 <!-- ═══════════ PAGE HERO ═══════════ -->
 <div class="phero">
+  <canvas id="pheroNet"></canvas>
   <div class="wrap">
-    <h1>Evidence &amp; Research</h1>
-    <p class="lead">What we have tested, what it showed, and where the limits are.</p>
+    <h1>&ldquo;Does it actually work?&rdquo; — answered with numbers.</h1>
+    <p class="lead">Our analysis and our product rest on a pilot in a top-level university environment and on academic research. Every number here comes with its conditions and its limits.</p>
   </div>
 </div>
 
-<!-- 本文の英語コピーは次フェーズで入れる。この Phase は構造・共通パーツ・
-     メタデータの受け皿づくりまで（§15：逐語訳せず、再構成として書く） -->
-<section aria-labelledby="wip-heading">
+<!-- ═══════════ 1. 実証成果 ═══════════ -->
+<section id="numbers" aria-labelledby="numbers-heading">
   <div class="wrap">
-    <h2 class="section-title" id="wip-heading">Coming soon</h2>
-    <p class="section-lead">We are preparing the English version of this page. In the meantime, the Japanese page covers the same material.</p>
-    <p style="margin-top:20px"><a class="tlink" href="/research.html" lang="ja" hreflang="ja">日本語のページを見る<span class="chev" aria-hidden="true">›</span></a></p>
+    <div class="center" style="max-width:820px;margin:0 auto">
+      <h2 class="section-title" id="numbers-heading">Results</h2>
+      <p class="section-lead center">We do not inflate the numbers. The conditions and the limits come with them.</p>
+    </div>
+
+    <!-- ACWR比較表：英語版は partials/acwr.html の同期対象外。ここで直接管理する -->
+<div class="acwr">
+  <h3>How this compares with ACWR</h3>
+  <p class="acwr-lead">ACWR (acute:chronic workload ratio) has been the conventional way to flag injury risk. It judges risk from a single ratio — how sharply recent load has risen against the longer-term average.</p>
+
+  <div class="acwr-tblwrap">
+    <table class="acwr-tbl">
+      <caption class="sr-only">Precision and recall compared between ACWR and Odonata</caption>
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">What it means</th>
+          <th scope="col">ACWR (conventional)</th>
+          <th scope="col">Odonata</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Precision</th>
+          <td>Of the players flagged as high risk, the share who went on to be injured</td>
+          <td data-label="ACWR (conventional)">~5%</td>
+          <td data-label="Odonata"><b>~70%</b></td>
+        </tr>
+        <tr>
+          <th scope="row">Recall</th>
+          <td>Of the injuries that occurred, the share flagged in advance</td>
+          <td data-label="ACWR (conventional)">~20%</td>
+          <td data-label="Odonata">~20%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="acwr-read">Recall stays at the same level as the conventional metric, while precision rises from ~5% to ~70%.</p>
+  <p class="acwr-read">In practical terms: of ten players flagged for attention, fewer than one used to go on to be injured. Now seven do.</p>
+
+  <details class="acwr-details">
+    <summary>How these numbers are calculated</summary>
+    <div class="acwr-details-body">
+      <p class="acwr-mx-h">Breakdown of the 100 players validated</p>
+      <ul class="acwr-mx">
+        <li>Flagged high risk and injured (true positive): 7</li>
+        <li>Flagged high risk but not injured (false positive): 3</li>
+        <li>Flagged low risk but injured (missed): 28</li>
+        <li>Flagged low risk and not injured (true negative): 62</li>
+      </ul>
+      <p class="acwr-calc">Precision = 7 ÷ (7 + 3) = ~70%<br>Recall = 7 ÷ (7 + 28) = ~20%</p>
+    </div>
+  </details>
+
+  <ul class="acwr-notes">
+    <li>Validated on University of Tsukuba Football Club data from 2022–2025.</li>
+    <li>Limited to muscular, non-contact ligament and overuse injuries (including stress fractures).</li>
+    <li>Within a single model, precision and recall trade off against each other. Raising one tends to lower the other.</li>
+    <li>Results will differ with the volume and quality of data, and with the club. We validate and tune on each club&rsquo;s own data.</li>
+  </ul>
+</div>
   </div>
 </section>
 
-<!-- ═══════════ CTA ═══════════ -->
-<section class="cta-band">
+<!-- ═══════════ 2. 方法 ═══════════ -->
+<section class="section-alt" id="method">
   <div class="wrap">
-    <div class="cta" data-ga-location="cta_band">
-      <h2>Interested in working with us?</h2>
-      <p>Tell us where your club is today and we will take it from there.</p>
-      <div class="cta-actions">
-        <a class="btn btn-navy" href="/en/contact.html">Contact us<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <h2 class="section-title">How we did it</h2>
+    </div>
+    <div class="rgrid">
+      <div class="rcard reveal">
+        <div class="rn">01</div>
+        <h3>Combine</h3>
+        <p>Bring wellness, GPS, schedule and injury history together into a single dataset, and generate features across more than 200 views of the data.</p>
+      </div>
+      <div class="rcard reveal">
+        <div class="rn">02</div>
+        <h3>Model per club</h3>
+        <p>Build the model on that squad&rsquo;s own data, training it to recognise states resembling those that preceded past injuries.</p>
+      </div>
+      <div class="rcard reveal">
+        <div class="rn">03</div>
+        <h3>Implement</h3>
+        <p>Put it in front of staff, in the app. It returns a daily risk score for each player, together with the factors driving it.</p>
+      </div>
+      <div class="rcard reveal">
+        <div class="rn">04</div>
+        <h3>Use it</h3>
+        <p>As one input into the decision, not the decision itself. Staff decide; the model is a second pair of eyes.</p>
       </div>
     </div>
   </div>
 </section>
-</main>
+
+<!-- ═══════════ 3. 背景 ═══════════ -->
+<section id="background">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <h2 class="section-title">The data was there. It just was not connected.</h2>
+    </div>
+    <div class="bg-2col">
+      <p class="readable">University of Tsukuba Football Club, a top-level university environment, already had the raw material: GPS, wellness reports and medical records. But each sat in a separate place, with <strong>no way to read them across the same player</strong>. That is where the pilot started, in June 2026.</p>
+      <div class="browser light reveal">
+        <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="u"></span></div>
+        <img src="/assets/app-risk.png" alt="Injury risk prediction screen" width="1119" height="284" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 4. 研究基盤 ═══════════ -->
+<section class="section-alt" id="academic">
+  <div class="wrap">
+    <div class="center" style="max-width:780px;margin:0 auto">
+      <h2 class="section-title">Research base</h2>
+      <p class="section-lead center">
+        The team includes doctoral researchers at the University of Tsukuba, certified clinical psychologists and a physiotherapist.
+      </p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-network"/></svg></div>
+        <h3>Psychological network approach</h3>
+        <p>Research that treats a psychological state as a network of interacting symptoms and factors, applied directly to wellness analysis.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg></div>
+        <h3>Neuroscience, cognitive science and sport science</h3>
+        <p>A background in perception, decision-making and motor control shapes how the product is designed: to support the decision, not to make it.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></div>
+        <h3>A team that implements its own research</h3>
+        <p>Nothing is outsourced. The researchers design and build it themselves, which keeps the distance from paper to pitch very short.</p>
+      </div>
+    </div>
+    <div class="center" style="margin-top:36px">
+      <a class="tlink" href="/en/company.html">More about the team<span class="chev" aria-hidden="true">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 5. 今後 ═══════════ -->
+<section id="future" style="padding-top:64px;padding-bottom:64px">
+  <div class="wrap center">
+    <p class="section-lead center" style="max-width:640px">
+      <strong>This page keeps being updated.</strong><br>
+      Results from clubs using the platform will be published here, with their conditions and limits.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-band" style="padding-top:64px">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Tell us what data your club already has.</h2>
+      <p>An initial conversation and a quote cost nothing. &ldquo;We have data but we are not using it&rdquo; and &ldquo;we are struggling with paper and spreadsheets&rdquo; are both good places to start.</p>
+      <div class="cta-actions">
+        <a class="btn btn-blue" href="/en/contact.html">Contact us<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+    </div>
+  </div>
+</section>
 
 <!-- ═══════════ FOOTER ═══════════ -->
+</main>
+
 <!-- #partial:footer -->
 <!-- 英語版 共通フッター（単一ソース：partials/footer-en.html → tools/build-partials.mjs で en/ 配下へ同期）
      パスはすべてルート相対。プライバシーポリシーは日本語版しか無いため、その旨を明示してリンクする。 -->
