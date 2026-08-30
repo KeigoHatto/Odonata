@@ -22,9 +22,10 @@
  *   3. --grad-hero の上に載るテキストを、7つの幅で実ピクセル測定する
  *   4. 1.4.12（テキストの間隔）を注入して、はみ出す要素を数える
  */
-import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { readFileSync, readdirSync, writeFileSync, existsSync, statSync } from 'node:fs';
+import { join, dirname, extname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createServer } from 'node:http';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const QUIET = process.argv.includes('--quiet');
@@ -54,7 +55,27 @@ const CHROME = [
 if (!CHROME) die('Chrome が見つかりません。CHROME_PATH で場所を指定してください。');
 
 const pages = readdirSync(ROOT).filter(f => f.endsWith('.html')).sort();
-const url = f => pathToFileURL(join(ROOT, f)).href;
+// 英語版も同じ検査にかける（§14-6：日本語だけ直して英語版を放置しない）
+if (existsSync(join(ROOT, 'en'))) {
+  for (const f of readdirSync(join(ROOT, 'en')).filter(x => x.endsWith('.html')).sort()) pages.push(`en/${f}`);
+}
+// file:// では /assets/... のようなルート相対パスが解決できず CSS が読み込まれないため、
+// 検査は必ずローカルの静的サーバ越しに行う（英語版は §14-1 に従いルート相対を使っている）。
+const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png',
+  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.ico': 'image/x-icon',
+  '.json': 'application/json', '.xml': 'application/xml' };
+const server = createServer((req, res) => {
+  let rel = decodeURIComponent(req.url.split('?')[0]);
+  if (rel.endsWith('/')) rel += 'index.html';
+  const file = join(ROOT, rel);
+  if (!file.startsWith(ROOT) || !existsSync(file) || !statSync(file).isFile()) { res.statusCode = 404; return res.end('not found'); }
+  res.setHeader('Content-Type', MIME[extname(file).toLowerCase()] || 'application/octet-stream');
+  res.end(readFileSync(file));
+});
+await new Promise(r => server.listen(0, '127.0.0.1', r));
+const PORT = server.address().port;
+const url = f => `http://127.0.0.1:${PORT}/${f === 'index.html' ? '' : f}`;
 /* スクロールで現れる要素（.reveal）は既定で opacity:0 のため、axe が
    「見えない要素」として検査対象から外す。実際にはページの大半がこれに当たり、
    そのままだと折り返し以降がほぼ未検査になる（21-1 の 1.17:1 を見落とした）。
@@ -214,6 +235,7 @@ for (const f of pages) {
   if (!QUIET) process.stderr.write('.');
 }
 await browser.close();
+server.close();
 
 // ───── 集計 ─────
 const hex = a => a ? '#' + a.map(v => v.toString(16).padStart(2, '0')).join('').toUpperCase() : null;
