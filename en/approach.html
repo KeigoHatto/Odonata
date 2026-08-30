@@ -13,15 +13,15 @@
 <meta property="og:site_name" content="Odonata">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
-<meta property="og:title" content="Our Approach — A Complex Systems View｜Odonata">
-<meta property="og:description" content="Rather than watching indicators one at a time, we make the relationships between them the unit of analysis. This page explains why a football club’s injuries and performance are not decided by any single number.">
+<meta property="og:title" content="The Complex Systems Approach | Odonata">
+<meta property="og:description" content="Why we read the relationships between indicators rather than indicators one at a time. The thinking behind Odonata’s analysis of football data, explained without the jargon.">
 <meta property="og:url" content="https://getodonata.com/en/approach.html">
 <meta property="og:image" content="https://getodonata.com/assets/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Odonata — football data analysis and performance platform">
 <meta name="twitter:card" content="summary_large_image">
-<title>Our Approach — A Complex Systems View｜Odonata</title>
+<title>The Complex Systems Approach | Odonata</title>
 <!-- #partial:analytics -->
 <!-- アクセス解析（単一ソース：partials/analytics.html → tools/build-partials.mjs で全ページのヘッド内へ同期）
      測定IDを変更するときは、このファイルの2箇所だけを書き換えて同期を実行する。 -->
@@ -66,7 +66,7 @@
   })();
 </script>
 <!-- /#partial:analytics -->
-<meta name="description" content="Rather than watching indicators one at a time, we make the relationships between them the unit of analysis. This page explains why a football club’s injuries and performance are not decided by any single number.">
+<meta name="description" content="Why we read the relationships between indicators rather than indicators one at a time. The thinking behind Odonata’s analysis of football data, explained without the jargon.">
 <link rel="icon" href="/assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
@@ -76,6 +76,151 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
+<style>
+  /* ページ全体を、サイト共通の明るい基調に揃える。
+     文字量の多いページで濃紺を全面に使うと読みにくく、他ページとも分断されるため。
+     濃紺は強調したいブロックにだけ残す。 */
+  /* 【バグ修正】header.site を position:relative / z-index:2 で上書きすると
+     sticky が解除され、後続の main（同じz-index）がDropdownの上に重なって開けなくなる。
+     ヘッダーは site.css の sticky / z-index:100 を維持する。 */
+  main,footer.site,.cta-band,section{position:relative;z-index:2}
+  header.site{z-index:100}
+
+  /* ───── 02 単一指標では見えないもの（対比の図） ───── */
+  .cmp-fig{display:block;width:100%;max-width:760px;height:auto;margin:30px auto 0}
+  .cmp-fig text{font-family:'Zen Kaku Gothic New',sans-serif;text-anchor:middle}
+  .cmp-fig .cf-panel rect{fill:var(--card);stroke:var(--color-border-strong);stroke-width:1}
+  .cmp-fig .cf-ttl{font-size:15px;font-weight:800;fill:var(--navy)}
+  .cmp-fig .cf-axis line{stroke:#6A9AB8;stroke-width:1.4}
+  .cmp-fig .cf-base{stroke:#6A9AB8;stroke-width:1.4;stroke-dasharray:6 5}
+  .cmp-fig .cf-note{font-size:12px;font-weight:700;fill:var(--sub)}
+  .cmp-fig .cf-line{fill:none;stroke:#0A5E93;stroke-width:2.6;stroke-linejoin:round}
+  .cmp-fig .cf-edge line{stroke:#0A5E93}
+  .cmp-fig .cf-node circle{fill:#0A5E93}
+  .cmp-fig .cf-lab text{font-size:13px;font-weight:700;fill:var(--text)}
+  .cmp-fig .cf-danger circle{fill:rgba(220,38,38,.10);stroke:#B03A2E;stroke-width:1.6;stroke-dasharray:6 5}
+  .cmp-fig .cf-tag{font-size:14px;font-weight:800}
+  .cmp-fig .cf-tag.ok{fill:var(--sub)}
+  .cmp-fig .cf-tag.ng{fill:#B03A2E}
+  .cmp-cap{margin:18px auto 0;max-width:var(--readw);text-align:center;font-size:16px;line-height:1.9;color:var(--sub)}
+
+  /* ───── 03 なぜサッカーは複雑系なのか ───── */
+  .why3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+  @media(max-width:820px){.why3{grid-template-columns:1fr}}
+
+  /* ───── 04 分析の3ステップ ───── */
+  .step-fig{display:block;width:100%;max-width:900px;height:auto;margin:32px auto 0}
+  .step-fig text{font-family:'Zen Kaku Gothic New',sans-serif;text-anchor:middle}
+  .step-fig .sf-box rect{fill:var(--card);stroke:var(--color-border-strong);stroke-width:1}
+  .step-fig .sf-n text{font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;fill:var(--color-primary-strong);letter-spacing:.1em}
+  .step-fig .sf-t text{font-size:19px;font-weight:800;fill:var(--navy)}
+  .step-fig .sf-d text{font-size:13px;font-weight:700;fill:var(--text)}
+  .step-fig .sf-arrow line{stroke:#0A5E93;stroke-width:2}
+  @media(max-width:700px){
+    .step-fig .sf-d text{font-size:12px}
+  }
+
+  /* ───── 05 もっと詳しく（既定で閉じる） ───── */
+  .more-box{max-width:920px;margin:0 auto;background:var(--card);border:1px solid var(--border);
+    border-radius:var(--radius);box-shadow:var(--shadow)}
+  .more-box > summary{cursor:pointer;list-style:none;padding:22px 26px;font-size:16.5px;font-weight:800;
+    color:var(--navy);display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .more-box > summary::-webkit-details-marker{display:none}
+  .more-box > summary::after{content:"＋";color:var(--color-primary-strong);font-size:20px;flex:none}
+  .more-box[open] > summary::after{content:"−"}
+  .more-box > summary:focus-visible{border-radius:var(--radius)}
+  .more-body{padding:0 26px 28px}
+  .more-body .duo{margin-top:24px}
+  .more-body .sub-h{margin-top:56px}
+
+  /* ───── Hero ───── */
+  .q-en{text-align:center;font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;
+    letter-spacing:.16em;color:var(--color-primary-strong);margin-top:8px}
+
+  .sec-tag{font-size:12px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--color-primary-strong);text-align:center;margin-bottom:16px}
+  .sec-h{font-size:clamp(24px,3.6vw,38px);font-weight:800;color:var(--navy);text-align:center;letter-spacing:.01em;margin-bottom:18px;line-height:1.5}
+  .sec-sub{text-align:center;color:var(--sub);max-width:var(--readw);margin:0 auto;font-size:16px;line-height:2}
+  .sec-sub b{color:var(--navy)}
+  .sub-h{font-size:clamp(20px,2.8vw,26px);font-weight:800;color:var(--navy);text-align:center;line-height:1.6;margin:72px 0 14px}
+  .feat p,.domain p,.pit p{font-size:14.5px;line-height:1.95}
+
+  /* 冒頭の引用 */
+  .quote-hero{padding:120px 0 90px;text-align:center}
+  .quote-hero .q{font-family:'Manrope',sans-serif;font-size:clamp(34px,6.4vw,72px);font-weight:800;letter-spacing:-.01em;line-height:1.15;
+    background:linear-gradient(100deg,#0B2A5B,#0A5E93 55%,#0E7490);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .quote-hero .attr{margin-top:20px;font-size:14px;color:var(--sub);font-weight:600;letter-spacing:.06em}
+  .quote-hero p.body{margin:22px auto 0;max-width:640px;font-size:15px;color:var(--text);line-height:2.1}
+
+  /* ステートメント枠（philosophy と同系） */
+  .statement{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);
+    max-width:880px;margin:44px auto 0;padding:48px clamp(24px,5vw,64px);position:relative;overflow:hidden}
+  .statement::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--cyan),var(--blue))}
+  .statement p{font-size:15.5px;color:var(--text);line-height:2.15;margin:0}
+  .statement p + p{margin-top:20px}
+  .statement b{color:var(--navy)}
+  .statement .hl{color:var(--color-primary-strong)}
+
+  /* Anderson引用 */
+  .sq{max-width:720px;margin:48px auto 0;text-align:center}
+  .sq blockquote{font-size:clamp(18px,2.8vw,24px);font-weight:800;color:var(--navy);line-height:1.9}
+  .sq blockquote::before{content:"“";color:var(--color-primary-strong);font-size:1.6em;vertical-align:-.2em;margin-right:2px}
+  .sq blockquote::after{content:"”";color:var(--color-primary-strong);font-size:1.6em;vertical-align:-.4em;margin-left:2px}
+  .sq .who{margin-top:16px;font-size:13px;color:var(--sub);font-weight:600}
+
+  /* 怪我の例：ネットワーク図 */
+  .injury-fig{max-width:720px;margin:48px auto 0}
+  .injury-fig svg{width:100%;height:auto;overflow:visible}
+  .injury-fig .edge{stroke:var(--cyan);stroke-width:1.2;opacity:.35}
+  .injury-fig .edge.pulse{animation:edgepulse 4s ease-in-out infinite}
+  @keyframes edgepulse{0%,100%{opacity:.15}50%{opacity:.7}}
+  .injury-fig .fnode circle{fill:rgba(0,160,233,.14);stroke:var(--cyan);stroke-width:1.4}
+  .injury-fig .fnode text{fill:#EAF4FB;font-size:13px;font-weight:700;text-anchor:middle;font-family:'Zen Kaku Gothic New',sans-serif}
+  .injury-fig .fnode .ok{fill:#8fd8a8;font-size:10px;font-weight:600}
+  .injury-fig .core circle{fill:rgba(220,38,38,.16);stroke:#ff8f8f;stroke-width:2}
+  .injury-fig .core text{fill:#ffd9d9;font-size:14px;font-weight:800;text-anchor:middle}
+  .injury-cap{margin-top:18px;text-align:center;font-size:13.5px;color:var(--sub);line-height:1.9}
+  .injury-cap b{color:var(--navy)}
+
+  /* 単一視点の落とし穴カード */
+  .pit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+  @media(max-width:820px){.pit-grid{grid-template-columns:1fr}}
+  .pit{min-width:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;box-shadow:var(--shadow)}
+  .pit-k{font-size:18px;font-weight:800;color:var(--color-primary-strong);margin-bottom:10px}
+  .pit-k span{display:block;font-size:11.5px;font-weight:700;color:var(--sub);letter-spacing:.08em;margin-top:2px}
+  .pit p{font-size:13.5px;color:var(--sub);line-height:1.95}
+
+  /* 一般例→サッカー例の2段カード */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px}
+  @media(max-width:820px){.duo{grid-template-columns:1fr}}
+  .duo-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;box-shadow:var(--shadow)}
+  .duo-card .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--color-primary-strong);
+    border:1px solid var(--border);border-radius:999px;padding:4px 14px;margin-bottom:16px}
+  .duo-card h3{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:14px}
+  .duo-card p{font-size:14px;color:var(--sub);line-height:2}
+  .duo-card p strong{color:var(--navy)}
+  .duo-card .ex{margin-top:16px;background:rgba(0,160,233,.08);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;font-size:13.5px;color:var(--text);line-height:1.9}
+  .duo-card .ex .lbl{display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;color:var(--color-primary-strong);margin-bottom:5px}
+
+  /* 4領域 */
+  .domain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:48px}
+  @media(max-width:760px){.domain-grid{grid-template-columns:1fr}}
+  .domain{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px 26px;box-shadow:var(--shadow);transition:.3s}
+  .domain:hover{transform:translateY(-4px);border-color:var(--color-primary-strong);box-shadow:0 20px 50px rgba(0,160,233,.18)}
+  .domain h3{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .domain h3 svg.ic{color:var(--color-primary-strong);font-size:21px}
+  .domain p{font-size:13.5px;color:var(--sub);line-height:1.95}
+  .domain p strong{color:var(--navy)}
+
+  /* 方法論：3機能 */
+  .method{max-width:880px;margin:48px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:760px){.method{grid-template-columns:1fr}}
+  .m-step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:26px 22px;text-align:center;box-shadow:var(--shadow)}
+  .m-step .n{width:34px;height:34px;border-radius:50%;background:rgba(63,200,240,.18);border:1px solid var(--border);color:var(--color-primary-strong);
+    font-weight:800;font-size:14px;display:grid;place-items:center;margin:0 auto 12px;font-family:'Manrope',sans-serif}
+  .m-step h3{font-size:16.5px;font-weight:800;color:var(--navy);margin-bottom:8px}
+  .m-step p{font-size:12.5px;color:var(--sub);line-height:1.85}
+
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -176,7 +321,6 @@
 <!-- /#partial:header -->
 
 <main id="main">
-
 <nav class="breadcrumb" aria-label="Breadcrumb">
   <div class="wrap">
     <ol>
@@ -186,36 +330,215 @@
   </div>
 </nav>
 
-<!-- ═══════════ PAGE HERO ═══════════ -->
-<div class="phero">
+<!-- ═══════════ 01 Hero ═══════════ -->
+<section class="quote-hero" style="padding-bottom:56px" aria-labelledby="hero-heading">
   <div class="wrap">
-    <h1>Our Approach</h1>
-    <p class="lead">Rather than reading indicators one at a time, we make the relationships between them the unit of analysis.</p>
-  </div>
-</div>
-
-<!-- 本文の英語コピーは次フェーズで入れる。この Phase は構造・共通パーツ・
-     メタデータの受け皿づくりまで（§15：逐語訳せず、再構成として書く） -->
-<section aria-labelledby="wip-heading">
-  <div class="wrap">
-    <h2 class="section-title" id="wip-heading">Coming soon</h2>
-    <p class="section-lead">We are preparing the English version of this page. In the meantime, the Japanese page covers the same material.</p>
-    <p style="margin-top:20px"><a class="tlink" href="/approach.html" lang="ja" hreflang="ja">日本語のページを見る<span class="chev" aria-hidden="true">›</span></a></p>
+    <h1 id="hero-heading" style="font-size:clamp(22px,3vw,30px);color:var(--navy);text-align:center">The complex systems approach</h1>
+    <p class="q reveal" style="margin-top:14px">Complex Systems Approach</p>
+        <p class="body reveal">Rather than reading indicators one at a time, we treat the relationships between them as the unit of analysis.</p>
   </div>
 </section>
 
-<!-- ═══════════ CTA ═══════════ -->
-<section class="cta-band">
+
+<!-- ═══════════ 02 単一指標では見えないもの ═══════════ -->
+<section id="limits" style="padding-top:20px" aria-labelledby="limits-heading">
   <div class="wrap">
-    <div class="cta" data-ga-location="cta_band">
-      <h2>Interested in working with us?</h2>
-      <p>Tell us where your club is today and we will take it from there.</p>
-      <div class="cta-actions">
-        <a class="btn btn-navy" href="/en/contact.html">Contact us<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <h2 class="sec-h" id="limits-heading">What a single indicator cannot show</h2>
+    <svg class="cmp-fig" viewBox="0 0 760 300" role="img" aria-labelledby="cmpfig-t" aria-describedby="cmpfig-d">
+      <title id="cmpfig-t">Reading one indicator, compared with reading the relationships between them</title>
+      <desc id="cmpfig-d">On the left, a single line is being watched and everything sits within the normal range. On the right, five indicators are connected in a network, and the point where several factors overlap is marked as dangerous.</desc>
+      <g class="cf-panel"><rect x="4" y="34" width="356" height="252" rx="14"/></g>
+      <g class="cf-panel"><rect x="400" y="34" width="356" height="252" rx="14"/></g>
+      <text class="cf-ttl" x="182" y="22">Watching one indicator</text>
+      <text class="cf-ttl" x="578" y="22">Reading the relationships</text>
+      <g class="cf-axis">
+        <line x1="44" y1="240" x2="324" y2="240"/><line x1="44" y1="80" x2="44" y2="240"/>
+      </g>
+      <line class="cf-base" x1="44" y1="118" x2="324" y2="118"/>
+      <text class="cf-note" x="324" y="110" text-anchor="end">upper limit</text>
+      <polyline class="cf-line" points="60,190 100,176 140,196 180,168 220,184 260,160 300,180"/>
+      <text class="cf-tag ok" x="182" y="270">All within range</text>
+      <g class="cf-edge">
+        <line x1="470" y1="106" x2="530" y2="170" stroke-width="4"/>
+        <line x1="686" y1="106" x2="626" y2="170" stroke-width="4"/>
+        <line x1="530" y1="170" x2="626" y2="170" stroke-width="2.4"/>
+        <line x1="578" y1="72" x2="470" y2="106" stroke-width="1.4"/>
+        <line x1="578" y1="72" x2="686" y2="106" stroke-width="1.4"/>
+        <line x1="530" y1="170" x2="578" y2="72" stroke-width="1.4"/>
+      </g>
+      <g class="cf-node">
+        <circle cx="578" cy="72" r="9"/><circle cx="470" cy="106" r="9"/>
+        <circle cx="686" cy="106" r="9"/><circle cx="530" cy="170" r="9"/><circle cx="626" cy="170" r="9"/>
+      </g>
+      <g class="cf-lab">
+        <text x="578" y="58">load</text><text x="440" y="100">fatigue</text>
+        <text x="716" y="100">sleep</text><text x="512" y="196">schedule</text><text x="644" y="196">history</text>
+      </g>
+      <g class="cf-danger"><circle cx="578" cy="138" r="44"/></g>
+      <text class="cf-tag ng" x="578" y="270">Dangerous when they overlap</text>
+    </svg>
+    <p class="cmp-cap">Factors that each sit within normal range can combine into a dangerous one.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════ 03 なぜサッカーは複雑系なのか ═══════════ -->
+<section id="football" style="padding-top:60px" aria-labelledby="football-heading">
+  <div class="wrap">
+    <h2 class="sec-h" id="football-heading">Why football is a complex system</h2>
+    <div class="why3">
+      <div class="domain reveal">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-hub"/></svg> Several factors act at once</h3>
+        <p>A player&rsquo;s state is set by load, sleep, schedule and injury history acting together.</p>
+      </div>
+      <div class="domain reveal">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> The same input produces different responses</h3>
+        <p>After the same session, where fatigue shows and how much differs from player to player.</p>
+      </div>
+      <div class="domain reveal">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-shuffle"/></svg> It does not add up in a straight line</h3>
+        <p>The factors affect one another, so adding the individual numbers does not explain the whole.</p>
       </div>
     </div>
   </div>
 </section>
+
+
+<!-- ═══════════ 04 Odonataの分析方法 ═══════════ -->
+<section id="method" style="padding-top:60px" aria-labelledby="method-heading">
+  <div class="wrap">
+    <h2 class="sec-h" id="method-heading">How we analyse</h2>
+    <svg class="step-fig" viewBox="0 0 900 170" role="img" aria-labelledby="stepfig-t" aria-describedby="stepfig-d">
+      <title id="stepfig-t">The three steps of the analysis</title>
+      <desc id="stepfig-d">Three stages connected by arrows: collect, measure the relationships, read the state.</desc>
+      <defs>
+        <marker id="sa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#0A5E93"/>
+        </marker>
+      </defs>
+      <g class="sf-box">
+        <rect x="6" y="34" width="256" height="102" rx="14"/>
+        <rect x="322" y="34" width="256" height="102" rx="14"/>
+        <rect x="638" y="34" width="256" height="102" rx="14"/>
+      </g>
+      <g class="sf-n"><text x="134" y="70">01</text><text x="450" y="70">02</text><text x="766" y="70">03</text></g>
+      <g class="sf-t"><text x="134" y="98">Collect</text><text x="450" y="98">Measure</text><text x="766" y="98">Read</text></g>
+      <g class="sf-d">
+        <text x="134" y="122">gather indicators across sources</text>
+        <text x="450" y="122">estimate how strongly they relate</text>
+        <text x="766" y="122">read it as that player&rsquo;s own pattern</text>
+      </g>
+      <g class="sf-arrow">
+        <line x1="270" y1="85" x2="314" y2="85" marker-end="url(#sa)"/>
+        <line x1="586" y1="85" x2="630" y2="85" marker-end="url(#sa)"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ═══════════ 05 もっと詳しく（折りたたみ） ═══════════ -->
+<section id="more" style="padding-top:60px" aria-labelledby="more-heading">
+  <div class="wrap">
+    <h2 class="sr-only" id="more-heading">More on the thinking behind this</h2>
+    <details class="more-box">
+      <summary>More on the thinking behind this</summary>
+      <div class="more-body">
+        <p class="sec-sub" style="text-align:left">A complex system is one in which <strong>many parts interact, and the whole takes on properties none of the parts has on its own</strong>. Two properties matter most: emergence and nonlinearity.</p>
+        <div class="duo">
+          <div class="duo-card">
+            <div class="tag"><span class="rule">Emergence</span></div>
+            <h3>The whole produces what the parts do not</h3>
+            <p>A single neuron has no consciousness. A brain of countless connected neurons does. <strong>The whole cannot be predicted from the properties of the parts.</strong></p>
+            <div class="ex">
+              <span class="lbl">In football</span>
+              Eleven star players do not make the strongest team. A squad&rsquo;s strength comes from <strong>how the players connect</strong>, not from their individual ability.
+            </div>
+          </div>
+          <div class="duo-card">
+            <div class="tag"><span class="rule">Nonlinearity</span></div>
+            <h3>Small changes make large differences</h3>
+            <p>A slight change in sea temperature can alter weather across the planet. Input and output are not proportional: <strong>past a threshold, the whole system starts behaving differently.</strong></p>
+            <div class="ex">
+              <span class="lbl">In football</span>
+              Small amounts of daily fatigue accumulate and then surface, one day, as <strong>an injury</strong>. Moving one player can change how the whole team functions.
+            </div>
+          </div>
+        </div>
+
+        <div class="sq">
+          <blockquote>More is different.</blockquote>
+          <div class="who">P. W. Anderson, physicist and Nobel laureate, 1972 — the paper that set complex systems science going</div>
+        </div>
+        <div class="sq" style="margin-top:32px">
+          <blockquote>If you avoid complexity, you cannot improve anything.</blockquote>
+          <div class="who">Francisco Seirul·lo, former physical coach, FC Barcelona</div>
+        </div>
+
+        <h3 class="sub-h">This view is not ours to claim</h3>
+        <p class="sec-sub">Reading football as a complex system is an established direction in sport science research and at the top of the game.</p>
+        <div class="feat-grid">
+          <div class="feat">
+            <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></div>
+            <h3>Ecological Dynamics</h3>
+            <p>A framework that does not separate the player from the environment, taking <strong>the interaction between them</strong> as the unit for skill acquisition and tactical behaviour. It has become a mainstream influence on training design.<sup class="fn">1</sup></p>
+          </div>
+          <div class="feat">
+            <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-hub"/></svg></div>
+            <h3>Research on emergent pattern formation</h3>
+            <p>Work that treats a team as a <strong>superorganism</strong>, quantifying the collective structure that emerges from synchronisation and coordination between players using network and dynamical-systems methods.<sup class="fn">2</sup></p>
+          </div>
+          <div class="feat">
+            <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-ball"/></svg></div>
+            <h3>Positional play</h3>
+            <p>Modern tactics have moved from placing individuals to <strong>designing relationships</strong>. Positional and numerical advantage only exist in relation to team-mates and opponents.</p>
+          </div>
+        </div>
+        <div class="footnotes">
+          <p>1. Ecological Dynamics, a framework for motor learning and skill acquisition developed by K. Davids, D. Araújo and others.</p>
+          <p>2. For example Duarte, R. et al. (2012) “Sports teams as superorganisms”, among a wider body of work on collective behaviour in team sports.</p>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+
+
+<!-- ═══════════ 8. CTA ═══════════ -->
+<section id="apply" style="padding-top:60px">
+  <div class="wrap">
+    <h2 class="sec-h">Bring this approach to your club.</h2>
+    <div class="feat-grid cols2" style="max-width:880px;margin-left:auto;margin-right:auto">
+      <a class="feat reveal" href="/en/service-analysis.html">
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-network"/></svg></div>
+        <h3>Data Analysis &amp; Advisory</h3>
+        <p>For clubs that already have data. We analyse what you hold with the complex systems approach and return findings you can act on.</p>
+        <span class="more" style="color:var(--color-primary-strong)">Learn more <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a class="feat reveal" href="/en/service-platform.html">
+        <div class="ficon"><svg class="ic" aria-hidden="true"><use href="#i-hub"/></svg></div>
+        <h3>Data Platform</h3>
+        <p>For clubs that want to start with how records are kept. We bring scattered data together and make the analysis part of the daily routine.</p>
+        <span class="more" style="color:var(--color-primary-strong)">Learn more <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 共通CTA -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Tell us what data your club already has.</h2>
+      <p>An initial conversation and a quote cost nothing. We reply within two working days.</p>
+      <div class="cta-actions">
+        <a class="btn btn-navy" href="/en/contact.html">Contact us<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <!-- ═══════════ FOOTER ═══════════ -->
@@ -255,5 +578,36 @@
 <!-- /#partial:footer -->
 
 <script src="/assets/site.js"></script>
+<script>
+  // 全画面ネットワーク背景（philosophy と同系）
+  (function(){
+    const canvas = document.getElementById('bgNet');
+    if(!canvas || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ctx = canvas.getContext('2d');
+    let w,h,nodes;
+    const density = 13000;
+    const resize=()=>{
+      w=canvas.width=innerWidth*devicePixelRatio;
+      h=canvas.height=innerHeight*devicePixelRatio;
+      const count=Math.min(90,Math.max(40,Math.round((innerWidth*innerHeight)/density)));
+      nodes=Array.from({length:count},()=>({
+        x:Math.random()*w,y:Math.random()*h,
+        vx:(Math.random()-.5)*.22*devicePixelRatio,
+        vy:(Math.random()-.5)*.22*devicePixelRatio,
+        r:(Math.random()*1.8+1)*devicePixelRatio}));
+    };
+    const draw=()=>{
+      ctx.clearRect(0,0,w,h);const maxD=160*devicePixelRatio;
+      for(let i=0;i<nodes.length;i++){const a=nodes[i];a.x+=a.vx;a.y+=a.vy;
+        if(a.x<0||a.x>w)a.vx*=-1;if(a.y<0||a.y>h)a.vy*=-1;
+        for(let j=i+1;j<nodes.length;j++){const b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+          if(d<maxD){ctx.strokeStyle=`rgba(120,200,250,${(1-d/maxD)*.4})`;ctx.lineWidth=1*devicePixelRatio;
+            ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}}
+      for(const n of nodes){ctx.fillStyle='rgba(180,225,255,.9)';ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fill();}
+      requestAnimationFrame(draw);};
+    resize();draw();
+    let t;window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(resize,200);});
+  })();
+</script>
 </body>
 </html>
