@@ -55,7 +55,12 @@ if (!CHROME) die('Chrome が見つかりません。CHROME_PATH で場所を指�
 
 const pages = readdirSync(ROOT).filter(f => f.endsWith('.html')).sort();
 const url = f => pathToFileURL(join(ROOT, f)).href;
-const NO_ANIM = '*,*::before,*::after{transition:none!important;animation:none!important}';
+/* スクロールで現れる要素（.reveal）は既定で opacity:0 のため、axe が
+   「見えない要素」として検査対象から外す。実際にはページの大半がこれに当たり、
+   そのままだと折り返し以降がほぼ未検査になる（21-1 の 1.17:1 を見落とした）。
+   検査時は最初から表示された状態にする。 */
+const NO_ANIM = '*,*::before,*::after{transition:none!important;animation:none!important}'
+  + '.reveal{opacity:1!important;transform:none!important;visibility:visible!important}';
 const SPACING = `*{line-height:1.5!important;letter-spacing:.12em!important;word-spacing:.16em!important}
 p{margin-bottom:2em!important}`;
 

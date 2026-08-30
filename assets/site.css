@@ -292,7 +292,9 @@ header.site{
 .feat.hl .more{color:#9fe2ff}
 .feat .tag{
   display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:11px;font-weight:700;letter-spacing:.04em;
-  padding:5px 11px;border-radius:999px;background:#FFF7E6;color:#9a6a00;border:1px solid #ffe1a3;
+  /* 11px の太字は AA の「大きな文字」に当たらないので 4.5:1 が要る。
+     #9a6a00 は #FFF7E6 上で 4.44:1 と僅かに不足していた。#8A5A00 で 5.56:1 */
+  padding:5px 11px;border-radius:999px;background:#FFF7E6;color:#8A5A00;border:1px solid #ffe1a3;
 }
 
 /* ───── Flow steps ───── */
@@ -528,6 +530,10 @@ body.dark h2.section-title{color:#fff}
 body.dark .feat{backdrop-filter:blur(6px)}
 body.dark .feat h3{color:#fff}
 body.dark .feat p{color:var(--sub)}
+/* 明るい面用の色が暗いカードにそのまま乗っていた。地 #122442 に対して
+   .feat p strong が 1.10:1、sup.fn が 2.24:1。暗い面用に置き換える。 */
+body.dark .feat p b,body.dark .feat p strong{color:#fff}
+body.dark .feat sup.fn,body.dark .feat sup.fn a{color:#9FE6FF}
 body.dark .ficon{background:rgba(0,160,233,.12);border:1px solid var(--border);color:var(--cyan)}
 body.dark .footnotes{background:rgba(255,255,255,.04);color:var(--sub)}
 body.dark .cta{background:rgba(255,255,255,.05);border-color:var(--border);backdrop-filter:blur(6px)}
