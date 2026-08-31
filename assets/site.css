@@ -137,7 +137,17 @@ header.site{
 .nav-logo{flex-shrink:0}
 /* max-width:none が要る。グローバルの img{max-width:100%} が効くと、拡大で
    ヘッダーの使える幅が狭まったときに幅だけ縮み、高さ固定のロゴが縦長になる。 */
-.nav-logo img{height:30px;width:auto;max-width:none}
+/* 新ロゴはロックアップ内の余白が旧より広く、ロゴ全体に占める「Odonata」の
+   文字の高さが 48% → 33% に下がった。30px のままだと文字が 14.3px → 10.0px と
+   約30%小さくなるため上げる。
+   文字を従来と同じにするには 42px 必要だが、実測すると 1280px 幅で
+   ヘッダーが 16px はみ出す（ロゴ幅が 101px → 125px と 24px 広がるため）。
+   1280px で破綻しない最大値が 36px（38px から +4px はみ出す）なのでこれを採る。
+   幅は 107px、文字は 12.0px。
+   max-width:none を消さないこと。グローバルの img{max-width:100%} が効くと、
+   175% ズームでヘッダーの幅が足りなくなったとき、幅だけ縮んで高さ固定の
+   ロゴが縦長に潰れる。 */
+.nav-logo img{height:36px;width:auto;max-width:none}
 .nav-links{display:flex;gap:20px;align-items:center}
 .nav-links>a,.nav-item{flex-shrink:0}
 .nav-links>a,.nav-item-btn{

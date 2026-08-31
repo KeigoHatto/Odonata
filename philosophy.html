@@ -106,7 +106,10 @@
   .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
   .nav-logo{flex-shrink:0}
   /* max-width:none が要る（理由は site.css と同じ） */
-  .nav-logo img{height:28px;width:auto;max-width:none;filter:brightness(0) invert(1)}
+  /* 新ロゴは余白配分が変わり文字が小さくなるため 28px → 34px。site.css は 36px だが
+     このページは元から 2px 小さい設定なので、その関係を保っている。
+     ヘッダーが暗い地なので白化フィルタは残している。 */
+  .nav-logo img{height:34px;width:auto;max-width:none;filter:brightness(0) invert(1)}
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{font-size:14px;font-weight:600;color:#cfe2f2;opacity:.82;transition:.2s}
   .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--cyan)}
@@ -290,7 +293,7 @@
 <a class="skip-link" href="#main">本文へスキップ</a>
 <header>
   <div class="wrap nav">
-    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata" width="302" height="90"></a>
+    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata" width="286" height="96"></a>
     <nav class="nav-links" id="navLinks">
       <a href="index.html">ホーム</a>
       <a href="approach.html">複雑系アプローチ</a>

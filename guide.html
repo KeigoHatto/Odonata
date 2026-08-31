@@ -109,7 +109,8 @@
   .nav-logo{flex-shrink:0}
   /* max-width:none が要る。グローバルの img{max-width:100%} が効くと、拡大で
      幅だけ縮んで高さ固定のロゴが縦長になる。 */
-  .nav-logo img{height:30px;width:auto;max-width:none}
+  /* 新ロゴは余白配分が変わり文字が小さくなるため site.css と同じ 36px に上げる */
+  .nav-logo img{height:36px;width:auto;max-width:none}
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{font-size:14px;font-weight:600;color:var(--navy);opacity:.8;transition:.2s}
   .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--color-primary-strong)}
@@ -364,7 +365,7 @@
 <a class="skip-link" href="#main">本文へスキップ</a>
 <header>
   <div class="wrap nav">
-    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata" width="302" height="90"></a>
+    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata" width="286" height="96"></a>
     <nav class="nav-links" id="navLinks">
       <a href="index.html">ホーム</a>
       <a href="service-platform.html">データプラットフォーム</a>
