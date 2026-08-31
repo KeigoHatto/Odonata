@@ -514,7 +514,11 @@ footer.site{background:var(--navy-deep);color:#9fb8d6;padding:60px 0 40px;font-s
 .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px;margin-bottom:44px}
 @media(max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.foot-grid{grid-template-columns:1fr}}
-.foot-brand img{height:28px;width:auto;filter:brightness(0) invert(1);opacity:.92;margin-bottom:16px}
+/* 以前はカラーのロゴを filter:brightness(0) invert(1) で真っ白に潰していたが、
+   複眼のグラデーションが完全に失われていた。白版の素材ができたのでハックを外す。
+   opacity:.92 は残す（暗い地で白が強すぎるのを和らげるため）。
+   高さは 28px → 38px。ヘッダーと同じ理由で、新ロゴは同じ高さだと文字が小さくなる。 */
+.foot-brand img{height:38px;width:auto;opacity:.92;margin-bottom:16px}
 .foot-brand p{font-size:12.5px;line-height:1.8}
 .foot-col h3{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7FE3FF;margin-bottom:14px}
 .foot-col a{display:block;padding:5px 0;font-size:13px;color:#cfe6f5;opacity:.85;transition:.15s}

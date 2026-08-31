@@ -240,7 +240,9 @@
 
   /* footer */
   footer{border-top:1px solid var(--border);text-align:center;padding:50px 24px 44px;position:relative;z-index:2}
-  footer img{height:32px;width:auto;margin:0 auto 16px;filter:brightness(0) invert(1);opacity:.92}
+  /* 白版の素材ができたので白化フィルタを外した（理由は site.css と同じ）。
+     高さは 32px → 43px。新ロゴは同じ高さだと文字が小さくなるため。 */
+  footer img{height:43px;width:auto;margin:0 auto 16px;opacity:.92}
   footer p{font-size:13px;color:var(--sub)}
 
   /* reveal */
@@ -465,7 +467,7 @@
 
 <footer>
   <div class="wrap">
-    <img src="assets/odonata-logo.png" alt="Odonata" width="302" height="90">
+    <img src="assets/odonata-logo-white.png" alt="Odonata" width="286" height="96">
     <p><span class="np">サッカーのための</span><span class="np">コンディショニング・</span><span class="np">プラットフォーム</span></p>
     <p style="margin-top:8px;opacity:.7">© <span id="year"></span> Odonata. All rights reserved.</p>
   </div>
