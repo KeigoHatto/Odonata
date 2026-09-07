@@ -364,11 +364,27 @@ sup.fn{font-size:11px;color:var(--color-primary-strong);font-weight:700}
 /* ───── Tables ───── */
 /* 表は 1.4.10 の例外（二次元レイアウトが必要）だが、ページ全体を横スクロールさせるのは不可。
    狭い幅では表そのものを横スクロールさせる。 */
-@media(max-width:560px){.tbl{display:block;overflow-x:auto}}
+/* overflow は overflow-x を含むショートハンドなので、@media の overflow-x:auto より
+   後ろに overflow:hidden を書くと横スクロールが殺される。順序を逆にすること。 */
 .tbl{width:100%;border-collapse:collapse;margin:34px 0 0;font-size:14px;overflow:hidden;border-radius:12px;border:1px solid var(--border);background:var(--card)}
 .tbl th{background:#EAF7FF;color:var(--navy);font-weight:700;text-align:left;padding:12px 16px;font-size:13px}
 .tbl td{padding:12px 16px;border-top:1px solid var(--border);vertical-align:top}
 .tbl tr:nth-child(even) td{background:#F7FCFE}
+@media(max-width:560px){
+  .tbl{display:block;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+       /* §7-7：横スクロールにする場合はスクロールできることを視覚的に示す。
+          右端に影を出して「まだ先がある」と分かるようにする。
+          background-attachment:local の2枚が地、scroll の2枚が影。 */
+       background-image:
+         linear-gradient(to right,var(--card),rgba(255,255,255,0)),
+         linear-gradient(to left,var(--card),rgba(255,255,255,0)),
+         linear-gradient(to right,rgba(11,42,91,.18),rgba(11,42,91,0)),
+         linear-gradient(to left,rgba(11,42,91,.18),rgba(11,42,91,0));
+       background-position:0 0,100% 0,0 0,100% 0;
+       background-repeat:no-repeat;
+       background-size:26px 100%,26px 100%,13px 100%,13px 100%;
+       background-attachment:local,local,scroll,scroll}
+}
 .tbl-scroll{overflow-x:auto}
 .tbl-scroll .tbl{min-width:560px}
 
