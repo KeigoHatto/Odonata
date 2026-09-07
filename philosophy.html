@@ -81,22 +81,16 @@
     --cyan:#3FC8F0; --ice:#9fe2ff; --radius:18px; --radius-sm:12px;
     --shadow:0 18px 50px rgba(0,0,0,.4);
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-  /* 日本語の自然な改行（スマホ最適化）：文節単位で折り返し、行頭禁則・ぶら下がりを抑制 */
-  :where(h1,h2,h3,h4,h5,h6){text-wrap:balance;word-break:auto-phrase}
-  :where(p,li,dd,dt,figcaption,blockquote,th,td){text-wrap:pretty;word-break:auto-phrase}
-  /* auto-phrase 非対応ブラウザ（iOS Safari / Firefox）向け：文節単位の折り返しユニット */
-  .np{display:inline-block;max-width:100%}
-  :where(h1,h2,h3,h4){font-feature-settings:"palt" 1}
+  /* リセットと共通の組版規則（* / html / :where(...) / .np / a / img / svg.ic）は
+     site.css に同じものがある。このページは lang="ja" なので :lang(ja) ガード付きの
+     規則もそのまま効く。
+     :root と body は残す。このページは --bg:#071A3A の暗い面で、site.css とは
+     役割が逆になっているため。::selection もこのページ専用の色。 */
   ::selection{background:rgba(63,200,240,.3)}
   body{font-family:'Manrope','Zen Kaku Gothic New',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-break:strict;overflow-wrap:break-word}
-  a{color:inherit;text-decoration:none}
-  /* height:auto は必須。width/height 属性（実寸）を入れたうえで max-width で縮めると、
-     height:auto が無い場合に高さだけ実寸のまま残り、狭い画面で画像が縦に潰れる。 */
-  img{max-width:100%;height:auto;display:block}
+  /* site.css は --maxw が 1140px。このページは 1180px で、重ねる背景の都合で
+     position/z-index も要るので残す。 */
   .wrap{max-width:1180px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
-  svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.14em}
 
   /* persistent network backdrop */
   #bgNet{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.5;pointer-events:none}
@@ -113,7 +107,9 @@
   /* 新ロゴは余白配分が変わり文字が小さくなるため 28px → 34px。site.css は 36px だが
      このページは元から 2px 小さい設定なので、その関係を保っている。
      ヘッダーが暗い地なので白化フィルタは残している。 */
-  .nav-logo img{height:34px;width:auto;max-width:none;filter:brightness(0) invert(1)}
+  /* 白版の素材ができたので白化フィルタを外した（理由は site.css と同じ）。
+     高さは site.css の 36px に揃える。 */
+  .nav-logo img{height:36px;width:auto;max-width:none}
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{font-size:14px;font-weight:600;color:#cfe2f2;opacity:.82;transition:.2s}
   .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--cyan)}
@@ -331,7 +327,7 @@
 <a class="skip-link" href="#main">本文へスキップ</a>
 <header>
   <div class="wrap nav">
-    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo.png" alt="Odonata" width="286" height="96"></a>
+    <a class="nav-logo" href="index.html"><img src="assets/odonata-logo-white.png" alt="Odonata" width="286" height="96"></a>
     <nav class="nav-links" id="navLinks">
       <a href="index.html">ホーム</a>
       <a href="approach.html">複雑系アプローチ</a>
