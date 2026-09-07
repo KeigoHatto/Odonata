@@ -75,37 +75,15 @@
      上書きする。段階的に重複を site.css へ寄せるための1段目（§18-4）。 -->
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  :root{
-    /* --sub は #5A7A8A だったが、このページで実際に載る3面のうち #E0F5FD で 4.07:1、
-       #F2FBFE で 4.36:1 と 4.5:1 を満たしていなかった（白の上でも 4.58:1 と余裕がない）。
-       site.css の --color-text-muted と同じ #41616F にすると 5.89 / 6.32 / 6.64:1 で3面とも通る。 */
-    --bg:#E0F5FD; --card:#FFFFFF; --text:#15233B; --sub:#41616F;
-    --border:#CCE9F6; --blue:#00A0E9; --navy:#0B2A5B; --navy-deep:#071A3A;
-    --cyan:#3FC8F0; --teal:#1B8FB3; --red:#DC2626; --green:#16A34A;
-    --orange:#FF9933; --color-primary-strong:#0A5E93; --radius:18px; --radius-sm:12px;
-    --shadow:0 10px 30px rgba(11,42,91,.08); --shadow-lg:0 24px 60px rgba(11,42,91,.16);
-    /* 100% を #00A0E9 にすると、その上のリード文（#CFE6F5）が 2.26:1、白でも 2.91:1 になる。
-     実描画ピクセルの測定で 320〜1920px の全幅・9ページで基準を割ったため、明るい端を
-     #0E5F9E まで下げた（白 6.67:1／#CFE6F5 5.17:1／#D6E6F2 5.23:1）。
-     72% を #0C4C80 に挟んで、端が平坦にならないようにしている。 */
-  --grad-hero:linear-gradient(135deg,#071A3A 0%,#0B2A5B 38%,#0C4C80 72%,#0E5F9E 100%);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-  /* 日本語の自然な改行（スマホ最適化）：文節単位で折り返し、行頭禁則・ぶら下がりを抑制 */
-  :where(h1,h2,h3,h4,h5,h6){text-wrap:balance;word-break:auto-phrase}
-  :where(p,li,dd,dt,figcaption,blockquote,th,td){text-wrap:pretty;word-break:auto-phrase}
-  /* auto-phrase 非対応ブラウザ（iOS Safari / Firefox）向け：文節単位の折り返しユニット */
-  .np{display:inline-block;max-width:100%}
-  :where(h1,h2,h3,h4){font-feature-settings:"palt" 1}
-  ::selection{background:rgba(0,160,233,.22)}
-  body{font-family:'Manrope','Zen Kaku Gothic New',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased;line-break:strict;overflow-wrap:break-word}
-  a{color:inherit;text-decoration:none}
-  /* height:auto は必須。width/height 属性（実寸）を入れたうえで max-width で縮めると、
-     height:auto が無い場合に高さだけ実寸のまま残り、狭い画面で画像が縦に潰れる。 */
-  img{max-width:100%;height:auto;display:block}
+  /* 色・角丸・影・--grad-hero は site.css の :root と同じ値だったので、そちらに寄せた。
+     このページが使う --bg / --card / --text / --sub / --border / --blue / --navy /
+     --navy-deep / --cyan / --teal / --red / --green / --orange /
+     --color-primary-strong / --radius / --radius-sm / --shadow / --shadow-lg /
+     --grad-hero は、すべて site.css:50-67 で同じ値に解決される。 */
+  /* リセットと共通の組版規則は site.css に同じものがある（このページは lang="ja"
+     なので、site.css 側の :lang(ja) ガード付きの規則もそのまま効く）。
+     .wrap の幅だけは site.css が 1140px でこのページは 1180px なので残す。 */
   .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-  svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.14em}
 
   /* header */
   header{position:sticky;top:0;z-index:50;background:rgba(224,245,253,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
@@ -203,26 +181,12 @@
   .steps li:not(:last-child)::after{content:'';position:absolute;left:13.5px;top:32px;bottom:0;width:1.5px;background:var(--border)}
 
   /* table */
-  .tbl{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:14px;overflow:hidden;border-radius:10px;border:1px solid var(--border)}
+  /* 幅・border-collapse・枠線・560px 以下の横スクロールは site.css から降ってくる。
+     このページで違うのは余白と角丸だけなので、その2つだけ残す。 */
+  .tbl{margin:8px 0 18px;border-radius:10px}
   .tbl th{background:#EAF7FF;color:var(--navy);font-weight:700;text-align:left;padding:11px 14px;font-size:13px}
   .tbl td{padding:11px 14px;border-top:1px solid var(--border);vertical-align:top}
   .tbl tr:nth-child(even) td{background:#F7FCFE}
-  /* このページは site.css を読み込んでいないので、560px 以下の横スクロール規則が
-     そもそも無い。表が21個あり 320px で本文ごと横に伸びるため、site.css と同じ
-     ものをここに置く。§7-7：スクロールできることを影で示す。
-     （site.css を通したら重複するので、そのときに削除する） */
-  @media(max-width:560px){
-    .tbl{display:block;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
-         background-image:
-           linear-gradient(to right,var(--card),rgba(255,255,255,0)),
-           linear-gradient(to left,var(--card),rgba(255,255,255,0)),
-           linear-gradient(to right,rgba(11,42,91,.18),rgba(11,42,91,0)),
-           linear-gradient(to left,rgba(11,42,91,.18),rgba(11,42,91,0));
-         background-position:0 0,100% 0,0 0,100% 0;
-         background-repeat:no-repeat;
-         background-size:26px 100%,26px 100%,13px 100%,13px 100%;
-         background-attachment:local,local,scroll,scroll}
-  }
   .req{display:inline-block;background:#FEF2F2;color:#c0392b;font-size:11px;font-weight:700;padding:1px 8px;border-radius:6px;border:1px solid #FECACA}
   .opt{display:inline-block;background:#F2FBFE;color:var(--sub);font-size:11px;font-weight:700;padding:1px 8px;border-radius:6px;border:1px solid var(--border)}
 
