@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-07T16:36:47.446Z",
+ "generatedAt": "2026-09-07T16:55:39.932Z",
  "pages": {
   "approach.html": {
    "axe": {
@@ -133,7 +133,8 @@
     "clippedCount": 2,
     "pageOverflow": true
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "company.html": {
    "axe": {
@@ -147,8 +148,8 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
-        "Element's background color could not be determined due to a pseudo element"
+        "Element's background color could not be determined due to a pseudo element",
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         ".caret",
@@ -168,8 +169,8 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
-        "Element's background color could not be determined due to a pseudo element"
+        "Element's background color could not be determined due to a pseudo element",
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         ".caret",
@@ -190,7 +191,7 @@
        "reasons": [
         "Element content contains only non-text characters",
         "Element's background color could not be determined because it is overlapped by another element",
-        "Element's background color could not be determined because element contains an image node"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -210,7 +211,118 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
+        "Element's background color could not be determined due to a background gradient"
+       ],
+       "examples": [
+        ".caret",
+        "h1 > .np:nth-child(1)",
+        "h1 > .np:nth-child(2)"
+       ]
+      }
+     ]
+    }
+   },
+   "reflow": {
+    "320": {
+     "scrollWidth": 320,
+     "over": []
+    },
+    "640": {
+     "scrollWidth": 640,
+     "over": []
+    },
+    "1280": {
+     "scrollWidth": 1280,
+     "over": []
+    }
+   },
+   "gradient": [],
+   "spacing": {
+    "before": 7,
+    "clipped": [
+     "div.phil.reveal",
+     "div.cta.reveal"
+    ],
+    "clippedCount": 2,
+    "pageOverflow": true
+   },
+   "gradientText": [],
+   "gradientTextSkipped": []
+  },
+  "contact.html": {
+   "axe": {
+    "default": {
+     "violations": [],
+     "incomplete": [
+      {
+       "id": "color-contrast",
+       "impact": "serious",
+       "count": 8,
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "reasons": [
+        "Element content contains only non-text characters",
+        "Element's background color could not be determined due to a pseudo element"
+       ],
+       "examples": [
+        ".caret",
+        "h1 > .np:nth-child(1)",
+        "h1 > .np:nth-child(2)"
+       ]
+      }
+     ]
+    },
+    "hover": {
+     "violations": [],
+     "incomplete": [
+      {
+       "id": "color-contrast",
+       "impact": "serious",
+       "count": 8,
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "reasons": [
+        "Element content contains only non-text characters",
+        "Element's background color could not be determined due to a pseudo element"
+       ],
+       "examples": [
+        ".caret",
+        "h1 > .np:nth-child(1)",
+        "h1 > .np:nth-child(2)"
+       ]
+      }
+     ]
+    },
+    "focus+focus-visible": {
+     "violations": [],
+     "incomplete": [
+      {
+       "id": "color-contrast",
+       "impact": "serious",
+       "count": 9,
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "reasons": [
+        "Element content contains only non-text characters",
+        "Element's background color could not be determined because it is overlapped by another element",
+        "Element's background color could not be determined due to a pseudo element"
+       ],
+       "examples": [
+        ".caret",
+        "span[aria-current=\"page\"]",
+        "h1 > .np:nth-child(1)"
+       ]
+      }
+     ]
+    },
+    "active": {
+     "violations": [],
+     "incomplete": [
+      {
+       "id": "color-contrast",
+       "impact": "serious",
+       "count": 8,
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "reasons": [
+        "Element content contains only non-text characters",
         "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
@@ -236,826 +348,15 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "Odonataの最大の資産は、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      283.875,
-      192.21875,
-      28.796875
-     ],
-     "min": 3.97,
-     "at": [
-      73,
-      113,
-      153
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "私たちが何を信じ、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      341.46875,
-      144,
-      28.796875
-     ],
-     "min": 3.72,
-     "at": [
-      74,
-      118,
-      159
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "どんなメンバーで",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      164,
-      341.46875,
-      128,
-      28.796875
-     ],
-     "min": 3.42,
-     "at": [
-      73,
-      125,
-      166
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "紹介します。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      180,
-      370.265625,
-      96,
-      28.796875
-     ],
-     "min": 3.13,
-     "at": [
-      73,
-      132,
-      175
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "Odonataの最大の資産は、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      283.875,
-      192.21875,
-      28.796875
-     ],
-     "min": 3.93,
-     "at": [
-      73,
-      114,
-      153
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "私たちが何を信じ、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      312.671875,
-      144,
-      28.796875
-     ],
-     "min": 4.07,
-     "at": [
-      73,
-      111,
-      151
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "どんなメンバーで",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      164,
-      312.671875,
-      128,
-      28.796875
-     ],
-     "min": 3.25,
-     "at": [
-      74,
-      129,
-      170
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "取り組んでいるのかを",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      341.46875,
-      160,
-      28.796875
-     ],
-     "min": 4.24,
-     "at": [
-      71,
-      108,
-      148
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "紹介します。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      180,
-      341.46875,
-      96,
-      28.796875
-     ],
-     "min": 3.29,
-     "at": [
-      73,
-      128,
-      170
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "Odonataの最大の資産は、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      275.015625,
-      192.21875,
-      28.796875
-     ],
-     "min": 4.47,
-     "at": [
-      72,
-      104,
-      142
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "私たちが何を信じ、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      363.421875,
-      275.015625,
-      144,
-      28.796875
-     ],
-     "min": 3.68,
-     "at": [
-      71,
-      119,
-      161
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "取り組んでいるのかを",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      303.8125,
-      160,
-      28.796875
-     ],
-     "min": 4.47,
-     "at": [
-      73,
-      104,
-      140
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "思想とチームです。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      216.21875,
-      288.890625,
-      144,
-      28.796875
-     ],
-     "min": 4.47,
-     "at": [
-      72,
-      104,
-      142
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "私たちが何を信じ、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      363.421875,
-      288.890625,
-      144,
-      28.796875
-     ],
-     "min": 4.28,
-     "at": [
-      73,
-      107,
-      147
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "紹介します。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      184,
-      317.6875,
-      96,
-      28.796875
-     ],
-     "min": 4.41,
-     "at": [
-      73,
-      105,
-      142
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "私たちが何を信じ、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      433.421875,
-      288.890625,
-      144,
-      28.796875
-     ],
-     "min": 4.25,
-     "at": [
-      71,
-      108,
-      147
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "私たちが何を信じ、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      513.421875,
-      288.890625,
-      144,
-      28.796875
-     ],
-     "min": 4.22,
-     "at": [
-      73,
-      108,
-      148
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "どんなメンバーで",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      897.421875,
-      288.890625,
-      128,
-      28.796875
-     ],
-     "min": 3.93,
-     "at": [
-      71,
-      114,
-      154
-     ]
-    }
-   ],
-   "spacing": {
-    "before": 7,
-    "clipped": [
-     "div.phil.reveal",
-     "div.cta.reveal"
-    ],
-    "clippedCount": 2,
-    "pageOverflow": true
-   },
-   "gradientText": []
-  },
-  "contact.html": {
-   "axe": {
-    "default": {
-     "violations": [],
-     "incomplete": [
-      {
-       "id": "color-contrast",
-       "impact": "serious",
-       "count": 8,
-       "help": "Elements must meet minimum color contrast ratio thresholds",
-       "reasons": [
-        "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node"
-       ],
-       "examples": [
-        ".caret",
-        "h1 > .np:nth-child(1)",
-        "h1 > .np:nth-child(2)"
-       ]
-      }
-     ]
-    },
-    "hover": {
-     "violations": [],
-     "incomplete": [
-      {
-       "id": "color-contrast",
-       "impact": "serious",
-       "count": 8,
-       "help": "Elements must meet minimum color contrast ratio thresholds",
-       "reasons": [
-        "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node"
-       ],
-       "examples": [
-        ".caret",
-        "h1 > .np:nth-child(1)",
-        "h1 > .np:nth-child(2)"
-       ]
-      }
-     ]
-    },
-    "focus+focus-visible": {
-     "violations": [],
-     "incomplete": [
-      {
-       "id": "color-contrast",
-       "impact": "serious",
-       "count": 9,
-       "help": "Elements must meet minimum color contrast ratio thresholds",
-       "reasons": [
-        "Element content contains only non-text characters",
-        "Element's background color could not be determined because it is overlapped by another element",
-        "Element's background color could not be determined because element contains an image node"
-       ],
-       "examples": [
-        ".caret",
-        "span[aria-current=\"page\"]",
-        "h1 > .np:nth-child(1)"
-       ]
-      }
-     ]
-    },
-    "active": {
-     "violations": [],
-     "incomplete": [
-      {
-       "id": "color-contrast",
-       "impact": "serious",
-       "count": 8,
-       "help": "Elements must meet minimum color contrast ratio thresholds",
-       "reasons": [
-        "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node"
-       ],
-       "examples": [
-        ".caret",
-        "h1 > .np:nth-child(1)",
-        "h1 > .np:nth-child(2)"
-       ]
-      }
-     ]
-    }
-   },
-   "reflow": {
-    "320": {
-     "scrollWidth": 320,
-     "over": []
-    },
-    "640": {
-     "scrollWidth": 640,
-     "over": []
-    },
-    "1280": {
-     "scrollWidth": 1280,
-     "over": []
-    }
-   },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ活用の壁打ち、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      312.671875,
-      160,
-      28.796875
-     ],
-     "min": 4.28,
-     "at": [
-      72,
-      107,
-      148
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "2営業日以内に",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      370.265625,
-      105.125,
-      28.796875
-     ],
-     "min": 4.08,
-     "at": [
-      73,
-      111,
-      150
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "ご返信します。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      125.125,
-      370.265625,
-      112,
-      28.796875
-     ],
-     "min": 3.54,
-     "at": [
-      73,
-      122,
-      163
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "導入のご相談から、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      283.875,
-      144,
-      28.796875
-     ],
-     "min": 4.29,
-     "at": [
-      72,
-      107,
-      146
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "取材・共同研究のご相談まで。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      312.671875,
-      224,
-      28.796875
-     ],
-     "min": 3.67,
-     "at": [
-      74,
-      119,
-      160
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "2営業日以内に",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      341.46875,
-      105.125,
-      28.796875
-     ],
-     "min": 4.03,
-     "at": [
-      72,
-      112,
-      152
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "ご返信します。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      125.125,
-      341.46875,
-      112,
-      28.796875
-     ],
-     "min": 3.36,
-     "at": [
-      75,
-      126,
-      167
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ活用の壁打ち、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      168,
-      275.015625,
-      160,
-      28.796875
-     ],
-     "min": 4.18,
-     "at": [
-      73,
-      109,
-      148
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "取材・共同研究のご相談まで。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      328,
-      275.015625,
-      224,
-      28.796875
-     ],
-     "min": 3.97,
-     "at": [
-      73,
-      113,
-      153
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "取材・共同研究のご相談まで。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      718,
-      288.890625,
-      224,
-      28.796875
-     ],
-     "min": 3.98,
-     "at": [
-      72,
-      113,
-      152
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 6,
     "clipped": [],
     "clippedCount": 0,
     "pageOverflow": true
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "demo.html": {
    "axe": {
@@ -1069,7 +370,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -1090,7 +391,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -1112,7 +413,7 @@
        "reasons": [
         "Element content contains only non-text characters",
         "Element's background color could not be determined because it is overlapped by another element",
-        "Element's background color could not be determined because element contains an image node"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -1132,7 +433,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -1158,458 +459,7 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "現場スタッフが毎日使うことを前提に",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      312.671875,
-      272,
-      28.796875
-     ],
-     "min": 3.62,
-     "at": [
-      75,
-      120,
-      161
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "入力から分析結果の確認までの流れを、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      370.265625,
-      280,
-      57.59375
-     ],
-     "min": 3.08,
-     "at": [
-      75,
-      133,
-      177
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "そのままの画面でご覧いただけます。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      427.859375,
-      272,
-      28.796875
-     ],
-     "min": 3.24,
-     "at": [
-      75,
-      129,
-      171
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "現場スタッフが毎日使うことを前提に",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      312.671875,
-      272,
-      28.796875
-     ],
-     "min": 3.53,
-     "at": [
-      74,
-      122,
-      164
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "設計しています。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      341.46875,
-      128,
-      28.796875
-     ],
-     "min": 4.19,
-     "at": [
-      72,
-      109,
-      148
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "入力から分析結果の確認までの流れを、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      370.265625,
-      288,
-      28.796875
-     ],
-     "min": 3.87,
-     "at": [
-      73,
-      115,
-      155
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "そのままの画面でご覧いただけます。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      399.0625,
-      272,
-      28.796875
-     ],
-     "min": 3.3,
-     "at": [
-      72,
-      128,
-      169
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "現場スタッフが毎日使うことを前提に",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      120.21875,
-      275.015625,
-      272,
-      28.796875
-     ],
-     "min": 4.07,
-     "at": [
-      73,
-      111,
-      151
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "入力から分析結果の確認までの流れを、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      303.8125,
-      288,
-      28.796875
-     ],
-     "min": 4.35,
-     "at": [
-      71,
-      106,
-      146
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "そのままの画面でご覧いただけます。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      312,
-      303.8125,
-      272,
-      28.796875
-     ],
-     "min": 3.3,
-     "at": [
-      72,
-      128,
-      170
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "現場スタッフが毎日使うことを前提に",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      120.21875,
-      288.890625,
-      272,
-      28.796875
-     ],
-     "min": 4.3,
-     "at": [
-      71,
-      107,
-      146
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "そのままの画面でご覧いただけます。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      312,
-      317.6875,
-      272,
-      28.796875
-     ],
-     "min": 3.92,
-     "at": [
-      73,
-      114,
-      154
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "そのままの画面でご覧いただけます。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      382,
-      317.6875,
-      272,
-      28.796875
-     ],
-     "min": 4.01,
-     "at": [
-      73,
-      112,
-      153
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "現場スタッフが毎日使うことを前提に",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      270.21875,
-      288.890625,
-      272,
-      28.796875
-     ],
-     "min": 4.35,
-     "at": [
-      71,
-      106,
-      146
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "入力から分析結果の確認までの流れを、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      174,
-      317.6875,
-      288,
-      28.796875
-     ],
-     "min": 4.39,
-     "at": [
-      73,
-      105,
-      144
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "そのままの画面でご覧いただけます。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      462,
-      317.6875,
-      272,
-      28.796875
-     ],
-     "min": 4.08,
-     "at": [
-      72,
-      111,
-      150
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "設計しています。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      782.21875,
-      288.890625,
-      128,
-      28.796875
-     ],
-     "min": 4.08,
-     "at": [
-      71,
-      111,
-      151
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "そのままの画面でご覧いただけます。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      702,
-      317.6875,
-      272,
-      28.796875
-     ],
-     "min": 4.23,
-     "at": [
-      71,
-      108,
-      149
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 5,
     "clipped": [
@@ -1618,7 +468,8 @@
     "clippedCount": 1,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "guide.html": {
    "axe": {
@@ -1631,9 +482,9 @@
        "count": 142,
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element content contains only non-text characters",
-        "Element's background color could not be determined due to a pseudo element"
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         "h1",
@@ -1652,9 +503,9 @@
        "count": 142,
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element content contains only non-text characters",
-        "Element's background color could not be determined due to a pseudo element"
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         "h1",
@@ -1673,9 +524,9 @@
        "count": 142,
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element content contains only non-text characters",
-        "Element's background color could not be determined due to a pseudo element"
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         "h1",
@@ -1694,9 +545,9 @@
        "count": 142,
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element content contains only non-text characters",
-        "Element's background color could not be determined due to a pseudo element"
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         "h1",
@@ -1721,515 +572,15 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "p.",
-     "text": "選手・コーチそれぞれの全機能と、Odon",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      197.390625,
-      280,
-      115.1875
-     ],
-     "min": 2.92,
-     "at": [
-      82,
-      137,
-      178
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "選手・コーチそれぞれの",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      197.390625,
-      176,
-      28.796875
-     ],
-     "min": 3.4,
-     "at": [
-      85,
-      124,
-      163
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "Odonata の象徴である",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      226.1875,
-      163.421875,
-      28.796875
-     ],
-     "min": 3.31,
-     "at": [
-      85,
-      126,
-      166
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "画面に沿って",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      283.78125,
-      96,
-      28.796875
-     ],
-     "min": 3.41,
-     "at": [
-      83,
-      124,
-      163
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "くわしく解説します。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      116,
-      283.78125,
-      160,
-      28.796875
-     ],
-     "min": 3.02,
-     "at": [
-      83,
-      134,
-      174
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "p.",
-     "text": "選手・コーチそれぞれの全機能と、Odon",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      197.390625,
-      350,
-      115.1875
-     ],
-     "min": 2.71,
-     "at": [
-      84,
-      143,
-      186
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "選手・コーチそれぞれの",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      197.390625,
-      176,
-      28.796875
-     ],
-     "min": 3.76,
-     "at": [
-      83,
-      116,
-      154
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "Odonata の象徴である",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      226.1875,
-      163.421875,
-      28.796875
-     ],
-     "min": 3.63,
-     "at": [
-      82,
-      119,
-      158
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "画面に沿って",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      244,
-      254.984375,
-      96,
-      28.796875
-     ],
-     "min": 2.92,
-     "at": [
-      82,
-      137,
-      177
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "くわしく解説します。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      283.78125,
-      160,
-      28.796875
-     ],
-     "min": 3.54,
-     "at": [
-      82,
-      121,
-      160
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "p.",
-     "text": "選手・コーチそれぞれの全機能と、Odon",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      209.203125,
-      680,
-      57.59375
-     ],
-     "min": 2.8,
-     "at": [
-      83,
-      140,
-      184
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "p.",
-     "text": "選手・コーチそれぞれの全機能と、Odon",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      226.1875,
-      680,
-      57.59375
-     ],
-     "min": 3.09,
-     "at": [
-      83,
-      132,
-      172
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "選手・コーチそれぞれの",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      226.1875,
-      176,
-      28.796875
-     ],
-     "min": 4.1,
-     "at": [
-      80,
-      110,
-      144
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "p.",
-     "text": "選手・コーチそれぞれの全機能と、Odon",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      74,
-      226.1875,
-      680,
-      57.59375
-     ],
-     "min": 3.37,
-     "at": [
-      82,
-      125,
-      164
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "画面に沿って",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      74,
-      254.984375,
-      96,
-      28.796875
-     ],
-     "min": 4.05,
-     "at": [
-      80,
-      111,
-      144
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "くわしく解説します。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      170,
-      254.984375,
-      160,
-      28.796875
-     ],
-     "min": 3.99,
-     "at": [
-      80,
-      112,
-      147
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "p.",
-     "text": "選手・コーチそれぞれの全機能と、Odon",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      154,
-      226.1875,
-      680,
-      57.59375
-     ],
-     "min": 3.33,
-     "at": [
-      82,
-      126,
-      165
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "Odonata の象徴である",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      410,
-      226.1875,
-      163.421875,
-      28.796875
-     ],
-     "min": 3.82,
-     "at": [
-      81,
-      115,
-      154
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "p.",
-     "text": "選手・コーチそれぞれの全機能と、Odon",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      394,
-      226.1875,
-      680,
-      57.59375
-     ],
-     "min": 3.55,
-     "at": [
-      80,
-      121,
-      160
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "全機能と、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      570,
-      226.1875,
-      80,
-      28.796875
-     ],
-     "min": 3.88,
-     "at": [
-      81,
-      114,
-      151
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 9,
     "clipped": [],
     "clippedCount": 0,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "index.html": {
    "axe": {
@@ -2411,13 +762,13 @@
      "text": "データ分析",
      "size": 43.008,
      "need": 3,
-     "min": 4.14,
+     "min": 4.1,
      "worst": [
-      13,
-      122,
+      12,
+      123,
       185
      ],
-     "glyphPixels": 843
+     "glyphPixels": 850
     },
     {
      "width": 1280,
@@ -2431,7 +782,7 @@
       122,
       185
      ],
-     "glyphPixels": 970
+     "glyphPixels": 960
     },
     {
      "width": 1440,
@@ -2461,7 +812,8 @@
      ],
      "glyphPixels": 970
     }
-   ]
+   ],
+   "gradientTextSkipped": []
   },
   "kessan.html": {
    "axe": {
@@ -2474,7 +826,7 @@
        "count": 1,
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
-        "Element's background color could not be determined due to a background gradient"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         "h1"
@@ -2491,7 +843,7 @@
        "count": 1,
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
-        "Element's background color could not be determined due to a background gradient"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         "h1"
@@ -2508,7 +860,7 @@
        "count": 1,
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
-        "Element's background color could not be determined due to a background gradient"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         "h1"
@@ -2525,7 +877,7 @@
        "count": 1,
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
-        "Element's background color could not be determined due to a background gradient"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         "h1"
@@ -2555,7 +907,8 @@
     "clippedCount": 0,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "news.html": {
    "axe": {
@@ -2569,7 +922,6 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
         "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
@@ -2590,7 +942,6 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
         "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
@@ -2612,7 +963,7 @@
        "reasons": [
         "Element content contains only non-text characters",
         "Element's background color could not be determined because it is overlapped by another element",
-        "Element's background color could not be determined because element contains an image node"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -2632,7 +983,6 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
         "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
@@ -2653,7 +1003,6 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
         "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
@@ -2679,133 +1028,7 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "コラムをお届けします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      276.28125,
-      176,
-      28.796875
-     ],
-     "min": 4.45,
-     "at": [
-      73,
-      104,
-      143
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "お知らせ・プレスリリース・",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      247.484375,
-      208,
-      28.796875
-     ],
-     "min": 4.18,
-     "at": [
-      72,
-      109,
-      149
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "お知らせ・プレスリリース・",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      275.015625,
-      208,
-      28.796875
-     ],
-     "min": 4.48,
-     "at": [
-      71,
-      104,
-      142
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "コラムをお届けします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      232,
-      275.015625,
-      176,
-      28.796875
-     ],
-     "min": 4.13,
-     "at": [
-      72,
-      110,
-      150
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "コラムをお届けします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      622,
-      288.890625,
-      176,
-      28.796875
-     ],
-     "min": 4.06,
-     "at": [
-      74,
-      111,
-      151
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 5,
     "clipped": [
@@ -2814,7 +1037,8 @@
     "clippedCount": 1,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "philosophy.html": {
    "axe": {
@@ -2924,104 +1148,91 @@
     "clippedCount": 0,
     "pageOverflow": false
    },
-   "gradientText": [
+   "gradientText": [],
+   "gradientTextSkipped": [
     {
      "width": 320,
      "sel": "div.wm",
      "text": "Odonata",
-     "size": 34,
-     "need": 3,
-     "min": 1.27,
-     "worst": [
-      26,
-      46,
-      77
-     ],
-     "glyphPixels": 6
+     "reason": "opacity:0"
+    },
+    {
+     "width": 320,
+     "sel": "span.np",
+     "text": "複眼で読む。",
+     "reason": "opacity:0"
     },
     {
      "width": 390,
      "sel": "div.wm",
      "text": "Odonata",
-     "size": 34,
-     "need": 3,
-     "min": 1.84,
-     "worst": [
-      48,
-      72,
-      100
-     ],
-     "glyphPixels": 1
+     "reason": "opacity:0"
+    },
+    {
+     "width": 390,
+     "sel": "span.np",
+     "text": "複眼で読む。",
+     "reason": "opacity:0"
     },
     {
      "width": 768,
      "sel": "div.wm",
      "text": "Odonata",
-     "size": 53.76,
-     "need": 3,
-     "min": 1.33,
-     "worst": [
-      25,
-      50,
-      82
-     ],
-     "glyphPixels": 1
+     "reason": "opacity:0"
+    },
+    {
+     "width": 768,
+     "sel": "span.np",
+     "text": "複眼で読む。",
+     "reason": "opacity:0"
     },
     {
      "width": 1024,
      "sel": "div.wm",
      "text": "Odonata",
-     "size": 71.68,
-     "need": 3,
-     "min": 1.21,
-     "worst": [
-      19,
-      43,
-      75
-     ],
-     "glyphPixels": 1
+     "reason": "opacity:0"
+    },
+    {
+     "width": 1024,
+     "sel": "span.np",
+     "text": "複眼で読む。",
+     "reason": "opacity:0"
     },
     {
      "width": 1280,
      "sel": "div.wm",
      "text": "Odonata",
-     "size": 72,
-     "need": 3,
-     "min": 1.05,
-     "worst": [
-      9,
-      31,
-      63
-     ],
-     "glyphPixels": 3
+     "reason": "opacity:0"
+    },
+    {
+     "width": 1280,
+     "sel": "span.np",
+     "text": "複眼で読む。",
+     "reason": "opacity:0"
     },
     {
      "width": 1440,
      "sel": "div.wm",
      "text": "Odonata",
-     "size": 72,
-     "need": 3,
-     "min": 1.13,
-     "worst": [
-      13,
-      37,
-      70
-     ],
-     "glyphPixels": 2
+     "reason": "opacity:0"
+    },
+    {
+     "width": 1440,
+     "sel": "span.np",
+     "text": "複眼で読む。",
+     "reason": "opacity:0"
     },
     {
      "width": 1920,
      "sel": "div.wm",
      "text": "Odonata",
-     "size": 72,
-     "need": 3,
-     "min": 1.12,
-     "worst": [
-      14,
-      37,
-      69
-     ],
-     "glyphPixels": 1
+     "reason": "opacity:0"
+    },
+    {
+     "width": 1920,
+     "sel": "span.np",
+     "text": "複眼で読む。",
+     "reason": "opacity:0"
     }
    ]
   },
@@ -3037,8 +1248,8 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
-        "Element content is too short to determine if it is actual text content"
+        "Element's background color could not be determined due to a pseudo element",
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         ".caret",
@@ -3058,8 +1269,8 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
-        "Element content is too short to determine if it is actual text content"
+        "Element's background color could not be determined due to a pseudo element",
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         ".caret",
@@ -3079,8 +1290,8 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
-        "Element content is too short to determine if it is actual text content"
+        "Element's background color could not be determined due to a pseudo element",
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         ".caret",
@@ -3100,8 +1311,8 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
-        "Element content is too short to determine if it is actual text content"
+        "Element's background color could not be determined due to a pseudo element",
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         ".caret",
@@ -3126,383 +1337,7 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データプラットフォームは",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      356.65625,
-      192,
-      28.796875
-     ],
-     "min": 4.46,
-     "at": [
-      72,
-      104,
-      143
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "チーム単位の月額制。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      385.453125,
-      160,
-      28.796875
-     ],
-     "min": 4.29,
-     "at": [
-      72,
-      107,
-      146
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ分析・伴走支援は、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      414.25,
-      192,
-      28.796875
-     ],
-     "min": 3.68,
-     "at": [
-      72,
-      119,
-      160
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "分析内容・データ量・支援期間に応じて",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      443.046875,
-      280,
-      57.59375
-     ],
-     "min": 3.25,
-     "at": [
-      72,
-      129,
-      172
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "お見積りします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      500.640625,
-      128,
-      28.796875
-     ],
-     "min": 3.82,
-     "at": [
-      72,
-      116,
-      158
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ分析・伴走支援は、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      377.859375,
-      192,
-      28.796875
-     ],
-     "min": 3.78,
-     "at": [
-      72,
-      117,
-      158
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "分析内容・データ量・支援期間に応じて",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      406.65625,
-      288,
-      28.796875
-     ],
-     "min": 3.37,
-     "at": [
-      73,
-      126,
-      168
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "分析内容・データ量・支援期間に応じて",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      349.734375,
-      288,
-      28.796875
-     ],
-     "min": 4.41,
-     "at": [
-      71,
-      105,
-      145
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "お見積りします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      312,
-      349.734375,
-      128,
-      28.796875
-     ],
-     "min": 3.68,
-     "at": [
-      73,
-      119,
-      160
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "チーム単位の月額制。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      216,
-      348.6875,
-      160,
-      28.796875
-     ],
-     "min": 4.47,
-     "at": [
-      72,
-      104,
-      142
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ分析・伴走支援は、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      376,
-      348.6875,
-      192,
-      28.796875
-     ],
-     "min": 4.03,
-     "at": [
-      71,
-      112,
-      152
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ分析・伴走支援は、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      446,
-      348.6875,
-      192,
-      28.796875
-     ],
-     "min": 4.02,
-     "at": [
-      73,
-      112,
-      152
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "お見積りします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      382,
-      377.484375,
-      128,
-      28.796875
-     ],
-     "min": 4.08,
-     "at": [
-      72,
-      111,
-      150
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ分析・伴走支援は、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      526,
-      348.6875,
-      192,
-      28.796875
-     ],
-     "min": 3.82,
-     "at": [
-      74,
-      116,
-      155
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ分析・伴走支援は、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      766,
-      348.6875,
-      192,
-      28.796875
-     ],
-     "min": 3.97,
-     "at": [
-      72,
-      113,
-      154
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 7,
     "clipped": [
@@ -3511,7 +1346,8 @@
     "clippedCount": 1,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "privacy.html": {
    "axe": {
@@ -3525,7 +1361,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined due to a background gradient"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -3544,7 +1380,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined due to a background gradient"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -3564,7 +1400,7 @@
        "reasons": [
         "Element content contains only non-text characters",
         "Element's background color could not be determined because it is overlapped by another element",
-        "Element's background color could not be determined due to a background gradient"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -3584,7 +1420,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined due to a background gradient"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -3615,7 +1451,8 @@
     "clippedCount": 0,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "research.html": {
    "axe": {
@@ -3629,7 +1466,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -3650,7 +1487,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -3672,7 +1509,7 @@
        "reasons": [
         "Element content contains only non-text characters",
         "Element's background color could not be determined because it is overlapped by another element",
-        "Element's background color could not be determined because element contains an image node"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -3692,7 +1529,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -3713,7 +1550,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -3739,583 +1576,7 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "Odonataの分析・プロダクトは、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      320.265625,
-      240.21875,
-      28.796875
-     ],
-     "min": 3.67,
-     "at": [
-      74,
-      119,
-      160
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "大学トップレベルの競技現場での",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      349.0625,
-      240,
-      28.796875
-     ],
-     "min": 3.86,
-     "at": [
-      73,
-      115,
-      156
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "実証と、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      377.859375,
-      64,
-      28.796875
-     ],
-     "min": 4.34,
-     "at": [
-      72,
-      106,
-      146
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "学術研究の上に",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      84,
-      377.859375,
-      112,
-      28.796875
-     ],
-     "min": 3.68,
-     "at": [
-      73,
-      119,
-      159
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "数字は、条件と注記を",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      135.203125,
-      406.65625,
-      160,
-      28.796875
-     ],
-     "min": 3.25,
-     "at": [
-      73,
-      129,
-      171
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "添えてお見せします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      435.453125,
-      160,
-      28.796875
-     ],
-     "min": 3.73,
-     "at": [
-      72,
-      118,
-      159
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "Odonataの分析・プロダクトは、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      283.875,
-      240.21875,
-      28.796875
-     ],
-     "min": 3.92,
-     "at": [
-      73,
-      114,
-      154
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "大学トップレベルの競技現場での",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      312.671875,
-      240,
-      28.796875
-     ],
-     "min": 3.59,
-     "at": [
-      73,
-      121,
-      162
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "学術研究の上に",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      341.46875,
-      112,
-      28.796875
-     ],
-     "min": 4.39,
-     "at": [
-      73,
-      105,
-      144
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "立っています。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      132,
-      341.46875,
-      112,
-      28.796875
-     ],
-     "min": 3.72,
-     "at": [
-      74,
-      118,
-      159
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "数字は、条件と注記を",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      370.265625,
-      160,
-      28.796875
-     ],
-     "min": 4.08,
-     "at": [
-      72,
-      111,
-      151
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "添えてお見せします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      180,
-      370.265625,
-      160,
-      28.796875
-     ],
-     "min": 3.5,
-     "at": [
-      73,
-      123,
-      165
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "数字は、条件と注記を",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      139.203125,
-      303.8125,
-      160,
-      28.796875
-     ],
-     "min": 4.23,
-     "at": [
-      71,
-      108,
-      149
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "添えてお見せします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      299.203125,
-      303.8125,
-      160,
-      28.796875
-     ],
-     "min": 3.59,
-     "at": [
-      73,
-      121,
-      162
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "大学トップレベルの競技現場での",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      264.21875,
-      288.890625,
-      240,
-      28.796875
-     ],
-     "min": 4.23,
-     "at": [
-      72,
-      108,
-      149
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "学術研究の上に",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      568.21875,
-      288.890625,
-      112,
-      28.796875
-     ],
-     "min": 3.6,
-     "at": [
-      72,
-      121,
-      161
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "添えてお見せします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      299.203125,
-      317.6875,
-      160,
-      28.796875
-     ],
-     "min": 4.2,
-     "at": [
-      71,
-      109,
-      148
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "大学トップレベルの競技現場での",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      334.21875,
-      288.890625,
-      240,
-      28.796875
-     ],
-     "min": 4.19,
-     "at": [
-      72,
-      109,
-      148
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "学術研究の上に",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      638.21875,
-      288.890625,
-      112,
-      28.796875
-     ],
-     "min": 3.88,
-     "at": [
-      72,
-      115,
-      155
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "添えてお見せします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      369.203125,
-      317.6875,
-      160,
-      28.796875
-     ],
-     "min": 4.18,
-     "at": [
-      73,
-      109,
-      148
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "大学トップレベルの競技現場での",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      414.21875,
-      288.890625,
-      240,
-      28.796875
-     ],
-     "min": 4.08,
-     "at": [
-      72,
-      111,
-      150
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "実証と、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      654.21875,
-      288.890625,
-      64,
-      28.796875
-     ],
-     "min": 4.03,
-     "at": [
-      72,
-      112,
-      152
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "添えてお見せします。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      689.203125,
-      317.6875,
-      160,
-      28.796875
-     ],
-     "min": 4.08,
-     "at": [
-      72,
-      111,
-      151
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 7,
     "clipped": [
@@ -4325,7 +1586,8 @@
     "clippedCount": 2,
     "pageOverflow": true
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "service-analysis.html": {
    "axe": {
@@ -4339,7 +1601,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -4360,7 +1622,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -4382,7 +1644,7 @@
        "reasons": [
         "Element content contains only non-text characters",
         "Element's background color could not be determined because it is overlapped by another element",
-        "Element's background color could not be determined because element contains an image node"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -4402,7 +1664,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -4428,558 +1690,7 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "GPS・コンディション報告・",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      283.875,
-      206.8125,
-      28.796875
-     ],
-     "min": 4.46,
-     "at": [
-      73,
-      104,
-      142
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "クラブがすでに持っているデータを分析し、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      341.46875,
-      280,
-      57.59375
-     ],
-     "min": 3.63,
-     "at": [
-      73,
-      120,
-      161
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "チーム・選手固有のモデルと示唆をつくりま",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      399.0625,
-      280,
-      57.59375
-     ],
-     "min": 3.5,
-     "at": [
-      74,
-      123,
-      164
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "とる指標の相談から",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      456.65625,
-      144,
-      28.796875
-     ],
-     "min": 3.77,
-     "at": [
-      72,
-      117,
-      159
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ整理・",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      164,
-      456.65625,
-      96,
-      28.796875
-     ],
-     "min": 3.58,
-     "at": [
-      74,
-      121,
-      162
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "現場実装まで、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      485.453125,
-      112,
-      28.796875
-     ],
-     "min": 3.87,
-     "at": [
-      72,
-      115,
-      156
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ周りはまるごとお任せください。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      514.25,
-      280,
-      57.59375
-     ],
-     "min": 3.04,
-     "at": [
-      73,
-      134,
-      180
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "クラブがすでに持っているデータを分析し、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      312.671875,
-      320,
-      28.796875
-     ],
-     "min": 3.51,
-     "at": [
-      72,
-      123,
-      164
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "チーム・選手固有のモデルと示唆をつくりま",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      341.46875,
-      350,
-      57.59375
-     ],
-     "min": 3.3,
-     "at": [
-      73,
-      128,
-      169
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ周りはまるごとお任せください。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      456.65625,
-      288,
-      28.796875
-     ],
-     "min": 3.93,
-     "at": [
-      72,
-      114,
-      154
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "クラブがすでに持っているデータを分析し、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      367.78125,
-      275.015625,
-      320,
-      28.796875
-     ],
-     "min": 3.68,
-     "at": [
-      72,
-      119,
-      161
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "チーム・選手固有のモデルと示唆をつくりま",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      303.8125,
-      352,
-      28.796875
-     ],
-     "min": 3.91,
-     "at": [
-      73,
-      114,
-      155
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ周りはまるごとお任せください。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      332.609375,
-      288,
-      28.796875
-     ],
-     "min": 4.17,
-     "at": [
-      72,
-      109,
-      150
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "メディカル記録——",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      230.8125,
-      288.890625,
-      136.96875,
-      28.796875
-     ],
-     "min": 4.4,
-     "at": [
-      72,
-      105,
-      144
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "チーム・選手固有のモデルと示唆をつくりま",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      317.6875,
-      352,
-      28.796875
-     ],
-     "min": 4.39,
-     "at": [
-      73,
-      105,
-      145
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "とる指標の相談から",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      379.203125,
-      317.6875,
-      144,
-      28.796875
-     ],
-     "min": 3.98,
-     "at": [
-      71,
-      113,
-      154
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "メディカル記録——",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      300.8125,
-      288.890625,
-      136.96875,
-      28.796875
-     ],
-     "min": 4.45,
-     "at": [
-      72,
-      104,
-      144
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "チーム・選手固有のモデルと示唆をつくりま",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      94,
-      317.6875,
-      352,
-      28.796875
-     ],
-     "min": 4.45,
-     "at": [
-      72,
-      104,
-      144
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "クラブがすでに持っているデータを分析し、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      517.78125,
-      288.890625,
-      320,
-      28.796875
-     ],
-     "min": 4.35,
-     "at": [
-      71,
-      106,
-      146
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "とる指標の相談から",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      769.203125,
-      317.6875,
-      144,
-      28.796875
-     ],
-     "min": 4.08,
-     "at": [
-      72,
-      111,
-      150
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "データ整理・",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      913.203125,
-      317.6875,
-      96,
-      28.796875
-     ],
-     "min": 3.93,
-     "at": [
-      72,
-      114,
-      154
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "現場実装まで、",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      1009.203125,
-      317.6875,
-      112,
-      28.796875
-     ],
-     "min": 3.74,
-     "at": [
-      71,
-      118,
-      159
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 10,
     "clipped": [
@@ -4989,7 +1700,8 @@
     "clippedCount": 2,
     "pageOverflow": true
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "service-platform.html": {
    "axe": {
@@ -5003,7 +1715,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined because it is overlapped by another element"
        ],
        "examples": [
@@ -5024,7 +1736,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined because it is overlapped by another element"
        ],
        "examples": [
@@ -5046,7 +1758,7 @@
        "reasons": [
         "Element content contains only non-text characters",
         "Element's background color could not be determined because it is overlapped by another element",
-        "Element's background color could not be determined because element contains an image node"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -5066,7 +1778,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined because it is overlapped by another element"
        ],
        "examples": [
@@ -5092,183 +1804,7 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "コンディション・GPS・試合・",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      356.65625,
-      222.8125,
-      28.796875
-     ],
-     "min": 4.28,
-     "at": [
-      72,
-      107,
-      148
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "分析結果を毎日使える",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      414.25,
-      160,
-      28.796875
-     ],
-     "min": 4.18,
-     "at": [
-      73,
-      109,
-      148
-     ]
-    },
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "Webアプリとして届けます。",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      443.046875,
-      208.84375,
-      28.796875
-     ],
-     "min": 3.97,
-     "at": [
-      72,
-      113,
-      154
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "コンディション・GPS・試合・",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      320.265625,
-      222.8125,
-      28.796875
-     ],
-     "min": 4.41,
-     "at": [
-      72,
-      105,
-      143
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "分析結果を毎日使える",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      377.859375,
-      160,
-      28.796875
-     ],
-     "min": 4.24,
-     "at": [
-      72,
-      108,
-      147
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "分析結果を毎日使える",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      508.8125,
-      348.6875,
-      160,
-      28.796875
-     ],
-     "min": 4.28,
-     "at": [
-      72,
-      107,
-      148
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "span.np",
-     "text": "分析結果を毎日使える",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      828.8125,
-      348.6875,
-      160,
-      28.796875
-     ],
-     "min": 4.36,
-     "at": [
-      71,
-      106,
-      145
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 9,
     "clipped": [
@@ -5278,7 +1814,8 @@
     "clippedCount": 2,
     "pageOverflow": true
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "en/approach.html": {
    "axe": {
@@ -5412,7 +1949,8 @@
     "clippedCount": 2,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "en/company.html": {
    "axe": {
@@ -5426,8 +1964,8 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
-        "Element's background color could not be determined due to a pseudo element"
+        "Element's background color could not be determined due to a pseudo element",
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         ".caret",
@@ -5447,8 +1985,8 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
-        "Element's background color could not be determined due to a pseudo element"
+        "Element's background color could not be determined due to a pseudo element",
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         ".caret",
@@ -5468,8 +2006,8 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
-        "Element's background color could not be determined due to a pseudo element"
+        "Element's background color could not be determined due to a pseudo element",
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         ".caret",
@@ -5489,8 +2027,8 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
-        "Element's background color could not be determined due to a pseudo element"
+        "Element's background color could not be determined due to a pseudo element",
+        "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
         ".caret",
@@ -5515,158 +2053,7 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our biggest asset is",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      283.875,
-      280,
-      81.5625
-     ],
-     "min": 3.21,
-     "at": [
-      75,
-      130,
-      171
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our biggest asset is",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      247.484375,
-      350,
-      54.375
-     ],
-     "min": 3.58,
-     "at": [
-      74,
-      121,
-      162
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our biggest asset is",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      275.015625,
-      720,
-      27.1875
-     ],
-     "min": 2.93,
-     "at": [
-      75,
-      137,
-      183
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our biggest asset is",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      288.890625,
-      720,
-      27.1875
-     ],
-     "min": 3.5,
-     "at": [
-      73,
-      123,
-      164
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our biggest asset is",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      174,
-      288.890625,
-      720,
-      27.1875
-     ],
-     "min": 4.34,
-     "at": [
-      72,
-      106,
-      146
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our biggest asset is",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      414,
-      288.890625,
-      720,
-      27.1875
-     ],
-     "min": 3.83,
-     "at": [
-      71,
-      116,
-      157
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 6,
     "clipped": [
@@ -5676,7 +2063,8 @@
     "clippedCount": 2,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "en/contact.html": {
    "axe": {
@@ -5690,7 +2078,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -5710,7 +2098,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -5730,7 +2118,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -5750,7 +2138,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node"
+        "Element's background color could not be determined due to a pseudo element"
        ],
        "examples": [
         ".caret",
@@ -5775,190 +2163,15 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "From a first convers",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      247.484375,
-      280,
-      135.9375
-     ],
-     "min": 3.28,
-     "at": [
-      73,
-      128,
-      171
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "From a first convers",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      247.484375,
-      350,
-      108.75
-     ],
-     "min": 3.33,
-     "at": [
-      73,
-      127,
-      169
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "From a first convers",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      275.015625,
-      720,
-      54.375
-     ],
-     "min": 3.41,
-     "at": [
-      74,
-      125,
-      167
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "From a first convers",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      288.890625,
-      720,
-      54.375
-     ],
-     "min": 3.52,
-     "at": [
-      71,
-      123,
-      163
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "From a first convers",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      94,
-      288.890625,
-      720,
-      54.375
-     ],
-     "min": 3.59,
-     "at": [
-      73,
-      121,
-      162
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "From a first convers",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      174,
-      288.890625,
-      720,
-      54.375
-     ],
-     "min": 3.93,
-     "at": [
-      72,
-      114,
-      154
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "From a first convers",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      414,
-      288.890625,
-      720,
-      54.375
-     ],
-     "min": 3.78,
-     "at": [
-      72,
-      117,
-      157
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 6,
     "clipped": [],
     "clippedCount": 0,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "en/index.html": {
    "axe": {
@@ -6104,7 +2317,7 @@
       118,
       181
      ],
-     "glyphPixels": 553
+     "glyphPixels": 545
     },
     {
      "width": 390,
@@ -6190,7 +2403,8 @@
      ],
      "glyphPixels": 1666
     }
-   ]
+   ],
+   "gradientTextSkipped": []
   },
   "en/research.html": {
    "axe": {
@@ -6204,7 +2418,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -6225,7 +2439,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -6246,7 +2460,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -6267,7 +2481,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -6288,7 +2502,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -6314,183 +2528,7 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our analysis and our",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      320.265625,
-      280,
-      135.9375
-     ],
-     "min": 3.25,
-     "at": [
-      73,
-      129,
-      171
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our analysis and our",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      283.875,
-      350,
-      108.75
-     ],
-     "min": 3.09,
-     "at": [
-      73,
-      133,
-      177
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our analysis and our",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      320.9375,
-      720,
-      54.375
-     ],
-     "min": 3.16,
-     "at": [
-      73,
-      131,
-      175
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our analysis and our",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      348.6875,
-      720,
-      54.375
-     ],
-     "min": 3.41,
-     "at": [
-      74,
-      125,
-      166
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our analysis and our",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      94,
-      348.6875,
-      720,
-      54.375
-     ],
-     "min": 3.68,
-     "at": [
-      73,
-      119,
-      160
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our analysis and our",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      174,
-      348.6875,
-      720,
-      54.375
-     ],
-     "min": 3.98,
-     "at": [
-      72,
-      113,
-      153
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Our analysis and our",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      414,
-      348.6875,
-      720,
-      54.375
-     ],
-     "min": 3.63,
-     "at": [
-      73,
-      120,
-      161
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 7,
     "clipped": [
@@ -6500,7 +2538,8 @@
     "clippedCount": 2,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "en/service-analysis.html": {
    "axe": {
@@ -6514,7 +2553,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -6535,7 +2574,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -6556,7 +2595,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -6577,7 +2616,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined due to a background gradient"
        ],
        "examples": [
@@ -6603,183 +2642,7 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "GPS, wellness report",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      283.875,
-      280,
-      217.5
-     ],
-     "min": 3.09,
-     "at": [
-      75,
-      133,
-      175
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "GPS, wellness report",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      283.875,
-      350,
-      163.125
-     ],
-     "min": 3.05,
-     "at": [
-      74,
-      134,
-      177
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "GPS, wellness report",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      275.015625,
-      720,
-      81.5625
-     ],
-     "min": 3.08,
-     "at": [
-      74,
-      133,
-      177
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "GPS, wellness report",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      288.890625,
-      720,
-      81.5625
-     ],
-     "min": 3.37,
-     "at": [
-      74,
-      126,
-      167
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "GPS, wellness report",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      94,
-      288.890625,
-      720,
-      81.5625
-     ],
-     "min": 3.59,
-     "at": [
-      73,
-      121,
-      162
-     ]
-    },
-    {
-     "width": 1440,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "GPS, wellness report",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      174,
-      288.890625,
-      720,
-      81.5625
-     ],
-     "min": 3.58,
-     "at": [
-      74,
-      121,
-      162
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "GPS, wellness report",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      414,
-      288.890625,
-      720,
-      81.5625
-     ],
-     "min": 4.03,
-     "at": [
-      71,
-      112,
-      153
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 8,
     "clipped": [
@@ -6788,7 +2651,8 @@
     "clippedCount": 1,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   },
   "en/service-platform.html": {
    "axe": {
@@ -6802,7 +2666,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined because it is overlapped by another element"
        ],
        "examples": [
@@ -6823,7 +2687,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined because it is overlapped by another element"
        ],
        "examples": [
@@ -6844,7 +2708,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined because it is overlapped by another element"
        ],
        "examples": [
@@ -6865,7 +2729,7 @@
        "help": "Elements must meet minimum color contrast ratio thresholds",
        "reasons": [
         "Element content contains only non-text characters",
-        "Element's background color could not be determined because element contains an image node",
+        "Element's background color could not be determined due to a pseudo element",
         "Element's background color could not be determined because it is overlapped by another element"
        ],
        "examples": [
@@ -6891,158 +2755,7 @@
      "over": []
     }
    },
-   "gradient": [
-    {
-     "width": 320,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Wellness, GPS, match",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      356.65625,
-      280,
-      108.75
-     ],
-     "min": 3.96,
-     "at": [
-      67,
-      114,
-      155
-     ]
-    },
-    {
-     "width": 390,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Wellness, GPS, match",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      20,
-      356.65625,
-      350,
-      81.5625
-     ],
-     "min": 3.79,
-     "at": [
-      71,
-      117,
-      157
-     ]
-    },
-    {
-     "width": 768,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Wellness, GPS, match",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      320.9375,
-      720,
-      54.375
-     ],
-     "min": 3.61,
-     "at": [
-      70,
-      121,
-      162
-     ]
-    },
-    {
-     "width": 1024,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Wellness, GPS, match",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      24,
-      348.6875,
-      720,
-      54.375
-     ],
-     "min": 4.24,
-     "at": [
-      72,
-      108,
-      147
-     ]
-    },
-    {
-     "width": 1280,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Wellness, GPS, match",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      94,
-      348.6875,
-      720,
-      54.375
-     ],
-     "min": 4.4,
-     "at": [
-      72,
-      105,
-      144
-     ]
-    },
-    {
-     "width": 1920,
-     "need": 4.5,
-     "sel": "p.lead",
-     "text": "Wellness, GPS, match",
-     "fg": [
-      207,
-      230,
-      245
-     ],
-     "size": 16,
-     "bold": false,
-     "rect": [
-      414,
-      348.6875,
-      720,
-      54.375
-     ],
-     "min": 4.14,
-     "at": [
-      71,
-      110,
-      150
-     ]
-    }
-   ],
+   "gradient": [],
    "spacing": {
     "before": 8,
     "clipped": [
@@ -7052,7 +2765,8 @@
     "clippedCount": 2,
     "pageOverflow": false
    },
-   "gradientText": []
+   "gradientText": [],
+   "gradientTextSkipped": []
   }
  },
  "summary": {
@@ -7060,100 +2774,113 @@
   "incomplete": 3569,
   "incompleteByReason": {
    "Element content contains only non-text characters": 3382,
-   "Element's background color could not be determined due to a background gradient": 2069,
-   "Element's background color could not be determined because element contains an image node": 3526,
+   "Element's background color could not be determined due to a background gradient": 2900,
+   "Element's background color could not be determined because element contains an image node": 1494,
    "Element's background color could not be determined because it is overlapped by another element": 792,
-   "Element's background color could not be determined due to a pseudo element": 820,
-   "Element content is too short to determine if it is actual text content": 68
+   "Element's background color could not be determined due to a pseudo element": 2045
   },
   "reflow320Fail": [],
-  "gradientFail": [
-   "company.html 18件（最小 3.13:1）",
-   "contact.html 10件（最小 3.36:1）",
-   "demo.html 18件（最小 3.08:1）",
-   "guide.html 20件（最小 2.71:1）",
-   "news.html 5件（最小 4.06:1）",
-   "pricing.html 15件（最小 3.25:1）",
-   "research.html 23件（最小 3.25:1）",
-   "service-analysis.html 22件（最小 3.04:1）",
-   "service-platform.html 7件（最小 3.97:1）",
-   "en/company.html 6件（最小 2.93:1）",
-   "en/contact.html 7件（最小 3.28:1）",
-   "en/research.html 7件（最小 3.09:1）",
-   "en/service-analysis.html 7件（最小 3.05:1）",
-   "en/service-platform.html 6件（最小 3.61:1）"
-  ],
+  "gradientFail": [],
   "spacingClipped": [],
-  "gradientTextFail": [
+  "gradientTextFail": [],
+  "gradientTextSkipped": [
    {
     "page": "philosophy.html",
     "width": 320,
     "sel": "div.wm",
     "text": "Odonata",
-    "size": 34,
-    "need": 3,
-    "ratio": 1.27,
-    "worst": "#1A2E4D"
+    "reason": "opacity:0"
+   },
+   {
+    "page": "philosophy.html",
+    "width": 320,
+    "sel": "span.np",
+    "text": "複眼で読む。",
+    "reason": "opacity:0"
    },
    {
     "page": "philosophy.html",
     "width": 390,
     "sel": "div.wm",
     "text": "Odonata",
-    "size": 34,
-    "need": 3,
-    "ratio": 1.84,
-    "worst": "#304864"
+    "reason": "opacity:0"
+   },
+   {
+    "page": "philosophy.html",
+    "width": 390,
+    "sel": "span.np",
+    "text": "複眼で読む。",
+    "reason": "opacity:0"
    },
    {
     "page": "philosophy.html",
     "width": 768,
     "sel": "div.wm",
     "text": "Odonata",
-    "size": 54,
-    "need": 3,
-    "ratio": 1.33,
-    "worst": "#193252"
+    "reason": "opacity:0"
+   },
+   {
+    "page": "philosophy.html",
+    "width": 768,
+    "sel": "span.np",
+    "text": "複眼で読む。",
+    "reason": "opacity:0"
    },
    {
     "page": "philosophy.html",
     "width": 1024,
     "sel": "div.wm",
     "text": "Odonata",
-    "size": 72,
-    "need": 3,
-    "ratio": 1.21,
-    "worst": "#132B4B"
+    "reason": "opacity:0"
+   },
+   {
+    "page": "philosophy.html",
+    "width": 1024,
+    "sel": "span.np",
+    "text": "複眼で読む。",
+    "reason": "opacity:0"
    },
    {
     "page": "philosophy.html",
     "width": 1280,
     "sel": "div.wm",
     "text": "Odonata",
-    "size": 72,
-    "need": 3,
-    "ratio": 1.05,
-    "worst": "#091F3F"
+    "reason": "opacity:0"
+   },
+   {
+    "page": "philosophy.html",
+    "width": 1280,
+    "sel": "span.np",
+    "text": "複眼で読む。",
+    "reason": "opacity:0"
    },
    {
     "page": "philosophy.html",
     "width": 1440,
     "sel": "div.wm",
     "text": "Odonata",
-    "size": 72,
-    "need": 3,
-    "ratio": 1.13,
-    "worst": "#0D2546"
+    "reason": "opacity:0"
+   },
+   {
+    "page": "philosophy.html",
+    "width": 1440,
+    "sel": "span.np",
+    "text": "複眼で読む。",
+    "reason": "opacity:0"
    },
    {
     "page": "philosophy.html",
     "width": 1920,
     "sel": "div.wm",
     "text": "Odonata",
-    "size": 72,
-    "need": 3,
-    "ratio": 1.12,
-    "worst": "#0E2545"
+    "reason": "opacity:0"
+   },
+   {
+    "page": "philosophy.html",
+    "width": 1920,
+    "sel": "span.np",
+    "text": "複眼で読む。",
+    "reason": "opacity:0"
    }
   ]
  }
