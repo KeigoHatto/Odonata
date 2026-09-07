@@ -110,6 +110,7 @@
 | 6 | 下層ページのセクション見直し | Phase 1〜6 は TOP のみを対象とした。approach / service-analysis / service-platform の内部構成は v1 時点のまま |
 | 7 | デザイントークンの完全移行 | `--sub` `--blue` などの旧変数はエイリアスとして残している。既存クラスの参照を新トークンへ置き換える作業が残っている |
 | 8 | 個別記事ページ `/news/{slug}.html` | 未着手（v1 の Phase 2 として保留中） |
+| 9 | スクロール連動レイヤーの検査 | `philosophy.html` の `.zlayer.lockup` は初期状態 `opacity:0` のため自動検査の対象外にしている（`summary.gradientTextSkipped` に7幅×2要素＝14件で記録される）。**表示された状態でのコントラストは人の目で確認する必要がある。** `.wm` は `linear-gradient(100deg,#fff,#9fe2ff 55%,#3FC8F0)`、`.jp .grad` は `linear-gradient(100deg,#3FC8F0,#9fe2ff)`、地は `--bg:#071A3A`（＋ `#bgNet` の canvas） |
 
 ---
 

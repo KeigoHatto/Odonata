@@ -242,19 +242,41 @@ for (const f of pages) {
   // （全体に color:transparent を注入すると、background-clip が border-box に戻って
   //   グラデーションが矩形として描かれてしまい、差分がグリフを表さない）
   R.gradientText = [];
+  R.gradientTextSkipped = [];
   for (const w of GRAD_WIDTHS) {
     await page.setViewport({ width: w, height: 900 });
     await new Promise(r => setTimeout(r, 150));
     await page.evaluate(() => window.scrollTo(0, 0));
-    const targets = await page.evaluate(() => {
+    const found = await page.evaluate(() => {
       const parse = s => (s.match(/\d+(\.\d+)?/g) || []).slice(0, 4).map(Number);
-      const out = [];
+      // 祖先まで見て、実際に描画されていない要素は測らない。
+      // philosophy.html の .zlayer.lockup のようなスクロール連動レイヤーは
+      // 初期状態で opacity:0 なので、background-clip:text の実描画が背景と一致し、
+      // 比が 1.0 付近に落ちて誤検知になる。
+      const notRendered = (el) => {
+        for (let n = el; n && n !== document.documentElement; n = n.parentElement) {
+          const cs = getComputedStyle(n);
+          if (cs.display === 'none') return 'display:none';
+          if (cs.visibility === 'hidden') return 'visibility:hidden';
+          if (parseFloat(cs.opacity) === 0) return 'opacity:0';
+          if (cs.contentVisibility === 'hidden') return 'content-visibility:hidden';
+        }
+        return null;
+      };
+      const out = [], skipped = [];
       let i = 0;
       for (const el of document.querySelectorAll('*')) {
         const cs = getComputedStyle(el);
         const clip = cs.webkitBackgroundClip || cs.backgroundClip;
         if (clip !== 'text') continue;
         if (!(el.textContent || '').trim()) continue;
+        // 測らなかったものを握りつぶさない。「検査していない」と「合格した」は別物。
+        const reason = notRendered(el);
+        if (reason) {
+          skipped.push({ sel: el.tagName.toLowerCase() + '.' + String(el.className || '').trim().split(/\s+/)[0],
+            text: el.textContent.trim().slice(0, 24), reason });
+          continue;
+        }
         const r = el.getBoundingClientRect();
         if (r.width < 2 || r.height < 2 || r.top < 0 || r.bottom > window.innerHeight) continue;
         // 背後の背景色（背景を持つ最初の祖先）
@@ -272,8 +294,10 @@ for (const f of pages) {
         i++;
       }
       function NEED_IN_PAGE(size, bold) { return (size >= 24 || (bold && size >= 18.66)) ? 3 : 4.5; }
-      return out;
+      return { out, skipped };
     });
+    const targets = found.out;
+    for (const s of found.skipped) R.gradientTextSkipped.push({ width: w, ...s });
     for (const t of targets) {
       const clip = { x: t.rect[0], y: t.rect[1], width: t.rect[2], height: t.rect[3] };
       if (clip.width < 2 || clip.height < 2) continue;
@@ -325,7 +349,7 @@ server.close();
 
 // ───── 集計 ─────
 const hex = a => a ? '#' + a.map(v => v.toString(16).padStart(2, '0')).join('').toUpperCase() : null;
-let vTotal = 0, iTotal = 0, reflowFail = [], gradFail = [], spacingFail = [], gradTextFail = [];
+let vTotal = 0, iTotal = 0, reflowFail = [], gradFail = [], spacingFail = [], gradTextFail = [], gradTextSkipped = [];
 const incByReason = {};
 for (const [f, R] of Object.entries(report.pages)) {
   for (const [state, r] of Object.entries(R.axe)) {
@@ -344,10 +368,12 @@ for (const [f, R] of Object.entries(report.pages)) {
       size: Math.round(g.size), need: g.need, ratio: g.min,
       worst: '#' + g.worst.map(v => v.toString(16).padStart(2, '0')).join('').toUpperCase() });
   }
+  for (const s of (R.gradientTextSkipped || []))
+    gradTextSkipped.push({ page: f, width: s.width, sel: s.sel, text: s.text, reason: s.reason });
 }
 report.summary = { violations: vTotal, incomplete: iTotal, incompleteByReason: incByReason,
   reflow320Fail: reflowFail, gradientFail: gradFail, spacingClipped: spacingFail,
-  gradientTextFail: gradTextFail };
+  gradientTextFail: gradTextFail, gradientTextSkipped: gradTextSkipped };
 
 console.log('\n──────── 集計 ────────');
 console.log('対象 ' + pages.length + 'ページ × ' + Object.keys(report.pages[pages[0]].axe).length + '状態');
@@ -361,6 +387,10 @@ console.log('文字間隔(1.4.12)で切れ  : ' + (spacingFail.length ? spacingF
 // background-clip:text のグラデーション文字。グリフの実描画ピクセルで判定する（§28-6）
 console.log('グラデ文字(背景切り抜き)  : ' + (gradTextFail.length
   ? gradTextFail.length + '件  ' + gradTextFail.slice(0, 4).map(g => g.page + '@' + g.width + 'px ' + g.sel + ' ' + g.ratio + ':1(要' + g.need + ')').join(' / ')
+  : 'なし'));
+// 測っていないものは「合格」ではない。件数を必ず出して、人の目での確認に回す。
+console.log('  うち未検査(非表示)    : ' + (gradTextSkipped.length
+  ? gradTextSkipped.length + '件  ' + [...new Set(gradTextSkipped.map(g => g.page + ' ' + g.sel + '(' + g.reason + ')'))].join(' / ') + '  ← 表示された状態は人の目で確認する'
   : 'なし'));
 
 writeFileSync(join(ROOT, 'docs/a11y-report.json'), JSON.stringify(report, null, 1));
