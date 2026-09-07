@@ -145,6 +145,13 @@
   /* layout */
   .glayout{display:grid;grid-template-columns:248px 1fr;gap:42px;align-items:start;padding:48px 0 96px}
   @media(max-width:920px){.glayout{grid-template-columns:1fr;gap:24px}}
+  /* 本文側にも min-width:0 が要る。グリッド項目の自動最小サイズは min-content で、
+     word-break:auto-phrase の最長フレーズ（このページでは 366px）がそのまま下限に
+     なる。overflow-wrap:break-word は実際の改行はしても min-content は縮めない
+     （縮むのは anywhere）。そのため 320px でも 1fr のトラックが 410px に広がり、
+     ページ全体が 430px まで横に伸びていた。下限を外せば、body の
+     overflow-wrap:break-word が幅の中で折り返してくれる。 */
+  .glayout > main{min-width:0}
   .toc{min-width:0;position:sticky;top:90px}
   @media(max-width:920px){.toc{position:static}}
   .toc-card{min-width:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;box-shadow:var(--shadow)}
@@ -160,11 +167,17 @@
   .doc{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px 44px;box-shadow:var(--shadow);margin-bottom:26px;scroll-margin-top:84px}
   @media(max-width:560px){.doc{padding:28px 22px}.doc h2{font-size:21px}.doc h3{font-size:16.5px}.wrap{padding:0 20px}}
   .doc-h{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  /* h2 はフレックス項目なので自動最小サイズが min-content になり、320px で
+     アイコンぶんを差し引いた幅（176px）まで縮まず 223px のまま外へ出ていた。 */
+  .doc-h h2{min-width:0}
   .doc-h .dh-ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:24px;color:var(--blue);background:linear-gradient(135deg,#E0F5FD,#CCE9F6);flex:none}
   .doc h2{font-size:25px;font-weight:800;color:var(--navy);letter-spacing:-.01em}
   .doc .sub{color:var(--sub);font-size:14px;margin:2px 0 22px;padding-left:60px}
   @media(max-width:560px){.doc .sub{padding-left:0}}
-  .doc h3{font-size:18px;font-weight:800;color:var(--navy);margin:28px 0 10px;display:flex;align-items:center;gap:9px}
+  /* 見出しの中の .np（auto-phrase 非対応ブラウザ向けの文節ユニット）は、
+     h3 が display:flex なのでフレックス項目になる。折り返しを許さないと
+     320px で一列のまま外へ出ていく。行間が開かないよう row-gap は 0。 */
+  .doc h3{font-size:18px;font-weight:800;color:var(--navy);margin:28px 0 10px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;row-gap:0}
   .doc h3 svg.ic{font-size:19px;color:var(--blue)}
   .doc h3:first-of-type{margin-top:8px}
   .doc p{font-size:15px;margin-bottom:12px}
@@ -184,6 +197,22 @@
   .tbl th{background:#EAF7FF;color:var(--navy);font-weight:700;text-align:left;padding:11px 14px;font-size:13px}
   .tbl td{padding:11px 14px;border-top:1px solid var(--border);vertical-align:top}
   .tbl tr:nth-child(even) td{background:#F7FCFE}
+  /* このページは site.css を読み込んでいないので、560px 以下の横スクロール規則が
+     そもそも無い。表が21個あり 320px で本文ごと横に伸びるため、site.css と同じ
+     ものをここに置く。§7-7：スクロールできることを影で示す。
+     （site.css を通したら重複するので、そのときに削除する） */
+  @media(max-width:560px){
+    .tbl{display:block;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+         background-image:
+           linear-gradient(to right,var(--card),rgba(255,255,255,0)),
+           linear-gradient(to left,var(--card),rgba(255,255,255,0)),
+           linear-gradient(to right,rgba(11,42,91,.18),rgba(11,42,91,0)),
+           linear-gradient(to left,rgba(11,42,91,.18),rgba(11,42,91,0));
+         background-position:0 0,100% 0,0 0,100% 0;
+         background-repeat:no-repeat;
+         background-size:26px 100%,26px 100%,13px 100%,13px 100%;
+         background-attachment:local,local,scroll,scroll}
+  }
   .req{display:inline-block;background:#FEF2F2;color:#c0392b;font-size:11px;font-weight:700;padding:1px 8px;border-radius:6px;border:1px solid #FECACA}
   .opt{display:inline-block;background:#F2FBFE;color:var(--sub);font-size:11px;font-weight:700;padding:1px 8px;border-radius:6px;border:1px solid var(--border)}
 
