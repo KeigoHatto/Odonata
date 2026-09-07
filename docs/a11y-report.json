@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-07T16:55:39.932Z",
+ "generatedAt": "2026-09-07T17:24:27.742Z",
  "pages": {
   "approach.html": {
    "axe": {
@@ -768,7 +768,7 @@
       123,
       185
      ],
-     "glyphPixels": 850
+     "glyphPixels": 853
     },
     {
      "width": 1280,
@@ -782,7 +782,7 @@
       122,
       185
      ],
-     "glyphPixels": 960
+     "glyphPixels": 964
     },
     {
      "width": 1440,
@@ -2317,7 +2317,7 @@
       118,
       181
      ],
-     "glyphPixels": 545
+     "glyphPixels": 553
     },
     {
      "width": 390,
@@ -2359,7 +2359,7 @@
       121,
       184
      ],
-     "glyphPixels": 1415
+     "glyphPixels": 1382
     },
     {
      "width": 1280,
