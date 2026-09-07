@@ -138,6 +138,14 @@
   .history{max-width:640px;margin:40px auto 0;list-style:none}
   .history li{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid var(--border);font-size:14.5px}
   .history li .y{font-weight:800;color:var(--color-primary-strong);font-family:'Manrope',sans-serif}
+  /* 320px でページが 324px まで横に伸びていた原因。グリッド項目の自動最小サイズ
+     （min-width:auto）は min-content になるが、site.css の word-break:auto-phrase で
+     最長フレーズ「データプラットフォームの」が 174px あり、1fr のトラックを
+     押し広げていた。min-width:0 でその下限を外し、body の overflow-wrap:break-word
+     に任せてトラックの中で折り返させる。max-width:100% では効かない（グリッドの
+     トラック計算中は割合が不定として扱われるため）。
+     word-break:break-all は日本語で使わない（§20）。 */
+  .history li > span{min-width:0}
   /* ビジョン */
   .vision{max-width:820px;margin:44px auto 0;text-align:center;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:48px clamp(24px,4vw,56px)}
   .vision p{font-size:clamp(17px,2.4vw,22px);font-weight:800;color:var(--navy);line-height:2}
@@ -400,7 +408,10 @@
 
       <h2 class="section-title">会社概要</h2>
     </div>
-    <div class="co-tbl tbl-scroll">
+    <!-- 横スクロールする器はこの div（.tbl-scroll）で、表自体は min-width:560px で
+         中に収まっている。キーボードでもスクロールできるよう、器のほうを
+         フォーカス可能にして名前を付ける（§7-7 / WCAG 2.1.1）。 -->
+    <div class="co-tbl tbl-scroll" tabindex="0" role="region" aria-label="会社概要">
       <table class="tbl">
         <tr><th>名称</th><td>Odonata（オドナータ）</td></tr>
         <tr><th>法人設立</th><td>株式会社としての設立を準備中です（2027年 設立予定）</td></tr>
