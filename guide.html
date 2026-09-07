@@ -71,6 +71,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- 共通スタイルを読み込む。CSS は後勝ちなので、下の <style> が site.css を
+     上書きする。段階的に重複を site.css へ寄せるための1段目（§18-4）。 -->
+<link rel="stylesheet" href="assets/site.css">
 <style>
   :root{
     /* --sub は #5A7A8A だったが、このページで実際に載る3面のうち #E0F5FD で 4.07:1、
@@ -351,7 +354,37 @@
   .skip-link{position:absolute;left:16px;top:-64px;z-index:200;background:#fff;color:var(--navy);font-size:14px;font-weight:800;padding:12px 20px;border-radius:0 0 10px 10px;border:2px solid #1A1A1C;box-shadow:0 0 0 4px #FFDF3F;transition:top .15s}
   .skip-link:focus{top:0}
   :focus-visible{outline:2px solid #1A1A1C;outline-offset:0;box-shadow:0 0 0 4px #FFDF3F}
+  /* ══ 34-1 の打ち消し ══════════════════════════════════════
+     site.css を読み込んだことで、このページ独自のヘッダーと本文に
+     site.css 側の規則が効き始める。この段は「読み込むだけで見た目は変えない」
+     ので、元の値を詳細度を上げて置き直す。!important は使わない（§18-4）。
+     ここは 34-2 以降で「site.css から降ってくる形」に置き換えて消す。 */
+
+  /* site.css の .nav-links>a（0,1,1）が、ページ側の .nav-cta / .nav-login
+     （0,1,0）から背景・余白・枠線・表示形式を奪うため、置き直す。
+     このページのヘッダーは partials 非対象の独自実装で、ボタン2つが
+     .nav-links の直下にある（site.css は .nav-actions の中を想定している）。 */
+  /* site.css の .nav は gap:18px を持つ。このページの .nav は gap 指定が無く、
+     1024px 付近ではこの 18px ぶんだけリンク列が狭くなる。 */
+  .nav{gap:normal}
+  .nav-links>a{display:inline;gap:normal;white-space:normal;flex-shrink:1;align-items:normal}
+  .nav-links>a.nav-cta{display:inline-flex;gap:7px;white-space:normal;flex-shrink:1;align-items:center;
+    height:auto;padding:9px 18px;background:var(--navy);border:none}
+  .nav-links>a.nav-cta:hover{background:#0A5E93}
+  .nav-links>a.nav-login{display:inline-flex;gap:7px;white-space:normal;flex-shrink:1;align-items:center;
+    height:auto;padding:8px 18px;background:none;border:1.5px solid var(--navy)}
+  .nav-links>a.nav-login:hover{background:var(--navy)}
+  .nav-toggle{line-height:normal}
+  /* site.css は現在地リンクに下線（box-shadow）を足す。このページには無かった。 */
+  .nav-links>a.active{box-shadow:none}
+
+  /* site.css の .note は --note（#4B5563）。このページは --text を継いでいた。 */
+  .note{color:var(--text)}
+
+  /* site.css は 560px 以下で body を 15px にするが、このページは 16px だった。 */
+  @media(max-width:560px){body{font-size:16px}}
 </style>
+
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
