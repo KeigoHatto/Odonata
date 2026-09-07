@@ -127,6 +127,13 @@
   /* page hero */
   .ghero{background:var(--grad-hero);color:#fff;padding:64px 0 70px;position:relative;overflow:hidden}
   .ghero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.4}
+  /* --grad-hero 自体は #CFE6F5 に対して 5.19:1 で足りている。基準を割るのは
+     この上の netbg canvas が実描画を rgb(84,138,177) まで明るくするため。
+     canvas（z-index:0）と .wrap（z-index:2）の間に暗幕を1枚入れる。
+     rgb(84,138,177) に rgba(7,26,58,.35) を重ねると実効 rgb(57,99,135)、
+     #CFE6F5 との比は 4.94:1。site.css の .phero::after と同じ値。 */
+  .ghero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:rgba(7,26,58,.35)}
   .ghero .wrap{position:relative;z-index:2}
   /* パンくずリスト（§7-9）。このページは site.css を読み込まず --color-* トークンも
      持たないため、site.css と同じ値を実値で書いている。
