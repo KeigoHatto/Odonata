@@ -86,9 +86,11 @@
   .pcard .pv{font-size:24px;font-weight:800;color:var(--navy);margin:10px 0 12px;line-height:1.4}
   .pcard > p{font-size:14.5px;color:var(--sub);line-height:1.9}
   .pcard ul{list-style:none;margin-top:18px}
-  .pcard li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--sub);
-    line-height:1.8;padding:9px 0;border-top:1px solid var(--bg)}
-  .pcard li svg.ic{color:var(--blue);flex-shrink:0;font-size:17px;margin-top:4px}
+  /* flex にすると <b> と後続テキストが別アイテムになり2列に割れるため、li は通常の段落として流し、
+     アイコンだけを左の余白（17px＋間隔10px）に絶対配置する */
+  .pcard li{position:relative;font-size:14px;color:var(--sub);
+    line-height:1.8;padding:9px 0 9px 27px;border-top:1px solid var(--bg)}
+  .pcard li svg.ic{position:absolute;left:0;top:9px;color:var(--blue);font-size:17px;margin-top:4px}
   .pcard li b{color:var(--navy)}
 </style>
 <script type="application/ld+json">
