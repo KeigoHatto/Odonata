@@ -192,7 +192,7 @@ Odonata のサイトは、サッカーの現場に散らばるデータをつな
 | 順位 | ラベル | スタイル | リンク先 |
 | --- | --- | --- | --- |
 | 3位 | ログイン | 淡いブルー塗り・枠線なし | `https://app.getodonata.com/login` |
-| **1位** | **デモを見る** | **塗り（`--color-primary-strong`）・白文字** | `demo.html` |
+| **1位** | **デモを見る** | **塗り（`--color-primary-strong`）・白文字** | デモ環境（`DEMO_URL`・新しいタブ） |
 | 2位 | 資料請求・お問い合わせ | 白地・濃紺1.5px枠線 | `contact.html` |
 
 - **MUST**：3つの高さ（38px）・角丸（999px）・左右パディング（18px）を揃える。
@@ -211,9 +211,13 @@ Odonata のサイトは、サッカーの現場に散らばるデータをつな
 
 | CTA | 用途 | 遷移先 |
 | --- | --- | --- |
-| **デモを見る** | 第1CTA。その場で操作できるデモへ | `demo.html` |
+| **デモを見る** | 第1CTA。その場で操作できるデモ環境へ直接遷移 | デモ環境（`DEMO_URL`） |
 | **資料請求・お問い合わせ** | 第2CTA。フォームへ | `contact.html` |
 
+- **MUST**：デモ環境のURLは `tools/build-partials.mjs` の `DEMO_URL` だけで管理する。パーシャルでは `{{DEMO_URL}}`、本文では `<a data-demo="位置">` と書き、URLを直接書かない（`node tools/build-partials.mjs` で同期される）。
+- **MUST**：デモ環境は外部サービスのため `target="_blank" rel="noopener"` とし、`<span class="sr-only">（新しいタブで開きます）</span>` で新しいタブで開くことを伝える。アイコンは使わない。
+- **MUST**：`data-demo` の値は GA4 `demo_click` の `location` になる（`nav` / `hero` / `cta_bottom` / `footer` / `demo_page` / `contact`）。
+- `demo.html` はデモ環境の画面紹介ページとして残す（サイトマップ・「画面紹介」導線のみから参照する）。
 - **MUST**：「サービス資料をダウンロード」「導入相談」「見積もり・相談する」「デモ・トライアルを相談する」等の別表記を作らない。
 - **MUST**：ダウンロードアイコンを使わない。フォーム送信後に即時DLされないため、実態と一致しない。
 - **SHOULD**：1ページあたりの CTA は1〜2種類まで。同じページ内に同義のボタンを3つ以上置かない。
