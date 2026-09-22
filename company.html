@@ -55,7 +55,7 @@
       if (!a) { return; }
       var href = a.getAttribute('href') || '';
       /* 遷移は妨げない。イベントを送るだけ */
-      /* デモ環境（外部）への直リンク。位置は data-demo の値（nav / hero / cta_bottom / footer / demo_page）。
+      /* デモ環境（外部）への直リンク。位置は data-demo の値（nav / hero / cta_bottom / footer / demo_page / contact）。
          URLではなく属性で判定するのは、デモURLを tools/build-partials.mjs の1か所だけで管理するため */
       if (a.hasAttribute('data-demo')) { send('demo_click', { location: a.getAttribute('data-demo') }); }
       /* 画面紹介ページ（demo.html）への導線 */
