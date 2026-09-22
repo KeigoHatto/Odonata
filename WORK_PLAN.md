@@ -181,3 +181,18 @@ v1 で構築した構造の上に、ブランド表現を「サッカー向けSa
 
 主なもの：`/news/{slug}.html` 個別記事、News と Column の分離、`/research.html` の研究・分析例セクション、
 `/service-analysis.html` の分析例③、実証現場写真、デモ環境の本実装、構造化データ、OGP個別設定、英語版 `/en/`。
+
+---
+
+## 1.8｜Phase 35（指示書 v16：「デモを見る」をデモ環境へ直リンク）
+
+指示書：`docs/Odonata_ClaudeCode_指示書_v16_デモ直リンクと残課題.md`。デモURL：`https://odonata-demo.onrender.com/login`
+
+### タスク
+
+- [ ] **P35-1** デモURLを1か所（`tools/build-partials.mjs` の `DEMO_URL`）で管理し、パーシャルと本文CTAへ同期できるようにする
+- [ ] **P35-2** ナビ・フッター（パーシャル）の「デモを見る」をデモURLへ（新しいタブ・`.sr-only` で告知）
+- [ ] **P35-3** 本文（Hero・ページ末CTA）の「デモを見る」をデモURLへ
+- [ ] **P35-4** GA4 `demo_click` イベント（`location`：nav / hero / cta_bottom / footer / demo_page）
+- [ ] **P35-5** `demo.html` を画面紹介ページとして文言更新（上部に「今すぐデモを触る」）
+- [ ] **P35-6** en版の確認（同等のCTAがあれば同じ変更＋「The demo is in Japanese.」）
