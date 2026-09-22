@@ -13,6 +13,10 @@
  *   <!-- #partial:icons  -->  ...  <!-- /#partial:icons  -->
  *
  * guide.html / philosophy.html は独自スタイルの単独ページのため対象外。
+ *
+ * デモ環境のURLは下の DEMO_URL だけで管理する。パーシャル内は {{DEMO_URL}} と書き、
+ * 本文のリンクは <a data-demo="位置" href="..."> と書けば href をここで上書きする。
+ * data-demo の値は GA4 の demo_click イベントの location にも使う（partials/analytics.html）。
  */
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -30,6 +34,8 @@ const OPTIONAL = ['acwr', 'analytics'];
 // en/ 配下には -en 版を同期する。マーカー名は日本語版と同じままにして、
 // 出力先のパスだけで切り替える（マーカー名を分けると保守が二重になるため）。
 const LOCALIZED = new Set(['header', 'footer']);
+// デモ環境（外部サービス）。URLが変わったらここだけを書き換えて同期を実行する
+const DEMO_URL = 'https://odonata-demo.onrender.com/login';
 
 // 日本語版 ↔ 英語版の対応表。ここに無いページには言語切替を出さない
 // （存在しないURLへリンクしないため。§14-5 MUST）
@@ -91,9 +97,14 @@ for (const page of pages) {
     // en/ 配下には -en 版を入れる。マーカー名は日本語版と同じままにして、
     // 出力先のパスだけで切り替える
     const body = (isEn && LOCALIZED.has(name) ? bodiesEn[name] : bodies[name])
-      .replaceAll('{{LANG_SWITCH}}', langSwitch(page));
+      .replaceAll('{{LANG_SWITCH}}', langSwitch(page))
+      .replaceAll('{{DEMO_URL}}', DEMO_URL);
     after = after.replace(re, `$1\n${body}\n$2`);
   }
+
+  // 本文のデモ導線はマーカーの外にあるため、data-demo 付きの <a> の href だけを揃える
+  after = after.replace(/<a\b[^>]*\bdata-demo="[^"]*"[^>]*>/g,
+    (tag) => tag.replace(/\shref="[^"]*"/, ` href="${DEMO_URL}"`));
 
   if (after !== before) {
     changed.push(page);

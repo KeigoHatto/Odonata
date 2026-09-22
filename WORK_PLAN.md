@@ -190,7 +190,7 @@ v1 で構築した構造の上に、ブランド表現を「サッカー向けSa
 
 ### タスク
 
-- [ ] **P35-1** デモURLを1か所（`tools/build-partials.mjs` の `DEMO_URL`）で管理し、パーシャルと本文CTAへ同期できるようにする
+- [x] **P35-1** デモURLを1か所（`tools/build-partials.mjs` の `DEMO_URL`）で管理し、パーシャルと本文CTAへ同期できるようにする
 - [ ] **P35-2** ナビ・フッター（パーシャル）の「デモを見る」をデモURLへ（新しいタブ・`.sr-only` で告知）
 - [ ] **P35-3** 本文（Hero・ページ末CTA）の「デモを見る」をデモURLへ
 - [ ] **P35-4** GA4 `demo_click` イベント（`location`：nav / hero / cta_bottom / footer / demo_page）
