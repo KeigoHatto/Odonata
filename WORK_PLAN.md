@@ -209,5 +209,5 @@ v1 で構築した構造の上に、ブランド表現を「サッカー向けSa
 - [x] **P36-1** 【バグ】「費用の考え方」カードの箇条書きで、太字と通常テキストが2列に割れる問題を修正（`.pcard li` の `display:flex`）
 - [x] **P36-2** `pricing.html` 本文のコピー差し替え（H1・リード・カード1/2・金額の掲示について・流れ・注記）
 - [x] **P36-3** `pricing.html` の meta description / OG description を同じトーンに
-- [ ] **P36-4** 他ページの「お見積り」「月額制」表記をそろえる（index 最終CTA・contact・service-analysis）
+- [x] **P36-4** 他ページの「お見積り」「月額制」表記をそろえる（index 最終CTA・contact・service-analysis）
 - [ ] **P36-5** en版：`en/pricing.html` は無い。同じ文言の英語（"a quote" 等）を同じ方針にそろえる
