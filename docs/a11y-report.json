@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-07T17:36:30.414Z",
+ "generatedAt": "2026-09-22T09:55:53.386Z",
  "pages": {
   "approach.html": {
    "axe": {
@@ -125,12 +125,13 @@
    },
    "gradient": [],
    "spacing": {
-    "before": 7,
+    "before": 10,
     "clipped": [
+     "span.sr-only",
      "h2.sr-only",
      "div.cta.reveal"
     ],
-    "clippedCount": 2,
+    "clippedCount": 5,
     "pageOverflow": true
    },
    "gradientText": [],
@@ -239,12 +240,13 @@
    },
    "gradient": [],
    "spacing": {
-    "before": 7,
+    "before": 10,
     "clipped": [
+     "span.sr-only",
      "div.phil.reveal",
      "div.cta.reveal"
     ],
-    "clippedCount": 2,
+    "clippedCount": 5,
     "pageOverflow": true
    },
    "gradientText": [],
@@ -350,9 +352,11 @@
    },
    "gradient": [],
    "spacing": {
-    "before": 6,
-    "clipped": [],
-    "clippedCount": 0,
+    "before": 8,
+    "clipped": [
+     "span.sr-only"
+    ],
+    "clippedCount": 2,
     "pageOverflow": true
    },
    "gradientText": [],
@@ -461,11 +465,12 @@
    },
    "gradient": [],
    "spacing": {
-    "before": 5,
+    "before": 8,
     "clipped": [
+     "span.sr-only",
      "div.cta.reveal"
     ],
-    "clippedCount": 1,
+    "clippedCount": 4,
     "pageOverflow": false
    },
    "gradientText": [],
@@ -706,11 +711,12 @@
    },
    "gradient": [],
    "spacing": {
-    "before": 20,
+    "before": 24,
     "clipped": [
+     "span.sr-only",
      "caption.sr-only"
     ],
-    "clippedCount": 1,
+    "clippedCount": 5,
     "pageOverflow": true
    },
    "gradientText": [
@@ -762,13 +768,13 @@
      "text": "データ分析",
      "size": 43.008,
      "need": 3,
-     "min": 4.1,
+     "min": 4.14,
      "worst": [
-      12,
-      123,
+      13,
+      122,
       185
      ],
-     "glyphPixels": 853
+     "glyphPixels": 851
     },
     {
      "width": 1280,
@@ -1030,11 +1036,12 @@
    },
    "gradient": [],
    "spacing": {
-    "before": 5,
+    "before": 8,
     "clipped": [
+     "span.sr-only",
      "div.cta.reveal"
     ],
-    "clippedCount": 1,
+    "clippedCount": 4,
     "pageOverflow": false
    },
    "gradientText": [],
@@ -1339,11 +1346,12 @@
    },
    "gradient": [],
    "spacing": {
-    "before": 7,
+    "before": 9,
     "clipped": [
+     "span.sr-only",
      "div.cta.reveal"
     ],
-    "clippedCount": 1,
+    "clippedCount": 3,
     "pageOverflow": false
    },
    "gradientText": [],
@@ -1446,9 +1454,11 @@
    },
    "gradient": [],
    "spacing": {
-    "before": 4,
-    "clipped": [],
-    "clippedCount": 0,
+    "before": 6,
+    "clipped": [
+     "span.sr-only"
+    ],
+    "clippedCount": 2,
     "pageOverflow": false
    },
    "gradientText": [],
@@ -1578,12 +1588,13 @@
    },
    "gradient": [],
    "spacing": {
-    "before": 7,
+    "before": 10,
     "clipped": [
+     "span.sr-only",
      "caption.sr-only",
      "div.cta.reveal"
     ],
-    "clippedCount": 2,
+    "clippedCount": 5,
     "pageOverflow": true
    },
    "gradientText": [],
@@ -1692,12 +1703,13 @@
    },
    "gradient": [],
    "spacing": {
-    "before": 10,
+    "before": 12,
     "clipped": [
+     "span.sr-only",
      "div.roi.reveal",
      "div.cta.reveal"
     ],
-    "clippedCount": 2,
+    "clippedCount": 4,
     "pageOverflow": true
    },
    "gradientText": [],
@@ -1806,12 +1818,13 @@
    },
    "gradient": [],
    "spacing": {
-    "before": 9,
+    "before": 12,
     "clipped": [
+     "span.sr-only",
      "div.custom-band.reveal",
      "div.cta.reveal"
     ],
-    "clippedCount": 2,
+    "clippedCount": 5,
     "pageOverflow": true
    },
    "gradientText": [],
@@ -2317,7 +2330,7 @@
       118,
       181
      ],
-     "glyphPixels": 547
+     "glyphPixels": 553
     },
     {
      "width": 390,
@@ -2387,7 +2400,7 @@
       121,
       184
      ],
-     "glyphPixels": 1639
+     "glyphPixels": 1666
     },
     {
      "width": 1920,
@@ -2401,7 +2414,7 @@
       121,
       184
      ],
-     "glyphPixels": 1652
+     "glyphPixels": 1666
     }
    ],
    "gradientTextSkipped": []
