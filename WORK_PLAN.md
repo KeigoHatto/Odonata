@@ -193,6 +193,6 @@ v1 で構築した構造の上に、ブランド表現を「サッカー向けSa
 - [x] **P35-1** デモURLを1か所（`tools/build-partials.mjs` の `DEMO_URL`）で管理し、パーシャルと本文CTAへ同期できるようにする
 - [x] **P35-2** ナビ・フッター（パーシャル）の「デモを見る」をデモURLへ（新しいタブ・`.sr-only` で告知）
 - [x] **P35-3** 本文（Hero・ページ末CTA）の「デモを見る」をデモURLへ
-- [ ] **P35-4** GA4 `demo_click` イベント（`location`：nav / hero / cta_bottom / footer / demo_page）
+- [x] **P35-4** GA4 `demo_click` イベント（`location`：nav / hero / cta_bottom / footer / demo_page）
 - [ ] **P35-5** `demo.html` を画面紹介ページとして文言更新（上部に「今すぐデモを触る」）
 - [ ] **P35-6** en版の確認（同等のCTAがあれば同じ変更＋「The demo is in Japanese.」）
