@@ -251,5 +251,5 @@ Phase 37（v16 の技術的負債）は未着手のまま残っている。
 ### Phase 42：SEO・表記の自動検査（`npm run seo`）
 
 - [x] **P42-1** `scripts/banned-words.json` を新規作成
-- [ ] **P42-2** `scripts/seo-check.mjs` を新規作成（Node 標準のみ・`docs/seo-report.json` に出力）
+- [x] **P42-2** `scripts/seo-check.mjs` を新規作成（Node 標準のみ・`docs/seo-report.json` に出力）
 - [ ] **P42-3** `package.json` に `seo` スクリプトを追加し、実行結果を報告（error は直さない）
