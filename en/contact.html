@@ -67,8 +67,12 @@
       /* ログイン（別サブドメインへの遷移）。gtag は sendBeacon を使うため遷移中でも送信される */
       else if (/^https?:\/\/app\.getodonata\.com/.test(href)) { send('click_login', { location: whereFrom(a) }); }
     });
-    /* お問い合わせフォームの送信完了 */
-    document.addEventListener('odonata:lead', function () { send('generate_lead'); });
+    /* お問い合わせフォームの送信完了。purpose は目的の英字ID（option の data-lead）。
+       日本語の選択肢文言をそのまま送ると日英で別の値として集計されるため、IDで送る */
+    document.addEventListener('odonata:lead', function (e) {
+      var purpose = e.detail && e.detail.purpose;
+      send('generate_lead', purpose ? { purpose: purpose } : {});
+    });
   })();
 </script>
 <!-- /#partial:analytics -->
@@ -216,12 +220,12 @@
         <div class="form-row">
           <label for="f-purpose">What is this about?<span class="req">Required</span></label>
           <select id="f-purpose" required>
-            <option value="Request an overview of your services">Request an overview of your services</option>
-            <option value="A question about the services">A question about the services</option>
-            <option value="Implementation or a pilot">Implementation or a pilot</option>
-            <option value="Press or media">Press or media</option>
-            <option value="Research collaboration">Research collaboration</option>
-            <option value="Something else">Something else</option>
+            <option value="Request an overview of your services" data-lead="doc">Request an overview of your services</option>
+            <option value="A question about the services" data-lead="service">A question about the services</option>
+            <option value="Implementation or a pilot" data-lead="onboarding">Implementation or a pilot</option>
+            <option value="Press or media" data-lead="media">Press or media</option>
+            <option value="Research collaboration" data-lead="research">Research collaboration</option>
+            <option value="Something else" data-lead="other">Something else</option>
           </select>
         </div>
         <div class="form-row">
@@ -400,7 +404,8 @@
     }
     errBox.hidden = true;
     // 送信完了をアクセス解析へ通知（odonata:lead → generate_lead）
-    document.dispatchEvent(new Event('odonata:lead'));
+    const leadOpt = document.getElementById('f-purpose').selectedOptions[0];
+    document.dispatchEvent(new CustomEvent('odonata:lead', { detail: { purpose: leadOpt ? leadOpt.dataset.lead : '' } }));
     const v = id => document.getElementById(id).value.trim();
     const purpose = v('f-purpose');
     const subject = `[${purpose}] ${v('f-org')} — ${v('f-name')}`;

@@ -66,8 +66,12 @@
       /* ログイン（別サブドメインへの遷移）。gtag は sendBeacon を使うため遷移中でも送信される */
       else if (/^https?:\/\/app\.getodonata\.com/.test(href)) { send('click_login', { location: whereFrom(a) }); }
     });
-    /* お問い合わせフォームの送信完了 */
-    document.addEventListener('odonata:lead', function () { send('generate_lead'); });
+    /* お問い合わせフォームの送信完了。purpose は目的の英字ID（option の data-lead）。
+       日本語の選択肢文言をそのまま送ると日英で別の値として集計されるため、IDで送る */
+    document.addEventListener('odonata:lead', function (e) {
+      var purpose = e.detail && e.detail.purpose;
+      send('generate_lead', purpose ? { purpose: purpose } : {});
+    });
   })();
 </script>
 <!-- /#partial:analytics -->

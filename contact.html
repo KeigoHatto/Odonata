@@ -66,8 +66,12 @@
       /* ログイン（別サブドメインへの遷移）。gtag は sendBeacon を使うため遷移中でも送信される */
       else if (/^https?:\/\/app\.getodonata\.com/.test(href)) { send('click_login', { location: whereFrom(a) }); }
     });
-    /* お問い合わせフォームの送信完了 */
-    document.addEventListener('odonata:lead', function () { send('generate_lead'); });
+    /* お問い合わせフォームの送信完了。purpose は目的の英字ID（option の data-lead）。
+       日本語の選択肢文言をそのまま送ると日英で別の値として集計されるため、IDで送る */
+    document.addEventListener('odonata:lead', function (e) {
+      var purpose = e.detail && e.detail.purpose;
+      send('generate_lead', purpose ? { purpose: purpose } : {});
+    });
   })();
 </script>
 <!-- /#partial:analytics -->
@@ -222,12 +226,12 @@
         <div class="form-row">
           <label for="f-purpose">お問い合わせの目的<span class="req">必須</span></label>
           <select id="f-purpose" required>
-            <option value="資料請求">資料請求</option>
-            <option value="サービスについて">サービスについて</option>
-            <option value="導入・実証について">導入・実証について</option>
-            <option value="取材・メディア">取材・メディア</option>
-            <option value="共同研究・連携">共同研究・連携</option>
-            <option value="その他">その他</option>
+            <option value="資料請求" data-lead="doc">資料請求</option>
+            <option value="サービスについて" data-lead="service">サービスについて</option>
+            <option value="導入・実証について" data-lead="onboarding">導入・実証について</option>
+            <option value="取材・メディア" data-lead="media">取材・メディア</option>
+            <option value="共同研究・連携" data-lead="research">共同研究・連携</option>
+            <option value="その他" data-lead="other">その他</option>
           </select>
         </div>
         <div class="form-row">
@@ -409,7 +413,8 @@
     }
     errBox.hidden = true;
     // 送信完了をアクセス解析へ通知（計測は partials/analytics.html 側で受ける）
-    document.dispatchEvent(new Event('odonata:lead'));
+    const leadOpt = document.getElementById('f-purpose').selectedOptions[0];
+    document.dispatchEvent(new CustomEvent('odonata:lead', { detail: { purpose: leadOpt ? leadOpt.dataset.lead : '' } }));
     const v = id => document.getElementById(id).value.trim();
     const purpose = v('f-purpose');
     const subject = `【${purpose}】${v('f-org')} ${v('f-name')}様より`;
