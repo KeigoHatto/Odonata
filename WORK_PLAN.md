@@ -252,4 +252,5 @@ Phase 37（v16 の技術的負債）は未着手のまま残っている。
 
 - [x] **P42-1** `scripts/banned-words.json` を新規作成
 - [x] **P42-2** `scripts/seo-check.mjs` を新規作成（Node 標準のみ・`docs/seo-report.json` に出力）
-- [ ] **P42-3** `package.json` に `seo` スクリプトを追加し、実行結果を報告（error は直さない）
+- [x] **P42-3** `package.json` に `seo` スクリプトを追加し、実行結果を報告（error は直さない）
+  - 初回（2026-09-26）：error 12（禁止表現：「一元管理」10・「ダウンロード」2）/ warn 28（title 長さ15・description 長さ12・news 鮮度1）

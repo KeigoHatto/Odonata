@@ -1,0 +1,308 @@
+{
+ "generatedAt": "2026-09-26T09:47:49.337Z",
+ "summary": {
+  "error": 12,
+  "warn": 28,
+  "pages": 21,
+  "byRule": {
+   "banned-word": {
+    "error": 12,
+    "warn": 0
+   },
+   "description-length": {
+    "error": 0,
+    "warn": 12
+   },
+   "news-freshness": {
+    "error": 0,
+    "warn": 1
+   },
+   "title-length": {
+    "error": 0,
+    "warn": 15
+   }
+  }
+ },
+ "issues": [
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "guide.html",
+   "line": 732,
+   "message": "禁止表現「ダウンロード」（download：CTA文言でダウンロードを約束しない（フォーム送信後に即時DLされないため））：<li><b>自分の通算スタッツ</b>：出場・先発・出場時間・得点・アシスト・平均コーチ評価。「<b>CSV出力</b>」で自分の記録をダウンロードできます（"
+  },
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "guide.html",
+   "line": 939,
+   "message": "禁止表現「ダウンロード」（download：CTA文言でダウンロードを約束しない（フォーム送信後に即時DLされないため））：<li><b>PDF出力</b>：表示中の月の予定表（A4横）をダウンロードできます。</li>"
+  },
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "index.html",
+   "line": 791,
+   "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<p>日々の入力から蓄積・一元管理・推移の確認・分析までを、ひとつの環境で行います。現場スタッフが毎日使うWebアプリです。</p>"
+  },
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "index.html",
+   "line": 794,
+   "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<li><svg class=\"ic\" aria-hidden=\"true\"><use href=\"#i-stack\"/></svg> <span>整理する<s"
+  },
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "service-platform.html",
+   "line": 16,
+   "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<meta property=\"og:description\" content=\"サッカーの現場で毎日使うためのデータプラットフォームです。コンディション・GP"
+  },
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "service-platform.html",
+   "line": 90,
+   "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<meta name=\"description\" content=\"サッカーの現場で毎日使うためのデータプラットフォームです。コンディション・GPS・試合・メデ"
+  },
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "service-platform.html",
+   "line": 413,
+   "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<p class=\"lead\"><span class=\"np\">コンディション・GPS・試合・</span><span class=\"np\">メディカルを一元"
+  },
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "service-platform.html",
+   "line": 429,
+   "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<desc id=\"flowfig-d\">左に GPS・コンディション・トレーニング・試合・メディカル・目標(IDP) の6種類の記録が離れて置かれ、中央の O"
+  },
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "service-platform.html",
+   "line": 461,
+   "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<rect x=\"656\" y=\"70\" width=\"236\" height=\"42\" rx=\"10\"/><text x=\"774\" y=\"97\">一元管理さ"
+  },
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "service-platform.html",
+   "line": 480,
+   "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<span class=\"fs-item out\">一元管理された画面</span>"
+  },
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "service-platform.html",
+   "line": 526,
+   "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<p>選手ごとの目標と取り組みを設定し、達成度の評価や面談記録まで一元管理。育成のプロセスを見える形で残します。</p>"
+  },
+  {
+   "level": "error",
+   "rule": "banned-word",
+   "file": "service-platform.html",
+   "line": 711,
+   "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<tr><td><b>IDP（個人育成計画）</b></td><td>目標設定・達成度評価・面談記録の一元管理、目標サマリー</td></tr>"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "approach.html",
+   "line": 90,
+   "message": "description が 120.5字（全角換算）（目安 80〜120）"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "company.html",
+   "line": 90,
+   "message": "description が 123.5字（全角換算）（目安 80〜120）"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "en/approach.html",
+   "line": 91,
+   "message": "description が 173 characters（目安 120〜160）"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "en/company.html",
+   "line": 91,
+   "message": "description が 228 characters（目安 120〜160）"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "en/contact.html",
+   "line": 91,
+   "message": "description が 164 characters（目安 120〜160）"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "en/index.html",
+   "line": 92,
+   "message": "description が 265 characters（目安 120〜160）"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "en/research.html",
+   "line": 91,
+   "message": "description が 256 characters（目安 120〜160）"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "en/service-analysis.html",
+   "line": 91,
+   "message": "description が 250 characters（目安 120〜160）"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "en/service-platform.html",
+   "line": 91,
+   "message": "description が 225 characters（目安 120〜160）"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "index.html",
+   "line": 91,
+   "message": "description が 149字（全角換算）（目安 80〜120）"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "service-analysis.html",
+   "line": 90,
+   "message": "description が 120.5字（全角換算）（目安 80〜120）"
+  },
+  {
+   "level": "warn",
+   "rule": "description-length",
+   "file": "service-platform.html",
+   "line": 90,
+   "message": "description が 126字（全角換算）（目安 80〜120）"
+  },
+  {
+   "level": "warn",
+   "rule": "news-freshness",
+   "file": "news.html",
+   "line": 1,
+   "message": "最新のお知らせが 2026-07-25（63日前）。45日以上更新がありません"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "company.html",
+   "line": 23,
+   "message": "title が 15.5字（全角換算）（目安 28〜40）：会社情報｜Odonata（オドナータ）"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "contact.html",
+   "line": 23,
+   "message": "title が 15.5字（全角換算）（目安 28〜40）：資料請求・お問い合わせ｜Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "demo.html",
+   "line": 19,
+   "message": "title が 9.5字（全角換算）（目安 28〜40）：デモを見る｜Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "en/approach.html",
+   "line": 24,
+   "message": "title が 38 characters（目安 50〜60）：The Complex Systems Approach | Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "en/company.html",
+   "line": 24,
+   "message": "title が 13 characters（目安 50〜60）：About Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "en/contact.html",
+   "line": 24,
+   "message": "title が 17 characters（目安 50〜60）：Contact | Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "en/research.html",
+   "line": 24,
+   "message": "title が 67 characters（目安 50〜60）：Injury Risk Prediction Results | University of Tsukuba FC | Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "en/service-analysis.html",
+   "line": 24,
+   "message": "title が 43 characters（目安 50〜60）：Football Data Analysis & Advisory | Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "en/service-platform.html",
+   "line": 24,
+   "message": "title が 32 characters（目安 50〜60）：Football Data Platform | Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "guide.html",
+   "line": 19,
+   "message": "title が 22.5字（全角換算）（目安 28〜40）：使い方ガイド｜データプラットフォーム｜Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "news.html",
+   "line": 19,
+   "message": "title が 8.5字（全角換算）（目安 28〜40）：ニュース｜Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "philosophy.html",
+   "line": 19,
+   "message": "title が 17.5字（全角換算）（目安 28〜40）：複雑な世界を、複眼で読む。｜Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "privacy.html",
+   "line": 19,
+   "message": "title が 14.5字（全角換算）（目安 28〜40）：プライバシーポリシー｜Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "service-analysis.html",
+   "line": 23,
+   "message": "title が 23.5字（全角換算）（目安 28〜40）：サッカーチーム向けデータ分析・伴走支援｜Odonata"
+  },
+  {
+   "level": "warn",
+   "rule": "title-length",
+   "file": "service-platform.html",
+   "line": 23,
+   "message": "title が 24.5字（全角換算）（目安 28〜40）：サッカーチーム向けデータプラットフォーム｜Odonata"
+  }
+ ]
+}

@@ -5,6 +5,7 @@
   "description": "getodonata.com。サイト本体は依存なしの静的HTML。ここにあるのは検査用の開発依存のみ。",
   "scripts": {
     "a11y": "node scripts/a11y-check.mjs",
+    "seo": "node scripts/seo-check.mjs",
     "og": "node tools/build-og.mjs",
     "utm": "node tools/utm.mjs",
     "check": "node tools/build-partials.mjs --check && node tools/build-sitemap.mjs --check && node tools/build-og.mjs --check"
