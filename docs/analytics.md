@@ -1,7 +1,7 @@
-# アクセス解析（GA4）のイベント一覧
+# アクセス解析（GA4・Microsoft Clarity）
 
-計測コードは `partials/analytics.html` の1か所だけにある（`node tools/build-partials.mjs` で全ページのヘッドへ同期）。
-測定ID：`G-X3FK9YCZG5`。ページに直接 `gtag('event', …)` を書かない。
+計測コードは `partials/analytics.html` の1か所だけにある（`node tools/build-partials.mjs` で全ページのヘッドへ同期。非公開の `kessan.html` は対象外）。
+GA4 の測定ID：`G-X3FK9YCZG5`。ページに直接 `gtag('event', …)` を書かない。Clarity は下の「Microsoft Clarity」。
 
 ## イベント
 
@@ -67,6 +67,21 @@ JS は書かない。HTML に属性を足すだけにする。
 | キーイベント | `generate_lead`、`click_demo` | GA4 → 管理 → イベント で「キーイベントとしてマーク」 |
 | カスタムディメンション（イベント範囲） | `location`、`purpose` | GA4 → 管理 → カスタム定義。登録しないとレポートでパラメータ別に見られない |
 | クロスドメイン | `getodonata.com`、`odonata-demo.onrender.com` | 設定済み（2026-09-26） |
+
+## Microsoft Clarity
+
+クリック・スクロール・マウスの動きの録画とヒートマップで、ページ上のどこで迷ったかを見る。
+
+| 項目 | 内容 |
+|---|---|
+| プロジェクトID | `yo97743hnq`（`partials/analytics.html` の1か所だけ） |
+| 読み込み | 公式スニペットを `async` で読み込む。`localhost` / `127.0.0.1` / `file:` では読み込まない（自分の確認作業と `npm run a11y` の検査が録画に混ざらないように） |
+| マスク | Clarity 側の設定（バランス）＋お問い合わせフォームの自由記述5欄に `data-clarity-mask="true"`（日英）。選択式の「目的」「カテゴリ」はマスクしない |
+| GA4 連携 | 設定済み（Clarity → Settings）。GA4 のセグメントから録画を開ける |
+| プライバシーポリシー | `privacy.html` の「5. Cookie・アクセス解析」に記載 |
+
+- フォームに自由記述の欄を足すときは、同じく `data-clarity-mask="true"` を付ける
+- 表示速度への影響：スニペットは `async` で HTML の解析を止めない。読み込み後に録画用のスクリプト（`clarity.ms`）が追加で取得される
 
 ## 確認のしかた
 
