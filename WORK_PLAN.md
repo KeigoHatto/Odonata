@@ -223,8 +223,9 @@ Phase 37（v16 の技術的負債）は未着手のまま残っている。
 
 ### Phase 38：計測イベントの棚卸しと統一
 
-- [ ] **P38-1** 現状のイベント一覧を grep で出す
-- [ ] **P38-2** `demo_click` を `click_demo` に寄せる（名前の統一）
+- [x] **P38-1** 現状のイベント一覧を grep で出す
+  - 結果：`demo_click`（デモ環境）/ `click_demo`（demo.html へのリンク。本文からのリンクは0件で実質未発火）/ `click_contact` / `click_login` / `generate_lead`
+- [x] **P38-2** `demo_click` を `click_demo` に寄せる（名前の統一）
 - [ ] **P38-3** 計測を `data-track` / `data-location` 属性で拾う形にし、`partials/analytics.html` に集約する
 - [ ] **P38-4** `docs/analytics.md` を新規作成（イベント一覧・パラメータ・キーイベント）
 

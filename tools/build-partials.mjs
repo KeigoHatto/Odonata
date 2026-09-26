@@ -16,7 +16,7 @@
  *
  * デモ環境のURLは下の DEMO_URL だけで管理する。パーシャル内は {{DEMO_URL}} と書き、
  * 本文のリンクは <a data-demo="位置" href="..."> と書けば href をここで上書きする。
- * data-demo の値は GA4 の demo_click イベントの location にも使う（partials/analytics.html）。
+ * data-demo の値は GA4 の click_demo イベントの location にも使う（partials/analytics.html）。
  */
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
