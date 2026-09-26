@@ -212,3 +212,38 @@ v1 で構築した構造の上に、ブランド表現を「サッカー向けSa
 - [x] **P36-4** 他ページの「お見積り」「月額制」表記をそろえる（index 最終CTA・contact・service-analysis）
 - [x] **P36-5** en版：`en/pricing.html` は無い。同じ文言の英語（"a quote" 等）を同じ方針にそろえる
   - 対象：en/index・en/approach・en/research・en/contact・en/service-analysis
+
+---
+
+## 1.10｜Phase 38〜42（指示書 v17：計測の穴埋めと SEO 自動検査）
+
+指示書：`Odonata_ClaudeCode_指示書_v17_計測と週次自動監査.md`。今回の対象は Phase 38・39・40・42。
+Phase 41（デモ環境の計測）は保留（2026-09-26 判断）。Phase 43（週次自動監査）・44 は今回見送り。
+Phase 37（v16 の技術的負債）は未着手のまま残っている。
+
+### Phase 38：計測イベントの棚卸しと統一
+
+- [ ] **P38-1** 現状のイベント一覧を grep で出す
+- [ ] **P38-2** `demo_click` を `click_demo` に寄せる（名前の統一）
+- [ ] **P38-3** 計測を `data-track` / `data-location` 属性で拾う形にし、`partials/analytics.html` に集約する
+- [ ] **P38-4** `docs/analytics.md` を新規作成（イベント一覧・パラメータ・キーイベント）
+
+### Phase 39：UTM のルールと生成ツール
+
+- [ ] **P39-1** `docs/utm.md` を新規作成
+- [ ] **P39-2** `tools/utm.mjs` を新規作成（Node 標準のみ・値のバリデーション付き）
+- [ ] **P39-3** `package.json` に `utm` スクリプトを追加
+
+### Phase 40：Microsoft Clarity（ID：`yo97743hnq`）
+
+- [ ] **P40-1** `partials/analytics.html` に Clarity を追加（ローカルでは読み込まない）
+- [ ] **P40-2** 全ページへの反映を grep で確認
+- [ ] **P40-3** お問い合わせフォームの入力欄に `data-clarity-mask="true"`
+- [ ] **P40-4** プライバシーポリシーに Clarity を追記（GA4 の記載と統合・改定日更新）
+- [ ] **P40-5** `docs/analytics.md` に Clarity を追記
+
+### Phase 42：SEO・表記の自動検査（`npm run seo`）
+
+- [ ] **P42-1** `scripts/banned-words.json` を新規作成
+- [ ] **P42-2** `scripts/seo-check.mjs` を新規作成（Node 標準のみ・`docs/seo-report.json` に出力）
+- [ ] **P42-3** `package.json` に `seo` スクリプトを追加し、実行結果を報告（error は直さない）
