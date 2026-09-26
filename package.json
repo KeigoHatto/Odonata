@@ -6,6 +6,7 @@
   "scripts": {
     "a11y": "node scripts/a11y-check.mjs",
     "og": "node tools/build-og.mjs",
+    "utm": "node tools/utm.mjs",
     "check": "node tools/build-partials.mjs --check && node tools/build-sitemap.mjs --check && node tools/build-og.mjs --check"
   },
   "devDependencies": {
