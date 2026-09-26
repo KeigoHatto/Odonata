@@ -1,0 +1,75 @@
+{
+  "_使い方": [
+    "scripts/seo-check.mjs（npm run seo）が読む禁止表現のリスト。1件でも出たら error になる。",
+    "text は文字列の完全一致、regex は正規表現（JSON なので \\ は二重に書く）。どちらか一方を書く。",
+    "in は検査対象。html＝サイトの全HTML（コメント含む）、css＝assets の CSS と全HTML（<style> と style 属性）。",
+    "allow に書いた文字列を含む行は除外する。正当な用途を1件ずつ足す（行の一部をそのまま貼る）。"
+  ],
+  "rules": [
+    {
+      "id": "company-name",
+      "text": "株式会社Odonata",
+      "in": ["html"],
+      "reason": "法人登記前。「Odonata」と書く",
+      "allow": []
+    },
+    {
+      "id": "founder-name",
+      "text": "澤田",
+      "in": ["html"],
+      "reason": "公開ページに名前を出さない",
+      "allow": []
+    },
+    {
+      "id": "x14",
+      "text": "約14倍",
+      "in": ["html"],
+      "reason": "単独使用禁止。ACWR比較表の文脈でのみ可。出現したら人が目視し、比較表の文脈なら allow に足す",
+      "allow": []
+    },
+    {
+      "id": "download",
+      "text": "ダウンロード",
+      "in": ["html"],
+      "reason": "CTA文言でダウンロードを約束しない（フォーム送信後に即時DLされないため）",
+      "allow": [
+        "ダウンロードアイコン（i-download）は改修方針により全ページで廃止"
+      ]
+    },
+    {
+      "id": "centralize",
+      "text": "一元管理",
+      "in": ["html"],
+      "reason": "差別化の軸として使わない方針（2026-08-30）",
+      "allow": []
+    },
+    {
+      "id": "personal-dependency",
+      "text": "属人性の解消",
+      "in": ["html"],
+      "reason": "差別化の軸として使わない方針（2026-08-30）",
+      "allow": []
+    },
+    {
+      "id": "click-here",
+      "text": "詳しくはこちら",
+      "in": ["html"],
+      "reason": "リンク先の内容が分からない。リンク先を示す文言にする（§7-8）",
+      "allow": []
+    },
+    {
+      "id": "break-all",
+      "regex": "word-break\\s*:\\s*break-all",
+      "in": ["css"],
+      "reason": "日本語で単語の途中で折れる。使わない",
+      "allow": []
+    },
+    {
+      "id": "outline-none",
+      "regex": "outline\\s*:\\s*none",
+      "in": ["css"],
+      "reason": "フォーカスリングを消さない（§8-1）",
+      "allow": []
+    }
+  ]
+}
