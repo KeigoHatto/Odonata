@@ -234,7 +234,7 @@ Phase 37（v16 の技術的負債）は未着手のまま残っている。
 ### Phase 39：UTM のルールと生成ツール
 
 - [x] **P39-1** `docs/utm.md` を新規作成
-- [ ] **P39-2** `tools/utm.mjs` を新規作成（Node 標準のみ・値のバリデーション付き）
+- [x] **P39-2** `tools/utm.mjs` を新規作成（Node 標準のみ・値のバリデーション付き）
 - [ ] **P39-3** `package.json` に `utm` スクリプトを追加
 
 ### Phase 40：Microsoft Clarity（ID：`yo97743hnq`）
