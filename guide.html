@@ -46,16 +46,18 @@
       var page = (location.pathname.split('/').pop() || 'index.html').replace('.html', '');
       return page + '_page';
     };
+    /* イベント名と送る条件の一覧は docs/analytics.md。遷移は妨げない。イベントを送るだけ */
     document.addEventListener('click', function (e) {
-      var a = e.target.closest('a[href]');
+      var a = e.target.closest('[data-track], a[href]');
       if (!a) { return; }
+      /* 明示指定：<a data-track="イベント名" data-location="位置">。ボタンが増えても HTML に属性を足すだけで済むように、
+         下の自動判定より優先する。data-location が無ければ whereFrom で補う */
+      var track = a.getAttribute('data-track');
+      if (track) { send(track, { location: a.getAttribute('data-location') || whereFrom(a) }); return; }
       var href = a.getAttribute('href') || '';
-      /* 遷移は妨げない。イベントを送るだけ */
       /* デモ環境（外部）への直リンク。位置は data-demo の値（nav / hero / cta_bottom / footer / demo_page / contact）。
          URLではなく属性で判定するのは、デモURLを tools/build-partials.mjs の1か所だけで管理するため */
       if (a.hasAttribute('data-demo')) { send('click_demo', { location: a.getAttribute('data-demo') }); }
-      /* 画面紹介ページ（demo.html）への導線 */
-      else if (/(^|\/)demo\.html(\?|#|$)/.test(href)) { send('click_demo', { location: whereFrom(a) }); }
       else if (/(^|\/)contact\.html(\?|#|$)/.test(href)) { send('click_contact', { location: whereFrom(a) }); }
       /* ログイン（別サブドメインへの遷移）。gtag は sendBeacon を使うため遷移中でも送信される */
       else if (/^https?:\/\/app\.getodonata\.com/.test(href)) { send('click_login', { location: whereFrom(a) }); }
