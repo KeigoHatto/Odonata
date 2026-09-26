@@ -1,5 +1,6 @@
 <!-- アクセス解析（単一ソース：partials/analytics.html → tools/build-partials.mjs で全ページのヘッド内へ同期）
-     測定IDを変更するときは、このファイルの2箇所だけを書き換えて同期を実行する。 -->
+     GA4 の測定IDを変更するときは、このファイルの2箇所だけを書き換えて同期を実行する（Clarity のIDは1箇所）。
+     計測タグ（GA4・Clarity）以外の外部スクリプトはここにも足さない。 -->
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X3FK9YCZG5"></script>
 <script>
@@ -7,6 +8,17 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-X3FK9YCZG5');
+</script>
+<!-- Microsoft Clarity（公式スニペット。async で読み込む）。プロジェクトIDはこの1箇所だけで管理する。
+     ローカルでの確認作業が録画に混ざらないよう、localhost / 127.0.0.1 / file: では読み込まない（a11y検査も対象外になる）。
+     入力内容はマスクする（フォーム欄の data-clarity-mask と Clarity 側の設定の二重）。記載は privacy.html と docs/analytics.md -->
+<script>
+  (function (c, l, a, r, i, t, y) {
+    if (l.location.protocol === 'file:' || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(l.location.hostname)) { return; }
+    c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+    t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+    y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+  })(window, document, 'clarity', 'script', 'yo97743hnq');
 </script>
 <script>
   /* 主要なクリックの計測。onclick 属性は使わず addEventListener でまとめて拾う。

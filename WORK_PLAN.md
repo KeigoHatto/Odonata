@@ -239,8 +239,9 @@ Phase 37（v16 の技術的負債）は未着手のまま残っている。
 
 ### Phase 40：Microsoft Clarity（ID：`yo97743hnq`）
 
-- [ ] **P40-1** `partials/analytics.html` に Clarity を追加（ローカルでは読み込まない）
-- [ ] **P40-2** 全ページへの反映を grep で確認
+- [x] **P40-1** `partials/analytics.html` に Clarity を追加（ローカルでは読み込まない）
+- [x] **P40-2** 全ページへの反映を grep で確認
+  - 結果：公開20ページすべてに反映。`kessan.html`（非公開・noindex・GA4も無し）は同期対象外のまま入れない。IDは `yo97743hnq` の1種類のみ
 - [ ] **P40-3** お問い合わせフォームの入力欄に `data-clarity-mask="true"`
 - [ ] **P40-4** プライバシーポリシーに Clarity を追記（GA4 の記載と統合・改定日更新）
 - [ ] **P40-5** `docs/analytics.md` に Clarity を追記
