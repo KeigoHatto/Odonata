@@ -208,8 +208,9 @@ for (const file of htmlFiles) {
     const href = a.attrs.href;
     if (href === undefined) { continue; }
     const line = lineOf(p.html, a.index);
-    if (a.attrs.target === '_blank' && !/\bnoopener\b/.test(a.attrs.rel || '')) {
-      add('warn', 'noopener', file, line, `target="_blank" に rel="noopener" がありません：${href}`);
+    const external = /^(https?:)?\/\//i.test(href) && !fileOfUrl(href.replace(/^\/\//, 'https://'));
+    if (external && a.attrs.target === '_blank' && !/\bnoopener\b/.test(a.attrs.rel || '')) {
+      add('warn', 'noopener', file, line, `外部リンクの target="_blank" に rel="noopener" がありません：${href}`);
     }
     if (/^(mailto|tel|javascript|data):/i.test(href) || href === '#') { continue; }
     let target;
