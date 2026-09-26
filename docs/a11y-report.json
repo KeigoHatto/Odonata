@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-22T10:28:42.721Z",
+ "generatedAt": "2026-09-26T09:27:11.912Z",
  "pages": {
   "approach.html": {
    "axe": {
@@ -774,7 +774,7 @@
       123,
       185
      ],
-     "glyphPixels": 842
+     "glyphPixels": 853
     },
     {
      "width": 1280,
@@ -802,7 +802,7 @@
       122,
       185
      ],
-     "glyphPixels": 960
+     "glyphPixels": 970
     },
     {
      "width": 1920,
@@ -2330,7 +2330,7 @@
       118,
       181
      ],
-     "glyphPixels": 553
+     "glyphPixels": 549
     },
     {
      "width": 390,
@@ -2358,7 +2358,7 @@
       119,
       182
      ],
-     "glyphPixels": 661
+     "glyphPixels": 642
     },
     {
      "width": 1024,
@@ -2386,7 +2386,7 @@
       121,
       184
      ],
-     "glyphPixels": 1666
+     "glyphPixels": 1663
     },
     {
      "width": 1440,
@@ -2400,7 +2400,7 @@
       121,
       184
      ],
-     "glyphPixels": 1666
+     "glyphPixels": 1644
     },
     {
      "width": 1920,
@@ -2414,7 +2414,7 @@
       121,
       184
      ],
-     "glyphPixels": 1660
+     "glyphPixels": 1666
     }
    ],
    "gradientTextSkipped": []
