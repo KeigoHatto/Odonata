@@ -3,15 +3,81 @@
     "scripts/seo-check.mjs（npm run seo）が読む禁止表現のリスト。1件でも出たら error になる。",
     "text は文字列の完全一致、regex は正規表現（JSON なので \\ は二重に書く）。どちらか一方を書く。",
     "in は検査対象。html＝サイトの全HTML（コメント含む）、css＝assets の CSS と全HTML（<style> と style 属性）。",
-    "allow に書いた文字列を含む行は除外する。正当な用途を1件ずつ足す（行の一部をそのまま貼る）。"
+    "allow に書いた文字列を含む行は除外する。正当な用途を1件ずつ足す（行の一部をそのまま貼る）。",
+    "exclude に書いたファイル（例：privacy.html）はそのルールの検査から外す。一時的な例外にだけ使い、外す条件を note に書く。"
   ],
   "rules": [
     {
-      "id": "company-name",
-      "text": "株式会社Odonata",
+      "id": "pre-incorporation-1",
+      "text": "設立準備中",
       "in": ["html"],
-      "reason": "法人登記前。「Odonata」と書く",
-      "allow": []
+      "reason": "2026-10-13 に設立済み。古い表記",
+      "allow": [],
+      "exclude": ["privacy.html"],
+      "note": "privacy.html は今回改定しないため一時的に外す。プライバシーポリシー改定時に外す（exclude を消す）"
+    },
+    {
+      "id": "pre-incorporation-2",
+      "text": "設立予定",
+      "in": ["html"],
+      "reason": "2026-10-13 に設立済み。古い表記",
+      "allow": [],
+      "exclude": ["privacy.html"],
+      "note": "privacy.html は今回改定しないため一時的に外す。プライバシーポリシー改定時に外す（exclude を消す）"
+    },
+    {
+      "id": "pre-incorporation-3",
+      "text": "Preparing to incorporate",
+      "in": ["html"],
+      "reason": "2026-10-13 に設立済み。古い表記",
+      "allow": [],
+      "exclude": ["privacy.html"],
+      "note": "privacy.html は今回改定しないため一時的に外す。プライバシーポリシー改定時に外す（exclude を消す）"
+    },
+    {
+      "id": "pre-incorporation-4",
+      "text": "planned for 2027",
+      "in": ["html"],
+      "reason": "2026-10-13 に設立済み。古い表記",
+      "allow": [],
+      "exclude": ["privacy.html"],
+      "note": "privacy.html は今回改定しないため一時的に外す。プライバシーポリシー改定時に外す（exclude を消す）"
+    },
+    {
+      "id": "company-name-1",
+      "text": "株式会社オドナータ",
+      "in": ["html"],
+      "reason": "商号の誤記。正しくは「株式会社Odonata」（前株・頭文字だけ大文字）",
+      "allow": [],
+      "exclude": ["privacy.html"],
+      "note": "privacy.html は今回改定しないため一時的に外す。プライバシーポリシー改定時に外す（exclude を消す）"
+    },
+    {
+      "id": "company-name-2",
+      "text": "ODONATA株式会社",
+      "in": ["html"],
+      "reason": "商号の誤記。正しくは「株式会社Odonata」（前株・頭文字だけ大文字）",
+      "allow": [],
+      "exclude": ["privacy.html"],
+      "note": "privacy.html は今回改定しないため一時的に外す。プライバシーポリシー改定時に外す（exclude を消す）"
+    },
+    {
+      "id": "company-name-3",
+      "text": "Odonata株式会社",
+      "in": ["html"],
+      "reason": "商号の誤記。正しくは「株式会社Odonata」（前株・頭文字だけ大文字）",
+      "allow": [],
+      "exclude": ["privacy.html"],
+      "note": "privacy.html は今回改定しないため一時的に外す。プライバシーポリシー改定時に外す（exclude を消す）"
+    },
+    {
+      "id": "company-name-4",
+      "text": "株式会社ODONATA",
+      "in": ["html"],
+      "reason": "商号の誤記。正しくは「株式会社Odonata」（前株・頭文字だけ大文字）",
+      "allow": [],
+      "exclude": ["privacy.html"],
+      "note": "privacy.html は今回改定しないため一時的に外す。プライバシーポリシー改定時に外す（exclude を消す）"
     },
     {
       "id": "founder-name",

@@ -262,6 +262,7 @@ for (const rule of banned) {
   const re = rule.regex ? new RegExp(rule.regex, 'gi') : new RegExp(rule.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
   for (const kind of rule.in || ['html']) {
     for (const file of sources[kind] || []) {
+      if ((rule.exclude || []).includes(file)) { continue; }
       checkBanned(rule, re, file, views[kind](file));
     }
   }
