@@ -1,8 +1,8 @@
 {
- "generatedAt": "2026-09-26T09:47:49.337Z",
+ "generatedAt": "2026-10-17T11:24:04.580Z",
  "summary": {
   "error": 12,
-  "warn": 28,
+  "warn": 27,
   "pages": 21,
   "byRule": {
    "banned-word": {
@@ -12,10 +12,6 @@
    "description-length": {
     "error": 0,
     "warn": 12
-   },
-   "news-freshness": {
-    "error": 0,
-    "warn": 1
    },
    "title-length": {
     "error": 0,
@@ -42,14 +38,14 @@
    "level": "error",
    "rule": "banned-word",
    "file": "index.html",
-   "line": 791,
+   "line": 793,
    "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<p>日々の入力から蓄積・一元管理・推移の確認・分析までを、ひとつの環境で行います。現場スタッフが毎日使うWebアプリです。</p>"
   },
   {
    "level": "error",
    "rule": "banned-word",
    "file": "index.html",
-   "line": 794,
+   "line": 796,
    "message": "禁止表現「一元管理」（centralize：差別化の軸として使わない方針（2026-08-30））：<li><svg class=\"ic\" aria-hidden=\"true\"><use href=\"#i-stack\"/></svg> <span>整理する<s"
   },
   {
@@ -120,7 +116,7 @@
    "rule": "description-length",
    "file": "company.html",
    "line": 90,
-   "message": "description が 123.5字（全角換算）（目安 80〜120）"
+   "message": "description が 122.5字（全角換算）（目安 80〜120）"
   },
   {
    "level": "warn",
@@ -191,13 +187,6 @@
    "file": "service-platform.html",
    "line": 90,
    "message": "description が 126字（全角換算）（目安 80〜120）"
-  },
-  {
-   "level": "warn",
-   "rule": "news-freshness",
-   "file": "news.html",
-   "line": 1,
-   "message": "最新のお知らせが 2026-07-25（63日前）。45日以上更新がありません"
   },
   {
    "level": "warn",

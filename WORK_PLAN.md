@@ -263,10 +263,12 @@ Phase 37（v16 の技術的負債）は未着手のまま残っている。
 要確認1〜4は「代表取締役」「資本金25万円を載せる」「茨城県つくば市まで」「Odonata Inc.」で実装（2026-10-17 澤田）。
 privacy.html の本文は触らない（共通フッターの同期による1行の変更のみ可・2026-10-17 澤田）。
 
-- [ ] **P50** `company.html`：会社概要の表・沿革・meta/og description
-- [ ] **P51** `en/company.html`：会社概要の表・History
-- [ ] **P52** フッター・コピーライト（partials・guide/philosophy・kessan）
-- [ ] **P53** 「設立準備中」等の残り・Organization の JSON-LD
-- [ ] **P54** `news.html`：「株式会社Odonataを設立しました」
-- [ ] **P55** `npm run seo` の禁止表現リストの更新
-- [ ] **P56** 検査・sitemap の lastmod・push・本番確認
+- [x] **P50** `company.html`：会社概要の表・沿革・meta/og description
+- [x] **P51** `en/company.html`：会社概要の表・History
+- [x] **P52** フッター・コピーライト（partials・guide/philosophy・kessan）
+- [x] **P53** 「設立準備中」等の残り・Organization の JSON-LD
+- [x] **P54** `news.html`：「株式会社Odonataを設立しました」
+- [x] **P55** `npm run seo` の禁止表現リストの更新
+- [x] **P56** 検査・sitemap の lastmod・push・本番確認
+  - 検査（2026-10-17）：check 通過 / seo error 12（すべて以前からある「一元管理」10・「ダウンロード」2。新ルールは0）・warn 27 / a11y 違反0（作業前と同じ）
+  - TOP の「ニュース」欄は news.html から引いておらず固定の3件のため、設立のお知らせは TOP に出ない（未対応・要判断）
