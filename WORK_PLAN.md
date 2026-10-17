@@ -254,3 +254,19 @@ Phase 37（v16 の技術的負債）は未着手のまま残っている。
 - [x] **P42-2** `scripts/seo-check.mjs` を新規作成（Node 標準のみ・`docs/seo-report.json` に出力）
 - [x] **P42-3** `package.json` に `seo` スクリプトを追加し、実行結果を報告（error は直さない）
   - 初回（2026-09-26）：error 12（禁止表現：「一元管理」10・「ダウンロード」2）/ warn 28（title 長さ15・description 長さ12・news 鮮度1）
+
+---
+
+## 1.11｜Phase 50〜56（指示書 v18：株式会社表記と設立のお知らせ／改善ログ WEB-26）
+
+指示書：`Odonata_ClaudeCode_指示書_v18_株式会社表記と設立のお知らせ.md`。2026-10-13 設立（登記完了は 10/22 予定）。
+要確認1〜4は「代表取締役」「資本金25万円を載せる」「茨城県つくば市まで」「Odonata Inc.」で実装（2026-10-17 澤田）。
+privacy.html の本文は触らない（共通フッターの同期による1行の変更のみ可・2026-10-17 澤田）。
+
+- [ ] **P50** `company.html`：会社概要の表・沿革・meta/og description
+- [ ] **P51** `en/company.html`：会社概要の表・History
+- [ ] **P52** フッター・コピーライト（partials・guide/philosophy・kessan）
+- [ ] **P53** 「設立準備中」等の残り・Organization の JSON-LD
+- [ ] **P54** `news.html`：「株式会社Odonataを設立しました」
+- [ ] **P55** `npm run seo` の禁止表現リストの更新
+- [ ] **P56** 検査・sitemap の lastmod・push・本番確認
